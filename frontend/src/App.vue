@@ -6,7 +6,7 @@
 
 <script lang="ts">
     import {Options, Vue} from "vue-class-component";
-    import login from './components/login.vue'
+    import login from './components/login.vue';
 
     @Options({
         components: {login},
@@ -15,7 +15,7 @@
     }
 </script>
 
-<style lang="css">
+<style lang="scss">
     #app {
         width: 100%;
         height: 100%;
