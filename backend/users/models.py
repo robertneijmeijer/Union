@@ -5,7 +5,7 @@ from django.db import models
 
 
 class User(models.Model):
-    user_id = models.IntegerField(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=45)
     password = models.CharField(max_length=256)
     avatar = models.CharField(max_length=256)
