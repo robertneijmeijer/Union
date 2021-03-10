@@ -46,17 +46,9 @@
     }
 </script>
 
-<style>
+<style lang="css">
     @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';
     @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
-
-    html, body {
-        background-image: url('https://marmotamaps.com/de/fx/wallpaper/download/alpenberge/Marmotamaps_Wallpaper_MonteViso_Desktop_1920x1080.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 100%;
-        font-family: 'Numans', sans-serif;
-    }
 
     .container {
         height: 100%;
@@ -77,7 +69,7 @@
 
     .input-group-prepend span {
         width: 50px;
-        background-color: #24a0ed;
+        background-color: #017BFF;
         color: black;
         border: 0 !important;
     }
@@ -101,14 +93,6 @@
         margin-left: 15px;
         margin-right: 5px;
     }
-
-    /*.input:hover {*/
-    /*    background-color: #FFC312;*/
-    /*}*/
-
-    /*.input {*/
-    /*    border: 2px solid #FFC312;*/
-    /*}*/
 
     .links {
         color: white;

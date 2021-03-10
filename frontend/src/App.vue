@@ -20,4 +20,12 @@
         width: 100%;
         height: 100%;
     }
+
+    html, body {
+        background-image: url('https://marmotamaps.com/de/fx/wallpaper/download/alpenberge/Marmotamaps_Wallpaper_MonteViso_Desktop_1920x1080.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
 </style>
