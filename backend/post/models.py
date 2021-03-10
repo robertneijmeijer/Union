@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_lenght=300)
-    message = models.CharField(max_lenght=50000)
+    title = models.TextField()
+    message = models.TextField()
     upvotes = models.IntegerField()
     downvotes = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
