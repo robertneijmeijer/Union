@@ -1,9 +1,12 @@
 <template>
     <navigator></navigator>
+    <div class="landingsimage">
+    <img src="../assets/landingspage.jpg" height="583" width="824"/>
     <div class="centeredText">
         <h3 class="first">Create.</h3>
         <h3 class="second">Discover.</h3>
         <h3 class="third">Unite.</h3>
+    </div>
     </div>
 </template>
 
@@ -21,6 +24,9 @@
 
     .centeredText {
         text-align: center;
+        position: absolute;
+        top: 40px;
+        left: 45%;
     }
 
     .first {
@@ -40,5 +46,16 @@
         margin-top: 10px;
         user-select: none;
     }
+
+    .landingsimage{
+       position: relative;
+        width: 100%;
+    }
+
+    img{
+        margin-top: 50px;
+    }
+
+
 
 </style>

@@ -26,7 +26,7 @@ export default class App extends Vue {}
 
 html,
 body {
-  background-image: $landingsPageImage;
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
