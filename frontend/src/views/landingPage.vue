@@ -17,6 +17,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../assets/theme";
 
     .centeredText {
         text-align: center;
