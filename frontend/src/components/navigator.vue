@@ -64,7 +64,7 @@
             &.primary {
                 color: #fff;
                 border: 2px solid $unionBlue;
-                border-radius: 40px;
+                border-radius: $borderRadius;
                 background: transparent;
                 transition: all 0.3s ease 0s;
                 outline: none;
