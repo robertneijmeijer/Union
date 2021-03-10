@@ -1,20 +1,24 @@
 <template>
   <div id="app">
-    <login />
+    <register-view></register-view>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import login from "./components/login.vue";
+import loginView from "./views/loginView.vue";
+import registerView from "./views/registerView.vue";
 
 @Options({
-  components: { login },
+  components: { loginView: loginView, registerView: registerView },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
 #app {
   width: 100%;
   height: 100%;
