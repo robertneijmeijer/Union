@@ -11,14 +11,16 @@ pip install -r ./requirements.txt
 
 ## Setup Environment Variables
 
+When in the first backend folder
+
 Windows
 
-- Rename `.env.sample` to `.env`
+- Rename `backend/.env.sample` to `backend/.env`
 
 Linux/Mac
 
 ```
-cp project/.env.sample project/.env
+cp backend/.env.sample backend/.env
 ```
 
 After this fill in the values for your database instance
