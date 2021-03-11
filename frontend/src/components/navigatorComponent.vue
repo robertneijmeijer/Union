@@ -4,13 +4,21 @@
             <img src="../assets/union.png" height="60" width="170"/>
         </section>
         <section class="buttons">
-            <button class="primary">Sign in</button>
+            <button v-on:click="toLogin" class="primary">Sign in</button>
         </section>
     </nav>
 </template>
 <script>
+
+  import router from "@/router";
+
   export default {
     name: "navigator",
+    methods: {
+    toLogin: function () {
+      router.push("login");
+    }
+  }
   };
 </script>
 
@@ -77,4 +85,3 @@
         }
     }
 </style>
-
