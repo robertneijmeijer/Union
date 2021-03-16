@@ -92,7 +92,7 @@
         margin-top: auto;
         margin-bottom: auto;
         width: 400px;
-        background-color: #2C2C2C;
+        background-color: $buttonHoverColor;
     }
 
     .card-body {
@@ -113,8 +113,8 @@
         background: transparent;
 
         &:hover{
-            background-color: #2C2C2C;
-            border: $buttonBorder #2C2C2C;
+            background-color: $buttonHoverColor;
+            border: $buttonBorder $buttonHoverColor;
         }
 
     }
