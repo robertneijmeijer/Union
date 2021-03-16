@@ -4,9 +4,10 @@
 
 <script>
 import RegisterComponent from "../components/registerComponent";
+
 export default {
   name: "registerView",
-  components: { RegisterComponent },
+  components: {RegisterComponent },
 };
 </script>
 
