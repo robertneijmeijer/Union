@@ -6,7 +6,7 @@ import registerView from "@/views/registerView.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "landingspage",
     component: landingPage,
   },
   {
