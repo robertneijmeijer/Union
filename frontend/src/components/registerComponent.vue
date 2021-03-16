@@ -3,56 +3,82 @@
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="card-header">
-          <h3 style="color: white; ">Sign In</h3>
+          <h3 style="color: #ffffff; ">Sign Up</h3>
         </div>
         <div class="card-body">
           <form action="" method="post">
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"
-                  ><i style="color: white" class="fa fa-user fa-lg center"></i
+                <span style="color: white" class="input-group-text"
+                  ><i class="fa fa-user fa-lg center"></i
                 ></span>
               </div>
               <input
                 type="text"
-                name="usernameId"
+                name="uid"
                 class="form-control input"
-                placeholder="username"
+                placeholder="Enter Username"
               />
             </div>
+
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"
-                  ><i style="color: white" class="fa fa-lock fa-lg center"></i
+                <span style="color: white" class="input-group-text"
+                  ><i
+                    style="margin-left: 3px"
+                    class="fa fa-envelope fa-lg center"
+                  ></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                name="mail"
+                class="form-control input"
+                placeholder="Enter Email"
+              />
+            </div>
+
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span style="color: white" class="input-group-text"
+                  ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
                 type="password"
-                name="passwordId"
+                name="pwd"
                 class="form-control input"
-                placeholder="password"
+                placeholder="Enter Password"
               />
             </div>
-            <div class="row align-items-center remember">
-              <input type="checkbox" />Remember Me
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span style="color: white" class="input-group-text"
+                  ><i class="fa fa-lock fa-lg center"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                name="pwd-repeat"
+                class="form-control input"
+                placeholder="Repeat Password"
+              />
             </div>
+
             <div class="form-group">
               <button
                 class="btn btn-primary float-right"
                 type="submit"
                 name="login-button"
               >
-                Login
+                Register
               </button>
             </div>
           </form>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            Don't have an account?<a href="">Sign Up</a>
-          </div>
-          <div class="d-flex justify-content-center">
-            <a href="#">Forgot your password?</a>
+            Already a member?<a href="">Sign In</a>
           </div>
         </div>
       </div>
@@ -62,21 +88,18 @@
 
 <script>
 export default {
-  name: "login",
+  name: "registerComponent",
 };
 </script>
 
-<style lang="scss">
-@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
-
+<style lang="scss" scoped>
 .container {
   height: 100%;
   align-content: center;
 }
 
 .card {
-  height: 370px;
+  height: 400px;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
@@ -87,15 +110,17 @@ export default {
   color: white;
 }
 
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
 .input-group-prepend span {
   width: 50px;
   background-color: #017bff;
   color: black;
   border: 0 !important;
-}
-
-.center {
-  margin-left: 6px;
 }
 
 input:focus {
@@ -114,8 +139,11 @@ input:focus {
   margin-right: 5px;
 }
 
-.links {
+.login_btn {
   color: white;
+  background-color: #017bff;
+  width: 100px;
+  border: 2px solid #017bff;
 }
 
 .links a {

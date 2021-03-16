@@ -1,20 +1,24 @@
 <template>
   <div id="app">
-    <login />
+  <landing-page></landing-page>
+  <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import login from "./components/login.vue";
 
 @Options({
-  components: { login },
+  components: { },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "./assets/theme";
+
 #app {
   width: 100%;
   height: 100%;
@@ -22,7 +26,7 @@ export default class App extends Vue {}
 
 html,
 body {
-  background-image: url("https://marmotamaps.com/de/fx/wallpaper/download/alpenberge/Marmotamaps_Wallpaper_MonteViso_Desktop_1920x1080.jpg");
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
