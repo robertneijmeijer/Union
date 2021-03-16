@@ -20,3 +20,4 @@ virtualenv==20.4.2
 wrapt==1.12.1
 django-environ==0.4.5
 djangorestframework==3.12.0
+PyJWT~=1.7.1

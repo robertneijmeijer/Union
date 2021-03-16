@@ -10,6 +10,8 @@ from django.db import models
 
 
 class UserManager(BaseUserManager):
+    # TODO: Check if user already exists
+
     def create_user(self, username, password=None):
         """Create and return a `User` with an email, username and password."""
         if username is None:

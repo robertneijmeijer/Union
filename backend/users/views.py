@@ -1,40 +1,35 @@
 import jwt
-from django.shortcuts import render
 
-# Create your views here.
-from rest_framework import viewsets, mixins, views
-from rest_framework.decorators import api_view
+from rest_framework import viewsets, status
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from users.models import User
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer, RegistrationSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
 
-@api_view(('GET',))
-def authenticate_user(request):
-    return Response({"You just hit the authenticate_user function": "as", "request":request.method }, status=200)
+class RegistrationAPIView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = RegistrationSerializer
 
-    # try:
-    #     username = request.data['username']
-    #     password = request.data['password']
-    #
-    #     user = User.objects.get(username=username, password=password)
-    #
-    #     if user:
-    #         # Do something
-    #         jwt.encode(user)
-    #
-    #
-    #         return Response({"user": user})
-    #     else:
-    #         # Return user not found
-    #         return Response({"user not found"}, status=403)
-    #
-    # except KeyError:
-    #     # Was not able to parse email and password
-    #     return Response({"Please provide email and password"}, status=422)
+    def post(self, request):
+        # TODO: Validate request body
+        print(request.data['user'])
+        print(request.data.get('user', {}))
+        user = request.data.get('user', {})
+
+        # Validate and save according to serializer
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        serialized_data = serializer.data
+
+        return Response(serialized_data, status=status.HTTP_201_CREATED)
