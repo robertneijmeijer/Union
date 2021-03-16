@@ -52,6 +52,8 @@ REST_FRAMEWORK = {
     ],
 }
 
+AUTH_USER_MODEL = 'users.User'
+
 JWT_AUTH = {
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
