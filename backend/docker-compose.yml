@@ -1,13 +1,13 @@
 version: "3.9"
 
 services:
-  db:
+  database:
     image: postgres
     environment:
-      - POSTGRES_DB=postgres # Should be the same as your .env DB
-      - POSTGRES_USER=postgres # Should be the same as your .env User
-      - POSTGRES_PASSWORD=root # Should be the same as your .env Password
-  web:
+      - POSTGRES_DB=postgres # Should be the same as DB in settings
+      - POSTGRES_USER=postgres # Should be the same as User in settings
+      - POSTGRES_PASSWORD=root # Should be the same as Password in settings
+  django:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -15,4 +15,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - database
