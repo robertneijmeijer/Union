@@ -1,6 +1,8 @@
 <template>
+  <div id="app">
   <landing-page></landing-page>
   <router-view />
+  </div>
 </template>
 
 <script lang="ts">
