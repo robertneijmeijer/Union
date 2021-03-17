@@ -3,73 +3,74 @@
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="card-header">
-          <h3 style="color: #ffffff; ">Sign Up</h3>
+          <h3 style="color: #ffffff;">Sign Up</h3>
         </div>
         <div class="card-body">
-          <form action="" method="post">
+          <form ref="form">
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span style="color: white" class="input-group-text"
-                  ><i class="fa fa-user fa-lg center"></i
+                ><i class="fa fa-user fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="text"
-                name="uid"
-                class="form-control input"
-                placeholder="Enter Username"
+                  type="text"
+                  v-model="username"
+                  class="form-control input"
+                  placeholder="Enter Username"
               />
             </div>
 
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span style="color: white" class="input-group-text"
-                  ><i
+                ><i
                     style="margin-left: 3px"
                     class="fa fa-envelope fa-lg center"
-                  ></i
+                ></i
                 ></span>
               </div>
               <input
-                type="text"
-                name="mail"
-                class="form-control input"
-                placeholder="Enter Email"
+                  type="text"
+                  v-model="email"
+                  class="form-control input"
+                  placeholder="Enter Email"
               />
             </div>
 
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span style="color: white" class="input-group-text"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd"
-                class="form-control input"
-                placeholder="Enter Password"
+                  type="password"
+                  v-model="password"
+                  class="form-control input"
+                  placeholder="Enter Password"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span style="color: white" class="input-group-text"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd-repeat"
-                class="form-control input"
-                placeholder="Repeat Password"
+                  type="password"
+                  v-model="password_confirm"
+                  class="form-control input"
+                  placeholder="Repeat Password"
               />
             </div>
 
             <div class="form-group">
               <button
-                class="btn btn-primary float-right"
-                type="submit"
-                name="login-button"
+                  class="btn btn-primary float-right"
+                  type="submit"
+                  name="login-button"
+                  v-on:click="submit"
               >
                 Register
               </button>
@@ -87,8 +88,28 @@
 </template>
 
 <script>
+
 export default {
   name: "registerComponent",
+  methods: {
+    submit: function (event) {
+      event.preventDefault()
+      console.log({
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        password_confirm: this.password_confirm
+
+      })
+
+      // TODO Validate values
+
+      //
+
+
+    },
+
+  }
 };
 </script>
 
