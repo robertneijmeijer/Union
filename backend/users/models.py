@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 import jwt
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.conf import settings
 
@@ -37,7 +38,7 @@ class UserManager(BaseUserManager):
         return self.get(username=username_)
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=45, unique=True)
     password = models.CharField(max_length=256)
