@@ -1,5 +1,8 @@
 from django.db import models
 
+from union.models import Union
+from users.models import User
+
 
 # Create your models here.
 class Post(models.Model):
@@ -9,16 +12,5 @@ class Post(models.Model):
     upvotes = models.IntegerField()
     downvotes = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-    # TODO: uncomment when the below models are made
-    # user_id = models.ForeignKey(
-    #     'user',
-    #     on_delete=models.SET_NULL,
-    #     null=True
-    # )
-    #
-    # union_id = models.ForeignKey(
-    #     'union',
-    #     on_delete=models.PROTECTED,
-    #     null=False
-    # )
+    union_id = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
+    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

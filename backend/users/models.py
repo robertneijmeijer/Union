@@ -5,9 +5,6 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.conf import settings
 
-# Create your models here.
-from django.db import models
-
 
 class UserManager(BaseUserManager):
     # TODO: Check if user already exists
