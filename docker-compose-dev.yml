@@ -17,8 +17,10 @@ services:
     depends_on:
       - database
   vue:
-    build: frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-dev
     ports:
       - "8080:8080"
     volumes:
-      - ./frontend:/src
+      - ./frontend:/app/src
