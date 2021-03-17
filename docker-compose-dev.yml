@@ -18,7 +18,7 @@ services:
       - database
   vue:
     build: 
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile-dev
     ports:
       - "8080:8080"
