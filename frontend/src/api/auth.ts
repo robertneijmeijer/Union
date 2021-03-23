@@ -5,12 +5,6 @@ import axios from "axios";
 // TODO ApiBase.request({options}) so that f.e. headers can be set in the api base class
 // TODO -> can also be used to set the base URL
 
-interface registerValues {
-    username: string,
-    email: string,
-    password: string
-}
-
 export default class RegisterApi {
     public static register = (username: string, email: string, password: string) => {
         return Promise.resolve(
@@ -19,9 +13,11 @@ export default class RegisterApi {
                 {user: {username, email, password}})
                 .then((res) => {
                     console.log(res)
+                    return res;
                 }).catch(error => {
                     console.log("error")
                     console.log(error)
+                    return error // -> ? TODO Test handling
                 })
         )
     }

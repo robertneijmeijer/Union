@@ -91,29 +91,25 @@
 
 import {actionTypes} from "@/actions/auth";
 
+
 export default {
   name: "registerComponent",
   methods: {
     submit: function (event) {
       event.preventDefault()
-      console.log({
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        password_confirm: this.password_confirm
-
-      })
 
       // TODO Validate values
       // TODO Hash values
 
-      this.$store.dispatch(actionTypes.SUBMIT_REGISTER_ACTION, {email: this.email, password: this.password})
+      const formValues = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        password_confirm: this.password_confirm,
+      }
 
-      //
-
-
+      this.$store.dispatch(actionTypes.SUBMIT_REGISTER_ACTION, formValues)
     },
-
   }
 };
 </script>

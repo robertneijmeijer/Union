@@ -1,5 +1,6 @@
-import {store} from "@/store/store";
+import {State, store} from "@/store/store";
 import RegisterApi from "@/api/auth";
+import {ActionContext, ActionTree, MutationTree} from "vuex";
 
 export enum actionTypes {
     SUBMIT_LOGIN_ACTION = "SUBMIT_LOGIN_ACTION",
@@ -7,18 +8,28 @@ export enum actionTypes {
     SET_REGISTER_RESULT = "SET_REGISTER_RESULT"
 }
 
-export const authActions = {
-    // [actionTypes.SUBMIT_LOGIN_ACTION]() {
-    //     console.log("login action fired")
-    //     // TODO Call the login api endpoint
-    //     // TODO Perform commit (mutation) call
-    // },
-    // [actionTypes.SUBMIT_REGISTER_ACTION]({ commit, state }, {email, password}) {
-    //     // TODO Perform api call to auth api file. -> needs to be created
-    //
-    //     LoginApi.login().then(r => console.log(r)).catch(error => console.log(error))
-    //
-    //
-    //     store.commit(actionTypes.SET_REGISTER_RESULT, {}) // Fire mutation
-    // }
+// https://dev.to/3vilarthas/vuex-typescript-m4j
+// TODO: Type actions with above link
+
+
+export interface registrationForm {
+    username: string,
+    email: string,
+    password: string,
+    password_confirm: null | string
+}
+
+
+export const authActions: ActionTree<State, State> = {
+    [actionTypes.SUBMIT_LOGIN_ACTION]() {
+        console.log("login action fired")
+    },
+    [actionTypes.SUBMIT_REGISTER_ACTION]({commit, state}, values: registrationForm) {
+
+        RegisterApi.register(values.username, values.username, values.password)
+            .then(r => console.log(r))
+            .catch(error => console.log(error))
+
+        store.commit(actionTypes.SET_REGISTER_RESULT, {}) // Fire mutation
+    }
 }
