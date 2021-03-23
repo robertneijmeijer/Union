@@ -89,6 +89,8 @@
 
 <script>
 
+import {actionTypes} from "@/actions/auth";
+
 export default {
   name: "registerComponent",
   methods: {
@@ -103,6 +105,9 @@ export default {
       })
 
       // TODO Validate values
+      // TODO Hash values
+
+      this.$store.dispatch(actionTypes.SUBMIT_REGISTER_ACTION, {email: this.email, password: this.password})
 
       //
 
