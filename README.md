@@ -17,7 +17,7 @@ To run docker in prod mode
 ````docker-compose up```
 
 For hot reaload to work on the frontend you need vue.config.js with the following content: 
-```
+``
 module.exports = {
     configureWebpack: {
       devServer: {
@@ -28,6 +28,6 @@ module.exports = {
       }
     }
   }
-  ```
+  ``
 
 		
