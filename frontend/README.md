@@ -22,3 +22,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Docker image
+Build frontend:
+``docker build -t union-vue .``
+
+Run frontend:
+``docker run -it -p 8080:8080 --rm --name vue union-vue``
