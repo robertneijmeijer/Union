@@ -9,9 +9,10 @@
                     <form action="" method="post">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i style="color: black" class="fa fa-user fa-lg center"></i>
-                </span></div>
+                        <span class="input-group-text">
+                        <i class="fa fa-user fa-lg center black"></i>
+                        </span>
+                            </div>
                             <input
                                     type="text"
                                     name="uid"
@@ -19,13 +20,10 @@
                                     placeholder="Enter Username"
                             />
                         </div>
-
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span style="color: white" class="input-group-text"
-                ><i
-                        style="color: black; margin-left: 3px"
-                        class="fa fa-envelope fa-lg center"></i></span>
+                        <span class="input-group-text white"
+                        ><i class="fa fa-envelope fa-lg unique "></i></span>
                             </div>
                             <input
                                     type="text"
@@ -34,12 +32,11 @@
                                     placeholder="Enter Email"
                             />
                         </div>
-
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span style="color: black" class="input-group-text"
-                ><i class="fa fa-lock fa-lg center"></i
-                ></span>
+                        <span class="input-group-text black"
+                        ><i class="fa fa-lock fa-lg center"></i
+                        ></span>
                             </div>
                             <input
                                     type="password"
@@ -50,9 +47,9 @@
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span style="color: black" class="input-group-text"
-                ><i class="fa fa-lock fa-lg center"></i
-                ></span>
+                        <span class="input-group-text black"
+                        ><i class="fa fa-lock fa-lg center"></i
+                        ></span>
                             </div>
                             <input
                                     type="password"
@@ -61,7 +58,6 @@
                                     placeholder="Repeat Password"
                             />
                         </div>
-
                         <div class="form-group ">
                             <div class="centerButton">
                                 <button
@@ -84,7 +80,6 @@
         </div>
     </div>
 </template>
-
 <script>
   import router from "@/router";
 
@@ -97,15 +92,22 @@
     },
   };
 </script>
-
 <style lang="scss" scoped>
     @import "../assets/theme";
-
     .container {
         height: 100%;
         align-content: center;
     }
-
+    .black {
+        color: black
+    }
+    .white {
+        color: white;
+    }
+    .unique {
+        margin-left: 3px;
+        color: black;
+    }
     .card {
         height: 410px;
         margin-top: auto;
@@ -113,52 +115,43 @@
         width: 400px;
         background-color: $buttonHoverColor;
     }
-
     .registerTitle {
         color: white;
         text-align: center;
         margin-top: 10px;
         user-select: none;
     }
-
     .card-header h3 {
         color: white;
     }
-
     .social_icon {
         position: absolute;
         right: 20px;
         top: -45px;
     }
-
     .input-group-prepend span {
         width: 50px;
         background-color: $unionBlue;
         color: black;
         border: 0 !important;
     }
-
     input:focus {
         outline: 0 0 0 0 !important;
         box-shadow: 0 0 0 0 !important;
     }
-
     .remember {
         color: white;
     }
-
     .remember input {
         width: 20px;
         height: 20px;
         margin-left: 15px;
         margin-right: 5px;
     }
-
-    .centerButton{
+    .centerButton {
         width: 100%;
         text-align: center;
     }
-
     .register_btn {
         color: white;
         width: $buttonwidth;
@@ -166,21 +159,17 @@
         border: $buttonBorder $unionBlue;
         background: transparent;
         margin-top: 10px;
-
         &:hover {
             background-color: $buttonHoverColor;
             border: $buttonBorder $buttonHoverColor;
         }
     }
-
     .links a {
         margin-left: 4px;
     }
-
     .linkText {
         color: white;
     }
-
     .center {
         margin-left: 6px;
     }
