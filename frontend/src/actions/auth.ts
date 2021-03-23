@@ -1,6 +1,6 @@
 import {RootState, store} from "@/store/store";
 import RegisterApi from "@/api/auth";
-import {ActionTree,} from "vuex";
+import {ActionTree} from "vuex";
 
 export enum actionTypes {
     REGISTER_ACTION_SUBMIT = "REGISTER_ACTION_SUBMIT",
