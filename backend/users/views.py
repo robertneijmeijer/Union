@@ -19,6 +19,7 @@ class RegistrationAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = RegistrationSerializer
     renderer_classes = (UserJSONRenderer,)
+
     def post(self, request):
         # TODO: Validate request body
         print(request.data['user'])
