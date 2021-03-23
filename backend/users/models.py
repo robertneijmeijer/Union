@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 import jwt
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
@@ -74,4 +72,3 @@ class User(AbstractBaseUser):
         token = jwt.encode(payload, settings.SECRET_KEY)
 
         return token.decode('utf-8')
-
