@@ -1,0 +1,136 @@
+<template>
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="loginTitle">Sign in to Union</h5>
+        </div>
+        <div class="card-body">
+          <a>test</a>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Don't have an account?
+            <a class="linkText" href="" v-on:click="toSignUp"> Sign up</a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a class="linkText" href="#">Forgot your password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// import router from "@/router";
+
+export default {
+  name: "unionCreate",
+  methods: {
+    // TODO: add methods here
+  }
+};
+</script>
+
+
+<style lang="scss">
+@import "../assets/theme";
+
+.container {
+  height: 100%;
+  align-content: center;
+}
+
+.loginTitle {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.card {
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: $buttonHoverColor;
+}
+
+.card-body {
+  padding: 0;
+  margin: 10px 15px 0 15px;
+}
+
+.loginbtn {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.login {
+  width: 120px;
+  border-radius: $borderRadius;
+  border: $buttonBorder $unionBlue;
+  color: white;
+  background: transparent;
+
+  &:hover {
+    background-color: $buttonHoverColor;
+    border: $buttonBorder $buttonHoverColor;
+  }
+
+}
+
+
+.card-header h3 {
+  color: white;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: $unionBlue;
+  color: black;
+  border: 0 !important;
+}
+
+.center {
+  margin-left: 6px;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.form-control {
+  background-color: #232323;
+  border: none;
+}
+
+
+.remember {
+  color: white;
+  user-select: none;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.links {
+  color: $inputTextfielColor;
+  user-select: none;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+.linkText {
+  color: white;
+  user-select: none;
+}
+</style>
