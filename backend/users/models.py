@@ -10,12 +10,15 @@ from django.conf import settings
 class UserManager(BaseUserManager):
     # TODO: Check if user already exists
 
-    def create_user(self, username, password=None):
+    def create_user(self, email, username, password=None):
         """Create and return a `User` with an email, username and password."""
         if username is None:
             raise TypeError('Users must have a username.')
 
-        user = self.model(username=username)
+        if email is None:
+            raise TypeError('Users must have an email address.')
+
+        user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
 
@@ -40,7 +43,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=45, unique=True)
+    username = models.CharField(db_index=True, max_length=45, unique=True)
+    email = models.EmailField(db_index=True, unique=True)
     password = models.CharField(max_length=256)
     avatar = models.CharField(max_length=256)
     two_factor_enabled = models.BooleanField(default=False)
@@ -67,12 +71,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self._generate_jwt_token()
 
     def _generate_jwt_token(self):
-        payload = {
+        """
+        Generates a JSON Web Token that stores this user's ID and has an expiry
+        date set to 60 days into the future.
+        """
+        dt = datetime.now() + timedelta(days=60)
+
+        token = jwt.encode({
             'id': self.pk,
-            'TODO': "alter payload"
-        }
+            'exp': dt.utcfromtimestamp(dt.timestamp())
+        }, settings.SECRET_KEY, algorithm='HS256')
 
-        token = jwt.encode(payload, settings.SECRET_KEY)
-
-        return token.decode('utf-8')
+        return token
 
