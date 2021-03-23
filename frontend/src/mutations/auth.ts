@@ -1,14 +1,18 @@
 import {actionTypes} from "@/actions/auth";
-import {State} from "@/store/store";
+import {RootState} from "@/store/store";
 
 export const authMutations = {
-    [actionTypes.SUBMIT_LOGIN_ACTION](state: any, data: any) {
-        state.count++
+    [actionTypes.REGISTER_ACTION_SUBMIT](state: RootState) {
+        state.user.isFetching = true
+        state.user.errors = {};
+        state.user.user = {};
     },
-    [actionTypes.SET_REGISTER_RESULT](state: State, data: any) {
-        // Update state with register result (validation errors or success f.e.)
-        state.counter++;
-        console.log("MUTATION SET_REGISTER_RESULT")
-        console.log(state)
+    [actionTypes.REGISTER_ACTION_SUCCESS](state: RootState, data: any) {
+        state.user.user = data
+        state.user.isFetching = false
+    },
+    [actionTypes.REGISTER_ACTION_FAILED](state: RootState, data: any) {
+        state.user.errors = data
+        state.user.isFetching = false
     }
 }

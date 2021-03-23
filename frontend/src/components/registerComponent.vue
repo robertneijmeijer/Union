@@ -91,7 +91,6 @@
 
 import {actionTypes} from "@/actions/auth";
 
-
 export default {
   name: "registerComponent",
   methods: {
@@ -108,7 +107,7 @@ export default {
         password_confirm: this.password_confirm,
       }
 
-      this.$store.dispatch(actionTypes.SUBMIT_REGISTER_ACTION, formValues)
+      this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues)
     },
   }
 };

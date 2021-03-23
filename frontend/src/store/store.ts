@@ -1,12 +1,23 @@
 import {createStore} from "vuex";
 
-import {authActions} from "../actions/auth"
-import {authMutations} from "../mutations/auth"
+import {authActions} from "@/actions/auth"
+import {authMutations} from "@/mutations/auth"
 
+export interface RootState {
+    user: {
+        user: {}
+        isFetching: boolean,
+        errors: {}
+    }
+}
 
-export const state = {
-    counter: 0,
-    user:
+// TODO: split into user module
+export const state: RootState = {
+    user: {
+        user: {},
+        isFetching: false,
+        errors: {}
+    }
 }
 
 const actions = {
@@ -21,7 +32,5 @@ export const store = createStore({
     state,
     actions,
     mutations,
+
 });
-
-export type State = typeof state
-
