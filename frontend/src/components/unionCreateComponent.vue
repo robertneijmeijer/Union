@@ -8,9 +8,9 @@
       </div>
     </div>
     <div class="d-flex justify-content-center h-100">
-      <div class="card">
+      <div class="union-card">
         <h3 class="createTitle">Create a community</h3>
-        <div class="card-body">
+        <div class="union-card-body">
           <div class="column-left">
             <h4 class="white-text">Name *</h4>
             <input type="text" name="usernameId" class="form-control input"/>
@@ -182,10 +182,10 @@ export default {
   user-select: none;
   font-size: 14px;
   position: absolute;
-  right: $paddingSmall;
+  right: 570px;
 }
 
-.card {
+.union-card {
   height: 700px;
   margin-top: auto;
   margin-bottom: auto;
@@ -194,7 +194,7 @@ export default {
   border-radius: $borderRadius;
 }
 
-.card-body {
+.union-card-body {
   padding: 0;
   margin: 10px 15px 0 15px;
   display: flex;
