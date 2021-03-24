@@ -9,11 +9,11 @@
     </div>
     <div class="d-flex justify-content-center h-100">
       <div class="union-card">
-        <h3 class="createTitle">Create a community</h3>
+        <p class="createTitle">Create a community</p>
         <div class="union-card-body">
           <div class="column-left">
             <h4 class="white-text">Name *</h4>
-            <input type="text" name="usernameId" class="form-control input"/>
+            <input type="text" name="usernameId" class="form-control name-height input"/>
             <h4 class="white-text">Description *</h4>
             <textarea size="lg" type="text" name="description" class="form-control input description-height"
             />
@@ -22,11 +22,11 @@
             <h4 class="white-text">Invite privilege *</h4>
             <div class="rows">
               <div class="round">
-                <input type="checkbox" id="onlyMe" v-on:click="check_one()" >
+                <input type="checkbox" id="onlyMe" v-on:click="check_one()">
                 <label for="onlyMe"/>
               </div>
               <img src="../assets/singleEnvelope.svg" class="evelopes"/>
-              <h6 class="white-text horizontal-padding">Only i can invite</h6>
+              <h6 class="only-i-invite horizontal-padding">Only i can invite</h6>
             </div>
             <div class="rows">
               <div class="round">
@@ -40,20 +40,20 @@
             <div>
               <h4 class="white-text"> Icon </h4>
               <div class="circle">
-                <img src="../assets/imageIcon.svg" class="image-upload"/>
+                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_avatar()"/>
               </div>
             </div>
             <div>
               <h4 class="white-text"> Banner image </h4>
               <div class="banner-image">
-                <img src="../assets/imageIcon.svg" class="image-upload"/>
+                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_banner()"/>
               </div>
             </div>
           </div>
         </div>
-        <div class="card-footer">
+        <div class="union-card-footer">
           <div class="form-group">
-            <div class="text-center create-btn">
+            <div class="text-center union-create-btn">
               <button
                   class="btn btn-primary create-union "
                   type="submit"
@@ -82,6 +82,14 @@ export default {
     },
     create: function () {
       router.push("/");
+    },
+    upload_banner: function (){
+      console.log('clicked on banner')
+      //TODO: add avatar stuff here
+    },
+    upload_avatar: function () {
+      console.log('clicked on avatar')
+      //TODO: add avatar stuff here
     }
   }
 };
@@ -124,6 +132,12 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+.only-i-invite {
+  padding-left: $paddingMedium;
+  padding-right: $paddingSmall;
+  color: white;
 }
 
 .everyone-invite::after {
@@ -172,8 +186,9 @@ export default {
 .createTitle {
   color: white;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
   user-select: none;
+  font-size: 36px;
 }
 
 .createTitle::after {
@@ -182,14 +197,14 @@ export default {
   user-select: none;
   font-size: 14px;
   position: absolute;
-  right: 570px;
+  padding-left: $paddingHuge *4;
 }
 
 .union-card {
-  height: 700px;
+  height: 800px;
   margin-top: auto;
   margin-bottom: auto;
-  width: 800px;
+  width: 1000px;
   background-color: $buttonHoverColor;
   border-radius: $borderRadius;
 }
@@ -201,17 +216,18 @@ export default {
   flex-direction: row;
 }
 
-.create-btn {
-  margin-top: 30px;
+.union-create-btn {
+  padding-top: $paddingHuge *1.5;
   margin-bottom: 0;
 }
 
 .create-union {
-  width: 175px;
+  width: 250px;
   border-radius: $borderRadius;
   border: $buttonBorder $unionBlue;
   color: white;
   background: transparent;
+  font-size: 24px;
 
   &:hover {
     background-color: $buttonHoverColor;
@@ -224,11 +240,13 @@ export default {
   color: white;
   padding-bottom: $paddingSmall;
   padding-top: $paddingMedium;
+  font-size: 24px;
 }
 
 .welcome-text {
   color: white;
   padding-bottom: $paddingLarge;
+  font-size: 48px;
 }
 
 .card-header h3 {
@@ -248,12 +266,19 @@ export default {
 
 .form-control {
   background-color: #232323;
-  border-radius: $borderRadius;
-  border: 2px white;
+  border-radius: $borderRadiusInput;
+  border: 1px solid $inputTextfielColor;
+}
+
+.name-height {
+  width: 400px;
 }
 
 .description-height {
-  height: 200px;
+  height: 300px;
+  width: 400px;
+  max-height: 300px;
+  max-width: 400px;
 }
 
 .round {
@@ -302,7 +327,7 @@ export default {
 
 .header-row {
   display: grid;
-  grid-template-columns: 230px 130px 0px;
+  grid-template-columns: 270px 130px 0;
   user-select: none;
 }
 </style>

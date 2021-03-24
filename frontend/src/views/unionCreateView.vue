@@ -23,7 +23,7 @@ export default {
 }
 
 #unionCreateCard {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 </style>
