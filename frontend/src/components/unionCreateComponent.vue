@@ -207,6 +207,7 @@ export default {
   width: 1000px;
   background-color: $buttonHoverColor;
   border-radius: $borderRadius;
+  font-family: "Overpass-SemiBold";
 }
 
 .union-card-body {
@@ -247,6 +248,7 @@ export default {
   color: white;
   padding-bottom: $paddingLarge;
   font-size: 48px;
+  font-family: "Overpass-SemiBold";
 }
 
 .card-header h3 {
