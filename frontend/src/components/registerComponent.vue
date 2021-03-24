@@ -87,7 +87,7 @@
     }
 
     .card {
-        height: 420px;
+        height: 430px;
         margin-top: auto;
         margin-bottom: auto;
         width: 400px;
