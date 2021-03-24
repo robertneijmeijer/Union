@@ -9,9 +9,9 @@
           <form>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fa fa-user fa-lg center black"></i>
-                                </span>
+                <span class="input-group-text">
+                    <i class="fa fa-user fa-lg center black"></i>
+                </span>
               </div>
               <input type="text" name="uid" class="form-control input" placeholder="Enter Username" v-model="username"/>
             </div>
