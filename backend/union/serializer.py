@@ -13,5 +13,4 @@ class UnionSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'members_can_invite', 'icon', 'creator_id', 'banner']
 
     def create(self, validated_data):
-        print("Create union (serializer 2)")
         return Union.objects.create(**validated_data)
