@@ -9,7 +9,7 @@
 
 <script>
 import UnionCreateComponent from "../components/unionCreateComponent";
-import TopBarLogo from "@/components/topBarLogoComponent";
+import TopBarLogo from "../components/topBarLogoComponent";
 
 export default {
   name: "unionCreateView",
