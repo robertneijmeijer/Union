@@ -5,8 +5,8 @@
                 <div class="card-header">
                     <h5 class="loginTitle">Sign in to Union</h5>
                 </div>
-                <div class="card-body">
-                    <form action="" method="post">
+                <div class="card-body ">
+                    <form class="padding" action="" method="post">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -69,6 +69,10 @@
         align-content: center;
     }
 
+    .padding{
+        padding: $cardpadding;
+    }
+
     .loginTitle {
         color: white;
         text-align: center;
@@ -77,7 +81,7 @@
     }
 
     .card {
-        height: 370px;
+        height: 380px;
         margin-top: auto;
         margin-bottom: auto;
         width: 400px;

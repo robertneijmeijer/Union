@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <h5 class="title">Forgot password</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body padding">
                     <form action="" method="post">
                         <div class="input-group form-group">
                             <div id="input" class="input-group-prepend emailInput">
@@ -61,6 +61,10 @@
         align-content: center;
     }
 
+    .padding{
+        padding: 8px;
+    }
+
     .title {
         color: white;
         text-align: center;
@@ -74,7 +78,7 @@
     }
 
     .passwordCard {
-        height: 210px;
+        height: 220px;
         margin-top: auto;
         margin-bottom: auto;
         width: 600px;
@@ -83,6 +87,7 @@
 
     .emailInput {
         width: $fullWidth;
+        padding: $cardpadding;
     }
 
     .card-body {

@@ -6,7 +6,7 @@
                     <h5 class="registerTitle">Sign up to Union</h5>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form class="padding" action="" method="post" >
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -69,6 +69,10 @@
         align-content: center;
     }
 
+    .padding{
+        padding: $cardpadding;
+    }
+
     .black {
         color: black;
     }
@@ -83,7 +87,7 @@
     }
 
     .card {
-        height: 410px;
+        height: 420px;
         margin-top: auto;
         margin-bottom: auto;
         width: 400px;
