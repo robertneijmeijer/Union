@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="d-flex justify-content-center h-100">
-      <h1 class="welcome-text">Welcome to union !</h1>
+      <div class="header-row">
+        <h1 class="welcome-text">Welcome to </h1>
+        <img src="../assets/union.svg"/>
+        <h1 class="welcome-text">!</h1>
+      </div>
     </div>
     <div class="d-flex justify-content-center h-100">
       <div class="card">
@@ -9,25 +13,25 @@
         <div class="card-body">
           <div class="column-left">
             <h4 class="white-text">Name *</h4>
-            <input type="text" name="usernameId" class="form-control input" placeholder="Name"/>
+            <input type="text" name="usernameId" class="form-control input"/>
             <h4 class="white-text">Description *</h4>
             <input size="lg" type="text" name="description" class="form-control input description-height"
-                   placeholder="Description"/>
+            />
           </div>
           <div class="column-right">
             <h4 class="white-text">Invite privilege *</h4>
             <div class="rows">
               <div class="round">
-              <input type="checkbox" id="onlyMe">
-                <label for="onlyMe" />
+                <input type="checkbox" id="onlyMe" v-on:click="check_one()" >
+                <label for="onlyMe"/>
               </div>
               <img src="../assets/singleEnvelope.svg" class="evelopes"/>
               <h6 class="white-text horizontal-padding">Only i can invite</h6>
             </div>
             <div class="rows">
               <div class="round">
-              <input type="checkbox" id="everyone">
-                <label for="everyone" />
+                <input type="checkbox" id="everyone" v-on:click="check_one()">
+                <label for="everyone"/>
               </div>
               <img src="../assets/multipleEnvelope.svg" class="evelopes"/>
               <p class="everyone-invite">Everyone can invite *</p>
@@ -72,6 +76,9 @@ export default {
   name: "unionCreate",
   methods: {
     // TODO: add methods here
+    check_one: function () {
+      console.log("clicked")
+    }
   }
 };
 </script>
@@ -244,6 +251,7 @@ export default {
 .description-height {
   height: 200px;
 }
+
 .round {
   position: relative;
   padding: $paddingSmall;
@@ -286,5 +294,11 @@ export default {
 
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: 220px 150px 0px;
+  user-select: none;
 }
 </style>
