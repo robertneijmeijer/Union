@@ -155,7 +155,7 @@ export default {
 }
 
 .banner-image {
-  width: 300px;
+  width: 350px;
   height: 100px;
   background-color: $darkGreyColor;
   border-radius: $borderRadius;
