@@ -301,17 +301,11 @@ export default {
 }
 
 .round label:after {
-  border: 2px solid #fff;
-  border-top: none;
-  border-right: none;
-  content: "";
-  height: 6px;
-  left: 7px;
-  opacity: 0;
-  position: absolute;
-  top: 8px;
-  transform: rotate(-45deg);
-  width: 12px;
+  height: 25px;
+  width: 25px;
+  background-color: $darkGreyColor;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .round input[type="checkbox"] {
@@ -319,8 +313,8 @@ export default {
 }
 
 .round input[type="checkbox"]:checked + label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
+  background-color: #00FFFF;
+  border-color: #00FFFF;
 }
 
 .round input[type="checkbox"]:checked + label:after {
