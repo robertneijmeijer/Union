@@ -8,16 +8,13 @@ class UnionJSONRenderer(JSONRenderer):
 
     def render(self, data, media_type=None, renderer_context=None):
         # If the view throws an error `data` will contain an `errors` key. We want
-        # the default JSONRenderer to handle rendering errors, so we need to
-        # check for this case.
+        # the default JSONRenderer to handle rendering errors, so we need to check for this case.
         errors = data.get('errors', None)
 
         if errors is not None:
-            # As mentioned above, we will let the default JSONRenderer handle
-            # rendering errors.
             return super(UnionJSONRenderer, self).render(data)
 
-        # Finally, we can render our data under the "user" namespace.
+        # No need to return user id's here.
         del data['creator_id']
         return json.dumps({
             'union': data

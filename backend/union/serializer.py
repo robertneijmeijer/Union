@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from union.models import Union
-from users.serializers import UserSerializer
 
 
 class UnionSerializer(serializers.ModelSerializer):

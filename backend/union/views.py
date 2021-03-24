@@ -16,11 +16,12 @@ class UnionViewSet(viewsets.ModelViewSet):
     queryset = Union.objects.all()
 
     def create(self, request, *args, **kwargs):
-        print("Create union")
         union = request.data.get('union', {})
         token = request.data.get('token', {})
 
+        # Retrieve user_id from JWT
         user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
+
         union['creator_id'] = user_id
 
         # Validate and save according to serializer
