@@ -9,35 +9,22 @@
                     <form action="" method="post">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i style="color: black" class="fa fa-user fa-lg center"></i>
-                </span>
+                                <span class="input-group-text">
+                                    <i class="fa fa-user fa-lg center black"></i>
+                                </span>
                             </div>
-                          <input type="text" name="usernameId" class="form-control input" placeholder="username"/>
+                            <input type="text" name="usernameId" class="form-control input" placeholder="username" />
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                <span class="input-group-text"
-                ><i style="color: black" class="fa fa-lock fa-lg center"></i
-                ></span>
+                                <span class="input-group-text"><i class="fa fa-lock fa-lg center black"></i></span>
                             </div>
-                            <input
-                                    type="password"
-                                    name="passwordId"
-                                    class="form-control input"
-                                    placeholder="password"
-                            />
+                            <input type="password" name="passwordId" class="form-control input" placeholder="password" />
                         </div>
-                        <div class="row align-items-center remember">
-                            <input type="checkbox"/>Remember Me
-                        </div>
+                        <div class="row align-items-center remember"><input type="checkbox" />Remember Me</div>
                         <div class="form-group">
                             <div class="text-center loginbtn">
-                                <button
-                                        class="btn btn-primary login "
-                                        type="submit"
-                                        name="login-button"
-                                >
+                                <button class="btn btn-primary login" type="submit" name="login-button">
                                     Sign in
                                 </button>
                             </div>
@@ -50,7 +37,7 @@
                         <a class="linkText" href="" v-on:click="toSignUp"> Sign up</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a class="linkText" href="#">Forgot your password?</a>
+                        <a class="linkText" href="#" v-on:click="forgotPassword">Forgot your password?</a>
                     </div>
                 </div>
             </div>
@@ -64,13 +51,15 @@
   export default {
     name: "login",
     methods: {
-      toSignUp: function() {
-        router.push('register');
-      }
-    }
+      toSignUp: function () {
+        router.push("register");
+      },
+      forgotPassword: function () {
+        router.push("forgot-password");
+      },
+    },
   };
 </script>
-
 
 <style lang="scss">
     @import "../assets/theme";
@@ -112,13 +101,11 @@
         color: white;
         background: transparent;
 
-        &:hover{
+        &:hover {
             background-color: $buttonHoverColor;
             border: $buttonBorder $buttonHoverColor;
         }
-
     }
-
 
     .card-header h3 {
         color: white;
@@ -144,7 +131,6 @@
         background-color: #232323;
         border: none;
     }
-
 
     .remember {
         color: white;
