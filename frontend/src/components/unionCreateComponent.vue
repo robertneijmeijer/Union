@@ -17,12 +17,18 @@
           <div class="column-right">
             <h4 class="white-text">Invite privilege *</h4>
             <div class="rows">
+              <div class="round">
               <input type="checkbox" id="onlyMe">
+                <label for="onlyMe" />
+              </div>
               <img src="../assets/singleEnvelope.svg" class="evelopes"/>
               <h6 class="white-text horizontal-padding">Only i can invite</h6>
             </div>
             <div class="rows">
+              <div class="round">
               <input type="checkbox" id="everyone">
+                <label for="everyone" />
+              </div>
               <img src="../assets/multipleEnvelope.svg" class="evelopes"/>
               <p class="everyone-invite">Everyone can invite *</p>
 
@@ -134,6 +140,7 @@ export default {
 
 .evelopes {
   margin: 0 auto;
+  padding-left: $paddingSmall;
 }
 
 .card-header {
@@ -236,5 +243,48 @@ export default {
 
 .description-height {
   height: 200px;
+}
+.round {
+  position: relative;
+  padding: $paddingSmall;
+}
+
+.round label {
+  background-color: $darkGreyColor;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 </style>
