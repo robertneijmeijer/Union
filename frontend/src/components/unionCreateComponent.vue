@@ -298,7 +298,7 @@ export default {
 
 .header-row {
   display: grid;
-  grid-template-columns: 220px 150px 0px;
+  grid-template-columns: 230px 130px 0px;
   user-select: none;
 }
 </style>

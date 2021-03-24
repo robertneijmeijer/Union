@@ -13,7 +13,7 @@ import TopBarLogo from "@/components/topBarLogoComponent";
 
 export default {
   name: "unionCreateView",
-  components: { TopBarLogo, UnionCreateComponent },
+  components: {TopBarLogo, UnionCreateComponent},
 };
 </script>
 
