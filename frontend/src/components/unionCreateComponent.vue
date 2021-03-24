@@ -15,7 +15,7 @@
             <h4 class="white-text">Name *</h4>
             <input type="text" name="usernameId" class="form-control input"/>
             <h4 class="white-text">Description *</h4>
-            <input size="lg" type="text" name="description" class="form-control input description-height"
+            <textarea size="lg" type="text" name="description" class="form-control input description-height"
             />
           </div>
           <div class="column-right">
@@ -58,6 +58,7 @@
                   class="btn btn-primary create-union "
                   type="submit"
                   name="login-button"
+                  v-on:click="create()"
               >
                 Create community
               </button>
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-// import router from "@/router";
+import router from "@/router";
 
 export default {
   name: "unionCreate",
@@ -78,6 +79,9 @@ export default {
     // TODO: add methods here
     check_one: function () {
       console.log("clicked")
+    },
+    create: function () {
+      router.push("/");
     }
   }
 };
@@ -108,13 +112,13 @@ export default {
 }
 
 .horizontal-padding {
-  padding-left: $paddingSmall;
+  padding-left: $paddingMedium;
   padding-right: $paddingSmall;
   color: white;
 }
 
 .everyone-invite {
-  padding-left: $paddingSmall;
+  padding-left: $paddingMedium;
   padding-right: $paddingSmall;
   color: white;
   display: flex;
@@ -147,7 +151,7 @@ export default {
 
 .evelopes {
   margin: 0 auto;
-  padding-left: $paddingSmall;
+  padding-left: $paddingMedium;
 }
 
 .card-header {
@@ -219,7 +223,7 @@ export default {
 .white-text {
   color: white;
   padding-bottom: $paddingSmall;
-  padding-top: $paddingSmall;
+  padding-top: $paddingMedium;
 }
 
 .welcome-text {
@@ -254,7 +258,7 @@ export default {
 
 .round {
   position: relative;
-  padding: $paddingSmall;
+  padding: $paddingMedium;
 }
 
 .round label {
