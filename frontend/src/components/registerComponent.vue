@@ -90,6 +90,7 @@
 <script>
 
 import {actionTypes} from "@/actions/auth";
+import {sha256} from "js-sha256";
 
 export default {
   name: "registerComponent",
@@ -97,14 +98,16 @@ export default {
     submit: function (event) {
       event.preventDefault()
 
-      // TODO Validate values
-      // TODO Hash values
+      // TODO Implement form handling in later ticket after dicussion
+      if(this.password !== this.password_confirm) {
+        return;
+      }
 
+      const hashed = sha256(this.password)
       const formValues = {
         username: this.username,
         email: this.email,
-        password: this.password,
-        password_confirm: this.password_confirm,
+        password: hashed,
       }
 
       this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues)

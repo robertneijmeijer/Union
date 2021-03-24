@@ -1,6 +1,7 @@
 import {RootState, store} from "@/store/store";
 import RegisterApi from "@/api/auth";
 import {ActionTree} from "vuex";
+import router from "@/router";
 
 export enum actionTypes {
     REGISTER_ACTION_SUBMIT = "REGISTER_ACTION_SUBMIT",
@@ -15,7 +16,6 @@ export interface registrationForm {
     username: string,
     email: string,
     password: string,
-    password_confirm: null | string
 }
 
 export const authActions: ActionTree<RootState, RootState> = {
@@ -23,6 +23,7 @@ export const authActions: ActionTree<RootState, RootState> = {
         RegisterApi.register(values.username, values.username, values.password)
             .then(result => {
                 store.commit(actionTypes.REGISTER_ACTION_SUCCESS, result.data)
+                router.push('login')
             })
             .catch(error => {
                 commit(actionTypes.REGISTER_ACTION_FAILED, error.message)
