@@ -325,5 +325,6 @@ export default {
   display: grid;
   grid-template-columns: 270px 130px 0;
   user-select: none;
+  align-items: baseline;
 }
 </style>
