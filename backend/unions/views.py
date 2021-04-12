@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 
 from authentication.backends import JWTAuthentication
-from union.models import Union
-from union.renderers import UnionJSONRenderer
-from union.serializer import UnionSerializer
+from unions.models import Union
+from unions.renderers import UnionJSONRenderer
+from unions.serializer import UnionSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from django.conf import settings

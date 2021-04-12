@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('union', '0001_initial'),
+        ('unions', '0001_initial'),
     ]
 
     operations = [
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('upvotes', models.IntegerField()),
                 ('downvotes', models.IntegerField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('union_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='union.union')),
+                ('union_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='unions.union')),
             ],
         ),
     ]
