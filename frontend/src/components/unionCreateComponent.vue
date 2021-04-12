@@ -12,20 +12,20 @@
         <p class="createTitle">Create a community</p>
         <div class="union-card-body">
           <div class="column-left">
-            <h4 class="white-text">Name *</h4>
+            <h4 class="white-text overpass-bold">Name *</h4>
             <input type="text" name="usernameId" class="form-control name-height input"/>
-            <h4 class="white-text">Description *</h4>
+            <h4 class="white-text overpass-bold">Description *</h4>
             <textarea size="lg" type="text" name="description" class="form-control input description-height"
             />
           </div>
           <div class="column-right">
-            <h4 class="white-text">Invite privilege *</h4>
+            <h4 class="white-text overpass-bold">Invite privilege *</h4>
             <div class="rows">
               <div class="round">
                 <input type="checkbox" id="onlyMe" v-on:click="check_one()">
                 <label for="onlyMe"/>
               </div>
-              <img src="../assets/singleEnvelope.svg" class="evelopes"/>
+              <img src="../assets/singleEnvelope.svg" class="top-envelope"/>
               <h6 class="only-i-invite horizontal-padding">Only i can invite</h6>
             </div>
             <div class="rows">
@@ -33,7 +33,7 @@
                 <input type="checkbox" id="everyone" v-on:click="check_one()">
                 <label for="everyone"/>
               </div>
-              <img src="../assets/multipleEnvelope.svg" class="evelopes"/>
+              <img src="../assets/multipleEnvelope.svg" class="bottom-envelopes"/>
               <p class="everyone-invite">Everyone can invite *</p>
 
             </div>
@@ -55,10 +55,10 @@
           <div class="form-group">
             <div class="text-center union-create-btn">
               <button
-                  class="btn btn-primary create-union "
-                  type="submit"
-                  name="login-button"
-                  v-on:click="create()"
+                class="btn btn-primary create-union "
+                type="submit"
+                name="login-button"
+                v-on:click="create()"
               >
                 Create community
               </button>
@@ -132,15 +132,18 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
+  font-size: 18px;
 }
 
 .only-i-invite {
   padding-left: $paddingMedium;
   padding-right: $paddingSmall;
   color: white;
+  font-size: 18px;
 }
 
 .everyone-invite::after {
+  font-family: "Overpass";
   content: "Members get max 2 invites";
   color: $lightGreyColor;
 }
@@ -163,9 +166,14 @@ export default {
   place-items: center;
 }
 
-.evelopes {
+.top-envelope {
   margin: 0 auto;
-  padding-left: $paddingMedium;
+  padding-left: 25px;
+}
+
+.bottom-envelopes {
+  margin: 0 auto;
+  padding-left: 18px;
 }
 
 .card-header {
@@ -193,11 +201,13 @@ export default {
 
 .createTitle::after {
   content: "* Fields are required";
-  color: $lightGreyColor;
+  font-family: "Overpass";
   user-select: none;
-  font-size: 14px;
+  font-size: 18px;
   position: absolute;
-  padding-left: $paddingHuge *4;
+  padding-left: $paddingHuge *3;
+  margin-right: 40px;
+  color: #C8C8C8;
 }
 
 .union-card {
@@ -229,6 +239,7 @@ export default {
   color: white;
   background: transparent;
   font-size: 24px;
+  border-radius: 33px;
 
   &:hover {
     background-color: $buttonHoverColor;
@@ -248,7 +259,15 @@ export default {
   color: white;
   padding-bottom: $paddingLarge;
   font-size: 48px;
-  font-family: "Overpass-SemiBold";
+  font-family: "Overpass-SemiBold", serif;
+}
+
+.overpass-regular {
+  font-family: "Overpass-Regular", serif;
+}
+
+.overpass-bold {
+  font-family: "Overpass-Bold", serif;
 }
 
 .card-header h3 {
@@ -277,7 +296,7 @@ export default {
 }
 
 .description-height {
-  height: 300px;
+  height: 300px !important;
   width: 400px;
   max-height: 300px;
   max-width: 400px;
