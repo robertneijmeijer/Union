@@ -14,7 +14,8 @@ SECRET_KEY = 'v^0v$01dwgfgte^b^66v=zx%7g15my^iis3fp2s#*_fg!ko7ih'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost',
+                 '127.0.0.1']
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
@@ -35,7 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'users',
     'post',
-    'union'
+    'unions'
 ]
 
 REST_FRAMEWORK = {

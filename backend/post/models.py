@@ -1,6 +1,6 @@
 from django.db import models
 
-from union.models import Union
+from unions.models import Union
 from users.models import User
 
 
