@@ -1,0 +1,32 @@
+import jwt
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from django.conf import settings
+from union.models import Union
+from union.renderers import UnionJSONRenderer
+from union.serializer import UnionSerializer
+import logging
+
+
+class UnionViewSet(viewsets.ModelViewSet):
+    serializer_class = UnionSerializer
+    renderer_classes = UnionJSONRenderer
+    queryset = Union.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        union = request.data.get('union', {})
+        token = request.data.get('token', {})
+
+        # Retrieve user_id from JWT
+        user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
+
+        union['creator_id'] = user_id
+
+        # Validate and save according to serializer
+        serializer = self.serializer_class(data=union)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        serialized_data = serializer.data
+
+        return Response(serialized_data, status=status.HTTP_201_CREATED)
