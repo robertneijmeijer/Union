@@ -4,7 +4,6 @@ from rest_framework import status
 from users.models import User
 from unions.models import Union
 import json
-import logging
 
 
 class CreateUnion(APITestCase):
@@ -13,11 +12,11 @@ class CreateUnion(APITestCase):
         self.teun: User = User.objects.create_user("teun.stout@hva.nl", "teun", "test")
         self.joel: User = User.objects.create_user("test@hva.nl", "joel", "test")
 
-    def test_get_union(self):
+    def test_get_unions(self):
         union: Union = Union(name="crypto", description="", members_can_invite=True, creator=self.teun)
         union.save()
 
-        req = self.client.get('/unions/', format='json')
+        req = self.client.get(f'/unions/', format='json')
 
         self.assertEqual(req.status_code, status.HTTP_200_OK)
 
@@ -30,10 +29,13 @@ class CreateUnion(APITestCase):
 
     def test_create_union_endpoint(self):
         union_data = {
-            "name": "test",
-            "members_can_invite": True,
-            "creator_id": self.teun.user_id,
+            "union": {
+                "name": "test",
+                "members_can_invite": True,
+                "creator_id": self.teun.user_id,
+            }
         }
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.teun.token)
         req = self.client.post('/unions/', union_data, format='json')
         self.assertEqual(req.status_code, status.HTTP_201_CREATED)
 
