@@ -4,12 +4,12 @@ from rest_framework import routers
 
 from post.views import PostViewSet
 from users.views import UserViewSet
-from union.views import UnionViewSet
+from unions.views import UnionViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'post', PostViewSet)
-router.register(r'union', UnionViewSet)
+router.register(r'unions', UnionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
