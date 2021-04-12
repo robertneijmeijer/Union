@@ -10,32 +10,67 @@
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="fa fa-user fa-lg center black"></i>
+                  <i class="fa fa-user fa-lg center black"></i>
                 </span>
               </div>
-              <input type="text" name="uid" class="form-control input" placeholder="Enter Username" v-model="username"/>
+              <input
+                type="text"
+                name="uid"
+                class="form-control input"
+                placeholder="Enter Username"
+                v-model="username"
+              />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text white"><i class="fa fa-envelope fa-lg unique"></i></span>
+                <span class="input-group-text white"
+                  ><i class="fa fa-envelope fa-lg unique"></i
+                ></span>
               </div>
-              <input type="text" name="mail" class="form-control input" placeholder="Enter Email" v-model="email"/>
+              <input
+                type="text"
+                name="mail"
+                class="form-control input"
+                placeholder="Enter Email"
+                v-model="email"
+              />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text black"><i class="fa fa-lock fa-lg center"></i></span>
+                <span class="input-group-text black"
+                  ><i class="fa fa-lock fa-lg center"></i
+                ></span>
               </div>
-              <input type="password" name="pwd" class="form-control input" placeholder="Enter Password" v-model="password"/>
+              <input
+                type="password"
+                name="pwd"
+                class="form-control input"
+                placeholder="Enter Password"
+                v-model="password"
+              />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text black"><i class="fa fa-lock fa-lg center"></i></span>
+                <span class="input-group-text black"
+                  ><i class="fa fa-lock fa-lg center"></i
+                ></span>
               </div>
-              <input type="password" name="pwd-repeat" class="form-control input" placeholder="Repeat Password" v-model="password_confirm"/>
+              <input
+                type="password"
+                name="pwd-repeat"
+                class="form-control input"
+                placeholder="Repeat Password"
+                v-model="password_confirm"
+              />
             </div>
             <div class="form-group">
               <div class="centerButton">
-                <button class="btn btn-primary register_btn" type="submit" name="login-button" v-on:click="submit">
+                <button
+                  class="btn btn-primary register_btn"
+                  type="submit"
+                  name="login-button"
+                  v-on:click="submit"
+                >
                   Register
                 </button>
               </div>
@@ -43,44 +78,46 @@
           </form>
         </div>
         <div class="card-footer">
-          <div class="d-flex justify-content-center links">Already a member?<a class="linkText" v-on:click="toLogin"
-                                                                               href="">Sign In</a></div>
+          <div class="d-flex justify-content-center links">
+            Already a member?<a class="linkText" v-on:click="toLogin" href=""
+              >Sign In</a
+            >
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-
 import router from "@/router";
-import {actionTypes} from "@/actions/auth";
-import {sha256} from "js-sha256";
+import { actionTypes } from "@/actions/auth";
+import { sha256 } from "js-sha256";
 
 export default {
   name: "registerComponent",
   methods: {
-    toLogin: function () {
+    toLogin: function() {
       router.push("login");
     },
 
-    submit: function (event) {
-      event.preventDefault()
+    submit: function(event) {
+      event.preventDefault();
 
       // TODO Implement form handling in later ticket after dicussion
       if (this.password !== this.password_confirm) {
         return;
       }
 
-      const hashed = sha256(this.password)
+      const hashed = sha256(this.password);
       const formValues = {
         username: this.username,
         email: this.email,
         password: hashed,
-      }
+      };
 
-      this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues)
+      this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
