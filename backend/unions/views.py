@@ -17,7 +17,9 @@ class UnionViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         union = request.data.get('union', {})
-        token = request.data.get('token', {})
+        
+        token = request.headers.get('Authorization', {})
+        token = token.replace('Bearer ', '')
 
         # Retrieve user_id from JWT
         user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
