@@ -1,7 +1,7 @@
-import Vue from "vue";
+import * as Vue from "vue";
 import VueI18n from "vue-i18n";
+import supportedLocales from "./config/supported-locales"
 
-// @ts-ignore
 Vue.use(VueI18n);
 
 function loadLocalMessages() {
@@ -22,6 +22,18 @@ function loadLocalMessages() {
     return messages;
 }
 
+// function getSupportedLocales(){
+//     let annotatedLocales = [];
+//
+//     for(const code of Object.keys(supportedLocales)){
+//         annotatedLocales.push({
+//             code,
+//             name: supportedLocales[code]
+//         });
+//     }
+//     return annotatedLocales;
+// }
+
 function getBrowserLocale(options = {}) {
     const defaultOptions = {countryCodeOnly: false};
 
@@ -38,7 +50,6 @@ function getBrowserLocale(options = {}) {
     return trimmedLocale;
 }
 
-// @ts-ignore
 export default new VueI18n({
     locale: "en",
     fallbackLocale: "en",
