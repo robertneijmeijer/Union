@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  database:
+    container_name: db
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres # Should be the same as DB in settings
+      - POSTGRES_USER=postgres # Should be the same as User in settings
+      - POSTGRES_PASSWORD=root # Should be the same as Password in settings
+  django:
+    container_name: backend
+    build: backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+  vue:
+    container_name: frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    command: npm run serve

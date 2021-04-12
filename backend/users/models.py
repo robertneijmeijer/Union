@@ -1,5 +1,8 @@
+from datetime import datetime, timedelta
+
 import jwt
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.conf import settings
 
@@ -7,12 +10,15 @@ from django.conf import settings
 class UserManager(BaseUserManager):
     # TODO: Check if user already exists
 
-    def create_user(self, username, password=None):
+    def create_user(self, email, username, password=None):
         """Create and return a `User` with an email, username and password."""
         if username is None:
             raise TypeError('Users must have a username.')
 
-        user = self.model(username=username)
+        if email is None:
+            raise TypeError('Users must have an email address.')
+
+        user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
 
@@ -35,9 +41,10 @@ class UserManager(BaseUserManager):
         return self.get(username=username_)
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=45, unique=True)
+    username = models.CharField(db_index=True, max_length=45, unique=True)
+    email = models.EmailField(db_index=True, unique=True)
     password = models.CharField(max_length=256)
     avatar = models.CharField(max_length=256)
     two_factor_enabled = models.BooleanField(default=False)
@@ -64,11 +71,15 @@ class User(AbstractBaseUser):
         return self._generate_jwt_token()
 
     def _generate_jwt_token(self):
-        payload = {
-            'id': self.pk,
-            'TODO': "alter payload"
-        }
+        """
+        Generates a JSON Web Token that stores this user's ID and has an expiry
+        date set to 60 days into the future.
+        """
+        dt = datetime.now() + timedelta(days=60)
 
-        token = jwt.encode(payload, settings.SECRET_KEY)
+        token = jwt.encode({
+            'id': self.pk,
+            'exp': dt.utcfromtimestamp(dt.timestamp())
+        }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')

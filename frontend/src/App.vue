@@ -24,6 +24,18 @@ export default class App extends Vue {}
   height: 100%;
 }
 
+@font-face {
+  font-family: "Overpass-Regular";
+  src: local("Overpass-Regular"),
+    url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
+  font-family: "Overpass-Bold";
+  src: local("Overpass-Bold"),
+  url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+  font-family: "Overpass-SemiBold";
+  src: local("Overpass-SemiBold"),
+  url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+}
+
 html,
 body {
   background-color: black;

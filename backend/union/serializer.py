@@ -4,6 +4,13 @@ from union.models import Union
 
 
 class UnionSerializer(serializers.ModelSerializer):
+    creator_id = serializers.IntegerField()
+    banner = serializers.CharField(required=False, default=None)
+    icon = serializers.CharField(required=False, default=None)
+
     class Meta:
         model = Union
-        fields = '__all__'
+        fields = ['name', 'description', 'members_can_invite', 'icon', 'creator_id', 'banner']
+
+    def create(self, validated_data):
+        return Union.objects.create(**validated_data)
