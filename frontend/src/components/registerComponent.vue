@@ -45,21 +45,127 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">Already a member?<a class="linkText" v-on:click="toLogin" href="">Sign In</a></div>
                 </div>
-            </div>
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="registerTitle">Sign up to Union</h5>
         </div>
+        <div class="card-body">
+          <form>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user fa-lg center black"></i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="uid"
+                class="form-control input"
+                placeholder="Enter Username"
+                v-model="username"
+              />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text white"
+                  ><i class="fa fa-envelope fa-lg unique"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                name="mail"
+                class="form-control input"
+                placeholder="Enter Email"
+                v-model="email"
+              />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text black"
+                  ><i class="fa fa-lock fa-lg center"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                name="pwd"
+                class="form-control input"
+                placeholder="Enter Password"
+                v-model="password"
+              />
+
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text black"
+                  ><i class="fa fa-lock fa-lg center"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                name="pwd-repeat"
+                class="form-control input"
+                placeholder="Repeat Password"
+                v-model="password_confirm"
+              />
+            </div>
+            <div class="form-group">
+              <div class="centerButton">
+                <button
+                  class="btn btn-primary register_btn"
+                  type="submit"
+                  name="login-button"
+                  v-on:click="submit"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Already a member?<a class="linkText" v-on:click="toLogin" href=""
+              >Sign In</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
-  import router from "@/router";
+import router from "@/router";
+import { actionTypes } from "@/actions/auth";
+import { sha256 } from "js-sha256";
 
-  export default {
-    name: "registerComponent",
-    methods: {
-      toLogin: function () {
-        router.push("login");
-      },
+export default {
+  name: "registerComponent",
+  methods: {
+    toLogin: function() {
+      router.push("login");
     },
-  };
+
+    submit: function(event) {
+      event.preventDefault();
+
+      // TODO Implement form handling in later ticket after dicussion
+      if (this.password !== this.password_confirm) {
+        return;
+      }
+
+      const hashed = sha256(this.password);
+      const formValues = {
+        username: this.username,
+        email: this.email,
+        password: hashed,
+      };
+
+      this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues);
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
     @import "../assets/theme";

@@ -3,6 +3,7 @@ import landingPage from "@/views/landingPage.vue";
 import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
 import forgotPasswordView from "@/views/forgotPasswordView.vue";
+import unionCreateView from "@/views/unionCreateView.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/forgot-password",
     name: "forgot-password",
     component: forgotPasswordView,
+  },
+  {
+    path: "/createunion",
+    name: "createunion",
+    component: unionCreateView,
   },
 ];
 

@@ -1,5 +1,3 @@
-import jwt
-
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -19,20 +17,25 @@ class RegistrationAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = RegistrationSerializer
     renderer_classes = (UserJSONRenderer,)
+
     def post(self, request):
-        # TODO: Validate request body
-        print(request.data['user'])
-        print(request.data.get('user', {}))
-        user = request.data.get('user', {})
+        try:
+            user = request.data.get('user')
+            if user is None: raise Exception
+        except:
+            return Response({'errors': "Missing user key or empty body "}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Validate and save according to serializer
-        serializer = self.serializer_class(data=user)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        if User.objects.filter(username__iexact=user["username"]):
+            return Response({'errors': "Username already exists"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        serialized_data = serializer.data
-
-        return Response(serialized_data, status=status.HTTP_201_CREATED)
+        elif User.objects.filter(email__iexact=user["email"]):
+            return Response({'errors': "Email already exists"}, status=status.HTTP_406_NOT_ACCEPTABLE)
+        else:
+            serializer = self.serializer_class(data=user)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            serialized_data = serializer.data
+            return Response(serialized_data, status=status.HTTP_201_CREATED)
 
 
 class LoginAPIView(APIView):
