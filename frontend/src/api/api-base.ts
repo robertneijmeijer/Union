@@ -8,40 +8,32 @@ export default class ApiBase {
         url: string,
         config: AxiosRequestConfig
     ): Promise<AxiosResponse> {
-        // TODO Retrieve token
-        const sampleToken = 'b\'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjIzNDA3MDQ0fQ.CWsq5ireKWE5lFAlorLmAFGtP0pf17nIrE_5b2VU2v4\''
-        const headers = {
-            Authorization: `Bearer ${sampleToken}`
-        }
-
-        return axios
+       return axios
             .request({
                 method,
-                url,
-                headers,
+                url: `${this.BASE_URL}${url}`,
+                withCredentials: true,
                 ...config,
             })
             .then(response => response)
             .catch(handleError)
-
-        // TODO: Test if auth headers is overridden if config variable is applied in functions below
     }
 
     public static async requestGet(resource: string, id: string, config?: AxiosRequestConfig) {
         return this.executeRequest(
-            "get", `${ApiBase.BASE_URL}/${resource}/${id}/`, {...config}
+            "get", `/${resource}/${id}/`, {...config}
         )
     }
 
     public static async requestGetAll(resource: string, config?: AxiosRequestConfig) {
         return this.executeRequest(
-            "get", `${ApiBase.BASE_URL}/${resource}/`, {...config}
+            "get", `/${resource}/`, {...config}
         )
     }
 
     public static async requestPost(resource: string, config?: AxiosRequestConfig) {
         return this.executeRequest(
-            "post", `${ApiBase.BASE_URL}/${resource}`, {...config}
+            "post", `/${resource}/`, {...config}
         )
     }
 }
