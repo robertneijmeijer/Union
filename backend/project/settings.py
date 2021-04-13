@@ -24,7 +24,6 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ALLOW_CREDENTIALS = True
 
-APPEND_SLASH = False
 
 # Application definition
 
