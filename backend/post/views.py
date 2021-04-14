@@ -45,9 +45,3 @@ class PostViewSet(ModelViewSet):
         serialized_data = serializer.data
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
-
-
-class PostsPagination(PageNumberPagination):
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 100
