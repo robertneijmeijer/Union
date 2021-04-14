@@ -4,11 +4,11 @@
 </template>
 
 <script>
-  import UnionOverviewNavigator from "@/components/union-overview-navigator";
+    import unionOverviewNavigator from "@/components/union-overview-navigator";
   import UnionOverviewHeader from "@/components/union-overview-header";
   export default {
     name: "unionOverviewView",
-    components: { UnionOverviewHeader, UnionOverviewNavigator },
+    components: { UnionOverviewHeader, unionOverviewNavigator },
   };
 </script>
 
