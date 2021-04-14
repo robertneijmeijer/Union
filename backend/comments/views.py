@@ -1,5 +1,6 @@
+import logging
+
 import jwt
-from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
@@ -21,7 +22,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = CommentsPagination
 
     def list(self, request, *args, **kwargs):
-        comments = Comment.objects.filter(parent_comment_id=None).order_by('-upvotes')
+        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
 
         query_set = self.filter_queryset(comments)
         pagination = self.paginate_queryset(query_set)
@@ -32,6 +33,10 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(pagination, many=True)
         result_set = serializer.data
+        logging.warning(result_set)
+
+        for comment in result_set:
+            logging.warning(comment)
 
         return Response(result_set)
 
@@ -57,7 +62,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=comment)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
         serialized_data = serializer.data
+
+        # Add ids to parent
+        if serialized_data.get("parent_id") is not None:
+            Comment.objects.get(comment_id=serialized_data.get("parent_id")).children.add(
+                serialized_data.get("comment_id"))
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
