@@ -5,7 +5,7 @@ from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-from comments.serializer import CommentSerializer
+from comments.serializer import CommentSerializer, ChildrenSerializer
 from comments.models import Comment
 from project import settings
 
@@ -78,6 +78,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         if "depth" in request.GET:
             depth = request.GET["depth"]
 
-        
+        parentComment = Comment.objects.get(pk)
+        # serializer = ChildrenSerializer(data=parentComment, depth=depth)
+        # serialized_data = serializer.data
 
-        return Response("string", status.HTTP_200_OK)
+        return Response(parentComment, status.HTTP_200_OK)
