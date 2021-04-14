@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 from post.views import PostViewSet
-from union.views import UnionViewSet
+from unions.views import UnionViewSet
 
 router = routers.DefaultRouter()
 router.register(r'post', PostViewSet)
