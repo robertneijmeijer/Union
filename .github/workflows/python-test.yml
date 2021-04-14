@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Python backend
 
 on:
   pull_request:
@@ -13,6 +13,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +37,6 @@ jobs:
         cd backend
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        pip install django
         pip install -r requirements.txt
     - name: Lint with flake8
       run: |
@@ -33,6 +44,9 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Run migrations
+      run: python manage.py migrate
+      
     - name: Test with pytest
       run: |
         cd backend
