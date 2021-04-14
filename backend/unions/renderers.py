@@ -17,5 +17,5 @@ class UnionJSONRenderer(JSONRenderer):
         # No need to return user id's here.
         del data['creator_id']
         return json.dumps({
-            'union': data
+            'unions': data
         })
