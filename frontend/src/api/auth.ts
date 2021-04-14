@@ -5,13 +5,22 @@ import axios from "axios";
 // TODO -> can also be used to set the base URL
 
 export default class RegisterApi {
-    public static register = async (username: string, email: string, password: string): Promise<any> => {
-        return Promise.resolve(
-            await axios.post(
-                "http://localhost:8000/users/register",
-                {user: {username, email, password}})
-                .then((res) => { return res })
-                .catch(error => { throw error })
-        )
-    }
+  public static register = async (
+    username: string,
+    email: string,
+    password: string
+  ): Promise<any> => {
+    return Promise.resolve(
+      await axios
+        .post("http://localhost:8000/users/register", {
+          user: { username, email, password },
+        })
+        .then(res => {
+          return res;
+        })
+        .catch(error => {
+          throw error;
+        })
+    );
+  };
 }

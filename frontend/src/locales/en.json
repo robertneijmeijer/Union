@@ -1,0 +1,17 @@
+{
+  "message": "hello i18n !!",
+  "union_create": {
+    "welcome": "Welcome to",
+    "create_community": "Create a community",
+    "fields_required": "* Fields are required",
+    "name": "Name *",
+    "description": "Description *",
+    "invite_privilege": "Invite privilege *",
+    "only_i": "Only i can invite",
+    "everyone": "Everyone can invite *",
+    "max_invites": "Members get max 2 invites",
+    "icon": "Icon",
+    "banner_image": "Banner image",
+    "create_button": "Create community"
+  }
+}

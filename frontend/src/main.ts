@@ -1,9 +1,10 @@
-import {createApp} from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
-import {store} from "@/store/store";
+import { store } from "@/store/store";
 import router from "@/router";
+import i18n from "./i18n";
 
-const app = createApp(App);
+const app = createApp(App).use(i18n);
 
 app.use(store);
 
