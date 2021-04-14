@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-  <landing-page></landing-page>
-  <router-view />
+    <landing-page></landing-page>
+    <router-view />
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  components: { },
+  components: {},
 })
 export default class App extends Vue {}
 </script>
@@ -30,10 +30,10 @@ export default class App extends Vue {}
     url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
   font-family: "Overpass-Bold";
   src: local("Overpass-Bold"),
-  url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
   font-family: "Overpass-SemiBold";
   src: local("Overpass-SemiBold"),
-  url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
 }
 
 html,
