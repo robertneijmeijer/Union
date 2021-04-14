@@ -7,7 +7,7 @@ from union.views import UnionViewSet
 
 router = routers.DefaultRouter()
 router.register(r'post', PostViewSet)
-router.register(r'union', UnionViewSet)
+router.register(r'unions', UnionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
