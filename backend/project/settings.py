@@ -1,5 +1,5 @@
 from pathlib import Path
-import datetime
+import datetime, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "postgres",
-        'USER': "postgres",
-        'PASSWORD': "root",
-        'HOST': "localhost",
+        'NAME': os.getenv("POSTGRES_DB") or "postgres",
+        'USER': os.getenv("POSTGRES_USER") or "postgres",
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD") or "root",
+        'HOST': os.getenv("POSTGRES_HOST") or "localhost", # Should be container name or localhost for standalone run
         'PORT': 5432
     }
 }
