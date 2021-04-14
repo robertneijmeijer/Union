@@ -22,6 +22,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
     'https://localhost:8080',
 )
+CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 
