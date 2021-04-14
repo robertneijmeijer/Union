@@ -24,13 +24,13 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, username, password):
+    def create_superuser(self, email, username, password):
         if username is None:
             raise TypeError('Users must have a username.')
         if password is None:
             raise TypeError('Superusers must have a password.')
 
-        user = self.create_user(username, password)
+        user = self.create_user(email, username, password)
         user.is_superuser = True
         user.is_staff = True
         user.save()
@@ -82,5 +82,4 @@ class User(AbstractBaseUser, PermissionsMixin):
             'exp': dt.utcfromtimestamp(dt.timestamp())
         }, settings.SECRET_KEY, algorithm='HS256')
 
-        return token
-
+        return token.decode('utf-8')
