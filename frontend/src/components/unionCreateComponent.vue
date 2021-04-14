@@ -2,8 +2,8 @@
   <div class="container">
     <div class="d-flex justify-content-center h-100">
       <div class="header-row">
-        <h1 class="welcome-text">Welcome to </h1>
-        <img src="../assets/union.svg"/>
+        <h1 class="welcome-text">Welcome to</h1>
+        <img src="../assets/union.svg" />
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
@@ -13,40 +13,74 @@
         <div class="union-card-body">
           <div class="column-left">
             <h4 class="white-text overpass-bold">Name *</h4>
-            <input type="text" name="usernameId" class="form-control name-height input"/>
-            <h4 class="white-text overpass-bold">Description *</h4>
-            <textarea size="lg" type="text" name="description" class="form-control input description-height"
+            <input
+              type="text"
+              name="usernameId"
+              class="form-control name-height input"
+              v-model="name"
             />
+            <h4 class="white-text overpass-bold">Description *</h4>
+            <textarea
+              size="lg"
+              type="text"
+              name="description"
+              class="form-control input description-height"
+              v-model="description"
+            ></textarea>
           </div>
           <div class="column-right">
             <h4 class="white-text overpass-bold">Invite privilege *</h4>
             <div class="rows">
               <div class="round">
-                <input type="checkbox" id="onlyMe" v-on:click="check_one()">
-                <label for="onlyMe"/>
+                <input
+                  type="radio"
+                  id="onlyMe"
+                  name="invitePrivilege"
+                  v-model="members_can_invite"
+                  v-bind:value="false"
+                />
+                <label for="onlyMe"></label>
               </div>
-              <img src="../assets/singleEnvelope.svg" class="top-envelope"/>
-              <h6 class="only-i-invite horizontal-padding">Only i can invite</h6>
+              <img src="../assets/singleEnvelope.svg" class="top-envelope" />
+              <h6 class="only-i-invite horizontal-padding">
+                Only I can invite
+              </h6>
             </div>
             <div class="rows">
               <div class="round">
-                <input type="checkbox" id="everyone" v-on:click="check_one()">
-                <label for="everyone"/>
+                <input
+                  type="radio"
+                  id="everyone"
+                  name="invitePrivilege"
+                  v-model="members_can_invite"
+                  v-bind:value="true"
+                />
+                <label for="everyone"></label>
               </div>
-              <img src="../assets/multipleEnvelope.svg" class="bottom-envelopes"/>
+              <img
+                src="../assets/multipleEnvelope.svg"
+                class="bottom-envelopes"
+              />
               <p class="everyone-invite">Everyone can invite *</p>
-
             </div>
             <div>
-              <h4 class="white-text"> Icon </h4>
+              <h4 class="white-text">Icon</h4>
               <div class="circle">
-                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_avatar()"/>
+                <img
+                  src="../assets/imageIcon.svg"
+                  class="image-upload"
+                  v-on:click="upload_avatar()"
+                />
               </div>
             </div>
             <div>
-              <h4 class="white-text"> Banner image </h4>
+              <h4 class="white-text">Banner image</h4>
               <div class="banner-image">
-                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_banner()"/>
+                <img
+                  src="../assets/imageIcon.svg"
+                  class="image-upload"
+                  v-on:click="upload_banner()"
+                />
               </div>
             </div>
           </div>
@@ -72,29 +106,35 @@
 
 <script>
 import router from "@/router";
+import UnionApi from "../api/union"
 
 export default {
   name: "unionCreate",
   methods: {
-    // TODO: add methods here
-    check_one: function () {
-      console.log("clicked")
-    },
-    create: function () {
+    create: function() {
       router.push("/");
+      const formValues = {
+        name: this.name,
+        description: this.description,
+        members_can_invite: this.members_can_invite,
+        icon: "img",
+        banner: "img",
+      };
+      UnionApi.postUnion({ union: formValues });
+
+      console.log(formValues);
     },
-    upload_banner: function (){
-      console.log('clicked on banner')
+    upload_banner: function() {
+      console.log("clicked on banner");
       //TODO: add avatar stuff here
     },
-    upload_avatar: function () {
-      console.log('clicked on avatar')
+    upload_avatar: function() {
+      console.log("clicked on avatar");
       //TODO: add avatar stuff here
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <style lang="scss">
 @import "../assets/theme";
@@ -205,9 +245,9 @@ export default {
   user-select: none;
   font-size: 18px;
   position: absolute;
-  padding-left: $paddingHuge *3;
+  padding-left: $paddingHuge * 3;
   margin-right: 40px;
-  color: #C8C8C8;
+  color: #c8c8c8;
 }
 
 .union-card {
@@ -215,7 +255,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   width: 1000px;
-  background-color: $buttonHoverColor;
+  background-color: $cardBackgroundColor;
   border-radius: $borderRadius;
   font-family: "Overpass-SemiBold";
 }
@@ -228,7 +268,7 @@ export default {
 }
 
 .union-create-btn {
-  padding-top: $paddingHuge *1.5;
+  padding-top: $paddingHuge * 1.5;
   margin-bottom: 0;
 }
 
@@ -242,10 +282,9 @@ export default {
   border-radius: 33px;
 
   &:hover {
-    background-color: $buttonHoverColor;
-    border: $buttonBorder $buttonHoverColor;
+    background-color: $cardBackgroundColor;
+    border: $buttonBorder $cardBackgroundColor;
   }
-
 }
 
 .white-text {
@@ -288,7 +327,16 @@ export default {
 .form-control {
   background-color: #232323;
   border-radius: $borderRadiusInput;
-  border: 1px solid $inputTextfielColor;
+  border: 3px solid $inputTextFieldBorderColor;
+  color: #c8c8c8;
+  font-family: Overpass;
+}
+
+.form-control:focus {
+  background-color: #232323;
+  border: 3px solid $inputTextFieldSelectedBorderColor;
+  color: #c8c8c8;
+  font-family: Overpass;
 }
 
 .name-height {
@@ -308,8 +356,8 @@ export default {
 }
 
 .round label {
-  background-color: $darkGreyColor;
-  border: 1px solid #ccc;
+  background-color: $cardBackgroundColor;
+  border: 2px solid #c4c4c4;
   border-radius: 50%;
   cursor: pointer;
   height: 28px;
@@ -322,18 +370,18 @@ export default {
 .round label:after {
   height: 25px;
   width: 25px;
-  background-color: $darkGreyColor;
+  background-color: $cardBackgroundColor;
   border-radius: 50%;
   display: inline-block;
 }
 
-.round input[type="checkbox"] {
+.round input[type="radio"] {
   visibility: hidden;
 }
 
-.round input[type="checkbox"]:checked + label {
-  background-color: #00FFFF;
-  border-color: #00FFFF;
+.round input[type="radio"]:checked + label {
+  border: 8px solid #00ffff;
+  background-color: $cardBackgroundColor;
 }
 
 .round input[type="checkbox"]:checked + label:after {
@@ -345,5 +393,22 @@ export default {
   grid-template-columns: 270px 130px 0;
   user-select: none;
   align-items: baseline;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  color: #c8c8c8;
+  font-family: Overpass;
+  border: 3px solid $inputTextFieldBorderColor;
+  -webkit-text-fill-color: #c8c8c8;
+  -webkit-box-shadow: 0 0 0px 1000px #232323 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 </style>

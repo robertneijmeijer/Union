@@ -92,7 +92,7 @@
         margin-top: auto;
         margin-bottom: auto;
         width: 400px;
-        background-color: $buttonHoverColor;
+        background-color: $cardBackgroundColor;
     }
 
     .card-body {
@@ -113,8 +113,8 @@
         background: transparent;
 
         &:hover{
-            background-color: $buttonHoverColor;
-            border: $buttonBorder $buttonHoverColor;
+            background-color: $cardBackgroundColor;
+            border: $buttonBorder $cardBackgroundColor;
         }
 
     }
@@ -159,7 +159,7 @@
     }
 
     .links {
-        color: $inputTextfielColor;
+        color: $inputTextFieldBorderColor;
         user-select: none;
     }
 

@@ -146,7 +146,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: $buttonHoverColor;
+  background-color: $cardBackgroundColor;
 }
 
 .registerTitle {
@@ -203,8 +203,8 @@ input:focus {
   margin-top: 10px;
 
   &:hover {
-    background-color: $buttonHoverColor;
-    border: $buttonBorder $buttonHoverColor;
+    background-color: $cardBackgroundColor;
+    border: $buttonBorder $cardBackgroundColor;
   }
 }
 
