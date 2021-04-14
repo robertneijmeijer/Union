@@ -1,5 +1,4 @@
 {
-  "message": "hello i18n !!",
   "union_create": {
     "welcome": "Welcome to",
     "create_community": "Create a community",
