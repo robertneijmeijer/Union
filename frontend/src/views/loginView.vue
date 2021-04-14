@@ -1,8 +1,8 @@
 <template>
   <div id="loginview">
-  <top-bar-logo></top-bar-logo>
+    <top-bar-logo></top-bar-logo>
     <div id="loginCard">
-  <login-component></login-component>
+      <login-component></login-component>
     </div>
   </div>
 </template>
@@ -17,12 +17,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #loginview{
-    max-height: 100%;
-  }
+#loginview {
+  max-height: 100%;
+}
 
-  #loginCard{
-    margin-top: 100px;
-  }
-
+#loginCard {
+  margin-top: 100px;
+}
 </style>

@@ -5,13 +5,21 @@ services:
     container_name: db
     image: postgres
     environment:
-      - POSTGRES_DB=postgres # Should be the same as DB in settings
-      - POSTGRES_USER=postgres # Should be the same as User in settings
-      - POSTGRES_PASSWORD=root # Should be the same as Password in settings
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
   django:
     container_name: backend
     build: backend
     command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      # above variables should be the same as the db env variables
+      - POSTGRES_HOST=db
     volumes:
       - ./backend:/code
     ports:

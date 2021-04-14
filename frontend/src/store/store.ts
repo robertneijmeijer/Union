@@ -1,36 +1,35 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
 
-import {authActions} from "@/actions/auth"
-import {authMutations} from "@/mutations/auth"
+import { authActions } from "@/actions/auth";
+import { authMutations } from "@/mutations/auth";
 
 export interface RootState {
-    user: {
-        user: {}
-        isFetching: boolean,
-        errors: {}
-    }
+  user: {
+    user: {};
+    isFetching: boolean;
+    errors: {};
+  };
 }
 
 // TODO: split into user module
 export const state: RootState = {
-    user: {
-        user: {},
-        isFetching: false,
-        errors: {}
-    }
-}
+  user: {
+    user: {},
+    isFetching: false,
+    errors: {},
+  },
+};
 
 const actions = {
-    ...authActions
-}
+  ...authActions,
+};
 
 const mutations = {
-    ...authMutations
-}
+  ...authMutations,
+};
 
 export const store = createStore({
-    state,
-    actions,
-    mutations,
-
+  state,
+  actions,
+  mutations,
 });
