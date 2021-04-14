@@ -1,25 +1,18 @@
-import {CommitOptions, createStore, DispatchOptions, Module, Store} from "vuex";
-import {
-    moduleA,
-    moduleAState,
-    Mutations as moduleAMutations,
-    Actions as moduleAActions,
-    A as moduleAStateType
-} from "@/store/modulea";
+import {CommitOptions, createStore, DispatchOptions, Store} from "vuex";
+import {user, userModuleState} from "@/store/modules/user";
+import {Actions as userActions} from "@/actions/user";
+import {Mutations as userMutations} from "@/mutations/user";
 import {moduleB, moduleBState} from "@/store/moduleb";
 
-// https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
+
+// More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
 
 export interface RootState {
-    user: any
-    testModuleA: moduleAState,
+    user: userModuleState,
     testModuleB: moduleBState
 }
-
-
-export type Mutations = moduleAMutations; // union with mutations from other modules -> && moduleBMutations
-export type Actions = moduleAActions  // union with actions from other modules
-
+export type Mutations = userMutations; // union with mutations from other modules -> && moduleBMutations
+export type Actions = userActions  // union with actions from other modules
 
 // Override commit and dispatch to only accept our own typings
 export interface PlainStore extends Omit<Store<RootState>, 'commit' | 'getters' | 'dispatch'> {
@@ -36,9 +29,10 @@ export interface PlainStore extends Omit<Store<RootState>, 'commit' | 'getters' 
     ): ReturnType<Actions[K]>
 }
 
-export const store: PlainStore = createStore({
+// TODO: store state not enforced by RootState interface.?
+export const store: PlainStore = createStore<RootState>({
     modules: {
-        testModuleA: moduleA,
+        user,
         testModuleB: moduleB
     }
 });
