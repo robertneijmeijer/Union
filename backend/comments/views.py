@@ -70,3 +70,14 @@ class CommentViewSet(viewsets.ModelViewSet):
                 serialized_data.get("comment_id"))
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
+
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs["pk"]
+        depth = 5
+
+        if "depth" in request.GET:
+            depth = request.GET["depth"]
+
+        
+
+        return Response("string", status.HTTP_200_OK)
