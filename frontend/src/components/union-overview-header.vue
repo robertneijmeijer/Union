@@ -5,7 +5,7 @@
     </div>
     <div class="row title">
         <div class="col-3"></div>
-        <div class="col-6 logo">
+        <div class="col-9 logo">
             <img id="logo-image" class="logo-image" src="../assets/bitcoin-icon.png">
             <h3 class="unionName">TheCryptoUnion</h3>
         </div>
