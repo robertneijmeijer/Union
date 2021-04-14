@@ -1,7 +1,9 @@
 <template>
     <div class="row">
-        <img class="img-fluid headerImage" alt="Responsive image"
-             src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"/>
+        <div class="image-box">
+            <img class="img-fluid" alt="Responsive image"
+                 src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"/>
+        </div>
     </div>
     <div class="row title">
         <div class="col-3"></div>
@@ -27,8 +29,14 @@
     }
 
     .img-fluid {
-        height: $unionheaderheight;
+        height: 100%;
         width: 100%;
+        object-fit: cover;
+    }
+
+    .image-box{
+        width: 100%;
+        height: 267px;
     }
 
     .logo {
