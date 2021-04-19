@@ -9,7 +9,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <div  class="collapse navbar-collapse" id="navbar-content">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <div class="dropdown">
@@ -23,9 +23,9 @@
                         <form class="form-inline">
                             <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
                         </form>
-                        <img class="user" height="35" width="35"
+                        <img id="user-img" class="user" height="35" width="35"
                              src="../assets/user-icon-png-person-user-profile-icon-20.png" alt="">
-                        <div class="dropdown-user">
+                        <div id="user" class="dropdown-user">
                             <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button"
                                     id="dropdownMenu1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +47,26 @@
 
 <style lang="scss" scoped>
     @import "../assets/theme";
+
+    @media only screen and (max-width: 1376px) {
+        #user {
+            display: none;
+        }
+        #user-img{
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1026px) {
+        #navbar-content {
+            display: none;
+        }
+
+    }
+
+    .img-fluid{
+        margin-bottom: 10px;
+    }
 
     .flex{
         max-width: 100vw;
