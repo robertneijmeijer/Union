@@ -1,14 +1,18 @@
 <template>
+    <div id="union">
     <union-overview-navigator></union-overview-navigator>
     <union-overview-header></union-overview-header>
+    <union-post-overview></union-post-overview>
+    </div>
 </template>
 
 <script>
     import unionOverviewNavigator from "@/components/union-overview-navigator";
   import UnionOverviewHeader from "@/components/union-overview-header";
+    import UnionPostOverview from "@/components/union-post-overview";
   export default {
     name: "unionOverviewView",
-    components: { UnionOverviewHeader, unionOverviewNavigator },
+    components: { UnionPostOverview, UnionOverviewHeader, unionOverviewNavigator },
   };
 </script>
 

@@ -24,6 +24,10 @@
 <style lang="scss" scoped>
     @import "../assets/theme";
 
+    .row{
+        max-width: 100vw;
+        margin-left: 0;
+    }
     .member-tag {
         border-radius: $borderRadius;
         width: $buttonwidth;

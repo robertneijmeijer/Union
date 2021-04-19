@@ -48,6 +48,10 @@
 <style lang="scss" scoped>
     @import "../assets/theme";
 
+    .flex{
+        max-width: 100vw;
+    }
+
     .navbar {
         background-color: #1A1A1B;
     }

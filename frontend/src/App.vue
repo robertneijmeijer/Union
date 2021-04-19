@@ -20,8 +20,9 @@ export default class App extends Vue {}
 @import "./assets/theme";
 
 #app {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 @font-face {
@@ -41,7 +42,7 @@ body {
   background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
   font-family: "Numans", sans-serif;
 }
+
 </style>
