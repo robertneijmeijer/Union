@@ -6,7 +6,7 @@
                     <h5 class="loginTitle">Sign in to Union</h5>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -15,7 +15,6 @@
                             </div>
                             <input
                                     type="text"
-                                    name="usernameId"
                                     class="form-control input"
                                     placeholder="username"
                                     v-model="username"
@@ -29,7 +28,6 @@
                             </div>
                             <input
                                     type="password"
-                                    name="passwordId"
                                     class="form-control input"
                                     placeholder="password"
                                     v-model="password"
@@ -42,8 +40,6 @@
                             <div class="text-center loginbtn">
                                 <button
                                         class="btn btn-primary login "
-                                        type="submit"
-                                        name="login-button"
                                         v-on:click="signIn"
                                 >
                                     Sign in
@@ -86,7 +82,7 @@
               password: hashed,
             },
         };
-
+        UserApi.signIn(user);
       },
     },
   };
