@@ -1,10 +1,10 @@
 <template>
     <div class="flex-container">
-        <div class="left-container"></div>
-        <div class="center-container">
+        <div id="aside" class="left-container"></div>
+        <div id="posts" class="center-container">
             <union-create-post></union-create-post>
         </div>
-        <div class="right-container">
+        <div id="about" class="right-container">
             <union-about-community></union-about-community>
         </div>
     </div>
@@ -21,6 +21,27 @@
 
 <style lang="scss" scoped>
     @import "../assets/theme";
+
+    @media only screen and (max-width: 1026px) {
+        #about {
+            display: none;
+        }
+        #aside{
+            display: none;
+        }
+
+    }
+    @media only screen and (max-width: 626px) {
+        #aside{
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1026px) {
+    #posts {
+        width: 100%
+    }
+    }
 
     .flex-container {
         display: flex;

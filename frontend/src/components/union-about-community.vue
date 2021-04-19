@@ -14,10 +14,10 @@
             </div>
             <div class="com-info">
                 <div class="members">152k
-                    <div>members</div>
+                    <div class="members-sub">members</div>
                 </div>
                 <div class="online">195
-                    <div>online</div>
+                    <div class="online-sub">online</div>
                 </div>
             </div>
             <div class="created">
@@ -32,8 +32,10 @@
 </template>
 
 <script>
+
+
   export default {
-    name: "union-about-community",
+    name: "union-about-community"
   };
 </script>
 
@@ -43,6 +45,7 @@
     @font-face {
         font-family: "Overpass-Regular";
     }
+
 
     .container{
     }
@@ -101,6 +104,7 @@
         border-radius: $borderRadius;
         border: none;
         font-weight: bold;
+        user-select: none;
     }
 
     .invite{

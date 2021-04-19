@@ -10,7 +10,7 @@
         <div class="col-9 logo">
             <img id="logo-image" class="logo-image" src="../assets/bitcoin-icon.png">
             <h3 class="unionName">TheCryptoUnion</h3>
-            <button class="member-tag">Joined</button>
+            <button id="tag" class="member-tag">Joined</button>
         </div>
     </div>
 </template>
@@ -23,6 +23,13 @@
 
 <style lang="scss" scoped>
     @import "../assets/theme";
+
+    @media only screen and (max-width: 626px) {
+        #tag {
+            display: none;
+        }
+
+    }
 
     .row{
         max-width: 100vw;

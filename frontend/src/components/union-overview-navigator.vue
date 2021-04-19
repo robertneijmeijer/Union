@@ -41,7 +41,7 @@
 
 <script>
   export default {
-    name: "testcomp",
+    name: "union-overview-navigator",
   };
 </script>
 
@@ -54,6 +54,7 @@
 
     .navbar {
         background-color: #1A1A1B;
+        max-height: 60px;
     }
 
     .navbar-brand {
