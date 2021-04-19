@@ -12,5 +12,15 @@
     "icon": "Icon",
     "banner_image": "Banner image",
     "create_button": "Create community"
+  },
+  "register": {
+    "sign_up": "Sign up to Union",
+    "username": "Enter Username",
+    "email": "Enter Email",
+    "password": "Enter Password",
+    "password_confirm": "Repeat Password",
+    "register": "Register",
+    "already_member": "Already a member?",
+    "sign_in": "Sign In"
   }
 }

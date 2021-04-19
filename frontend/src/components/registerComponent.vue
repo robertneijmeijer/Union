@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="card-header">
-          <h5 class="registerTitle">Sign up to Union</h5>
+          <h5 class="registerTitle">{{ $t("register.sign_up") }}</h5>
         </div>
         <div class="card-body">
           <form>
@@ -14,64 +14,64 @@
                 </span>
               </div>
               <input
-                type="text"
-                name="uid"
-                class="form-control input"
-                placeholder="Enter Username"
-                v-model="username"
+                  type="text"
+                  name="uid"
+                  class="form-control input"
+                  placeholder="$t('register.username')"
+                  v-model="username"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text white"
-                  ><i class="fa fa-envelope fa-lg unique"></i
+                ><i class="fa fa-envelope fa-lg unique"></i
                 ></span>
               </div>
               <input
-                type="text"
-                name="mail"
-                class="form-control input"
-                placeholder="Enter Email"
-                v-model="email"
+                  type="text"
+                  name="mail"
+                  class="form-control input"
+                  placeholder="$t('register.email')"
+                  v-model="email"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd"
-                class="form-control input"
-                placeholder="Enter Password"
-                v-model="password"
+                  type="password"
+                  name="pwd"
+                  class="form-control input"
+                  placeholder="$t('register.password')"
+                  v-model="password"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd-repeat"
-                class="form-control input"
-                placeholder="Repeat Password"
-                v-model="password_confirm"
+                  type="password"
+                  name="pwd-repeat"
+                  class="form-control input"
+                  placeholder="$t('register.password_confirm')"
+                  v-model="password_confirm"
               />
             </div>
             <div class="form-group">
               <div class="centerButton">
                 <button
-                  class="btn btn-primary register_btn"
-                  type="submit"
-                  name="login-button"
-                  v-on:click="submit"
+                    class="btn btn-primary register_btn"
+                    type="submit"
+                    name="login-button"
+                    v-on:click="submit"
                 >
-                  Register
+                  {{ $t("register.register") }}
                 </button>
               </div>
             </div>
@@ -79,9 +79,9 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            Already a member?<a class="linkText" v-on:click="toLogin" href=""
-              >Sign In</a
-            >
+            {{ $t("register.already_member") }}<a class="linkText" v-on:click="toLogin" href=""
+          >{{ $t("register.sign_in") }}</a
+          >
           </div>
         </div>
       </div>
@@ -90,17 +90,26 @@
 </template>
 <script>
 import router from "@/router";
-import { ActionTypes } from "@/actions/user";
-import { sha256 } from "js-sha256";
+import {ActionTypes} from "@/actions/user";
+import {sha256} from "js-sha256";
+import {useI18n} from "vue-i18n";
 
 export default {
   name: "registerComponent",
   methods: {
-    toLogin: function() {
+    setup() {
+      const {t} = useI18n({
+        inheritLocale: true,
+        useScope: "local",
+      });
+
+      return {t};
+    },
+    toLogin: function () {
       router.push("login");
     },
 
-    submit: function(event) {
+    submit: function (event) {
       event.preventDefault();
 
       // TODO Implement form handling in later ticket after dicussion
