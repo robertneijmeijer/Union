@@ -2,7 +2,10 @@
   <nav class="primary">
     <section class="">
       <div @click="onClickImage">
-        <img src="../assets/union.png" height="60" width="170" />
+        <img src="../assets/union.png" height="60" width="170"/>
+      </div>
+      <div>
+        <LocaleSwitcher/>
       </div>
     </section>
   </nav>
@@ -10,14 +13,16 @@
 
 <script>
 import router from "@/router";
+import LocaleSwitcher from "./localeSwitcher";
 
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function() {
+    onClickImage: function () {
       router.push("/");
     },
   },
+  components: {LocaleSwitcher}
 };
 </script>
 

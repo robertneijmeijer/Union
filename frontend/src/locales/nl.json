@@ -1,0 +1,16 @@
+{
+  "union_create": {
+    "welcome": "Welcome op",
+    "create_community": "Maak een community",
+    "fields_required": "* Verplichte velden",
+    "name": "Naam *",
+    "description": "Beschrijving *",
+    "invite_privilege": "Uitnodiging mogenlijkheden *",
+    "only_i": "Alleen ik kan uitnodigen",
+    "everyone": "Iedereen kan uitnodigen *",
+    "max_invites": "Leden krijgen maximaal 2 uitnodigingen",
+    "icon": "Icoon",
+    "banner_image": "Banner image",
+    "create_button": "Maak community"
+  }
+}
