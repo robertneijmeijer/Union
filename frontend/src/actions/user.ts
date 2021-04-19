@@ -4,9 +4,6 @@ import {ActionTree} from "vuex";
 import router from "@/router";
 import {UserState} from "@/store/modules/user";
 
-// https://dev.to/3vilarthas/vuex-typescript-m4j
-// TODO: Type actions with above link
-
 export interface registrationForm {
     username: string;
     email: string;
