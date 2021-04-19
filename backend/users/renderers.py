@@ -2,6 +2,12 @@ import json
 
 from rest_framework.renderers import JSONRenderer
 
+"""
+This class was used to return the user object when login is successful. 
+this is not needed anymore as the only thing the frontend needs is a 200 OK and
+a token in the cookies when the login is successful. Errors are still returned normally.
+"""
+
 
 class UserJSONRenderer(JSONRenderer):
     charset = 'utf-8'
