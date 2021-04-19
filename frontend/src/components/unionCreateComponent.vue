@@ -94,7 +94,14 @@ import { useI18n } from "vue-i18n";
 export default {
   name: "unionCreate",
   methods: {
-    // TODO: add methods here
+    setup() {
+      const { t } = useI18n({
+        inheritLocale: true,
+        useScope: "local",
+      });
+
+      return { t };
+    },
     check_one: function() {
       console.log("clicked");
     },
@@ -108,14 +115,6 @@ export default {
     upload_avatar: function() {
       console.log("clicked on avatar");
       //TODO: add avatar stuff here
-    },
-    setup() {
-      const { t } = useI18n({
-        inheritLocale: true,
-        useScope: "local",
-      });
-
-      return { t };
     },
   },
 };

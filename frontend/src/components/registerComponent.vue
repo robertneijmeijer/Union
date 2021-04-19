@@ -17,7 +17,7 @@
                   type="text"
                   name="uid"
                   class="form-control input"
-                  placeholder="$t('register.username')"
+                  v-bind:placeholder="$t('register.username')"
                   v-model="username"
               />
             </div>
@@ -31,7 +31,7 @@
                   type="text"
                   name="mail"
                   class="form-control input"
-                  placeholder="$t('register.email')"
+                  v-bind:placeholder="$t('register.email')"
                   v-model="email"
               />
             </div>
@@ -45,7 +45,7 @@
                   type="password"
                   name="pwd"
                   class="form-control input"
-                  placeholder="$t('register.password')"
+                  v-bind:placeholder="$t('register.password')"
                   v-model="password"
               />
             </div>
@@ -59,7 +59,7 @@
                   type="password"
                   name="pwd-repeat"
                   class="form-control input"
-                  placeholder="$t('register.password_confirm')"
+                  v-bind:placeholder="$t('register.password_confirm')"
                   v-model="password_confirm"
               />
             </div>

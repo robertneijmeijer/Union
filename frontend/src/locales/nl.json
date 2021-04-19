@@ -10,7 +10,27 @@
     "everyone": "Iedereen kan uitnodigen *",
     "max_invites": "Leden krijgen maximaal 2 uitnodigingen",
     "icon": "Icoon",
-    "banner_image": "Banner image",
+    "banner_image": "Banner afbeelding",
     "create_button": "Maak community"
+  },
+  "register": {
+    "sign_up": "Meld je aan bij Union",
+    "username": "Vul je gebruikersnaam in",
+    "email": "Vul je email in",
+    "password": "Vul je wachtwoord in",
+    "password_confirm": "Herhaal wachtwoord",
+    "register": "Registreren",
+    "already_member": "Al lid?",
+    "sign_in": "Log in"
+  },
+  "login": {
+    "sign_in_union": "Meld je aan bij Union",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "remember_me": "Onthoud me",
+    "sign_in": "Log in",
+    "dont_have_account": "Nog geen account?",
+    "sign_up": "Aanmelden",
+    "forgot_password": "Wachtwoord vergeten?"
   }
 }
