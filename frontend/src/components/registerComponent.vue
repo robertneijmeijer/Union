@@ -90,7 +90,7 @@
 </template>
 <script>
 import router from "@/router";
-import { actionTypes } from "@/actions/auth";
+import { ActionTypes } from "@/actions/user";
 import { sha256 } from "js-sha256";
 
 export default {
@@ -115,7 +115,7 @@ export default {
         password: hashed,
       };
 
-      this.$store.dispatch(actionTypes.REGISTER_ACTION_SUBMIT, formValues);
+      this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
   },
 };
