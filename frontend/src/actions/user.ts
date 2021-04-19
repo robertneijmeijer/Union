@@ -4,7 +4,7 @@ import {ActionTree} from "vuex";
 import router from "@/router";
 import {UserState} from "@/store/modules/user";
 
-export interface registrationForm {
+export interface RegistrationFormInterface {
     username: string;
     email: string;
     password: string;
@@ -16,14 +16,14 @@ export enum ActionTypes {
     REGISTER_ACTION_SUCCESS = "REGISTER_ACTION_SUCCESS",
 }
 
-export interface Actions {
-    [ActionTypes.REGISTER_ACTION_SUBMIT](commit: any, payload: registrationForm): void
+export interface ActionsInterface {
+    [ActionTypes.REGISTER_ACTION_SUBMIT](commit: any, payload: RegistrationFormInterface): void
 }
 
-export const actions: ActionTree<UserState, RootState> & Actions = {
+export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
     [ActionTypes.REGISTER_ACTION_SUBMIT](
         {commit, state},
-        values: registrationForm
+        values: RegistrationFormInterface
     ) {
         RegisterApi.register(values.username, values.username, values.password)
             .then(result => {
