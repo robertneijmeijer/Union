@@ -10,6 +10,7 @@
         <div class="col-9 logo">
             <img id="logo-image" class="logo-image" src="../assets/bitcoin-icon.png">
             <h3 class="unionName">TheCryptoUnion</h3>
+            <button class="member-tag">Joined</button>
         </div>
     </div>
 </template>
@@ -23,6 +24,15 @@
 <style lang="scss" scoped>
     @import "../assets/theme";
 
+    .member-tag {
+        border-radius: $borderRadius;
+        width: $buttonwidth;
+        background-color: transparent;
+        border: $buttonBorder white;
+        color: white;
+        margin-left: 30px;
+    }
+
     .title {
         background-color: #1A1A1B;
         height: 80px;
@@ -34,7 +44,7 @@
         object-fit: cover;
     }
 
-    .image-box{
+    .image-box {
         width: 100%;
         height: 267px;
     }
