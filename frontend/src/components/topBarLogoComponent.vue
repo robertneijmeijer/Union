@@ -1,11 +1,11 @@
 <template>
   <nav class="primary">
     <section class="">
-      <div @click="onClickImage">
-        <img src="../assets/union.png" height="60" width="170"/>
-      </div>
-      <div>
-        <LocaleSwitcher/>
+      <div class="row">
+        <div @click="onClickImage">
+          <img src="../assets/union.png" height="60" width="170"/>
+        </div>
+        <LocaleSwitcher class="switcher"/>
       </div>
     </section>
   </nav>
@@ -28,6 +28,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/theme";
+
+.row{
+ flex: 1;
+}
+
+.switcher{
+  padding-left: $paddingSmall;
+  padding-top: $paddingSmall;
+  align-items: baseline;
+}
 
 nav.primary {
   position: relative;

@@ -1,6 +1,6 @@
 <template>
-  <div class="locale-switcher">
-    <select v-model="$i18n.locale">
+  <div>
+    <select class="locale-switcher" v-model="$i18n.locale">
       <option value="en">English</option>
       <option value="nl">Nederlands</option>
     </select>
@@ -13,3 +13,12 @@ export default {
   name: "localeSwitcher",
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/theme";
+
+.locale-switcher{
+  background-color: $buttonHoverColor;
+  color: white;
+}
+</style>
