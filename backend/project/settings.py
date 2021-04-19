@@ -26,7 +26,6 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ALLOW_CREDENTIALS = True
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -99,7 +98,7 @@ DATABASES = {
         'NAME': os.getenv("POSTGRES_DB") or "postgres",
         'USER': os.getenv("POSTGRES_USER") or "postgres",
         'PASSWORD': os.getenv("POSTGRES_PASSWORD") or "root",
-        'HOST': os.getenv("POSTGRES_HOST") or "localhost", # Should be container name or localhost for standalone run
+        'HOST': os.getenv("POSTGRES_HOST") or "localhost",  # Should be container name or localhost for standalone run
         'PORT': 5432
     }
 }
@@ -130,4 +129,3 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-

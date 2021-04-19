@@ -33,7 +33,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(pagination, many=True)
         result_set = serializer.data
-        logging.warning(result_set)
 
         for comment in result_set:
             logging.warning(comment)
@@ -41,8 +40,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(result_set)
 
     def create(self, request, *args, **kwargs):
-        comment = request.data
-
         token = request.headers.get('Authorization', None)
 
         if token is None:
@@ -56,18 +53,20 @@ class CommentViewSet(viewsets.ModelViewSet):
         if user_id is None:
             Response("Invalid JWT", status.HTTP_400_BAD_REQUEST)
 
-        comment['user_id'] = user_id
+        comment = request.data
+        comment['user'] = user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=comment)
-        serializer.is_valid(raise_exception=True)
+
         serializer.save()
         serialized_data = serializer.data
 
         # Add ids to parent
-        if serialized_data.get("parent_id") is not None:
-            Comment.objects.get(comment_id=serialized_data.get("parent_id")).children.add(
-                serialized_data.get("comment_id"))
+        parent = serialized_data.get("parent")
+
+        if parent is not None:
+            Comment.objects.get(comment_id=parent).children.add(serializer.data.get('comment_id'))
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
@@ -78,8 +77,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         if "depth" in request.GET:
             depth = request.GET["depth"]
 
-        parentComment = Comment.objects.get(pk)
-        # serializer = ChildrenSerializer(data=parentComment, depth=depth)
-        # serialized_data = serializer.data
+        parentComment = Comment.objects.get(comment_id=pk)
 
-        return Response(parentComment, status.HTTP_200_OK)
+        serializer = ChildrenSerializer(data=parentComment)
+        serializer.is_valid(raise_exception=True)
+        serialized_data = serializer.data
+
+        return Response(serialized_data, status.HTTP_200_OK)

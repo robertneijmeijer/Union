@@ -27,7 +27,7 @@ class PostViewSet(ModelViewSet):
 
         token = request.headers.get('Authorization', None)
 
-        if (token is None):
+        if token is None:
             return Response(status.HTTP_401_UNAUTHORIZED)
 
         token = token.replace('Bearer ', '')
@@ -35,7 +35,7 @@ class PostViewSet(ModelViewSet):
         # Retrieve user_id from JWT
         user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
 
-        post['creator_id'] = user_id
+        post['creator'] = user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=post)
