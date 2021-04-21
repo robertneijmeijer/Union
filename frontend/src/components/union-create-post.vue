@@ -1,12 +1,14 @@
 <template>
     <div class="card">
-
     </div>
+    <union-post-component></union-post-component>
 </template>
 
 <script>
+  import UnionPostComponent from "@/components/union-post-component";
   export default {
     name: "union-create-post",
+    components: { UnionPostComponent },
   };
 </script>
 
