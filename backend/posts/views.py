@@ -6,8 +6,8 @@ import jwt
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
-from post.models import Post
-from post.serializer import PostSerializer
+from posts.models import Post
+from posts.serializer import PostSerializer
 from project import settings
 
 

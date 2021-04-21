@@ -18,7 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
         extra_kwargs = {
-            'post': {'write_only': True}
+            'posts': {'write_only': True}
         }
         depth: 1
 
