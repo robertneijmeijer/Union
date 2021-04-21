@@ -1,8 +1,7 @@
 import {Module} from "vuex";
-// @ts-ignore
+// @ts-ignore -> there are no types for this
 import { getField, updateField } from 'vuex-map-fields';
 import {RootState} from "@/store/store";
-import {actions} from "@/actions/form"
 import {mutations} from "@/mutations/form"
 
 export enum FORM_ID {
@@ -29,6 +28,5 @@ export const form: Module<FormModuleState, RootState> = {
     mutations: {
         updateField,
         ...mutations
-    },
-    actions
+    }
 }
