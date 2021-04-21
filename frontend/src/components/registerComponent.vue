@@ -92,19 +92,10 @@
 import router from "@/router";
 import {ActionTypes} from "@/actions/user";
 import {sha256} from "js-sha256";
-import {useI18n} from "vue-i18n";
 
 export default {
   name: "registerComponent",
   methods: {
-    setup() {
-      const {t} = useI18n({
-        inheritLocale: true,
-        useScope: "local",
-      });
-
-      return {t};
-    },
     toLogin: function () {
       router.push("login");
     },

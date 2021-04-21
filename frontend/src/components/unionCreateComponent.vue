@@ -89,19 +89,10 @@
 
 <script>
 import router from "@/router";
-import { useI18n } from "vue-i18n";
 
 export default {
   name: "unionCreate",
   methods: {
-    setup() {
-      const { t } = useI18n({
-        inheritLocale: true,
-        useScope: "local",
-      });
-
-      return { t };
-    },
     check_one: function() {
       console.log("clicked");
     },
