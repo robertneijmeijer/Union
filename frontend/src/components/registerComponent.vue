@@ -90,32 +90,60 @@
 </template>
 <script>
 import router from "@/router";
-import { ActionTypes } from "@/actions/user";
-import { sha256 } from "js-sha256";
+// import { ActionTypes } from "@/actions/user";
+import {MutationTypes as FormMutations} from "@/mutations/form";
+// import { sha256 } from "js-sha256";
+// import {mapFormFields} from "@/helpers/form";
+import {FORM_ID} from "@/store/modules/form";
+
+const {mapFields} = require("vuex-map-fields");
+
+const formFields = ["username", "email", "password", "password_confirm"]
+
+// https://github.com/maoberlehner/vuex-map-fields
 
 export default {
   name: "registerComponent",
+  computed: {
+    // Map get() and set(value) for form
+    ...mapFields(formFields.map(field => `fields.${field}`)),
+  },
+  // Init Form
+  created() {
+    this.$store.commit(FormMutations.FORM_INIT, {
+      formId: FORM_ID.REGISTER,
+      fields: formFields
+    })
+  },
+  // Unmount Form
+  unmounted() {
+    this.$store.commit(FormMutations.FORM_DESTROY)
+  },
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
 
-    submit: function(event) {
-      event.preventDefault();
+    submit: function (event) {
+      event.preventDefault()
 
-      // TODO Implement form handling in later ticket after dicussion
-      if (this.password !== this.password_confirm) {
-        return;
-      }
+      console.log(this.$store.state.form)
+      // console.log(FORM_ID.REGISTER)
 
-      const hashed = sha256(this.password);
-      const formValues = {
-        username: this.username,
-        email: this.email,
-        password: hashed,
-      };
-
-      this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
+      // // TODO Implement form handling in later ticket after discussion
+      // if (this.password !== this.password_confirm) {
+      //   return;
+      // }
+      //
+      // const hashed = sha256(this.password);
+      // const formValues = {
+      //   username: this.username,
+      //   email: this.email,
+      //   password: hashed,
+      // };
+      //
+      //
+      // this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
   },
 };

@@ -18,7 +18,8 @@
     "vue-i18n": "^9.1.4",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "^4.0.6",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "vuex-map-fields": "^1.4.1"
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^2.1.0",
