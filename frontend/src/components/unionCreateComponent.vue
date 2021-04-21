@@ -9,6 +9,7 @@
     </div>
     <div class="d-flex justify-content-center h-100">
       <div class="union-card">
+        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
         <p class="createTitle">{{ $t("union_create.create_community") }}</p>
         <div class="union-card-body">
           <div class="column-left">
@@ -201,18 +202,18 @@ export default {
 .createTitle {
   color: white;
   text-align: center;
-  margin-top: 30px;
   user-select: none;
+  margin-top: -$paddingMedium;
   font-size: 36px;
 }
 
-.createTitle::after {
-  content: "* Fields are required";
+.requiredFields {
   color: $lightGreyColor;
   user-select: none;
-  font-size: 14px;
-  position: absolute;
-  padding-left: $paddingHuge * 4;
+  font-size: 18px;
+  padding-left: $paddingHuge * 20;
+  margin-top: $paddingMedium;
+  white-space: nowrap;
 }
 
 .union-card {
