@@ -33,7 +33,9 @@ class CommentSerializer(serializers.ModelSerializer):
 def children(comment: Comment):
     allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
     childrenToReturn = list()
-    childrenToReturn.append(model_to_dict(comment))
+
+    if comment.parent is not None:
+        childrenToReturn.append(model_to_dict(comment))
 
     # add the children to new array. The return type is a nested child
     for child in allChildren:
