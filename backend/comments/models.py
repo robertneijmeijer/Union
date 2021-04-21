@@ -13,5 +13,4 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.PROTECT, null=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     parent = models.ForeignKey("self", on_delete=models.PROTECT, blank=True, null=True)
-    children = models.ManyToManyField("self", blank=True, default=[])
     created_at = models.DateTimeField(auto_now_add=True)

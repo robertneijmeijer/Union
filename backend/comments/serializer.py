@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from comments.models import Comment
 from users.models import User
+from django.forms.models import model_to_dict
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -9,23 +10,33 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('user_id', 'username')
 
 
-class ChildrenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ('text', 'upvotes', 'downvotes', 'children')
-        depth = 2
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
-        depth = kwargs.pop("depth", None)
-        if depth is not None:
-            self.Meta.depth = depth
-
-
 class CommentSerializer(serializers.ModelSerializer):
-    children = ChildrenSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
+    children = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ('comment_id', 'text', 'parent', 'upvotes', 'downvotes', 'user', 'children')
+        fields = '__all__'
+        extra_kwargs = {
+            'post': {'write_only': True}
+        }
+        depth: 1
+
+    def get_children(self, obj: Comment):
+        # If it has a parent it is a sub comment
+        if obj.parent is not None:
+            return None
+
+        return children(obj)
+
+
+def children(comment: Comment):
+    allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
+    childrenToReturn = list()
+    childrenToReturn.append(model_to_dict(comment))
+
+    # add the children to new array. The return type is a nested child
+    for child in allChildren:
+        childrenToReturn.append(children(child))
+
+    return childrenToReturn

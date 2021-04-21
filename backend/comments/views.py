@@ -5,9 +5,10 @@ from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-from comments.serializer import CommentSerializer, ChildrenSerializer
+from comments.serializer import CommentSerializer
 from comments.models import Comment
 from project import settings
+from users.models import User
 
 
 class CommentsPagination(PageNumberPagination):
@@ -22,7 +23,8 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = CommentsPagination
 
     def list(self, request, *args, **kwargs):
-        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
+        # comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
+        comments = Comment.objects.order_by('-upvotes')
 
         query_set = self.filter_queryset(comments)
         pagination = self.paginate_queryset(query_set)
@@ -53,34 +55,31 @@ class CommentViewSet(viewsets.ModelViewSet):
         if user_id is None:
             Response("Invalid JWT", status.HTTP_400_BAD_REQUEST)
 
+        logging.warning(user_id)
         comment = request.data
         comment['user'] = user_id
 
+        logging.warning(comment)
+
         # Validate and save according to serializer
         serializer = self.serializer_class(data=comment)
-
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         serialized_data = serializer.data
 
-        # Add ids to parent
-        parent = serialized_data.get("parent")
-
-        if parent is not None:
-            Comment.objects.get(comment_id=parent).children.add(serializer.data.get('comment_id'))
-
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
-    def retrieve(self, request, *args, **kwargs):
-        pk = kwargs["pk"]
-        depth = 5
-
-        if "depth" in request.GET:
-            depth = request.GET["depth"]
-
-        parentComment = Comment.objects.get(comment_id=pk)
-
-        serializer = ChildrenSerializer(data=parentComment)
-        serializer.is_valid(raise_exception=True)
-        serialized_data = serializer.data
-
-        return Response(serialized_data, status.HTTP_200_OK)
+    # def retrieve(self, request, *args, **kwargs):
+    #     pk = kwargs["pk"]
+    #     depth = 5
+    #
+    #     if "depth" in request.GET:
+    #         depth = request.GET["depth"]
+    #
+    #     parentComment = Comment.objects.get(comment_id=pk)
+    #
+    #     serializer = ChildrenSerializer(data=parentComment)
+    #     serializer.is_valid(raise_exception=True)
+    #     serialized_data = serializer.data
+    #
+    #     return Response(serialized_data, status.HTTP_200_OK)
