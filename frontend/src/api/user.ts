@@ -8,7 +8,7 @@ export default class UserApi extends ApiBase {
   };
 
   public static signIn = (data: any): Promise<any> => {
-    return UserApi.requestPost("users/login", data)
+    return UserApi.requestPost("users/login", { data })
       .then(response => response)
       .catch(error => error);
   };

@@ -65,9 +65,9 @@
 <script>
   import router from "@/router";
   import { sha256 } from "js-sha256";
+  import UserApi from "../api/user"
 
   export default {
-    name: "login",
     methods: {
       toSignUp: function() {
         router.push("register");
@@ -82,7 +82,9 @@
               password: hashed,
             },
         };
-        UserApi.signIn(user);
+        UserApi.signIn(user).then((response) => {
+          console.log(response);
+      });
       },
     },
   };
