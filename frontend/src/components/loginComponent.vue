@@ -73,7 +73,6 @@
         router.push("register");
       },
       signIn: function() {
-        console.log("Signing in");
         const hashed = sha256(this.password);
         const user = {
           user:
@@ -82,9 +81,8 @@
               password: hashed,
             },
         };
-        UserApi.signIn(user).then((response) => {
-          console.log(response);
-      });
+        console.log("Sign in");
+        UserApi.signIn(user);
       },
     },
   };
