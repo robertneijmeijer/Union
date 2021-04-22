@@ -13,9 +13,10 @@
 <script>
   import UnionAboutCommunity from "@/components/union-about-community";
   import UnionCreatePost from "@/components/union-create-post";
+
   export default {
     name: "union-post-overview",
-    components: { UnionCreatePost, UnionAboutCommunity },
+    components: {UnionCreatePost, UnionAboutCommunity }
   };
 </script>
 
@@ -48,6 +49,7 @@
     .flex-container {
         display: flex;
         max-width: 100vw;
+        height: 100vh;
     }
 
     .center-container{

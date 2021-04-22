@@ -18,12 +18,12 @@
                     </div>
                 </td>
                 <td class="post-content">
-                    <span class="post-info" v-for="item in items" :key="item.date"> {{item.date }}</span>
-                    <h3 class="post-title" v-for="item in items" :key="item.title">{{item.title}}</h3>
-                    <div class="post-text" v-for="item in items" :key="item.title">{{item.content}}</div>
+                    <span class="post-info">{{post.info}}</span>
+                    <h3 class="post-title">{{post.title}}</h3>
+                    <div class="post-text">{{post.content}}</div>
                     <div class="comments-amount">
-                        <a class="comments-link" href="" v-on:click="toComments" v-for="item in items" :key="item.voteAmount">
-                        {{item.voteAmount}}</a></div>
+                        <a class="comments-link" href="" v-on:click="toComments">
+                            {{post.vote}}</a></div>
                 </td>
             </tr>
         </table>
@@ -31,18 +31,15 @@
 </template>
 
 <script>
-
   export default {
     name: "union-post-component",
-    data() {
-      return {
-        items: [
-          { date: "info" },
-          { title: "title" },
-          { content: "content" },
-          { voteAmount: "57 comments" },
-        ],
-      };
+    props: {
+      post:{
+        info: String,
+        title: String,
+        content: String,
+        vote: String
+      }
     },
     methods: {
       toComments: function() {
@@ -126,6 +123,7 @@
         color: white;
         height: auto;
         max-height: 150px;
+
     }
 
     .comments-amount {
