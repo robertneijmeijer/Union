@@ -194,8 +194,6 @@ export default {
   font-size: 18px;
 }
 
-
-
 .circle {
   width: 100px;
   height: 100px;
@@ -337,14 +335,12 @@ export default {
   border-radius: $borderRadiusInput;
   border: 3px solid $inputTextFieldBorderColor;
   color: #c8c8c8;
-  font-family: Overpass;
 }
 
 .form-control:focus {
   background-color: #232323;
   border: 3px solid $inputTextFieldSelectedBorderColor;
   color: #c8c8c8;
-  font-family: Overpass;
 }
 
 .name-height {

@@ -9,7 +9,7 @@
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
-                <i style="color: black" class="fa fa-user fa-lg center"></i>
+                <i style="color: #2C2C2C" class="fa fa-user fa-lg center"></i>
               </span>
             </div>
             <input
@@ -28,7 +28,7 @@
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"
-                ><i style="color: black" class="fa fa-lock fa-lg center"></i
+                ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
               ></span>
             </div>
             <input
@@ -39,8 +39,8 @@
               v-model="password"
             />
           </div>
-          <div class="row align-items-center remember">
-            <input type="checkbox" />{{ $t("login.remember_me") }}
+          <div class="row align-items-center remember overpass gray">
+            <input type="checkbox" class="checkbox"/>{{ $t("login.remember_me") }}
           </div>
           <div class="form-group">
             <div class="text-center loginbtn">
@@ -56,14 +56,14 @@
           </div>
         </div>
         <div class="card-footer">
-          <div class="d-flex justify-content-center links">
+          <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
-            <a class="linkText" href="" v-on:click="toSignUp">
+            <a class="linkText overpass" href="" v-on:click="toSignUp">
               {{ $t("login.sign_up") }}</a
             >
           </div>
           <div class="d-flex justify-content-center">
-            <a class="linkText" href="#">{{ $t("login.forgot_password") }}</a>
+            <a class="linkText overpass" href="#">{{ $t("login.forgot_password") }}</a>
           </div>
         </div>
       </div>
@@ -147,6 +147,44 @@ export default {
   border: none;
 }
 
+.checkbox {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 4px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  &::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 2px;
+    left: 7px;
+    width: 8px;
+    height: 14px;
+    border-style: solid;
+    border-color: $cardBackgroundColor;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  &:checked {
+    color: $cardBackgroundColor;
+    border-color: $unionBlue;
+    background: $unionBlue;
+    &::before {
+      opacity: 1;
+    }
+    ~ label::before {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+}
+
 .card-footer {
   border: none;
 }
@@ -198,13 +236,12 @@ input:focus {
 .remember {
   color: white;
   user-select: none;
+  justify-content: center;
 }
 
 .remember input {
-  width: 20px;
-  height: 20px;
   margin-left: 15px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .links {
@@ -237,7 +274,10 @@ input:focus {
   font-family: Overpass-Bold, serif;
 }
 
-.input{
-
+.form-control {
+  background-color: #232323;
+  border-radius: $borderRadiusInput;
+  border: 3px solid $inputTextFieldBorderColor;
+  color: #c8c8c8;
 }
 </style>
