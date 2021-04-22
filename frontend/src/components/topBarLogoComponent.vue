@@ -3,9 +3,9 @@
     <section class="">
       <div class="row">
         <div @click="onClickImage">
-          <img src="../assets/union.png" height="60" width="170"/>
+          <img src="../assets/union.png" height="60" width="170" />
         </div>
-        <LocaleSwitcher class="switcher"/>
+        <LocaleSwitcher class="switcher" />
       </div>
     </section>
   </nav>
@@ -18,22 +18,22 @@ import LocaleSwitcher from "./localeSwitcher";
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function () {
+    onClickImage: function() {
       router.push("/");
     },
   },
-  components: {LocaleSwitcher}
+  components: { LocaleSwitcher },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-.row{
- flex: 1;
+.row {
+  flex: 1;
 }
 
-.switcher{
+.switcher {
   padding-left: $paddingSmall;
   padding-top: $paddingSmall;
   align-items: baseline;
