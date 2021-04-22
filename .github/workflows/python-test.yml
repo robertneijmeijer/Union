@@ -49,14 +49,13 @@ jobs:
 #        cd backend
 #        python manage.py test
 
-#    - name: Install frontend dependency
-#      run: |
-#        cd frontend
-#        npm install
-
-    - name: Run frontend lint
+    - name: Install frontend dependency
       run: |
         cd frontend
         npm install
         sudo npm install eslint -g
+
+    - name: Run frontend lint
+      run: |
+        cd frontend
         eslint . --max-warnings 0
