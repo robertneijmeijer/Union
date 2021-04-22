@@ -59,9 +59,8 @@ jobs:
         cd frontend
         npm install
         npm install eslint -g
-        eslint .
 
     - name: Run frontend lint
       run: |
         cd frontend
-        eslint .
+        yarn eslint .
