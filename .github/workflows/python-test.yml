@@ -58,5 +58,6 @@ jobs:
     - name: Run frontend lint
       run: |
         cd frontend
+        npm install
         sudo npm install eslint -g
         eslint .
