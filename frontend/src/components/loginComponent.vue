@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header overpass-semi-bold">
                     <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
                 </div>
                 <div class="card-body">
@@ -20,6 +20,11 @@
                                 v-model="username"
                         />
                     </div>
+
+                    <div class="error-message overpass" role="alert">
+                        {{error}}
+                    </div>
+
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                 <span class="input-group-text"
@@ -69,7 +74,13 @@
   import { sha256 } from "js-sha256";
   import UserApi from "../api/user";
 
+
   export default {
+    data() {
+      return {
+        error: ""
+      }
+    },
     methods: {
       toSignUp: function() {
         router.push("register");
@@ -88,7 +99,10 @@
         UserApi.signIn(user)
           .then(response => {
             if (response.status == 200) {
+
               router.push("landingspage");
+            } else {
+              this.error = "Incorrect username or password"
             }
           })
           .catch(error => {
@@ -196,4 +210,21 @@
         color: white;
         user-select: none;
     }
+
+    .error-message{
+        color: $errorColor;
+    }
+
+    .overpass{
+        font-family: Overpass;
+    }
+
+    .overpass-semi-bold{
+        font-family: Overpass-SemiBold;
+    }
+
+    .overpass-bold{
+        font-family: Overpass-Bold;
+    }
+
 </style>
