@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="card-header">
-          <h5 class="loginTitle">Sign in to Union</h5>
+          <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
         <div class="card-body">
           <form action="" method="post">
@@ -14,36 +14,36 @@
                 </span>
               </div>
               <input
-                type="text"
-                name="usernameId"
-                class="form-control input"
-                placeholder="username"
+                  type="text"
+                  name="usernameId"
+                  class="form-control input"
+                  v-bind:placeholder="$t('login.username')"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"
-                  ><i style="color: black" class="fa fa-lock fa-lg center"></i
+                ><i style="color: black" class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="passwordId"
-                class="form-control input"
-                placeholder="password"
+                  type="password"
+                  name="passwordId"
+                  class="form-control input"
+                  v-bind:placeholder="$t('login.password')"
               />
             </div>
             <div class="row align-items-center remember">
-              <input type="checkbox" />Remember Me
+              <input type="checkbox"/>{{ $t("login.remember_me") }}
             </div>
             <div class="form-group">
               <div class="text-center loginbtn">
                 <button
-                  class="btn btn-primary login "
-                  type="submit"
-                  name="login-button"
+                    class="btn btn-primary login "
+                    type="submit"
+                    name="login-button"
                 >
-                  Sign in
+                  {{ $t("login.sign_in") }}
                 </button>
               </div>
             </div>
@@ -51,11 +51,11 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            Don't have an account?
-            <a class="linkText" href="" v-on:click="toSignUp"> Sign up</a>
+            {{ $t("login.dont_have_account") }}
+            <a class="linkText" href="" v-on:click="toSignUp"> {{ $t("login.sign_up") }}</a>
           </div>
           <div class="d-flex justify-content-center">
-            <a class="linkText" href="#">Forgot your password?</a>
+            <a class="linkText" href="#">{{ $t("login.forgot_password") }}</a>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@ import router from "@/router";
 export default {
   name: "login",
   methods: {
-    toSignUp: function() {
+    toSignUp: function () {
       router.push("register");
     },
   },
