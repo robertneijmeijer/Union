@@ -9,7 +9,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: ./frontend
@@ -21,6 +20,5 @@ jobs:
         npm install
         sudo npm install eslint -g
 
-    - name: Run frontend lint
-      run: |
-        eslint . --max-warnings 0
+    - name: Run eslint
+      run: eslint . --max-warnings 0
