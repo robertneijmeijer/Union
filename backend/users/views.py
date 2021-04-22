@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -57,7 +56,9 @@ class LoginAPIView(APIView):
         response.set_cookie(
             key='Authentication',
             value='Bearer ' + serializer.data.get('token'),
-            httponly=False,
+            httponly=True,
+            samesite='none',
+            secure=True,
         )
         return response
         # response = HttpResponse(serializer.data, status=status.HTTP_200_OK)

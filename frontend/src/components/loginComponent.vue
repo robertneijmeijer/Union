@@ -6,7 +6,6 @@
                     <h5 class="loginTitle">Sign in to Union</h5>
                 </div>
                 <div class="card-body">
-                    <form>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -46,7 +45,6 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
@@ -72,7 +70,8 @@
       toSignUp: function() {
         router.push("register");
       },
-      signIn: function() {
+      signIn: function(e) {
+        e.preventDefault();
         const hashed = sha256(this.password);
         const user = {
           user:
@@ -82,7 +81,16 @@
             },
         };
         console.log("Sign in");
-        UserApi.signIn(user);
+        UserApi.signIn(user)
+          .then(response => {
+            if(response.status == 200) {
+                router.push("landingspage");
+            }
+        })
+      .catch(error => {
+        console.log("error");
+        console.log(error);
+      });
       },
     },
   };
