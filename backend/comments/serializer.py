@@ -20,7 +20,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
         extra_kwargs = {
-            'posts': {'write_only': True}
+            'posts': {'write_only': True},
+            'parent': {'write_only': True}
         }
         depth: 1
 
@@ -29,23 +30,38 @@ class CommentSerializer(serializers.ModelSerializer):
         if obj.parent is not None:
             return None
 
-        return children(obj)
+        nesting_depth = int(self.context['nesting_depth'])
+
+        if nesting_depth and nesting_depth > 0:
+            nesting_depth = nesting_depth - 1  # -1 because we start at level 1
+        else:
+            nesting_depth = 2  # Default depth = 2
+
+        return children(obj, nesting_depth)
 
 
-def children(comment: Comment):
+def children(comment: Comment, nesting_depth):
     allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
-    level1 = list()
-    otherLevels = model_to_dict(comment)
+    topLevel = list()  # Top level needs to return an list
+    otherLevels = model_to_dict(comment)  # Other levels need to be objects
     otherLevels['children'] = []
 
-    # add the children to new array. The return type is a nested child
+    # Add children to the right entity
     for child in allChildren:
-        if comment.parent is None:
-            level1.append(children(child))
+        if comment.parent is not None:
+            if nesting_depth > 0:
+                otherLevels['children'].append(children(child, nesting_depth - 1))
+            else:
+                otherLevels['children'].append(model_to_dict(child))
         else:
-            otherLevels['children'].append(children(child))
+            if nesting_depth > 0:
+                topLevel.append(children(child, nesting_depth - 1))
+            else:
+                topLevel.append(model_to_dict(child))
 
-    if len(level1) != 0:
-        return level1
+    # If toplevel array is filled return array.
+    if len(topLevel) != 0:
+        return topLevel
 
+    # Otherwise return other level
     return otherLevels

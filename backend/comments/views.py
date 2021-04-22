@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from comments.serializer import CommentSerializer
 from comments.models import Comment
 from project import settings
-from users.models import User
+import json
 
 
 class CommentsPagination(PageNumberPagination):
@@ -24,7 +24,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
-        # comments = Comment.objects.order_by('-upvotes')
 
         query_set = self.filter_queryset(comments)
         pagination = self.paginate_queryset(query_set)
@@ -35,9 +34,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(pagination, many=True)
         result_set = serializer.data
-
-        for comment in result_set:
-            logging.warning(comment)
 
         return Response(result_set)
 
@@ -59,8 +55,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment = request.data
         comment['user'] = user_id
 
-        logging.warning(comment)
-
         # Validate and save according to serializer
         serializer = self.serializer_class(data=comment)
         serializer.is_valid(raise_exception=True)
@@ -69,17 +63,14 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     pk = kwargs["pk"]
-    #     depth = 5
-    #
-    #     if "depth" in request.GET:
-    #         depth = request.GET["depth"]
-    #
-    #     parentComment = Comment.objects.get(comment_id=pk)
-    #
-    #     serializer = ChildrenSerializer(data=parentComment)
-    #     serializer.is_valid(raise_exception=True)
-    #     serialized_data = serializer.data
-    #
-    #     return Response(serialized_data, status.HTTP_200_OK)
+    def retrieve(self, request, *args, **kwargs):
+        nesting = 5
+
+        # Check if nesting is given
+        if "depth" in request.GET and request.GET["depth"].isdigit():
+            nesting = request.GET["depth"]
+
+        parentComment = self.get_object()
+        test = self.get_serializer(parentComment, context={'nesting_depth': nesting})
+
+        return Response(test.data, status.HTTP_200_OK)
