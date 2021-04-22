@@ -1,62 +1,62 @@
 <template>
-    <div class="container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="loginTitle">Sign in to Union</h5>
-                </div>
-                <div class="card-body">
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                 <span class="input-group-text">
                   <i style="color: black" class="fa fa-user fa-lg center"></i>
                 </span>
-                            </div>
-                            <input
-                                    type="text"
-                                    class="form-control input"
-                                    placeholder="username"
-                                    v-model="username"
-                            />
-                        </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
+              </div>
+              <input
+                  type="text"
+                  name="usernameId"
+                  class="form-control input"
+                  v-bind:placeholder="$t('login.username')"
+              />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                 <span class="input-group-text"
                 ><i style="color: black" class="fa fa-lock fa-lg center"></i
                 ></span>
-                            </div>
-                            <input
-                                    type="password"
-                                    class="form-control input"
-                                    placeholder="password"
-                                    v-model="password"
-                            />
-                        </div>
-                        <div class="row align-items-center remember">
-                            <input type="checkbox"/>Remember Me
-                        </div>
-                        <div class="form-group">
-                            <div class="text-center loginbtn">
-                                <button
-                                        class="btn btn-primary login "
-                                        v-on:click="signIn"
-                                >
-                                    Sign in
-                                </button>
-                            </div>
-                        </div>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        Don't have an account?
-                        <a class="linkText" href="" v-on:click="toSignUp"> Sign up</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a class="linkText" href="#">Forgot your password?</a>
-                    </div>
-                </div>
+              </div>
+              <input
+                  type="password"
+                  name="passwordId"
+                  class="form-control input"
+                  v-bind:placeholder="$t('login.password')"
+              />
+            </div>
+            <div class="row align-items-center remember">
+              <input type="checkbox"/>{{ $t("login.remember_me") }}
+            </div>
+            <div class="form-group">
+              <div class="text-center loginbtn">
+                <button
+                    class="btn btn-primary login "
+                    type="submit"
+                    name="login-button"
+                >
+                  {{ $t("login.sign_in") }}
+                </button>
+              </div>
             </div>
         </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            {{ $t("login.dont_have_account") }}
+            <a class="linkText" href="" v-on:click="toSignUp"> {{ $t("login.sign_up") }}</a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a class="linkText" href="#">{{ $t("login.forgot_password") }}</a>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 

@@ -1,8 +1,11 @@
 <template>
   <nav class="primary">
     <section class="">
-      <div @click="onClickImage">
-        <img src="../assets/union.png" height="60" width="170" />
+      <div class="row">
+        <div @click="onClickImage">
+          <img src="../assets/union.png" height="60" width="170"/>
+        </div>
+        <LocaleSwitcher class="switcher"/>
       </div>
     </section>
   </nav>
@@ -10,19 +13,31 @@
 
 <script>
 import router from "@/router";
+import LocaleSwitcher from "./localeSwitcher";
 
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function() {
+    onClickImage: function () {
       router.push("/");
     },
   },
+  components: {LocaleSwitcher}
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
+
+.row{
+ flex: 1;
+}
+
+.switcher{
+  padding-left: $paddingSmall;
+  padding-top: $paddingSmall;
+  align-items: baseline;
+}
 
 nav.primary {
   position: relative;
