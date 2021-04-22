@@ -58,7 +58,7 @@ jobs:
       run: |
         cd frontend
         npm install
-        npm install eslint
+        npm install eslint --save-dev
 
     - name: Run frontend lint
       run: |
