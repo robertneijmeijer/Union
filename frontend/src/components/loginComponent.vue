@@ -84,7 +84,7 @@
               password: hashed,
             },
         };
-        console.log("Sign in");
+
         UserApi.signIn(user)
           .then(response => {
             if (response.status == 200) {

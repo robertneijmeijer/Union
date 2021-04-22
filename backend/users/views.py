@@ -61,6 +61,3 @@ class LoginAPIView(APIView):
             secure=True,
         )
         return response
-        # response = HttpResponse(serializer.data, status=status.HTTP_200_OK)
-        # response.set_cookie('Authorization', 'Bearer ')
-        # return response
