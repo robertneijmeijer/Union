@@ -1,230 +1,228 @@
 <template>
-    <div class="container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header overpass-semi-bold">
-                    <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
-                </div>
-                <div class="card-body">
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i style="color: black" class="fa fa-user fa-lg center"></i>
-                </span>
-                        </div>
-                        <input
-                                type="text"
-                                name="usernameId"
-                                class="form-control input"
-                                v-bind:placeholder="$t('login.username')"
-                                v-model="username"
-                        />
-                    </div>
-
-                    <div class="error-message overpass" role="alert">
-                        {{error}}
-                    </div>
-
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                <span class="input-group-text"
-                ><i style="color: black" class="fa fa-lock fa-lg center"></i
-                ></span>
-                        </div>
-                        <input
-                                type="password"
-                                name="passwordId"
-                                class="form-control input"
-                                v-bind:placeholder="$t('login.password')"
-                                v-model="password"
-                        />
-                    </div>
-                    <div class="row align-items-center remember">
-                        <input type="checkbox"/>{{ $t("login.remember_me") }}
-                    </div>
-                    <div class="form-group">
-                        <div class="text-center loginbtn">
-                            <button
-                                    class="btn btn-primary login "
-                                    type="submit"
-                                    name="login-button"
-                                    v-on:click="signIn"
-                            >
-                                {{ $t("login.sign_in") }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        {{ $t("login.dont_have_account") }}
-                        <a class="linkText" href="" v-on:click="toSignUp"> {{ $t("login.sign_up") }}</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a class="linkText" href="#">{{ $t("login.forgot_password") }}</a>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header overpass-semi-bold">
+          <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
+        <div class="card-body">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i style="color: black" class="fa fa-user fa-lg center"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              name="usernameId"
+              class="form-control input"
+              v-bind:placeholder="$t('login.username')"
+              v-model="username"
+            />
+          </div>
+
+          <div class="error-message overpass" role="alert">
+            {{ error }}
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"
+                ><i style="color: black" class="fa fa-lock fa-lg center"></i
+              ></span>
+            </div>
+            <input
+              type="password"
+              name="passwordId"
+              class="form-control input"
+              v-bind:placeholder="$t('login.password')"
+              v-model="password"
+            />
+          </div>
+          <div class="row align-items-center remember">
+            <input type="checkbox" />{{ $t("login.remember_me") }}
+          </div>
+          <div class="form-group">
+            <div class="text-center loginbtn">
+              <button
+                class="btn btn-primary login "
+                type="submit"
+                name="login-button"
+                v-on:click="signIn"
+              >
+                {{ $t("login.sign_in") }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            {{ $t("login.dont_have_account") }}
+            <a class="linkText" href="" v-on:click="toSignUp">
+              {{ $t("login.sign_up") }}</a
+            >
+          </div>
+          <div class="d-flex justify-content-center">
+            <a class="linkText" href="#">{{ $t("login.forgot_password") }}</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-  import router from "@/router";
-  import { sha256 } from "js-sha256";
-  import UserApi from "../api/user";
+import router from "@/router";
+import { sha256 } from "js-sha256";
+import UserApi from "../api/user";
 
-
-  export default {
-    data() {
-      return {
-        error: ""
-      }
+export default {
+  data() {
+    return {
+      error: "",
+    };
+  },
+  methods: {
+    toSignUp: function() {
+      router.push("register");
     },
-    methods: {
-      toSignUp: function() {
-        router.push("register");
-      },
-      signIn: function(e) {
-        e.preventDefault();
-        const hashed = sha256(this.password);
-        const user = {
-          user:
-            {
-              username: this.username,
-              password: hashed,
-            },
-        };
+    signIn: function(e) {
+      e.preventDefault();
+      const hashed = sha256(this.password);
+      const user = {
+        user: {
+          username: this.username,
+          password: hashed,
+        },
+      };
 
-        UserApi.signIn(user)
-          .then(response => {
-            if (response.status == 200) {
-
-              router.push("landingspage");
-            } else {
-              this.error = "Incorrect username or password"
-            }
-          })
-          .catch(error => {
-            console.log("error");
-            console.log(error);
-          });
-      },
+      UserApi.signIn(user)
+        .then(response => {
+          if (response.status == 200) {
+            router.push("landingspage");
+          } else {
+            this.error = "Incorrect username or password";
+          }
+        })
+        .catch(error => {
+          console.log("error");
+          console.log(error);
+        });
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss">
-    @import "../assets/theme";
+@import "../assets/theme";
 
-    .container {
-        height: 100%;
-        align-content: center;
-    }
+.container {
+  height: 100%;
+  align-content: center;
+}
 
-    .loginTitle {
-        color: white;
-        text-align: center;
-        margin-top: 10px;
-        user-select: none;
-    }
+.loginTitle {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  user-select: none;
+}
 
-    .card {
-        height: 370px;
-        margin-top: auto;
-        margin-bottom: auto;
-        width: 400px;
-        background-color: $buttonHoverColor;
-    }
+.card {
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: $buttonHoverColor;
+}
 
-    .card-body {
-        padding: 0;
-        margin: 10px 15px 0 15px;
-    }
+.card-body {
+  padding: 0;
+  margin: 10px 15px 0 15px;
+}
 
-    .loginbtn {
-        margin-top: 30px;
-        margin-bottom: 0;
-    }
+.loginbtn {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
 
-    .login {
-        width: 120px;
-        border-radius: $borderRadius;
-        border: $buttonBorder $unionBlue;
-        color: white;
-        background: transparent;
+.login {
+  width: 120px;
+  border-radius: $borderRadius;
+  border: $buttonBorder $unionBlue;
+  color: white;
+  background: transparent;
 
-        &:hover {
-            background-color: $buttonHoverColor;
-            border: $buttonBorder $buttonHoverColor;
-        }
-    }
+  &:hover {
+    background-color: $buttonHoverColor;
+    border: $buttonBorder $buttonHoverColor;
+  }
+}
 
-    .card-header h3 {
-        color: white;
-    }
+.card-header h3 {
+  color: white;
+}
 
-    .input-group-prepend span {
-        width: 50px;
-        background-color: $unionBlue;
-        color: black;
-        border: 0 !important;
-    }
+.input-group-prepend span {
+  width: 50px;
+  background-color: $unionBlue;
+  color: black;
+  border: 0 !important;
+}
 
-    .center {
-        margin-left: 6px;
-    }
+.center {
+  margin-left: 6px;
+}
 
-    input:focus {
-        outline: 0 0 0 0 !important;
-        box-shadow: 0 0 0 0 !important;
-    }
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
 
-    .form-control {
-        background-color: #232323;
-        border: none;
-    }
+.form-control {
+  background-color: #232323;
+  border: none;
+}
 
-    .remember {
-        color: white;
-        user-select: none;
-    }
+.remember {
+  color: white;
+  user-select: none;
+}
 
-    .remember input {
-        width: 20px;
-        height: 20px;
-        margin-left: 15px;
-        margin-right: 5px;
-    }
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
 
-    .links {
-        color: $inputTextfielColor;
-        user-select: none;
-    }
+.links {
+  color: $inputTextfielColor;
+  user-select: none;
+}
 
-    .links a {
-        margin-left: 4px;
-    }
+.links a {
+  margin-left: 4px;
+}
 
-    .linkText {
-        color: white;
-        user-select: none;
-    }
+.linkText {
+  color: white;
+  user-select: none;
+}
 
-    .error-message{
-        color: $errorColor;
-    }
+.error-message {
+  color: $errorColor;
+}
 
-    .overpass{
-        font-family: Overpass;
-    }
+.overpass {
+  font-family: Overpass;
+}
 
-    .overpass-semi-bold{
-        font-family: Overpass-SemiBold;
-    }
+.overpass-semi-bold {
+  font-family: Overpass-SemiBold;
+}
 
-    .overpass-bold{
-        font-family: Overpass-Bold;
-    }
-
+.overpass-bold {
+  font-family: Overpass-Bold;
+}
 </style>
