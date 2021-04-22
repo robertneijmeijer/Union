@@ -129,14 +129,14 @@ export default {
   font-size: 24px;
 }
 
-.card {
-  height: 370px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  background-color: $buttonHoverColor;
+    .card {
+        height: 370px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 400px;
+        background-color: $cardBackgroundColor;
   border-radius: 20px;
-}
+    }
 
 .card-body {
   padding: 0;
@@ -156,6 +156,7 @@ export default {
   margin-bottom: 0;
 }
 
+
 .login {
   width: 120px;
   border-radius: $borderRadius;
@@ -163,10 +164,10 @@ export default {
   color: white;
   background: transparent;
 
-  &:hover {
-    background-color: $buttonHoverColor;
-    border: $buttonBorder $buttonHoverColor;
-  }
+        &:hover{
+            background-color: $cardBackgroundColor;
+            border: $buttonBorder $cardBackgroundColor;
+        }
 }
 
 .card-header h3 {
