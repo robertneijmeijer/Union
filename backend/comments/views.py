@@ -23,8 +23,8 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = CommentsPagination
 
     def list(self, request, *args, **kwargs):
-        # comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
-        comments = Comment.objects.order_by('-upvotes')
+        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
+        # comments = Comment.objects.order_by('-upvotes')
 
         query_set = self.filter_queryset(comments)
         pagination = self.paginate_queryset(query_set)

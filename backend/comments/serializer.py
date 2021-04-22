@@ -1,3 +1,5 @@
+import logging
+
 from rest_framework import serializers
 from comments.models import Comment
 from users.models import User
@@ -32,13 +34,18 @@ class CommentSerializer(serializers.ModelSerializer):
 
 def children(comment: Comment):
     allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
-    childrenToReturn = list()
-
-    if comment.parent is not None:
-        childrenToReturn.append(model_to_dict(comment))
+    level1 = list()
+    otherLevels = model_to_dict(comment)
+    otherLevels['children'] = []
 
     # add the children to new array. The return type is a nested child
     for child in allChildren:
-        childrenToReturn.append(children(child))
+        if comment.parent is None:
+            level1.append(children(child))
+        else:
+            otherLevels['children'].append(children(child))
 
-    return childrenToReturn
+    if len(level1) != 0:
+        return level1
+
+    return otherLevels
