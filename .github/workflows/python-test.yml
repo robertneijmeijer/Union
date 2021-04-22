@@ -32,12 +32,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Install dependencies
-      run: |
-        cd backend
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        pip install -r requirements.txt
+#    - names
 #    - name: Run backend lint
 #      run: |
 #        # stop the build if there are Python syntax errors or undefined names
@@ -54,13 +49,14 @@ jobs:
 #        cd backend
 #        python manage.py test
 
-    - name: Install frontend dependency
-      run: |
-        cd frontend
-        npm install
-        sudo npm install eslint -g
+#    - name: Install frontend dependency
+#      run: |
+#        cd frontend
+#        npm install
+
 
     - name: Run frontend lint
       run: |
         cd frontend
-        yarn eslint .
+        sudo npm install eslint -g
+        eslint .
