@@ -1,38 +1,39 @@
-import {CommitOptions, createStore, DispatchOptions, Store} from "vuex";
-import {user, UserModuleStateInterface} from "@/store/modules/user";
-import {ActionsInterface as userActions} from "@/actions/user";
-import {ActionsInterface as formActions} from "@/actions/form";
-import {MutationsInterface as userMutations} from "@/mutations/user";
-import {MutationsInterface as formMutations} from "@/mutations/form";
-import {form, FormModuleStateInterface} from "@/store/modules/form";
+import { CommitOptions, createStore, DispatchOptions, Store } from "vuex";
+import { user, UserModuleStateInterface } from "@/store/modules/user";
+import { ActionsInterface as userActions } from "@/actions/user";
+import { ActionsInterface as formActions } from "@/actions/form";
+import { MutationsInterface as userMutations } from "@/mutations/user";
+import { MutationsInterface as formMutations } from "@/mutations/form";
+import { form, FormModuleStateInterface } from "@/store/modules/form";
 
 // More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
 
 export interface RootState {
-    user: UserModuleStateInterface,
-    form: FormModuleStateInterface
+  user: UserModuleStateInterface;
+  form: FormModuleStateInterface;
 }
-export type MutationTypes = userMutations & formMutations
-export type ActionTypes = userActions & formActions
+export type MutationTypes = userMutations & formMutations;
+export type ActionTypes = userActions & formActions;
 
 // Override commit and dispatch to only accept our own typings
-export interface StoreInterface extends Omit<Store<RootState>, 'commit' | 'getters' | 'dispatch'> {
-    commit<K extends keyof MutationTypes>(
-        key: K,
-        payload?: Parameters<MutationTypes[K]>[1],
-        options?: CommitOptions
-    ): ReturnType<MutationTypes[K]>
+export interface StoreInterface
+  extends Omit<Store<RootState>, "commit" | "getters" | "dispatch"> {
+  commit<K extends keyof MutationTypes>(
+    key: K,
+    payload?: Parameters<MutationTypes[K]>[1],
+    options?: CommitOptions
+  ): ReturnType<MutationTypes[K]>;
 
-    dispatch<K extends keyof ActionTypes>(
-        key: K,
-        payload?: Parameters<ActionTypes[K]>[1],
-        options?: DispatchOptions
-    ): ReturnType<ActionTypes[K]>
+  dispatch<K extends keyof ActionTypes>(
+    key: K,
+    payload?: Parameters<ActionTypes[K]>[1],
+    options?: DispatchOptions
+  ): ReturnType<ActionTypes[K]>;
 }
 
 export const store: StoreInterface = createStore<RootState>({
-    modules: {
-        user,
-        form
-    }
+  modules: {
+    user,
+    form,
+  },
 });
