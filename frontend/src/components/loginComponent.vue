@@ -15,7 +15,7 @@
             <input
               type="text"
               name="usernameId"
-              class="form-control input"
+              class="form-control input overpass-semi-bold"
               v-bind:placeholder="$t('login.username')"
               v-model="username"
             />
@@ -34,7 +34,7 @@
             <input
               type="password"
               name="passwordId"
-              class="form-control input"
+              class="form-control input overpass-semi-bold"
               v-bind:placeholder="$t('login.password')"
               v-model="password"
             />
@@ -126,6 +126,7 @@ export default {
   text-align: center;
   margin-top: 10px;
   user-select: none;
+  font-size: 24px;
 }
 
 .card {
@@ -134,11 +135,20 @@ export default {
   margin-bottom: auto;
   width: 400px;
   background-color: $buttonHoverColor;
+  border-radius: 20px;
 }
 
 .card-body {
   padding: 0;
   margin: 10px 15px 0 15px;
+}
+
+.card-header {
+  border: none;
+}
+
+.card-footer {
+  border: none;
 }
 
 .loginbtn {
@@ -215,14 +225,18 @@ input:focus {
 }
 
 .overpass {
-  font-family: Overpass;
+  font-family: Overpass, serif;
 }
 
 .overpass-semi-bold {
-  font-family: Overpass-SemiBold;
+  font-family: Overpass-SemiBold, serif;
 }
 
 .overpass-bold {
-  font-family: Overpass-Bold;
+  font-family: Overpass-Bold, serif;
+}
+
+.input{
+
 }
 </style>

@@ -25,15 +25,16 @@ export default class App extends Vue {}
 }
 
 @font-face {
-  font-family: "Overpass-Regular";
-  src: local("Overpass-Regular"),
-    url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
-  font-family: "Overpass-Bold";
-  src: local("Overpass-Bold"),
-    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+  font-family: "Overpass";
+  src: url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
+}
+@font-face {
   font-family: "Overpass-SemiBold";
-  src: local("Overpass-SemiBold"),
-    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Overpass-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Overpass-Bold";
+  src: url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
 }
 
 html,

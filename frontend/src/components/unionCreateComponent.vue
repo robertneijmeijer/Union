@@ -196,6 +196,7 @@ export default {
 .card-header {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .column-left {
