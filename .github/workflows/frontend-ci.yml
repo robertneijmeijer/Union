@@ -7,17 +7,20 @@ on:
     - develop
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
     steps:
     - uses: actions/checkout@v2
     - name: Install frontend dependency
       run: |
-        cd frontend
         npm install
         sudo npm install eslint -g
 
     - name: Run frontend lint
       run: |
-        cd frontend
         eslint . --max-warnings 0
