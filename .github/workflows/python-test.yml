@@ -54,10 +54,9 @@ jobs:
 #        cd frontend
 #        npm install
 
-
     - name: Run frontend lint
       run: |
         cd frontend
         npm install
         sudo npm install eslint -g
-        eslint .
+        eslint . --max-warnings 0
