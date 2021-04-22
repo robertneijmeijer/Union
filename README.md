@@ -10,13 +10,29 @@ Build whole application:
 
 # Docker
 
+### Development
+
 To run docker in dev mode use the command
 ```docker-compose -f docker-compose-dev.yml up```
 
-To run docker in prod mode
-````docker-compose up```
+You can connect to the database with the same settings as would do locally (check docker-compose-dev.yml for the details). 
+Make sure that the postgresql instance is stopped on your local machine -> the docker container can't map its ports otherwise.
 
-For hot reaload to work on the frontend you need vue.config.js with the following content: 
+#### Migrations
+It may happen that you need to run migrations on your backend. Normally you would do that by going to your terminal and executing the command. You first have to enter the docker container by executing the following command.
+
+```
+docker exec -it backend /bin/bash
+```
+
+You are now in the terminal of your backend container. Now you can run the `python manage.py migrate` command and any other command you might want to run on the backend.
+
+### Production
+
+To run docker in prod mode
+``docker-compose up``
+
+For hot reload to work on the frontend you need vue.config.js with the following content: 
 ``
 module.exports = {
     configureWebpack: {

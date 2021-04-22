@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 from users.models import User
@@ -30,4 +31,67 @@ class UserTests(APITestCase):
                                 format='json')
         self.assertTrue(user)
 
-# TODO: Check if user already exists
+    def test_register_empty_JSON_body(self):
+        self.client = APIClient()
+        user = self.client.post('/users/register', None, format='json')
+        self.assertEqual(user.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_register_invalid_JSON_body(self):
+        user_data = {
+            "user": {
+                "username": "",
+                "email": "",
+                "password": ""
+            }
+        }
+        req = self.client.post('/users/register', user_data, format='json')
+        self.assertEqual(req.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_register_user(self):
+        user_data = {
+            "user": {
+                "username": "koen1",
+                "email": "koen",
+                "password": "12345678"
+            }
+        }
+        req = self.client.post('/users/register', user_data, format='json')
+        self.assertEqual(req.status_code, status.HTTP_201_CREATED)
+
+    def test_register_username_already_exists(self):
+        user_data = {
+            "user": {
+                "username": "joel",
+                "email": "joel@hva.nl",
+                "password": "12345678"
+            }
+        }
+        user_data2 = {
+            "user": {
+                "username": "joel",
+                "email": "joel@gmail.com",
+                "password": "12345678"
+            }
+        }
+        self.client.post('/users/register', user_data, format='json')
+        req2 = self.client.post('/users/register', user_data2, format='json')
+        self.assertEqual(req2.status_code, status.HTTP_406_NOT_ACCEPTABLE)
+
+    def test_register_email_already_exists(self):
+        user_data = {
+            "user": {
+                "username": "joel11",
+                "email": "joel@hva.nl",
+                "password": "12345678"
+            }
+        }
+        user_data2 = {
+            "user": {
+                "username": "joel1-",
+                "email": "joel@hva.nl",
+                "password": "12345678"
+            }
+        }
+        self.client.post('/users/register', user_data, format='json')
+        req2 = self.client.post('/users/register', user_data2, format='json')
+        self.assertEqual(req2.status_code, status.HTTP_406_NOT_ACCEPTABLE)

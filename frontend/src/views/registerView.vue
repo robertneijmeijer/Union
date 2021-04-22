@@ -18,11 +18,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #registerview{
-    max-height: 100%;
-  }
+#registerview {
+  max-height: 100%;
+}
 
-  #registerCard{
-   margin-top: 100px;
-  }
+#registerCard {
+  margin-top: 100px;
+}
 </style>

@@ -2,51 +2,72 @@
   <div class="container">
     <div class="d-flex justify-content-center h-100">
       <div class="header-row">
-        <h1 class="welcome-text">Welcome to </h1>
+        <h1 class="welcome-text">{{ $t("union_create.welcome") }}</h1>
         <img src="../assets/union.svg"/>
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
     <div class="d-flex justify-content-center h-100">
       <div class="union-card">
-        <p class="createTitle">Create a community</p>
+        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
+        <p class="createTitle">{{ $t("union_create.create_community") }}</p>
         <div class="union-card-body">
           <div class="column-left">
-            <h4 class="white-text">Name *</h4>
-            <input type="text" name="usernameId" class="form-control name-height input"/>
-            <h4 class="white-text">Description *</h4>
-            <textarea size="lg" type="text" name="description" class="form-control input description-height"
+            <h4 class="white-text">{{ $t("union_create.name") }}</h4>
+            <input
+                type="text"
+                name="usernameId"
+                class="form-control name-height input"
+            />
+            <h4 class="white-text">{{ $t("union_create.description") }}</h4>
+            <textarea
+                size="lg"
+                type="text"
+                name="description"
+                class="form-control input description-height"
             />
           </div>
           <div class="column-right">
-            <h4 class="white-text">Invite privilege *</h4>
+            <h4 class="white-text">{{ $t("union_create.invite_privilege") }}</h4>
             <div class="rows">
               <div class="round">
-                <input type="checkbox" id="onlyMe" v-on:click="check_one()">
+                <input type="checkbox" id="onlyMe" v-on:click="check_one()"/>
                 <label for="onlyMe"/>
               </div>
               <img src="../assets/singleEnvelope.svg" class="evelopes"/>
-              <h6 class="only-i-invite horizontal-padding">Only i can invite</h6>
+              <h6 class="only-i-invite horizontal-padding">
+                {{ $t("union_create.only_i") }}
+              </h6>
             </div>
             <div class="rows">
               <div class="round">
-                <input type="checkbox" id="everyone" v-on:click="check_one()">
+                <input type="checkbox" id="everyone" v-on:click="check_one()"/>
                 <label for="everyone"/>
               </div>
               <img src="../assets/multipleEnvelope.svg" class="evelopes"/>
-              <p class="everyone-invite">Everyone can invite *</p>
-
-            </div>
-            <div>
-              <h4 class="white-text"> Icon </h4>
-              <div class="circle">
-                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_avatar()"/>
+              <div>
+                <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
+                <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
               </div>
             </div>
             <div>
-              <h4 class="white-text"> Banner image </h4>
+              <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
+              <div class="circle">
+                <img
+                    src="../assets/imageIcon.svg"
+                    class="image-upload"
+                    v-on:click="upload_avatar()"
+                />
+              </div>
+            </div>
+            <div>
+              <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
-                <img src="../assets/imageIcon.svg" class="image-upload" v-on:click="upload_banner()"/>
+                <img
+                    src="../assets/imageIcon.svg"
+                    class="image-upload"
+                    v-on:click="upload_banner()"
+                />
               </div>
             </div>
           </div>
@@ -60,7 +81,7 @@
                   name="login-button"
                   v-on:click="create()"
               >
-                Create community
+                {{ $t("union_create.create_button") }}
               </button>
             </div>
           </div>
@@ -76,25 +97,23 @@ import router from "@/router";
 export default {
   name: "unionCreate",
   methods: {
-    // TODO: add methods here
     check_one: function () {
-      console.log("clicked")
+      console.log("clicked");
     },
     create: function () {
       router.push("/");
     },
-    upload_banner: function (){
-      console.log('clicked on banner')
+    upload_banner: function () {
+      console.log("clicked on banner");
       //TODO: add avatar stuff here
     },
     upload_avatar: function () {
-      console.log('clicked on avatar')
+      console.log("clicked on avatar");
       //TODO: add avatar stuff here
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <style lang="scss">
 @import "../assets/theme";
@@ -132,17 +151,21 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
+  font-size: 18px;
 }
 
 .only-i-invite {
   padding-left: $paddingMedium;
   padding-right: $paddingSmall;
   color: white;
+  font-size: 18px;
 }
 
-.everyone-invite::after {
-  content: "Members get max 2 invites";
+.max-invites {
   color: $lightGreyColor;
+  font-size: 18px;
+  margin-left: $paddingMedium;
+  margin-top: -$paddingMedium;
 }
 
 .circle {
@@ -186,18 +209,18 @@ export default {
 .createTitle {
   color: white;
   text-align: center;
-  margin-top: 30px;
   user-select: none;
+  margin-top: -$paddingMedium;
   font-size: 36px;
 }
 
-.createTitle::after {
-  content: "* Fields are required";
+.requiredFields {
   color: $lightGreyColor;
   user-select: none;
-  font-size: 14px;
-  position: absolute;
-  padding-left: $paddingHuge *4;
+  font-size: 18px;
+  padding-left: $paddingHuge * 20;
+  margin-top: $paddingMedium;
+  white-space: nowrap;
 }
 
 .union-card {
@@ -218,7 +241,7 @@ export default {
 }
 
 .union-create-btn {
-  padding-top: $paddingHuge *1.5;
+  padding-top: $paddingHuge * 1.5;
   margin-bottom: 0;
 }
 
@@ -234,7 +257,6 @@ export default {
     background-color: $buttonHoverColor;
     border: $buttonBorder $buttonHoverColor;
   }
-
 }
 
 .white-text {
@@ -313,8 +335,8 @@ export default {
 }
 
 .round input[type="checkbox"]:checked + label {
-  background-color: #00FFFF;
-  border-color: #00FFFF;
+  background-color: #00ffff;
+  border-color: #00ffff;
 }
 
 .round input[type="checkbox"]:checked + label:after {
