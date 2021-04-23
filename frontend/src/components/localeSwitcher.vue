@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 export default {
   name: "localeSwitcher",
 };
@@ -17,7 +16,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-.locale-switcher{
+.locale-switcher {
   background-color: $buttonHoverColor;
   color: white;
 }

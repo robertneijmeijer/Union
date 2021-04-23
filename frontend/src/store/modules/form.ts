@@ -14,7 +14,7 @@ export interface FormModuleStateInterface {
     errors: {} | undefined
 }
 
-export type FormModuleState = FormModuleStateInterface
+export type FormModuleState = FormModuleStateInterface;
 
 export const form: Module<FormModuleState, RootState> = {
     state: () => ({
