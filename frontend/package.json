@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
-    "test:unit": "jest"
+    "test": "jest"
   },
   "dependencies": {
     "@vue/cli": "^4.5.12",
