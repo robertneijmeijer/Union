@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@vue/cli": "^4.5.12",
@@ -31,15 +32,32 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
-    "@vue/test-utils": "^2.0.0-rc.6",
+    "@vue/test-utils": "^1.1.4",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^7.0.0-0",
+    "jest": "^26.6.3",
     "prettier": "1.19.1",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
+    "ts-jest": "^26.5.5",
     "typescript": "~3.9.3",
-    "vue-cli-plugin-i18n": "~2.1.0"
+    "vue-cli-plugin-i18n": "~2.1.0",
+    "vue-jest": "^3.0.7"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testURL": "http://localhost/",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   }
 }
