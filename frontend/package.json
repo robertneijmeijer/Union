@@ -14,6 +14,7 @@
     "@vue/cli": "^4.5.12",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "identity-obj-proxy": "^3.0.0",
     "js-sha256": "^0.9.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
@@ -30,7 +31,7 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/compiler-sfc": "^3.0.11",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-rc.6",
@@ -38,14 +39,14 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^7.0.0-0",
-    "jest": "^25.2.2",
+    "jest": "^25.5.4",
     "prettier": "1.19.1",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
     "ts-jest": "^26.5.5",
     "typescript": "~3.9.3",
     "vue-cli-plugin-i18n": "~2.1.0",
-    "vue-jest": "^3.0.7"
+    "vue-jest": "^5.0.0-alpha.7"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -59,6 +60,11 @@
       ".*\\.(vue)$": "vue-jest"
     },
     "testURL": "http://localhost/",
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass|theme)$": "identity-obj-proxy"
+    }
   }
 }

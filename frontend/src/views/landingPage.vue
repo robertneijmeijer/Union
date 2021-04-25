@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Navigator from "@/components/navigatorComponent";
+import Navigator from "../components/navigatorComponent";
 
 export default {
   name: "landingPage",

@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-import router from "@/router";
+import router from "../router";
 import { ActionTypes } from "@/actions/user";
 import { sha256 } from "js-sha256";
 

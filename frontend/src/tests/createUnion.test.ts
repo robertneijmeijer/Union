@@ -1,9 +1,11 @@
 import "ts-jest";
 import { shallowMount } from "@vue/test-utils";
+import unionCreate from "../components/unionCreateComponent.vue"
 
-describe('iets', ()=>{
-    test('test', () => {
-        expect(true).toBe(true);
+describe('Create union', ()=>{
+    test('to be mounted', () => {
+        const wrapper = shallowMount(unionCreate);
+        expect(wrapper).toBeDefined();
     });
 })
 
