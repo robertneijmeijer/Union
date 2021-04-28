@@ -35,7 +35,8 @@ export default {
   height: 100%;
   background-image: url("../assets/landingspage.jpg");
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: 10% center;
+  background-size: 40rem auto;
 }
 
 .text {
@@ -49,5 +50,32 @@ export default {
 
 .text-blue {
   color: $unionBlue;
+}
+
+@media screen and (max-width: 75em) {
+  .center-text {
+    background-position: 5% center;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .center-text {
+    background-size: 30rem auto;
+    background-position: 0% center;
+  }
+}
+
+@media screen and (max-width: 45em) {
+  .center-text {
+    background-size: 30rem auto;
+    background-position: -8rem center;
+  }
+}
+
+@media screen and (max-width: 32em) {
+  .center-text {
+    background-size: 25rem auto;
+    background-position: -8rem center;
+  }
 }
 </style>
