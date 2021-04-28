@@ -12,5 +12,5 @@ class Post(models.Model):
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    union_id = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
-    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    union = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
