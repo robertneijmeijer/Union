@@ -1,5 +1,3 @@
-import logging
-
 from rest_framework import serializers
 from comments.models import Comment
 from users.models import User
@@ -30,12 +28,11 @@ class CommentSerializer(serializers.ModelSerializer):
         if obj.parent is not None:
             return None
 
-        nesting_depth = int(self.context['nesting_depth'])
+        nesting_depth = 2
 
-        if nesting_depth and nesting_depth > 0:
-            nesting_depth = nesting_depth - 1  # -1 because we start at level 1
-        else:
-            nesting_depth = 2  # Default depth = 2
+        if 'nesting_depth' in self.context and int(self.context['nesting_depth']) > 0:
+            # -1 Otherwise it will always return a level further then given number, because of loop
+            int(self.context['nesting_depth']) - 1
 
         return children(obj, nesting_depth)
 

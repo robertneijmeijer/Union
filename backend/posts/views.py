@@ -1,6 +1,5 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
-import logging
 
 import jwt
 from rest_framework import viewsets, status

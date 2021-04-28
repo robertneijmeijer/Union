@@ -1,5 +1,3 @@
-import logging
-
 import jwt
 from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
@@ -8,7 +6,6 @@ from rest_framework.response import Response
 from comments.serializer import CommentSerializer
 from comments.models import Comment
 from project import settings
-import json
 
 
 class CommentsPagination(PageNumberPagination):
@@ -32,7 +29,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(pagination, many=True)
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(pagination, many=True)
+        serializer = self.get_serializer(query_set, many=True)
         result_set = serializer.data
 
         return Response(result_set)
@@ -49,9 +46,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
 
         if user_id is None:
-            Response("Invalid JWT", status.HTTP_400_BAD_REQUEST)
+            return Response("Invalid JWT", status.HTTP_400_BAD_REQUEST)
 
-        logging.warning(user_id)
         comment = request.data
         comment['user'] = user_id
 
@@ -64,13 +60,13 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
     def retrieve(self, request, *args, **kwargs):
-        nesting = 5
+        depth = 5
 
         # Check if nesting is given
         if "depth" in request.GET and request.GET["depth"].isdigit():
-            nesting = request.GET["depth"]
+            depth = request.GET["depth"]
 
         parentComment = self.get_object()
-        test = self.get_serializer(parentComment, context={'nesting_depth': nesting})
+        serializer = self.get_serializer(parentComment, context={'nesting_depth': depth})
 
-        return Response(test.data, status.HTTP_200_OK)
+        return Response(serializer.data, status.HTTP_200_OK)
