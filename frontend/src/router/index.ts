@@ -28,8 +28,8 @@ const routes = [
     component: unionCreateView,
   },
   {
-    path: "/unionoverview",
-    name: "unionoverview",
+    path: "/union",
+    name: "union-overview",
     component: unionOverviewView,
   }
 ];

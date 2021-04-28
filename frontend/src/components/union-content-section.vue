@@ -16,7 +16,7 @@
 
   export default {
     name: "union-post-overview",
-    components: {UnionCreatePost, UnionAboutCommunity }
+    components: { UnionCreatePost, UnionAboutCommunity },
   };
 </script>
 
@@ -27,23 +27,23 @@
         #about {
             display: none;
         }
-        #aside{
+        #aside {
             display: none;
         }
-
     }
+
     @media only screen and (max-width: 626px) {
-        #aside{
+        #aside {
             display: none;
         }
     }
 
     @media only screen and (max-width: 1026px) {
-    #posts {
-        width: 100%;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
+        #posts {
+            width: 100%;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
     }
 
     .flex-container {
@@ -52,19 +52,18 @@
         height: 100vh;
     }
 
-    .center-container{
+    .center-container {
         width: 50%;
         margin-top: 20px;
     }
 
-    .right-container{
+    .right-container {
         width: 25%;
         margin-top: 20px;
     }
 
-    .left-container{
+    .left-container {
         width: 25%;
         margin-top: 20px;
     }
-
 </style>

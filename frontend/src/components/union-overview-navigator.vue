@@ -2,31 +2,32 @@
     <div class="flex">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="#">
-                <img id="union-logo" class="img-fluid" src="../assets/union_logo.png" max-height="60" max-width="70" alt=""/>
+                <img id="union-logo" class="img-fluid" src="../assets/union_logo.png" max-height="60" max-width="70"
+                     alt=""/>
             </a>
             <div class="collapse navbar-collapse" id="navbar-content">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle dropdownButton" type="button"
-                                id="dropdownMenu2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="dropdown-logo" src="../assets/bitcoin-icon.png">
-                            TheCryptoUnion
-                        </button>
-                    </div>
-                    <form class="form-inline">
-                        <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
-                    </form>
-                    <img id="user-img" class="user" height="35" width="35"
-                         src="../assets/user-icon-png-person-user-profile-icon-20.png" alt="">
-                    <div id="user" class="dropdown-user">
-                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button"
-                                id="dropdownMenu1"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Joel verhagen
-                        </button>
-                    </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle dropdownButton" type="button"
+                                    id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="dropdown-logo" src="../assets/bitcoin-icon.png">
+                                TheCryptoUnion
+                            </button>
+                        </div>
+                        <form class="form-inline">
+                            <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                        <img id="user-img" class="user" height="35" width="35"
+                             src="../assets/user-icon-png-person-user-profile-icon-20.png" alt="">
+                        <div id="user" class="dropdown-user">
+                            <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button"
+                                    id="dropdownMenu1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Joel verhagen
+                            </button>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+
   export default {
     name: "union-overview-navigator",
   };
@@ -60,7 +62,6 @@
             max-width: 100px;
             max-height: 110px;
         }
-
     }
 
     .img-fluid {

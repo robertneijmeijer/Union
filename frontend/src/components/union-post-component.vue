@@ -19,11 +19,12 @@
                 </td>
                 <td class="post-content">
                     <span class="post-info">{{post.info}}</span>
-                    <h3 class="post-title">{{post.title}}</h3>
+                    <h4 class="post-title">{{post.title}}</h4>
                     <div class="post-text">{{post.content}}</div>
                     <div class="comments-amount">
                         <a class="comments-link" href="" v-on:click="toComments">
-                            {{post.vote}}</a></div>
+                            {{post.comments}}</a>
+                    </div>
                 </td>
             </tr>
         </table>
@@ -34,12 +35,12 @@
   export default {
     name: "union-post-component",
     props: {
-      post:{
+      post: {
         info: String,
         title: String,
         content: String,
-        vote: String
-      }
+        comments: String,
+      },
     },
     methods: {
       toComments: function() {
@@ -57,7 +58,6 @@
 
     .post-info {
         color: white;
-        font-size: 14px;
         opacity: 60%;
     }
 
@@ -70,14 +70,14 @@
         height: 250px;
         vertical-align: top;
         text-align: center;
-        background-color: #161617;
+        background-color: $blackColor;
     }
 
     .post-content {
         width: 90%;
         text-align: left;
         vertical-align: top;
-        background-color: #1A1A1B;
+        background-color: $darkerGreyColor;
         padding: 8px;
         position: relative;
     }
@@ -107,13 +107,12 @@
         margin: 7px;
         text-align: center;
         font-weight: bold;
-        color: #00FFFF;
+        color: $unionBlue
     }
 
     .post-title {
         color: white;
         font-weight: bold;
-        font-size: 22px;
         margin-top: 5px;
     }
 
@@ -154,6 +153,4 @@
         border-radius: 0 6px 6px 0;
         border: none;
     }
-
-
 </style>

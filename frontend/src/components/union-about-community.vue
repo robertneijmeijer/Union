@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                About community
+                {{ $t("union_overview.community-info") }}
             </div>
             <div class="card-content">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -14,28 +14,26 @@
             </div>
             <div class="com-info">
                 <div class="members">152k
-                    <div class="members-sub">members</div>
+                    <div class="members-sub">{{ $t("union_overview.members") }}</div>
                 </div>
                 <div class="online">195
-                    <div class="online-sub">online</div>
+                    <div class="online-sub">{{ $t("union_overview.online-members") }}</div>
                 </div>
             </div>
             <div class="created">
-                Created 18 dec. 2008
+                {{ $t("union_overview.created") }} 18 dec. 2008
             </div>
             <div class="card-action">
-                <button class="create-post">Create Post</button>
-                <button class="invite">Invite Members</button>
+                <button class="create-post">{{ $t("union_overview.create-post") }}</button>
+                <button class="invite">{{ $t("union_overview.invite-members") }}</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
-
   export default {
-    name: "union-about-community"
+    name: "union-about-community",
   };
 </script>
 
@@ -46,58 +44,54 @@
         font-family: "Overpass-Regular";
     }
 
-
-    .container{
-    }
-
-    .card{
+    .card {
         background-color: #1A1A1B;
         height: 500px;
         width: 100%;
         padding: 8px;
     }
 
-    .card-header{
+    .card-header {
         color: white;
         padding: 6px;
         opacity: 60%;
         height: 5vh;
     }
 
-    .card-content{
+    .card-content {
         color: white;
         padding: 6px;
         height: 45vh;
         overflow: hidden;
     }
 
-    .com-info{
+    .com-info {
         width: 100%;
         padding: 6px;
         border-bottom: 1px solid white;
     }
 
-    .members{
+    .members {
         color: white;
         float: left;
     }
 
-    .online{
+    .online {
         color: white;
         text-align: center;
     }
 
-    .created{
+    .created {
         color: white;
         padding: 6px;
         margin-top: 10px;
     }
 
-    .card-action{
+    .card-action {
         height: 20vh;
     }
 
-    .create-post{
+    .create-post {
         margin-top: 10px;
         width: 100%;
         background-color: #cccccc;
@@ -107,7 +101,7 @@
         user-select: none;
     }
 
-    .invite{
+    .invite {
         width: 100%;
         margin-top: 15px;
         background-color: transparent;
@@ -116,5 +110,4 @@
         font-weight: bold;
         border-radius: $borderRadius;
     }
-
 </style>

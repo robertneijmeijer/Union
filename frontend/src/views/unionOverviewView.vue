@@ -9,7 +9,7 @@
 <script>
   import unionOverviewNavigator from "@/components/union-overview-navigator";
   import UnionOverviewHeader from "@/components/union-overview-header";
-  import UnionPostOverview from "@/components/union-post-overview";
+  import UnionPostOverview from "@/components/union-content-section";
 
 
   export default {
