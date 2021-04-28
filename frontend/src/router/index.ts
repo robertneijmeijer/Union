@@ -31,7 +31,7 @@ const routes = [
     path: "/union",
     name: "union-overview",
     component: unionOverviewView,
-  }
+  },
 ];
 
 const router = createRouter({

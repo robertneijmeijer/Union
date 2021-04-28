@@ -78,7 +78,7 @@
           <div class="form-group">
             <div class="text-center union-create-btn">
               <button
-                class="btn btn-primary create-union "
+                class="btn btn-primary create-union"
                 type="submit"
                 name="login-button"
                 v-on:click="create()"
@@ -99,17 +99,17 @@ import router from "@/router";
 export default {
   name: "unionCreate",
   methods: {
-    check_one: function() {
+    check_one: function () {
       console.log("clicked");
     },
-    create: function() {
+    create: function () {
       router.push("/");
     },
-    upload_banner: function() {
+    upload_banner: function () {
       console.log("clicked on banner");
       //TODO: add avatar stuff here
     },
-    upload_avatar: function() {
+    upload_avatar: function () {
       console.log("clicked on avatar");
       //TODO: add avatar stuff here
     },
