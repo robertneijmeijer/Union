@@ -6,6 +6,7 @@
           <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
         <div class="card-body">
+
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span
@@ -65,7 +66,9 @@
         <div class="card-footer">
           <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
+
             <a class="linkText overpass" href="" v-on:click="toSignUp">
+
               {{ $t("login.sign_up") }}</a
             >
           </div>

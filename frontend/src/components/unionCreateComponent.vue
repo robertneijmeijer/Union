@@ -39,6 +39,7 @@
             </h4>
             <div class="rows">
               <div class="round">
+
                 <input
                   type="radio"
                   id="onlyMe"
@@ -49,12 +50,14 @@
                 <label for="onlyMe"></label>
               </div>
               <img src="../assets/singleEnvelope.svg" class="top-envelope" />
+
               <h6 class="only-i-invite horizontal-padding">
                 {{ $t("union_create.only_i") }}
               </h6>
             </div>
             <div class="rows">
               <div class="round">
+
                 <input
                   type="radio"
                   id="everyone"
@@ -63,6 +66,7 @@
                   v-bind:value="true"
                 />
                 <label for="everyone"></label>
+
               </div>
               <img
                 src="../assets/multipleEnvelope.svg"
