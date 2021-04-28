@@ -39,7 +39,6 @@
             </h4>
             <div class="rows">
               <div class="round">
-
                 <input
                   type="radio"
                   id="onlyMe"
@@ -57,7 +56,6 @@
             </div>
             <div class="rows">
               <div class="round">
-
                 <input
                   type="radio"
                   id="everyone"
@@ -66,7 +64,6 @@
                   v-bind:value="true"
                 />
                 <label for="everyone"></label>
-
               </div>
               <img
                 src="../assets/multipleEnvelope.svg"
