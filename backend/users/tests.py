@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
+import json
 
 from users.models import User
 
@@ -95,3 +96,54 @@ class UserTests(APITestCase):
         self.client.post('/users/register', user_data, format='json')
         req2 = self.client.post('/users/register', user_data2, format='json')
         self.assertEqual(req2.status_code, status.HTTP_406_NOT_ACCEPTABLE)
+
+    def test_registration_user_validates_username(self):
+        User.objects.create_user("koen.lippe@hva.nl", "koen", None)
+
+        body = {
+            "username": "koen"
+        }
+
+        req1 = self.client.post("/users/validate", body, format='json')
+        content_unicode = req1.content.decode('utf-8')
+        content = json.loads(content_unicode)
+
+        self.assertEqual(req1.status_code, status.HTTP_406_NOT_ACCEPTABLE)
+        self.assertTrue(len(content) > 0)
+        self.assertTrue("username" in content)
+        self.assertTrue("email" not in content)
+        self.assertEqual(content["username"], "Username already exists")
+
+    def test_registration_user_validates_email(self):
+        User.objects.create_user("koen.lippe@hva.nl", "koen", None)
+
+        body = {
+            "email": "koen.lippe@hva.nl"
+        }
+
+        req1 = self.client.post("/users/validate", body, format='json')
+        content_unicode = req1.content.decode('utf-8')
+        content = json.loads(content_unicode)
+
+        self.assertEqual(req1.status_code, status.HTTP_406_NOT_ACCEPTABLE)
+        self.assertTrue(len(content) > 0)
+        self.assertTrue("email" in content)
+        self.assertTrue("username" not in content)
+        self.assertEqual(content["email"], "Email already exists")
+
+    def test_registration_user_validates_email_and_username(self):
+        User.objects.create_user("koen.lippe@hva.nl", "koen", None)
+
+        body = {
+            "email": "koen.lippe@hva.nl",
+            "username": "koen"
+        }
+
+        req1 = self.client.post("/users/validate", body, format='json')
+        content_unicode = req1.content.decode('utf-8')
+        content = json.loads(content_unicode)
+
+        self.assertEqual(req1.status_code, status.HTTP_406_NOT_ACCEPTABLE)
+        self.assertTrue(len(content) > 0)
+        self.assertTrue("email" in content)
+        self.assertTrue("username" in content)
