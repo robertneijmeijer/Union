@@ -119,8 +119,9 @@ export default {
           }
         })
         .catch(error => {
-          console.log("error");
+          //TODO: Remove on production
           console.log(error);
+          this.error = "Something went wrong, please try again later.";
         });
     },
   },
