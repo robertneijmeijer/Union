@@ -1,13 +1,12 @@
 <template>
-  <div id="landingsPage">
+  <div id="landings-page">
     <navigator></navigator>
-    <div class="landingsimage">
-      <img src="../assets/landingspage.jpg" height="483" width="824" />
-      <div class="centeredText">
-        <h3 class="first">Create.</h3>
-        <h3 class="second">Discover.</h3>
-        <h3 class="third">Unite.</h3>
-      </div>
+    <div class="center-text">
+      <pre class="text">
+Create. 
+Discover. 
+<span class="text-blue">Unite.</span>
+      </pre>
     </div>
   </div>
 </template>
@@ -24,41 +23,31 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-.centeredText {
+#landings-page {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url("../assets/landingspage.jpg");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.text {
+  color: white;
+  user-select: none;
+  font-size: 2rem;
+  font-family: "Numans", sans-serif;
+  font-weight: 500;
   text-align: center;
-  position: absolute;
-  top: 40px;
-  left: 45%;
 }
 
-.first {
-  margin-top: 200px;
-  color: white;
-  user-select: none;
-}
-
-.second {
-  color: white;
-  margin-top: 10px;
-  user-select: none;
-}
-
-.third {
+.text-blue {
   color: $unionBlue;
-  margin-top: 10px;
-  user-select: none;
-}
-
-.landingsimage {
-  position: relative;
-  width: 100%;
-}
-
-img {
-  margin-top: 50px;
-}
-
-#landingsPage {
-  max-height: 100%;
 }
 </style>
