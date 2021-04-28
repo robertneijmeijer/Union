@@ -32,7 +32,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
         if 'nesting_depth' in self.context and int(self.context['nesting_depth']) > 0:
             # -1 Otherwise it will always return a level further then given number, because of loop
-            int(self.context['nesting_depth']) - 1
+            nesting_depth = int(self.context['nesting_depth']) - 1
 
         return children(obj, nesting_depth)
 

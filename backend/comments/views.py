@@ -1,3 +1,4 @@
+
 import jwt
 from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
@@ -38,7 +39,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         token = request.headers.get('Authorization', None)
 
         if token is None:
-            return Response(status.HTTP_401_UNAUTHORIZED)
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         token = token.replace('Bearer ', '')
 
