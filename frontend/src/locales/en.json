@@ -32,5 +32,15 @@
     "dont_have_account": "Don't have an account?",
     "sign_up": "Sign up",
     "forgot_password": "Forgot your password?"
+  },
+  "union_overview": {
+    "search": "Search",
+    "community-info": "About community",
+    "members": "members",
+    "online-members": "online",
+    "create-post": "Create Post",
+    "invite-members": "Invite Members",
+    "created": "Created at",
+    "joined": "Joined"
   }
 }

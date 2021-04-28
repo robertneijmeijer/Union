@@ -97,11 +97,11 @@ import { sha256 } from "js-sha256";
 export default {
   name: "registerComponent",
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
 
-    submit: function(event) {
+    submit: function (event) {
       event.preventDefault();
 
       // TODO Implement form handling in later ticket after dicussion

@@ -14,7 +14,7 @@ import router from "@/router";
 export default {
   name: "navigator",
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
   },

@@ -32,5 +32,15 @@
     "dont_have_account": "Nog geen account?",
     "sign_up": "Aanmelden",
     "forgot_password": "Wachtwoord vergeten?"
+  },
+  "union_overview": {
+    "search": "Zoeken",
+    "community-info": "Over de community",
+    "members": "leden",
+    "online-members": "online",
+    "create-post": "Creeër post",
+    "invite-members": "Nodig uit",
+    "created": "Aangemakt op",
+    "joined": "Toegetreden"
   }
 }

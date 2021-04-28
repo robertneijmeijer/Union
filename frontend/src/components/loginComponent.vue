@@ -39,7 +39,7 @@
             <div class="form-group">
               <div class="text-center loginbtn">
                 <button
-                  class="btn btn-primary login "
+                  class="btn btn-primary login"
                   type="submit"
                   name="login-button"
                 >
@@ -71,7 +71,7 @@ import router from "@/router";
 export default {
   name: "login",
   methods: {
-    toSignUp: function() {
+    toSignUp: function () {
       router.push("register");
     },
   },

@@ -9,17 +9,16 @@
 </template>
 
 <script>
-import {getSupportedLocales} from "../i18n/supported-locales";
+import { getSupportedLocales } from "../i18n/supported-locales";
 
 export default {
   name: "localeSwitcher",
   data() {
     return {
-      locales: getSupportedLocales()
+      locales: getSupportedLocales(),
     };
   },
-}
-;
+};
 </script>
 
 <style lang="scss" scoped>
