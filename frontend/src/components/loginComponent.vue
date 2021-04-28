@@ -8,7 +8,7 @@
         <div class="card-body">
           <div class="input-group form-group">
             <div class="input-group-prepend">
-              <span class="input-group-text">
+              <span class="input-group-text" v-bind:class="{ 'error-input': isError }">
                 <i style="color: #2C2C2C" class="fa fa-user fa-lg center"></i>
               </span>
             </div>
@@ -27,8 +27,8 @@
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"
-                ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
+              <span class="input-group-text" v-bind:class="{ 'error-input': error }"
+              ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
               ></span>
             </div>
             <input
@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       error: "",
+      isError: false
     };
   },
   methods: {
@@ -99,9 +100,10 @@ export default {
       UserApi.signIn(user)
         .then(response => {
           if (response.status == 200) {
-            router.push("landingspage");
+            router.push("union");
           } else {
             this.error = "Incorrect username or password";
+            this.isError = true;
           }
         })
         .catch(error => {
@@ -130,17 +132,17 @@ export default {
 }
 
     .card {
-        height: 370px;
+        height: 440px;
         margin-top: auto;
         margin-bottom: auto;
-        width: 400px;
+        width: 450px;
         background-color: $cardBackgroundColor;
   border-radius: 20px;
     }
 
 .card-body {
   padding: 0;
-  margin: 10px 15px 0 15px;
+  margin: 10px 30px 0 30px;
 }
 
 .card-header {
@@ -196,11 +198,12 @@ export default {
 
 
 .login {
-  width: 120px;
+  width: 150px;
   border-radius: $borderRadius;
   border: $buttonBorder $unionBlue;
   color: white;
   background: transparent;
+  margin-top: 10%;
 
         &:hover{
             background-color: $cardBackgroundColor;
@@ -217,6 +220,7 @@ export default {
   background-color: $unionBlue;
   color: black;
   border: 0 !important;
+  margin-top: 5%;
 }
 
 .center {
@@ -260,6 +264,10 @@ input:focus {
 
 .error-message {
   color: $errorColor;
+}
+
+.error-input {
+  background-color: $errorColor !important;
 }
 
 .overpass {
