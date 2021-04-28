@@ -111,7 +111,8 @@ export default {
         .then(response => {
           if (response.status == 200) {
             router.push("union");
-          } else {
+          }
+          if (response.status == 400){
             this.error = "Incorrect username or password";
             this.isError = true;
           }
@@ -146,7 +147,8 @@ export default {
   height: 440px;
   margin-top: auto;
   margin-bottom: auto;
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
   background-color: $cardBackgroundColor;
   border-radius: 20px;
 }
@@ -208,7 +210,8 @@ export default {
 }
 
 .login {
-  width: 150px;
+  max-width: 150px;
+  width: 100%;
   border-radius: $borderRadius;
   border: $buttonBorder $unionBlue;
   color: white;
