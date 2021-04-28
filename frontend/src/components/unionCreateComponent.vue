@@ -13,14 +13,18 @@
         <p class="createTitle">{{ $t("union_create.create_community") }}</p>
         <div class="union-card-body">
           <div class="column-left">
-            <h4 class="white-text overpass-bold">{{ $t("union_create.name") }}</h4>
+            <h4 class="white-text overpass-bold">
+              {{ $t("union_create.name") }}
+            </h4>
             <input
               type="text"
               name="usernameId"
               class="form-control name-height input"
               v-model="name"
             />
-            <h4 class="white-text overpass-bold">{{ $t("union_create.description") }}</h4>
+            <h4 class="white-text overpass-bold">
+              {{ $t("union_create.description") }}
+            </h4>
             <textarea
               size="lg"
               type="text"
@@ -46,9 +50,8 @@
               </div>
               <img src="../assets/singleEnvelope.svg" class="top-envelope" />
               <h6 class="only-i-invite horizontal-padding">
-              {{ $t("union_create.only_i") }}
+                {{ $t("union_create.only_i") }}
               </h6>
-                
             </div>
             <div class="rows">
               <div class="round">
@@ -65,8 +68,8 @@
                 src="../assets/multipleEnvelope.svg"
                 class="bottom-envelopes"
               />
-                <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
-                <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
+              <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
+              <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
             </div>
             <div>
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
@@ -111,7 +114,7 @@
 
 <script>
 import router from "@/router";
-import UnionApi from "../api/union"
+import UnionApi from "../api/union";
 
 export default {
   name: "unionCreate",
@@ -185,7 +188,7 @@ export default {
   font-size: 18px;
   margin-right: $paddingMedium;
   margin-top: -$paddingMedium;
-    width: max-content;
+  width: max-content;
 }
 .only-i-invite {
   padding-left: $paddingMedium;

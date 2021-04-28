@@ -56,10 +56,9 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
-{
-  outline:0px !important;
-  -webkit-appearance:none;
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
   box-shadow: none !important;
 }
 </style>

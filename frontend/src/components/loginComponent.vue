@@ -8,7 +8,10 @@
         <div class="card-body">
           <div class="input-group form-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" v-bind:class="{ 'error-input': isError }">
+              <span
+                class="input-group-text"
+                v-bind:class="{ 'error-input': isError }"
+              >
                 <i style="color: #2C2C2C" class="fa fa-user fa-lg center"></i>
               </span>
             </div>
@@ -27,8 +30,10 @@
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" v-bind:class="{ 'error-input': error }"
-              ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
+              <span
+                class="input-group-text"
+                v-bind:class="{ 'error-input': error }"
+                ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
               ></span>
             </div>
             <input
@@ -40,7 +45,9 @@
             />
           </div>
           <div class="row align-items-center remember overpass gray">
-            <input type="checkbox" class="checkbox"/>{{ $t("login.remember_me") }}
+            <input type="checkbox" class="checkbox" />{{
+              $t("login.remember_me")
+            }}
           </div>
           <div class="form-group">
             <div class="text-center loginbtn">
@@ -63,7 +70,9 @@
             >
           </div>
           <div class="d-flex justify-content-center">
-            <a class="linkText overpass" href="#">{{ $t("login.forgot_password") }}</a>
+            <a class="linkText overpass" href="#">{{
+              $t("login.forgot_password")
+            }}</a>
           </div>
         </div>
       </div>
@@ -80,7 +89,7 @@ export default {
   data() {
     return {
       error: "",
-      isError: false
+      isError: false,
     };
   },
   methods: {
@@ -131,14 +140,14 @@ export default {
   font-size: 24px;
 }
 
-    .card {
-        height: 440px;
-        margin-top: auto;
-        margin-bottom: auto;
-        width: 450px;
-        background-color: $cardBackgroundColor;
+.card {
+  height: 440px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 450px;
+  background-color: $cardBackgroundColor;
   border-radius: 20px;
-    }
+}
 
 .card-body {
   padding: 0;
@@ -196,7 +205,6 @@ export default {
   margin-bottom: 0;
 }
 
-
 .login {
   width: 150px;
   border-radius: $borderRadius;
@@ -205,10 +213,10 @@ export default {
   background: transparent;
   margin-top: 10%;
 
-        &:hover{
-            background-color: $cardBackgroundColor;
-            border: $buttonBorder $cardBackgroundColor;
-        }
+  &:hover {
+    background-color: $cardBackgroundColor;
+    border: $buttonBorder $cardBackgroundColor;
+  }
 }
 
 .card-header h3 {
