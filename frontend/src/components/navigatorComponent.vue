@@ -25,7 +25,7 @@ export default {
 @import "../assets/theme";
 
 nav.primary {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;

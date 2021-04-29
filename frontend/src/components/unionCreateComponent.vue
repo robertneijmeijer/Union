@@ -98,7 +98,7 @@
           <div class="form-group">
             <div class="text-center union-create-btn">
               <button
-                class="btn btn-primary create-union "
+                class="btn btn-primary create-union"
                 type="submit"
                 name="login-button"
                 v-on:click="create()"

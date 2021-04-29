@@ -36,5 +36,15 @@
       "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord",
       "generalized_error_message": "Er ging iets fout, probeer later nog eens."
     }
+  },
+  "union_overview": {
+    "search": "Zoeken",
+    "community-info": "Over de community",
+    "members": "leden",
+    "online-members": "online",
+    "create-post": "Creeër post",
+    "invite-members": "Nodig uit",
+    "created": "Aangemakt op",
+    "joined": "Toegetreden"
   }
 }

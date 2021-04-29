@@ -4,7 +4,8 @@
   "description": "Welcome, union is a project made by five students.  We aim to make an exclusive application, like reddit, for users to share a community.  Down below, you can find the technical setup to this project.",
   "main": "index.js",
   "scripts": {
-    "dev": "docker-compose -f docker-compose-dev.yml up"
+    "dev": "docker-compose -f docker-compose-dev.yml up",
+    "preinstall": "npx only-allow npm"
   },
   "repository": {
     "type": "git",

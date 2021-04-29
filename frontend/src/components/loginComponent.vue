@@ -93,7 +93,7 @@ export default {
     },
   },
   methods: {
-    toSignUp: function() {
+    toSignUp: function () {
       router.push("register");
     },
     signIn: function(e) {
