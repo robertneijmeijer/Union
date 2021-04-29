@@ -16,7 +16,9 @@ export default class ApiBase {
         ...config,
       })
       .then(response => response)
-      .catch(handleError);
+      .catch(error => {
+        throw error;
+      });
   }
 
   public static async requestGet(
@@ -41,11 +43,3 @@ export default class ApiBase {
     return this.executeRequest("post", `/${resource}`, { ...config });
   }
 }
-
-const handleError = (error: any) => {
-  if (error.data) {
-    return error.data;
-  }
-
-  return error;
-};

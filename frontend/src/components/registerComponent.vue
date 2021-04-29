@@ -14,62 +14,65 @@
                 </span>
               </div>
               <input
-                type="text"
-                name="uid"
-                class="form-control input"
-                v-bind:placeholder="$t('register.username')"
-                v-model="username"
+                  type="text"
+                  name="username"
+                  class="form-control input"
+                  v-bind:placeholder="$t('register.username')"
+                  v-model="username"
+                  v-on:focusout="onUsernameFocusout"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text white"
-                  ><i class="fa fa-envelope fa-lg unique"></i
+                ><i class="fa fa-envelope fa-lg unique"></i
                 ></span>
               </div>
               <input
-                type="text"
-                name="mail"
-                class="form-control input"
-                v-bind:placeholder="$t('register.email')"
-                v-model="email"
+                  type="text"
+                  name="mail"
+                  class="form-control input"
+                  v-bind:placeholder="$t('register.email')"
+                  v-model="email"
+                  v-on:focusout="onEmailFocusout"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd"
-                class="form-control input"
-                v-bind:placeholder="$t('register.password')"
-                v-model="password"
+                  type="password"
+                  name="pwd"
+                  class="form-control input"
+                  v-bind:placeholder="$t('register.password')"
+                  v-model="password"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                  ><i class="fa fa-lock fa-lg center"></i
+                ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
               <input
-                type="password"
-                name="pwd-repeat"
-                class="form-control input"
-                v-bind:placeholder="$t('register.password_confirm')"
-                v-model="password_confirm"
+                  type="password"
+                  name="pwd-repeat"
+                  class="form-control input"
+                  v-bind:placeholder="$t('register.password_confirm')"
+                  v-model="password_confirm"
               />
             </div>
+            <div class="text-white">{{ errors || 'test' }}</div>
             <div class="form-group">
               <div class="centerButton">
                 <button
-                  class="btn btn-primary register_btn"
-                  type="submit"
-                  name="login-button"
-                  v-on:click="submit"
+                    class="btn btn-primary register_btn"
+                    type="submit"
+                    name="login-button"
+                    v-on:click="submit"
                 >
                   {{ $t("register.register") }}
                 </button>
@@ -79,7 +82,8 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            {{ $t("register.already_member")
+            {{
+              $t("register.already_member")
             }}<a class="linkText" v-on:click="toLogin" href="">{{
               $t("register.sign_in")
             }}</a>
@@ -91,23 +95,24 @@
 </template>
 <script>
 import router from "@/router";
-// import { ActionTypes } from "@/actions/user";
+import { ActionTypes } from "@/actions/user";
 import {MutationTypes as FormMutations} from "@/mutations/form";
-// import { sha256 } from "js-sha256";
-// import {mapFormFields} from "@/helpers/form";
+import { sha256 } from "js-sha256";
 import {FORM_ID} from "@/store/modules/form";
 
 const {mapFields} = require("vuex-map-fields");
 
-const formFields = ["username", "email", "password", "password_confirm"]
-
-// https://github.com/maoberlehner/vuex-map-fields
+const formFields = ['username', 'email', 'password', 'password_confirm']
 
 export default {
   name: "registerComponent",
   computed: {
+    errors () {
+      return this.$store.state.form.errors
+    },
     // Map get() and set(value) for form
     ...mapFields(formFields.map(field => `fields.${field}`)),
+
   },
   // Init Form
   created() {
@@ -116,35 +121,55 @@ export default {
       fields: formFields
     })
   },
+  data() {
+    return {
+      prevUsername: "",
+      prevEmail: ""
+    }
+  },
   // Unmount Form
   unmounted() {
     this.$store.commit(FormMutations.FORM_DESTROY)
   },
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
+    onUsernameFocusout: function () {
+      if (!this.username || this.username === "" || this.username === this.prevUsername) return
 
+      console.log(`Username: ${this.username}`)
+      this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
+
+      this.prevUsername = this.username
+    },
+    onEmailFocusout: function () {
+      if (!this.email || this.email === "" || this.email === this.prevEmail) return
+
+      console.log(`Email: ${this.email}`)
+      this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
+
+      this.prevEmail = this.email
+    },
     submit: function (event) {
       event.preventDefault()
 
-      console.log(this.$store.state.form)
-      // console.log(FORM_ID.REGISTER)
+    console.log(this.$store.state.form.errors)
 
-      // // TODO Implement form handling in later ticket after discussion
-      // if (this.password !== this.password_confirm) {
-      //   return;
-      // }
-      //
-      // const hashed = sha256(this.password);
-      // const formValues = {
-      //   username: this.username,
-      //   email: this.email,
-      //   password: hashed,
-      // };
-      //
-      //
-      // this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
+      if (this.password !== this.password_confirm) {
+        // TODO
+        return;
+      }
+
+      const hashed = sha256(this.password);
+      const formValues = {
+        username: this.username,
+        email: this.email,
+        password: hashed,
+      };
+
+
+      this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
   },
 };
