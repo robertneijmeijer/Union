@@ -59,7 +59,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
           router.push("union");
         } else {
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
-            general: "Something went wrong. Please try again later.",
+            general: i18n.global.t("generalized_error_message"),
           });
         }
       })

@@ -80,7 +80,7 @@
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
             {{ $t("register.already_member")
-            }}<a class="linkText" v-on:click="toLogin" href="">{{
+            }}<a class="link-text" v-on:click="toLogin" href="">{{
               $t("register.sign_in")
             }}</a>
           </div>
@@ -213,7 +213,7 @@ input:focus {
   margin-left: 4px;
 }
 
-.linkText {
+.link-text {
   color: white;
 }
 

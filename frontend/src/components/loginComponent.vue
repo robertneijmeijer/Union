@@ -66,12 +66,12 @@
           <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
 
-            <a class="linkText overpass" href="" v-on:click="toSignUp">
+            <a class="link-text overpass" href="" v-on:click="toSignUp">
               {{ $t("login.sign_up") }}</a
             >
           </div>
           <div class="d-flex justify-content-center">
-            <a class="linkText overpass" href="#">{{
+            <a class="link-text overpass" href="#">{{
               $t("login.forgot_password")
             }}</a>
           </div>
@@ -106,21 +106,6 @@ export default {
         },
       };
       this.$store.dispatch(ActionTypes.LOGIN_ACTION_SUBMIT, user);
-      console.log(this.$store.state);
-      // UserApi.signIn(user)
-      //   .then(response => {
-      //     if (response.status == 200) {
-      //       router.push("union");
-      //     }
-      //     if (response.status == 400){
-      //       this.error = "Incorrect username or password";
-      //     }
-      //   })
-      //   .catch(error => {
-      //     //TODO: Remove on production
-      //     console.log(error);
-      //     this.error = "Something went wrong, please try again later.";
-      //   });
     },
   },
 };
@@ -268,7 +253,7 @@ input:focus {
   margin-left: 4px;
 }
 
-.linkText {
+.link-text {
   color: white;
   user-select: none;
 }
