@@ -134,12 +134,10 @@ export default {
       console.log(formValues);
     },
     upload_banner: function() {
-      console.log("clicked on banner");
-      //TODO: add avatar stuff here
+      // TODO: add avatar stuff here
     },
     upload_avatar: function() {
-      console.log("clicked on avatar");
-      //TODO: add avatar stuff here
+      // TODO: add avatar stuff here
     },
   },
 };
