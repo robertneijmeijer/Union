@@ -1,5 +1,6 @@
 import ApiBase from "@/api/api-base";
 import { AxiosResponse } from "axios";
+import { LoginFormInterface } from "@/actions/user";
 
 export default class UserApi extends ApiBase {
   public static getUsers = (): Promise<any> => {
@@ -8,7 +9,7 @@ export default class UserApi extends ApiBase {
       .catch(error => error);
   };
 
-  public static signIn = (data: any): Promise<AxiosResponse> => {
+  public static signIn = (data: LoginFormInterface): Promise<AxiosResponse> => {
     return UserApi.requestPost("users/login", { data })
       .then(response => response)
       .catch(error => {
