@@ -5,7 +5,7 @@ export enum MutationTypes {
   FORM_INIT = "FORM_INIT",
   FORM_DESTROY = "FORM_DESTROY",
   FORM_SET_ERRORS = "FORM_SET_ERRORS",
-  FORM_UNSET_ERRORS = "FORM_SET_ERRORS",
+  FORM_UNSET_ERRORS = "FORM_UNSET_ERRORS",
 }
 
 export interface FormInitInterface {

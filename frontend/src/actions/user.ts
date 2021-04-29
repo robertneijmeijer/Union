@@ -57,7 +57,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
     UserApi.validateUsernameEmail(values)
       .then() // Do nothing because it succeeded
       .catch(error => {
-        store.commit(MutationTypes.FORM_SET_ERRORS, error.response.data);
+        commit(MutationTypes.FORM_SET_ERRORS, error.response.data);
       });
   },
 };

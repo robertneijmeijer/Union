@@ -59,13 +59,12 @@
               </div>
               <input
                   type="password"
-                  name="pwd-repeat"
+                  name="pwd_repeat"
                   class="form-control input"
                   v-bind:placeholder="$t('register.password_confirm')"
-                  v-model="password_confirm"
+                  v-model="pwd_repeat"
               />
             </div>
-            <div class="text-white">{{ errors || 'test' }}</div>
             <div class="form-group">
               <div class="centerButton">
                 <button
@@ -107,12 +106,8 @@ const formFields = ['username', 'email', 'password', 'password_confirm']
 export default {
   name: "registerComponent",
   computed: {
-    errors () {
-      return this.$store.state.form.errors
-    },
     // Map get() and set(value) for form
     ...mapFields(formFields.map(field => `fields.${field}`)),
-
   },
   // Init Form
   created() {
@@ -137,27 +132,19 @@ export default {
     },
     onUsernameFocusout: function () {
       if (!this.username || this.username === "" || this.username === this.prevUsername) return
-
-      console.log(`Username: ${this.username}`)
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
-
       this.prevUsername = this.username
     },
     onEmailFocusout: function () {
       if (!this.email || this.email === "" || this.email === this.prevEmail) return
-
-      console.log(`Email: ${this.email}`)
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
-
       this.prevEmail = this.email
     },
     submit: function (event) {
       event.preventDefault()
 
-    console.log(this.$store.state.form.errors)
-
-      if (this.password !== this.password_confirm) {
-        // TODO
+      if (this.password !== this.pwd_repeat) {
+        this.$store.commit(FormMutations.FORM_SET_ERRORS, { password: "Passwords do not match" })
         return;
       }
 
@@ -167,7 +154,6 @@ export default {
         email: this.email,
         password: hashed,
       };
-
 
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
