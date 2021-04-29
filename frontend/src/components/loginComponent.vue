@@ -10,7 +10,7 @@
             <div class="input-group-prepend">
               <span
                 class="input-group-text"
-                v-bind:class="{ 'error-input': isError }"
+                v-bind:class="{ 'error-input': errorValue }"
               >
                 <i style="color: #2C2C2C" class="fa fa-user fa-lg center"></i>
               </span>
@@ -25,14 +25,14 @@
           </div>
 
           <div class="error-message overpass" role="alert">
-            {{ error }}
+            {{ errorValue }}
           </div>
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span
                 class="input-group-text"
-                v-bind:class="{ 'error-input': error }"
+                v-bind:class="{ 'error-input': errorValue }"
                 ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
               ></span>
             </div>
@@ -84,14 +84,13 @@
 <script>
 import router from "@/router";
 import { sha256 } from "js-sha256";
-import UserApi from "../api/user";
+import { ActionTypes } from "@/actions/user";
 
 export default {
-  data() {
-    return {
-      error: "",
-      isError: false,
-    };
+  computed: {
+    errorValue() {
+      return this.$store.state.user.errors["general"];
+    },
   },
   methods: {
     toSignUp: function() {
@@ -106,22 +105,22 @@ export default {
           password: hashed,
         },
       };
-
-      UserApi.signIn(user)
-        .then(response => {
-          if (response.status == 200) {
-            router.push("union");
-          }
-          if (response.status == 400){
-            this.error = "Incorrect username or password";
-            this.isError = true;
-          }
-        })
-        .catch(error => {
-          //TODO: Remove on production
-          console.log(error);
-          this.error = "Something went wrong, please try again later.";
-        });
+      this.$store.dispatch(ActionTypes.LOGIN_ACTION_SUBMIT, user);
+      console.log(this.$store.state);
+      // UserApi.signIn(user)
+      //   .then(response => {
+      //     if (response.status == 200) {
+      //       router.push("union");
+      //     }
+      //     if (response.status == 400){
+      //       this.error = "Incorrect username or password";
+      //     }
+      //   })
+      //   .catch(error => {
+      //     //TODO: Remove on production
+      //     console.log(error);
+      //     this.error = "Something went wrong, please try again later.";
+      //   });
     },
   },
 };
@@ -233,7 +232,6 @@ export default {
   background-color: $unionBlue;
   color: black;
   border: 0 !important;
-  margin-top: 5%;
 }
 
 .center {
