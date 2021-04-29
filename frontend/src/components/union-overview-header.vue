@@ -1,91 +1,94 @@
 <template>
-  <div class="row">
-    <div class="image-box">
-      <img
-        class="img-fluid"
-        alt="Responsive image"
-        src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
-      />
-    </div>
+  <div class="header">
+    <img
+      class="header-img"
+      alt="Responsive image"
+      src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+    />
   </div>
-  <div class="row title">
-    <div class="col-3"></div>
-    <div class="col-9 logo">
-      <img
-        id="logo-image"
-        class="logo-image"
-        src="../assets/bitcoin-icon.png"
-      />
-      <h3 class="union-name">TheCryptoUnion</h3>
-      <button id="tag" class="member-tag">
+  <div class="header-title">
+    <div class="header-title-content">
+      <img class="header-title-logo" src="../assets/bitcoin-icon.png" />
+      <h3 class="header-title-text">TheCryptoUnion</h3>
+      <button class="header-title-btn">
         {{ $t("union_overview.joined") }}
       </button>
-      <div style="float: right"><LocaleSwitcher class="switcher" /></div>
     </div>
   </div>
 </template>
 
 <script>
-import LocaleSwitcher from "@/components/localeSwitcher";
-
 export default {
   name: "union-overview-header",
-  components: { LocaleSwitcher },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-@media only screen and (max-width: 626px) {
-  #tag {
-    display: none;
-  }
+.header {
+  display: flex;
 }
 
-.row {
-  max-width: 100vw;
-  margin-left: 0;
-}
-
-.member-tag {
-  border-radius: $borderRadius;
-  width: $buttonwidth;
-  background-color: transparent;
-  border: $buttonBorder white;
-  color: white;
-  margin-left: 30px;
-}
-
-.title {
-  background-color: $darkerGreyColor;
-  height: 80px;
-}
-
-.img-fluid {
-  height: 100%;
+.header-img {
+  max-height: 17em;
   width: 100%;
   object-fit: cover;
 }
 
-.image-box {
-  width: 100%;
-  max-height: 267px;
+.header-title {
+  display: grid;
+  grid-template-columns: 25fr 50fr 25fr;
+  padding: 0 1em;
+  background-color: $darkerGreyColor;
+  height: 5em;
 }
 
-.logo {
-  top: -12px;
+.header-title-content {
+  grid-column-start: 2;
+  grid-column-end: 2;
 }
 
-.union-name {
+.header-title-logo {
+  height: $unionlogo;
+  width: $unionlogo;
+  margin-top: -1em;
+}
+
+.header-title-text {
   display: inline;
   margin-left: 15px;
   color: white;
   font-size: 22px;
 }
 
-.logo-image {
-  height: $unionlogo;
-  width: $unionlogo;
+.header-title-btn {
+  border: 2px solid white;
+  color: white;
+  border-radius: $borderRadius;
+  width: $buttonwidth;
+  padding: 0.1em 0.4em;
+  background-color: transparent;
+
+  margin-left: 30px;
+}
+
+@media only screen and (max-width: 80rem) {
+  .header-title {
+    grid-template-columns: 20fr 60fr 20fr;
+    column-gap: 0;
+  }
+}
+
+@media only screen and (max-width: 65rem) {
+  .uheader-title {
+    grid-template-columns: 10fr 80fr 10fr;
+  }
+}
+
+@media only screen and (max-width: 45rem) {
+  .header-title {
+    grid-template-columns: 0 1fr 0;
+  }
 }
 </style>

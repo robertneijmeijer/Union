@@ -1,114 +1,108 @@
 <template>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-        {{ $t("union_overview.community-info") }}
-      </div>
-      <div class="card-content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis quam
-        ultricies, porta lacus nec, aliquet purus. Proin maximus diam risus, in
-        commodo orci dapibus et. Integer vestibulum enim quis magna lacinia
-        suscipit. Cras molestie, nibh vitae gravida feugiat, dolor nisl
-        imperdiet ex, at scelerisque mi arcu id urna. Fusce lorem ipsum.
-      </div>
-      <div class="com-info">
-        <div class="members">
-          152k
-          <div class="members-sub">{{ $t("union_overview.members") }}</div>
-        </div>
-        <div class="online">
-          195
-          <div class="online-sub">
-            {{ $t("union_overview.online-members") }}
-          </div>
-        </div>
-      </div>
-      <div class="created">{{ $t("union_overview.created") }} 18 dec. 2008</div>
-      <div class="card-action">
-        <button class="create-post">
-          {{ $t("union_overview.create-post") }}
-        </button>
-        <button class="invite">
-          {{ $t("union_overview.invite-members") }}
-        </button>
-      </div>
+  <div class="community">
+    <p class="community-title">{{ $t("union_overview.community-info") }}</p>
+    <p class="community-about">{{ about }}</p>
+    <div class="community-info">
+      <p class="community-members">
+        152k <span>{{ $t("union_overview.members") }}</span>
+      </p>
+      <p class="community-online">
+        195
+        <span>{{ $t("union_overview.online-members") }}</span>
+      </p>
     </div>
+    <p>{{ $t("union_overview.created") }} 18 dec. 2008</p>
+    <button class="community-btn-create-post">
+      {{ $t("union_overview.create-post") }}
+    </button>
+    <button class="community-btn-invite">
+      {{ $t("union_overview.invite-members") }}
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: "union-about-community",
+  data() {
+    return {
+      about:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis quam ultricies, porta lacus nec, aliquet purus. Proin maximus diam risus, in commodo orci dapibus et. Integer vestibulum enim quis magna lacinia suscipit. Cras molestie, nibh vitae gravida feugiat, dolor nisl imperdiet ex, at scelerisque mi arcu id urna. Fusce lorem ipsum.",
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-@font-face {
-  font-family: "Overpass-Regular";
+$whiteWithOpacity: rgba(
+  $color: #ffffff,
+  $alpha: 0.6,
+);
+
+// Ergens is de margin gezet voor alles, wat bad practice is.
+// Kan ook bootstrap zijn met z'n rare dingen: .
+// Kan niet uitvinden waar dit zou zijn.
+* {
+  margin: 0;
 }
 
-.card {
+.community {
+  display: flex;
+  flex-direction: column;
   background-color: #1a1a1b;
-  height: 500px;
-  width: 100%;
-  padding: 8px;
+  padding: 1rem;
+
+  p {
+    color: white;
+    font-family: "Overpass-Regular", sans-serif;
+  }
 }
 
-.card-header {
-  color: white;
-  padding: 6px;
-  opacity: 60%;
-  height: 5vh;
+.community-title {
+  color: $whiteWithOpacity !important;
+  margin-bottom: 2em;
 }
 
-.card-content {
-  color: white;
-  padding: 6px;
-  height: 45vh;
-  overflow: hidden;
+.community-about {
+  margin-bottom: 1em;
 }
 
-.com-info {
-  width: 100%;
-  padding: 6px;
-  border-bottom: 1px solid white;
+.community-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid $whiteWithOpacity;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+
+  span {
+    display: block;
+  }
 }
 
-.members {
-  color: white;
-  float: left;
+.community-members {
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
 
-.online {
-  color: white;
-  text-align: center;
+.ommunity-online {
+  grid-column-start: 2;
+  grid-column-end: 2;
 }
 
-.created {
-  color: white;
-  padding: 6px;
-  margin-top: 10px;
+.community button {
+  padding: 0.5rem;
+  margin-top: 1rem;
 }
 
-.card-action {
-  height: 20vh;
-}
-
-.create-post {
-  margin-top: 10px;
-  width: 100%;
+.community-btn-create-post {
   background-color: #cccccc;
   border-radius: $borderRadius;
-  border: none;
   font-weight: bold;
-  user-select: none;
 }
 
-.invite {
-  width: 100%;
-  margin-top: 15px;
+.community-btn-invite {
   background-color: transparent;
   border: 1px solid #cccccc;
   color: #cccccc;

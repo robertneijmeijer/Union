@@ -53,7 +53,7 @@ export default {
 @import "../assets/theme";
 
 .post {
-  margin-top: 15px;
+  // margin-top: 15px;
 }
 
 .post-info {
@@ -138,7 +138,7 @@ export default {
 
 .table {
   width: 100%;
-  margin-top: 15px;
+  // margin-top: 15px;
 }
 
 .table td:first-child {
