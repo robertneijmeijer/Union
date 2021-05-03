@@ -53,4 +53,14 @@ class LoginAPIView(APIView):
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response = Response(status=status.HTTP_200_OK)
+        response.set_cookie(
+            key='Authentication',
+            value='Bearer ' + serializer.data.get('token'),
+            httponly=True,
+            samesite='none',
+            secure=True,
+        )
+        response.data = serializer.data
+
+        return response

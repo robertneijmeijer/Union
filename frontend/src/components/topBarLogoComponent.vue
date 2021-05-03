@@ -18,7 +18,7 @@ import LocaleSwitcher from "./localeSwitcher";
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function () {
+    onClickImage: function() {
       router.push("/");
     },
   },

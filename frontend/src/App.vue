@@ -17,15 +17,16 @@ export default class App extends Vue {}
 @import "./assets/theme";
 
 @font-face {
-  font-family: "Overpass-Regular";
-  src: local("Overpass-Regular"),
-    url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
-  font-family: "Overpass-Bold";
-  src: local("Overpass-Bold"),
-    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+  font-family: "Overpass";
+  src: url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
+}
+@font-face {
   font-family: "Overpass-SemiBold";
-  src: local("Overpass-SemiBold"),
-    url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Overpass-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Overpass-Bold";
+  src: url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
 }
 
 #app {
@@ -44,6 +45,7 @@ body {
   background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "Numans", sans-serif;
+  height: 100%;
+  font-family: "Overpass", sans-serif;
 }
 </style>

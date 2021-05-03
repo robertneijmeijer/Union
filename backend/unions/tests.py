@@ -16,7 +16,7 @@ class CreateUnion(APITestCase):
         union: Union = Union(name="crypto", description="", members_can_invite=True, creator=self.teun)
         union.save()
 
-        req = self.client.get(f'/unions/', format='json')
+        req = self.client.get(f'/unions', format='json')
 
         self.assertEqual(req.status_code, status.HTTP_200_OK)
 
@@ -36,7 +36,7 @@ class CreateUnion(APITestCase):
             }
         }
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.teun.token)
-        req = self.client.post('/unions/', union_data, format='json')
+        req = self.client.post('/unions', union_data, format='json')
         self.assertEqual(req.status_code, status.HTTP_201_CREATED)
 
     def test_update_union_endpoint(self):

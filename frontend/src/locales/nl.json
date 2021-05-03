@@ -31,7 +31,11 @@
     "sign_in": "Log in",
     "dont_have_account": "Nog geen account?",
     "sign_up": "Aanmelden",
-    "forgot_password": "Wachtwoord vergeten?"
+    "forgot_password": "Wachtwoord vergeten?",
+    "errors": {
+      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord",
+      "generalized_error_message": "Er ging iets fout, probeer later nog eens."
+    }
   },
   "union_overview": {
     "search": "Zoeken",
