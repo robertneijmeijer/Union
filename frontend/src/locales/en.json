@@ -45,5 +45,10 @@
     "invite-members": "Invite Members",
     "created": "Created",
     "joined": "Joined"
+  },
+  "invite": {
+    "invited": "has invited you to",
+    "accept": "Accept",
+    "decline": "Decline"
   }
 }
