@@ -5,6 +5,7 @@ import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
 import unionOverView from "@/views/unionOverviewView.vue";
 import unionOverviewView from "@/views/unionOverviewView.vue";
+import acceptInviteView from "../views/acceptInviteView.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: "/union",
     name: "union-overview",
     component: unionOverviewView,
+  },
+  {
+    path: "/accept",
+    name: "accept-invite",
+    component: acceptInviteView,
   },
 ];
 
