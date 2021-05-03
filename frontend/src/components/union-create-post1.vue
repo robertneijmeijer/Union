@@ -117,11 +117,10 @@ export default {
 .invite-union-name {
   color: white;
   font-size: 24px;
-  font-family: "Overpass-bold";
   margin-top: $paddingMedium * 1.5;
   left: 10%;
   top: 50%;
-  transform: translate(-180%, -40%);
+  transform: translate(-170%, -40%);
   user-select: none;
 }
 
