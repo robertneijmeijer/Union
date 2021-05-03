@@ -3,6 +3,8 @@ import landingPage from "@/views/landingPage.vue";
 import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
+import acceptInviteView from "../views/acceptInviteView.vue";
+import unionOverviewView from "@/views/unionView.vue";
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: "/createunion",
     name: "createunion",
     component: unionCreateView,
+  },
+  {
+    path: "/union",
+    name: "union-overview",
+    component: unionOverviewView,
+  },
+  {
+    path: "/unions/invite/accept",
+    name: "accept-invite",
+    component: acceptInviteView,
   },
 ];
 

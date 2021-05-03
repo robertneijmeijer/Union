@@ -9,3 +9,5 @@ const app = createApp(App).use(i18n);
 app.use(store);
 
 app.use(router).mount("#app");
+
+export { i18n };

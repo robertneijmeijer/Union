@@ -1,8 +1,5 @@
 <template>
-  <div id="app">
-    <landing-page></landing-page>
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -19,11 +16,6 @@ export default class App extends Vue {}
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "./assets/theme";
 
-#app {
-  width: 100%;
-  height: 100%;
-}
-
 @font-face {
   font-family: "Overpass-Regular";
   src: local("Overpass-Regular"),
@@ -36,12 +28,24 @@ export default class App extends Vue {}
     url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
 }
 
+#app {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body {
   background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  font-family: "Numans", sans-serif;
+  font-family: "Overpass", sans-serif;
 }
 </style>

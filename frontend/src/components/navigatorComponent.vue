@@ -1,7 +1,7 @@
 <template>
   <nav class="primary">
     <section class="">
-      <img src="../assets/union.png" height="60" width="170" />
+      <img src="../assets/img/union.png" height="60" width="170" />
     </section>
     <section class="buttons">
       <button v-on:click="toLogin" class="primary">Sign in</button>
@@ -14,7 +14,7 @@ import router from "@/router";
 export default {
   name: "navigator",
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
   },
@@ -25,7 +25,7 @@ export default {
 @import "../assets/theme";
 
 nav.primary {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;

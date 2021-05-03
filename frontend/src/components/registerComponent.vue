@@ -81,9 +81,8 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            {{
-              $t("register.already_member")
-            }}<a class="linkText" v-on:click="toLogin" href="">{{
+            {{ $t("register.already_member")
+            }}<a class="link-text" v-on:click="toLogin" href="">{{
               $t("register.sign_in")
             }}</a>
           </div>
@@ -186,7 +185,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: $buttonHoverColor;
+  background-color: $primary-black;
 }
 
 .registerTitle {
@@ -243,8 +242,8 @@ input:focus {
   margin-top: 10px;
 
   &:hover {
-    background-color: $buttonHoverColor;
-    border: $buttonBorder $buttonHoverColor;
+    background-color: $primary-black;
+    border: $buttonBorder $primary-black;
   }
 }
 
@@ -252,7 +251,7 @@ input:focus {
   margin-left: 4px;
 }
 
-.linkText {
+.link-text {
   color: white;
 }
 
