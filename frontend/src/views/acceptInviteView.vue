@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AcceptInvite from "../components/union-create-post1"
+import AcceptInvite from "../components/inviteAccept"
 import TopBarLogo from "../components/topBarLogoComponent";
 
 export default {

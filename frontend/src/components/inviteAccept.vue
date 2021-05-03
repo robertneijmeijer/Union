@@ -43,7 +43,7 @@ function decline(){
 }
 
 export default {
-  name: "acceptInvite",
+  name: "inviteAccept",
   props: {
     invite: {
       user: String,
