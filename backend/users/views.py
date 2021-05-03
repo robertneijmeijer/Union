@@ -21,7 +21,8 @@ class RegistrationAPIView(APIView):
     def post(self, request):
         try:
             user = request.data.get('user')
-            if user is None: raise Exception
+            if user is None:
+                raise Exception
         except:
             return Response({'errors': "Missing user key or empty body "}, status=status.HTTP_400_BAD_REQUEST)
 
