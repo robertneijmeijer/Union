@@ -2,24 +2,24 @@
   <div class="invite-container invite-center">
     <div class="invite-card">
       <div class="invite-center">
-        <img src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg" alt="Responsive banner"
+        <img :src="getImage(invite.banner)" alt="Responsive banner"
              class="invite-banner">
         <div class="invite-overlay">
-          <img src="../assets/bitcoin-icon.png" alt="Responsive icon" class="invite-icon">
-          <p class="invite-union-name">TheCryptoUnion</p>
+          <img :src="getImage(invite.icon)" alt="Responsive icon" class="invite-icon">
+          <p class="invite-union-name">{{ invite.union }}</p>
         </div>
       </div>
       <div class="invite-center">
         <div class="invite-row">
-          <p class="invite-text">Koen Lippe</p>
+          <p class="invite-text">{{ invite.user }}</p>
           <p class="invite-text">{{ $t("invite.invited") }}</p>
-          <p class="invite-text">UnionName</p>
+          <p class="invite-text">{{ invite.union }}</p>
         </div>
         <div class="invite-buttons">
-          <button class=" btn btn-primary invite-button">
+          <button class=" btn btn-primary invite-button" v-on:click="accept()">
             {{ $t("invite.accept") }}
           </button>
-          <button class=" btn btn-primary invite-button invite-button-decline">
+          <button class=" btn btn-primary invite-button invite-button-decline" v-on:click="decline()">
             {{ $t("invite.decline") }}
           </button>
         </div>
@@ -30,9 +30,33 @@
 
 <script>
 
+function getImage(path){
+  return require(`../assets/${path}`);
+}
+
+function accept(){
+
+}
+
+function decline(){
+
+}
 
 export default {
   name: "acceptInvite",
+  props: {
+    invite: {
+      user: String,
+      union: String,
+      banner: String,
+      icon: String,
+    },
+  },
+  methods:{
+    accept,
+    decline,
+    getImage
+  }
 };
 </script>
 
