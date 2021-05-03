@@ -19,7 +19,9 @@ export default class UserApi extends ApiBase {
       });
   };
 
-  public static signIn = (data: UsernameEmailInterface): Promise<AxiosResponse> => {
+  public static signIn = (
+    data: UsernameEmailInterface
+  ): Promise<AxiosResponse> => {
     return UserApi.requestPost("users/login", { data })
       .then(response => response)
       .catch(error => {

@@ -1,9 +1,9 @@
-import {CommitOptions, createStore, DispatchOptions, Store} from "vuex";
-import {user, UserModuleStateInterface} from "@/store/modules/user";
-import {ActionsInterface as userActions} from "@/actions/user";
-import {MutationsInterface as userMutations} from "@/mutations/user";
-import {MutationsInterface as formMutations} from "@/mutations/form";
-import {form, FormModuleStateInterface} from "@/store/modules/form";
+import { CommitOptions, createStore, DispatchOptions, Store } from "vuex";
+import { user, UserModuleStateInterface } from "@/store/modules/user";
+import { ActionsInterface as userActions } from "@/actions/user";
+import { MutationsInterface as userMutations } from "@/mutations/user";
+import { MutationsInterface as formMutations } from "@/mutations/form";
+import { form, FormModuleStateInterface } from "@/store/modules/form";
 
 // More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
 
@@ -11,8 +11,8 @@ export interface RootState {
   user: UserModuleStateInterface;
   form: FormModuleStateInterface;
 }
-export type MutationTypes = userMutations & formMutations
-export type ActionTypes = userActions
+export type MutationTypes = userMutations & formMutations;
+export type ActionTypes = userActions;
 
 // Override commit and dispatch to only accept our own typings
 export interface StoreInterface
