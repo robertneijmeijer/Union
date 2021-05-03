@@ -121,7 +121,6 @@ export default {
   name: "unionCreate",
   methods: {
     create: function() {
-      router.push("/");
       const formValues = {
         name: this.name,
         description: this.description,
@@ -131,8 +130,8 @@ export default {
         banner: "img",
       };
       UnionApi.postUnion({ union: formValues });
-
-      console.log(formValues);
+      //TODO: Discuss how we are gonna do this. Restrict spaces on name? Add text field for slugified version of name?
+      router.push("/union/" + this.name);
     },
     upload_banner: function() {
       // TODO: add avatar stuff here
@@ -161,6 +160,7 @@ export default {
 .rows {
   display: grid;
   grid-template-columns: 24px 70px 1fr;
+  height: 10%;
 }
 
 .column {
@@ -187,8 +187,10 @@ export default {
   color: $lightGreyColor;
   font-size: 18px;
   margin-right: $paddingMedium;
-  margin-top: -$paddingMedium;
+  margin-top: -44px;
+  margin-left: 114px;
   width: max-content;
+  font-family: Overpass;
 }
 .only-i-invite {
   padding-left: $paddingMedium;
@@ -260,12 +262,18 @@ export default {
 }
 
 .union-card {
-  height: 800px;
+
+  /*bottom: 0;*/
+  /*position: fixed;*/
+
+
   margin-top: auto;
   margin-bottom: auto;
-  width: 1000px;
+  max-width: 1000px;
+  width: 100%;
   background-color: $cardBackgroundColor;
-  border-radius: $borderRadius;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
   font-family: "Overpass-SemiBold";
 }
 
@@ -277,7 +285,7 @@ export default {
 }
 
 .union-create-btn {
-  padding-top: $paddingHuge * 1.5;
+  padding-top: $paddingHuge;
   margin-bottom: 0;
 }
 
@@ -298,9 +306,9 @@ export default {
 
 .white-text {
   color: white;
-  padding-bottom: $paddingSmall;
+  padding-bottom: 5px;
   padding-top: $paddingMedium;
-  font-size: 24px;
+  font-size: 25px;
 }
 
 .welcome-text {
@@ -393,6 +401,10 @@ export default {
 
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+
+p {
+  margin-bottom: 0;
 }
 
 .header-row {

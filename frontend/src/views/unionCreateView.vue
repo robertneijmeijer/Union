@@ -21,8 +21,4 @@ export default {
 #unionCreateView {
   max-height: 100%;
 }
-
-#unionCreateCard {
-  margin-top: 20px;
-}
 </style>
