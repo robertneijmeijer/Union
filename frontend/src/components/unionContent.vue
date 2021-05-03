@@ -66,6 +66,8 @@ export default {
   grid-template-columns: 25fr 50fr 25fr;
   padding: 2em;
   column-gap: 2em;
+  max-width: 120em;
+  margin: 0 auto;
 }
 
 .union-section-post {

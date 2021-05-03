@@ -1,18 +1,20 @@
 <template>
-  <div class="header">
-    <img
-      class="header-img"
-      alt="Responsive image"
-      src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
-    />
-  </div>
-  <div class="header-title">
-    <div class="header-title-content">
-      <img class="header-title-logo" src="../assets/bitcoin-icon.png" />
-      <h3 class="header-title-text">TheCryptoUnion</h3>
-      <button class="header-title-btn">
-        {{ $t("union_overview.joined") }}
-      </button>
+  <div class="header-background">
+    <div class="header">
+      <img
+        class="header-img"
+        alt="Responsive image"
+        src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+      />
+    </div>
+    <div class="header-title">
+      <div class="header-title-content">
+        <img class="header-title-logo" src="../assets/bitcoin-icon.png" />
+        <h3 class="header-title-text">TheCryptoUnion</h3>
+        <button class="header-title-btn">
+          {{ $t("union_overview.joined") }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,8 +28,13 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/theme";
 
+.header-background {
+  background-color: $darkerGreyColor;
+}
+
 .header {
   display: flex;
+  flex: 1;
 }
 
 .header-img {
@@ -38,10 +45,10 @@ export default {
 
 .header-title {
   display: grid;
-  grid-template-columns: 25fr 50fr 25fr;
-  padding: 0 1em;
-  background-color: $darkerGreyColor;
+  grid-template-columns: 22.5fr 55fr 22.5fr;
   height: 5em;
+  max-width: 120em;
+  margin: 0 auto;
 }
 
 .header-title-content {
@@ -75,14 +82,9 @@ export default {
 
 @media only screen and (max-width: 80rem) {
   .header-title {
-    grid-template-columns: 20fr 60fr 20fr;
+    grid-template-columns: 0fr 1fr 0fr;
+    padding: 0 1em;
     column-gap: 0;
-  }
-}
-
-@media only screen and (max-width: 65rem) {
-  .uheader-title {
-    grid-template-columns: 10fr 80fr 10fr;
   }
 }
 

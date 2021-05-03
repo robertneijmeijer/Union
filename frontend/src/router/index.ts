@@ -3,8 +3,8 @@ import landingPage from "@/views/landingPage.vue";
 import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
-import unionOverView from "@/views/unionOverviewView.vue";
-import unionOverviewView from "@/views/unionOverviewView.vue";
+import unionOverView from "@/views/unionView.vue";
+import unionOverviewView from "@/views/unionView.vue";
 
 const routes = [
   {

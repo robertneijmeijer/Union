@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import UnionOverviewHeader from "@/components/union-overview-header";
-import UnionPostOverview from "@/components/union-content-section";
+import UnionOverviewHeader from "@/components/unionHeader";
+import UnionPostOverview from "@/components/unionContent";
 
 export default {
   name: "unionOverviewView",
@@ -15,3 +15,6 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

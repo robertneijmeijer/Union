@@ -39,6 +39,10 @@ export default {
   align-items: baseline;
 }
 
+.primary {
+  background-color: white;
+}
+
 nav.primary {
   position: relative;
   display: flex;
