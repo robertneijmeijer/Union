@@ -13,7 +13,7 @@ class UnionViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         union = request.data.get('union', {})
-        token = request.stream.COOKIES.get('Authentication').replace('Bearer ', '')
+        token = request.stream.COOKIES.get('Authorization').replace('Bearer ', '')
 
         # If token is empty or token is not a string
         if not token or not str(token):

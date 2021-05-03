@@ -55,7 +55,7 @@ class LoginAPIView(APIView):
 
         response = Response(status=status.HTTP_200_OK)
         response.set_cookie(
-            key='Authentication',
+            key='Authorization',
             value='Bearer ' + serializer.data.get('token'),
             httponly=True,
             samesite='none',
