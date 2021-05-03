@@ -1,20 +1,17 @@
 <template>
-  <union-overview-header />
-  <union-post-overview />
+  <UnionHeader />
+  <UnionContent />
 </template>
 
 <script>
-import UnionOverviewHeader from "@/components/unionHeader";
-import UnionPostOverview from "@/components/unionContent";
+import UnionHeader from "@/components/unionHeader";
+import UnionContent from "@/components/unionContent";
 
 export default {
   name: "unionOverviewView",
   components: {
-    UnionPostOverview,
-    UnionOverviewHeader,
+    UnionHeader,
+    UnionContent,
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -6,20 +6,20 @@
         v-for="post of posts"
         v-bind:key="post.id"
       >
-        <union-post-component :post="post"></union-post-component>
+        <UnionPost :post="post" />
       </div>
     </div>
-    <div class="union-section-community"><union-about-community /></div>
+    <div class="union-section-community"><UnionAbout /></div>
   </div>
 </template>
 
 <script>
-import UnionAboutCommunity from "@/components/union-about-community";
-import UnionPostComponent from "@/components/union-post-component";
+import UnionAbout from "@/components/unionCommunity";
+import UnionPost from "@/components/unionPost";
 
 export default {
   name: "union-post-overview",
-  components: { UnionPostComponent, UnionAboutCommunity },
+  components: { UnionPost, UnionAbout },
   data() {
     return {
       posts: [
@@ -84,8 +84,8 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: row;
-  background-color: $blackColor;
   margin-bottom: 1em;
+  background-color: $primary-gray;
 }
 
 @media only screen and (max-width: 80rem) {

@@ -25,7 +25,7 @@ export default {
 @import "../assets/theme";
 
 .locale-switcher {
-  background-color: $buttonHoverColor;
+  background-color:$primary-black;
   color: white;
 }
 </style>

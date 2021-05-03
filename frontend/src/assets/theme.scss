@@ -1,25 +1,38 @@
+// Union stuff
 $landingsPageImage: url("/landingspage.jpg");
 $unionBlue: #00ffff;
+$unionlogo: 4.75em;
+$unionheaderheight: 16.7em;
+
+// Padding
+$paddingSmall: 0.625rem;
+$paddingMedium: 1.25rem;
+$paddingLarge: 1.875rem;
+$paddingHuge: 2.5rem;
+$buttonwidth: 7.5rem;
+
+//Colors
+$primary-black: #2c2c2c;
+$primary-gray: #1a1a1b;
+$secondary-gray: #424242;
+$primary-light-gray: #c8c8c8;
+
+$errorColor: #ff00ff;
+
+// Button stuff
+$primary-btn: $primary-light-gray;
+$primary-btn-hover: #eeeeee;
+
+
+// Input stuff
+$inputTextFieldSelectedBorderColor: #4c4c4d;
+$inputTextFieldBorderColor: #2e2e2e;
+$inputTextfielColor: #6c6d6e;
+
+// Border stuff
 $borderRadius: 33px;
 $borderRadiusInput: 8px;
 $buttonBorder: 3px solid;
-$inputTextFieldSelectedBorderColor: #4c4c4d;
-$inputTextFieldBorderColor: #2e2e2e;
-$cardBackgroundColor: #2c2c2c;
-$errorColor: #ff00ff;
-$buttonHoverColor: #2c2c2c;
-$inputTextfielColor: #6c6d6e;
-$lightGreyColor: #c8c8c8;
-$darkGreyColor: #424242;
-$darkerGreyColor: #1a1a1b;
-$blackColor: #161617;
-$paddingSmall: 10px;
-$paddingMedium: 20px;
-$paddingLarge: 30px;
-$paddingHuge: 40px;
-$buttonwidth: 120px;
-$unionlogo: 76px;
-$unionheaderheight: 267px;
 $borderColor: #343536;
 
 .border-for-div {

@@ -1,11 +1,11 @@
 <template>
   <div class="votes">
     <button>
-      <img src="../assets/up-arrow.png" />
+      <img src="../assets/img/up-arrow.png" />
     </button>
     <p class="votes-amount">603</p>
     <button>
-      <img class="votes-downvote-img" src="../assets/up-arrow.png" />
+      <img class="votes-downvote-img" src="../assets/img/up-arrow.png" />
     </button>
   </div>
 
@@ -81,7 +81,6 @@ td:last-child {
   width: 90%;
   text-align: left;
   vertical-align: top;
-  background-color: $darkerGreyColor;
   padding: 8px;
   position: relative;
 }

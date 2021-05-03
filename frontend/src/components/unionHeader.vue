@@ -4,12 +4,12 @@
       <img
         class="header-img"
         alt="Responsive image"
-        src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+        src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
       />
     </div>
     <div class="header-title">
       <div class="header-title-content">
-        <img class="header-title-logo" src="../assets/bitcoin-icon.png" />
+        <img class="header-title-logo" src="../assets/img/bitcoin-icon.png" />
         <h3 class="header-title-text">TheCryptoUnion</h3>
         <button class="header-title-btn">
           {{ $t("union_overview.joined") }}
@@ -29,7 +29,7 @@ export default {
 @import "../assets/theme";
 
 .header-background {
-  background-color: $darkerGreyColor;
+  background-color: $primary-gray;
 }
 
 .header {

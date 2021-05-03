@@ -97,16 +97,31 @@ $whiteWithOpacity: rgba(
 }
 
 .community-btn-create-post {
-  background-color: #cccccc;
+  background-color: $primary-btn;
   border-radius: $borderRadius;
   font-weight: bold;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $primary-btn-hover;
+    outline: none;
+  }
 }
 
 .community-btn-invite {
   background-color: transparent;
-  border: 1px solid #cccccc;
-  color: #cccccc;
+  border: 1px solid $primary-btn;
+  color: $primary-btn;
   font-weight: bold;
   border-radius: $borderRadius;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $primary-btn-hover;
+    color: $primary-btn-hover;
+    outline: none;
+  }
 }
 </style>
