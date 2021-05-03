@@ -38,6 +38,7 @@ body {
   background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "Numans", sans-serif;
+  height: 100%;
+  font-family: "Overpass", sans-serif;
 }
 </style>

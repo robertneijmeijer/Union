@@ -14,5 +14,6 @@ router.register(r'comments', CommentViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('users', include('users.urls')),
+    path('unions', include('unions.urls')),
     path('admin/', admin.site.urls),
 ]

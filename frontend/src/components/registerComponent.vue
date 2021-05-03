@@ -80,7 +80,7 @@
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
             {{ $t("register.already_member")
-            }}<a class="linkText" v-on:click="toLogin" href="">{{
+            }}<a class="link-text" v-on:click="toLogin" href="">{{
               $t("register.sign_in")
             }}</a>
           </div>
@@ -97,11 +97,11 @@ import { sha256 } from "js-sha256";
 export default {
   name: "registerComponent",
   methods: {
-    toLogin: function () {
+    toLogin: function() {
       router.push("login");
     },
 
-    submit: function (event) {
+    submit: function(event) {
       event.preventDefault();
 
       // TODO Implement form handling in later ticket after dicussion
@@ -147,7 +147,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: $buttonHoverColor;
+  background-color: $cardBackgroundColor;
 }
 
 .registerTitle {
@@ -204,8 +204,8 @@ input:focus {
   margin-top: 10px;
 
   &:hover {
-    background-color: $buttonHoverColor;
-    border: $buttonBorder $buttonHoverColor;
+    background-color: $cardBackgroundColor;
+    border: $buttonBorder $cardBackgroundColor;
   }
 }
 
@@ -213,7 +213,7 @@ input:focus {
   margin-left: 4px;
 }
 
-.linkText {
+.link-text {
   color: white;
 }
 

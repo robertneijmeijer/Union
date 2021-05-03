@@ -24,20 +24,23 @@
     "sign_in": "Sign In"
   },
   "login": {
-    "sign_in_union": "Sign in to Union",
+    "sign_in_union": "Connect to your account",
     "username": "Username",
     "password": "Password",
     "remember_me": "Remember Me",
     "sign_in": "Sign in",
     "dont_have_account": "Don't have an account?",
     "sign_up": "Sign up",
-    "forgot_password": "Forgot your password?"
+"errors": {
+  "incorrect_username_password": "Incorrect username or password",
+  "generalized_error_message": "Something went wrong, please try again later."
+}
   },
   "union_overview": {
     "search": "Search",
     "community-info": "About community",
-    "members": "members",
     "online-members": "online",
+    "members": "members",
     "create-post": "Create Post",
     "invite-members": "Invite Members",
     "created": "Created",

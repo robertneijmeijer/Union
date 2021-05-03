@@ -44,7 +44,7 @@ export default {
     },
   },
   methods: {
-    toComments: function () {},
+    toComments: function() {},
   },
 };
 </script>
