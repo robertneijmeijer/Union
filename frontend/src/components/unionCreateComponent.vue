@@ -126,6 +126,7 @@ export default {
         name: this.name,
         description: this.description,
         members_can_invite: this.members_can_invite,
+        //TODO: Post image with S3
         icon: "img",
         banner: "img",
       };
@@ -411,7 +412,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   color: #c8c8c8;
-  font-family: Overpass;
+  font-family: Overpass-SemiBold;
   border: 3px solid $inputTextFieldBorderColor;
   -webkit-text-fill-color: #c8c8c8;
   -webkit-box-shadow: 0 0 0px 1000px #232323 inset;

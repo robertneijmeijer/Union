@@ -48,4 +48,12 @@ body {
   height: 100%;
   font-family: "Overpass", sans-serif;
 }
+
+textarea:hover,
+textarea:focus {
+  outline: 0 !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  border: 3px solid $inputTextFieldSelectedBorderColor;
+}
 </style>

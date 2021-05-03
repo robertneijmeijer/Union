@@ -13,14 +13,13 @@ class UnionViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         union = request.data.get('union', {})
+        token = request.stream.COOKIES.get('Authentication').replace('Bearer ', '')
 
-        token = request.headers.get('Authorization', {})
-
-        # If its a string and not empty
-        if not str(token) or not token:
-            return Response('No Authorization header present. Header should be: "Authorization: Bearer JWT" ', status=status.HTTP_401_UNAUTHORIZED)
-
-        token = token.replace('Bearer ', '')
+        # If token is empty or token is not a string
+        if not token or not str(token):
+            return Response('User must be logged in. '
+                            'No Authorization cookie present, cookie should be: "Authorization: Bearer JWT" ',
+                            status=status.HTTP_401_UNAUTHORIZED)
 
         # Retrieve user_id from JWT
         user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
