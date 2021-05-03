@@ -43,7 +43,7 @@ jobs:
       - name: Run lint
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          autopep8 --diff -r -v . --max-line-length 127
+          autopep8 --in-place -r -v . --max-line-length 127
 
       - name: Run migrations
         run: python manage.py migrate
