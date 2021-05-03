@@ -16,10 +16,10 @@
           <p class="invite-text">{{ invite.union }}</p>
         </div>
         <div class="invite-buttons">
-          <button class=" btn btn-primary invite-button" v-on:click="accept()">
+          <button class="btn btn-primary invite-button" v-on:click="accept()">
             {{ $t("invite.accept") }}
           </button>
-          <button class=" btn btn-primary invite-button invite-button-decline" v-on:click="decline()">
+          <button class="btn btn-primary invite-button invite-button-decline" v-on:click="decline()">
             {{ $t("invite.decline") }}
           </button>
         </div>
