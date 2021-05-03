@@ -272,8 +272,7 @@ export default {
   max-width: 1000px;
   width: 100%;
   background-color: $cardBackgroundColor;
-  border-top-left-radius: $borderRadius;
-  border-top-right-radius: $borderRadius;
+  border-radius: $borderRadius;
   font-family: "Overpass-SemiBold";
 }
 
