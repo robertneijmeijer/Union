@@ -2,10 +2,10 @@
   <div class="invite-container invite-center">
     <div class="invite-card">
       <div class="invite-center">
-        <img :src="getImage(invite.banner)" alt="Responsive banner"
+        <img v-bind:src="getImage(invite.banner)" alt="Responsive banner"
              class="invite-banner">
         <div class="invite-overlay">
-          <img :src="getImage(invite.icon)" alt="Responsive icon" class="invite-icon">
+          <img v-bind:src="getImage(invite.icon)" alt="Responsive icon" class="invite-icon">
           <p class="invite-union-name">{{ invite.union }}</p>
         </div>
       </div>
@@ -31,7 +31,7 @@
 <script>
 
 function getImage(path){
-  return require(`../assets/${path}`);
+  return require(`../assets/img/${path}`);
 }
 
 function accept(){
@@ -121,7 +121,7 @@ export default {
   margin-top: $paddingMedium * 1.5;
   left: 10%;
   top: 50%;
-  transform: translate(-160%, -40%);
+  transform: translate(-180%, -40%);
   user-select: none;
 }
 
