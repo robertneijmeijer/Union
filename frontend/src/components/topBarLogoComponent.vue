@@ -3,7 +3,7 @@
     <section class="">
       <div class="row">
         <div @click="onClickImage">
-          <img src="../assets/union.png" height="60" width="170" />
+          <img src="../assets/img/union.png" height="60" width="170" />
         </div>
         <LocaleSwitcher class="switcher" />
       </div>
@@ -18,7 +18,7 @@ import LocaleSwitcher from "./localeSwitcher";
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function() {
+    onClickImage: function () {
       router.push("/");
     },
   },
@@ -37,6 +37,10 @@ export default {
   padding-left: $paddingSmall;
   padding-top: $paddingSmall;
   align-items: baseline;
+}
+
+.primary {
+  background-color: white;
 }
 
 nav.primary {

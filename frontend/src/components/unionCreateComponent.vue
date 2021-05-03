@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center h-100">
       <div class="header-row">
         <h1 class="welcome-text">{{ $t("union_create.welcome") }}</h1>
-        <img src="../assets/union.svg" />
+        <img src="../assets/svg/union.svg" />
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
@@ -48,7 +48,7 @@
                 />
                 <label for="onlyMe"></label>
               </div>
-              <img src="../assets/singleEnvelope.svg" class="top-envelope" />
+              <img src="../assets/svg/singleEnvelope.svg" class="top-envelope" />
 
               <h6 class="only-i-invite horizontal-padding">
                 {{ $t("union_create.only_i") }}
@@ -66,7 +66,7 @@
                 <label for="everyone"></label>
               </div>
               <img
-                src="../assets/multipleEnvelope.svg"
+                src="../assets/svg/multipleEnvelope.svg"
                 class="bottom-envelopes"
               />
               <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
@@ -76,7 +76,7 @@
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
               <div class="circle">
                 <img
-                  src="../assets/imageIcon.svg"
+                  src="../assets/svg/imageIcon.svg"
                   class="image-upload"
                   v-on:click="upload_avatar()"
                 />
@@ -86,7 +86,7 @@
               <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
                 <img
-                  src="../assets/imageIcon.svg"
+                  src="../assets/svg/imageIcon.svg"
                   class="image-upload"
                   v-on:click="upload_banner()"
                 />
@@ -133,10 +133,10 @@ export default {
       //TODO: Discuss how we are gonna do this. Restrict spaces on name? Add text field for slugified version of name?
       router.push("/union/" + this.name);
     },
-    upload_banner: function() {
+    upload_banner: function () {
       // TODO: add avatar stuff here
     },
-    upload_avatar: function() {
+    upload_avatar: function () {
       // TODO: add avatar stuff here
     },
   },
@@ -153,7 +153,7 @@ export default {
 
 .required {
   margin-left: auto;
-  color: $lightGreyColor;
+  color: $primary-light-gray;
   user-select: none;
 }
 
@@ -184,7 +184,7 @@ export default {
 }
 
 .max-invites {
-  color: $lightGreyColor;
+  color: $primary-light-gray;
   font-size: 18px;
   margin-right: $paddingMedium;
   margin-top: -44px;
@@ -202,7 +202,7 @@ export default {
 .circle {
   width: 100px;
   height: 100px;
-  background-color: $darkGreyColor;
+  background-color: $secondary-gray;
   border-radius: $borderRadius * 3;
   display: grid;
   place-items: center;
@@ -211,7 +211,7 @@ export default {
 .banner-image {
   width: 350px;
   height: 100px;
-  background-color: $darkGreyColor;
+  background-color: $secondary-gray;
   border-radius: $borderRadius;
   display: grid;
   place-items: center;
@@ -269,9 +269,8 @@ export default {
 
   margin-top: auto;
   margin-bottom: auto;
-  max-width: 1000px;
-  width: 100%;
-  background-color: $cardBackgroundColor;
+  width: 1000px;
+  background-color: $primary-black;
   border-radius: $borderRadius;
   font-family: "Overpass-SemiBold";
 }
@@ -299,8 +298,8 @@ export default {
   border-radius: 33px;
 
   &:hover {
-    background-color: $cardBackgroundColor;
-    border: $buttonBorder $cardBackgroundColor;
+    background-color: $primary-black;
+    border: $buttonBorder $primary-black;
   }
 }
 
@@ -371,7 +370,7 @@ export default {
 }
 
 .round label {
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
   border: 2px solid #c4c4c4;
   border-radius: 50%;
   cursor: pointer;
@@ -385,7 +384,7 @@ export default {
 .round label:after {
   height: 25px;
   width: 25px;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
   border-radius: 50%;
   display: inline-block;
 }
@@ -396,7 +395,7 @@ export default {
 
 .round input[type="radio"]:checked + label {
   border: 8px solid #00ffff;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
 }
 
 .round input[type="checkbox"]:checked + label:after {
