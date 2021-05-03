@@ -22,7 +22,11 @@
                   v-on:focusout="onUsernameFocusout"
               />
             </div>
+            <div v-if="formErrors.username" class="error-message overpass" role="alert">
+              {{ formErrors.username }}
+            </div>
             <div class="input-group form-group">
+
               <div class="input-group-prepend">
                 <span class="input-group-text white"
                 ><i class="fa fa-envelope fa-lg unique"></i
@@ -37,6 +41,10 @@
                   v-on:focusout="onEmailFocusout"
               />
             </div>
+            <div v-if="formErrors.email" class="error-message overpass" role="alert">
+              {{ formErrors.email }}
+            </div>
+
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
@@ -107,6 +115,9 @@ export default {
   computed: {
     // Map get() and set(value) for form
     ...mapFields(formFields.map(field => `fields.${field}`)),
+    formErrors() {
+      return this.$store.state.form.errors;
+    },
   },
   // Init Form
   created() {
@@ -161,6 +172,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../assets/theme";
+
+.error-input {
+  background-color: $errorColor !important;
+}
 
 .container {
   height: 100%;

@@ -16,7 +16,9 @@
   "register": {
     "sign_up": "Sign up to Union",
     "username": "Enter Username",
+    "username_already_taken": "Username already taken",
     "email": "Enter Email",
+    "email_already_taken": "Email already taken",
     "password": "Enter Password",
     "password_confirm": "Repeat Password",
     "register": "Register",

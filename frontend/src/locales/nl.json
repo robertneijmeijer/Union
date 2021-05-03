@@ -16,7 +16,9 @@
   "register": {
     "sign_up": "Meld je aan bij Union",
     "username": "Vul je gebruikersnaam in",
+    "username_already_taken": "Gebruikersnaam is al in gebruik",
     "email": "Vul je email in",
+    "email_already_taken": "Email is al in gebruik",
     "password": "Vul je wachtwoord in",
     "password_confirm": "Herhaal wachtwoord",
     "register": "Registreren",
