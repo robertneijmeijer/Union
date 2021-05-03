@@ -31,10 +31,10 @@
     "sign_in": "Sign in",
     "dont_have_account": "Don't have an account?",
     "sign_up": "Sign up",
-"errors": {
-  "incorrect_username_password": "Incorrect username or password",
-  "generalized_error_message": "Something went wrong, please try again later."
-}
+    "errors": {
+      "incorrect_username_password": "Incorrect username or password",
+      "generalized_error_message": "Something went wrong, please try again later."
+    }
   },
   "union_overview": {
     "search": "Search",
@@ -43,7 +43,7 @@
     "members": "members",
     "create-post": "Create Post",
     "invite-members": "Invite Members",
-    "created": "Created at",
+    "created": "Created",
     "joined": "Joined"
   }
 }

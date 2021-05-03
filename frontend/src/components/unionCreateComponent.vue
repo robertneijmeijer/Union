@@ -1,111 +1,109 @@
 <template>
-  <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="header-row">
-        <h1 class="welcome-text">{{ $t("union_create.welcome") }}</h1>
-        <img src="../assets/union.svg" />
-        <h1 class="welcome-text">!</h1>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center h-100">
-      <div class="union-card">
-        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
-        <p class="createTitle">{{ $t("union_create.create_community") }}</p>
-        <div class="union-card-body">
-          <div class="column-left">
-            <h4 class="white-text overpass-bold">
-              {{ $t("union_create.name") }}
-            </h4>
-            <input
-              type="text"
-              name="usernameId"
-              class="form-control name-height input"
-              v-model="name"
-            />
-            <h4 class="white-text overpass-bold">
-              {{ $t("union_create.description") }}
-            </h4>
-            <textarea
-              size="lg"
-              type="text"
-              name="description"
-              class="form-control input description-height"
-              v-model="description"
-            />
-          </div>
-          <div class="column-right">
-            <h4 class="white-text overpass-bold">
-              {{ $t("union_create.invite_privilege") }}
-            </h4>
-            <div class="rows">
-              <div class="round">
-                <input
-                  type="radio"
-                  id="onlyMe"
-                  name="invitePrivilege"
-                  v-model="members_can_invite"
-                  v-bind:value="false"
-                />
-                <label for="onlyMe"></label>
-              </div>
-              <img src="../assets/singleEnvelope.svg" class="top-envelope" />
+  <div class="create">
+    <h1>
+      {{ $t("union_create.welcome") }}
+      <span><img src="../assets/svg/union.svg" /></span> !
+    </h1>
+  </div>
 
-              <h6 class="only-i-invite horizontal-padding">
-                {{ $t("union_create.only_i") }}
-              </h6>
-            </div>
-            <div class="rows">
-              <div class="round">
-                <input
-                  type="radio"
-                  id="everyone"
-                  name="invitePrivilege"
-                  v-model="members_can_invite"
-                  v-bind:value="true"
-                />
-                <label for="everyone"></label>
-              </div>
-              <img
-                src="../assets/multipleEnvelope.svg"
-                class="bottom-envelopes"
+  <div class="d-flex justify-content-center h-100 create-content">
+    <div class="union-card">
+      <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
+      <p class="createTitle">{{ $t("union_create.create_community") }}</p>
+      <div class="union-card-body">
+        <div class="column-left">
+          <h4 class="white-text overpass-bold">
+            {{ $t("union_create.name") }}
+          </h4>
+          <input
+            type="text"
+            name="usernameId"
+            class="form-control name-height input"
+            v-model="name"
+          />
+          <h4 class="white-text overpass-bold">
+            {{ $t("union_create.description") }}
+          </h4>
+          <textarea
+            size="lg"
+            type="text"
+            name="description"
+            class="form-control input description-height"
+            v-model="description"
+          />
+        </div>
+        <div class="column-right">
+          <h4 class="white-text overpass-bold">
+            {{ $t("union_create.invite_privilege") }}
+          </h4>
+          <div class="rows">
+            <div class="round">
+              <input
+                type="radio"
+                id="onlyMe"
+                name="invitePrivilege"
+                v-model="members_can_invite"
+                v-bind:value="false"
               />
-              <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
-              <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
+              <label for="onlyMe"></label>
             </div>
-            <div>
-              <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
-              <div class="circle">
-                <img
-                  src="../assets/imageIcon.svg"
-                  class="image-upload"
-                  v-on:click="upload_avatar()"
-                />
-              </div>
+            <img src="../assets/svg/singleEnvelope.svg" class="top-envelope" />
+
+            <h6 class="only-i-invite horizontal-padding">
+              {{ $t("union_create.only_i") }}
+            </h6>
+          </div>
+          <div class="rows">
+            <div class="round">
+              <input
+                type="radio"
+                id="everyone"
+                name="invitePrivilege"
+                v-model="members_can_invite"
+                v-bind:value="true"
+              />
+              <label for="everyone"></label>
             </div>
-            <div>
-              <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
-              <div class="banner-image">
-                <img
-                  src="../assets/imageIcon.svg"
-                  class="image-upload"
-                  v-on:click="upload_banner()"
-                />
-              </div>
+            <img
+              src="../assets/svg/multipleEnvelope.svg"
+              class="bottom-envelopes"
+            />
+            <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
+            <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
+          </div>
+          <div>
+            <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
+            <div class="circle">
+              <img
+                src="../assets/svg/imageIcon.svg"
+                class="image-upload"
+                v-on:click="upload_avatar()"
+              />
+            </div>
+          </div>
+          <div>
+            <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
+            <div class="banner-image">
+              <img
+                src="../assets/svg/imageIcon.svg"
+                class="image-upload"
+                v-on:click="upload_banner()"
+              />
             </div>
           </div>
         </div>
-        <div class="union-card-footer">
-          <div class="form-group">
-            <div class="text-center union-create-btn">
-              <button
-                class="btn btn-primary create-union"
-                type="submit"
-                name="login-button"
-                v-on:click="create()"
-              >
-                {{ $t("union_create.create_button") }}
-              </button>
-            </div>
+      </div>
+      <div class="union-card-footer">
+        <div class="form-group">
+          <div class="text-center union-create-btn">
+            <button
+              class="btn btn-primary create-union"
+              type="submit"
+              name="login-button"
+              v-on:click="create()"
+            >
+              {{ $t("union_create.create_button") }}
+            </button>
           </div>
         </div>
       </div>
@@ -120,7 +118,7 @@ import UnionApi from "../api/union";
 export default {
   name: "unionCreate",
   methods: {
-    create: function() {
+    create: function () {
       const formValues = {
         name: this.name,
         description: this.description,
@@ -133,10 +131,10 @@ export default {
       //TODO: Discuss how we are gonna do this. Restrict spaces on name? Add text field for slugified version of name?
       router.push("/union/" + this.name);
     },
-    upload_banner: function() {
+    upload_banner: function () {
       // TODO: add avatar stuff here
     },
-    upload_avatar: function() {
+    upload_avatar: function () {
       // TODO: add avatar stuff here
     },
   },
@@ -146,14 +144,36 @@ export default {
 <style lang="scss">
 @import "../assets/theme";
 
-.container {
-  height: 100%;
-  align-content: center;
+.create {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+
+  h1 {
+    color: white;
+    font-size: 3rem;
+    font-family: "Overpass-SemiBold", serif;
+  }
+
+  span {
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.create-union {
+  font-size: 24px;
+}
+
+.create-content {
+  margin: auto;
 }
 
 .required {
   margin-left: auto;
-  color: $lightGreyColor;
+  color: $primary-light-gray;
   user-select: none;
 }
 
@@ -184,7 +204,7 @@ export default {
 }
 
 .max-invites {
-  color: $lightGreyColor;
+  color: $primary-light-gray;
   font-size: 18px;
   margin-right: $paddingMedium;
   margin-top: -44px;
@@ -202,7 +222,7 @@ export default {
 .circle {
   width: 100px;
   height: 100px;
-  background-color: $darkGreyColor;
+  background-color: $secondary-gray;
   border-radius: $borderRadius * 3;
   display: grid;
   place-items: center;
@@ -211,7 +231,7 @@ export default {
 .banner-image {
   width: 350px;
   height: 100px;
-  background-color: $darkGreyColor;
+  background-color: $secondary-gray;
   border-radius: $borderRadius;
   display: grid;
   place-items: center;
@@ -262,16 +282,13 @@ export default {
 }
 
 .union-card {
-
   /*bottom: 0;*/
   /*position: fixed;*/
 
-
   margin-top: auto;
   margin-bottom: auto;
-  max-width: 1000px;
-  width: 100%;
-  background-color: $cardBackgroundColor;
+  width: 1000px;
+  background-color: $primary-black;
   border-radius: $borderRadius;
   font-family: "Overpass-SemiBold";
 }
@@ -289,33 +306,11 @@ export default {
   margin-bottom: 0;
 }
 
-.create-union {
-  width: 250px;
-  border-radius: $borderRadius;
-  border: $buttonBorder $unionBlue;
-  color: white;
-  background: transparent;
-  font-size: 24px;
-  border-radius: 33px;
-
-  &:hover {
-    background-color: $cardBackgroundColor;
-    border: $buttonBorder $cardBackgroundColor;
-  }
-}
-
 .white-text {
   color: white;
   padding-bottom: 5px;
   padding-top: $paddingMedium;
   font-size: 25px;
-}
-
-.welcome-text {
-  color: white;
-  padding-bottom: $paddingLarge;
-  font-size: 48px;
-  font-family: "Overpass-SemiBold", serif;
 }
 
 .overpass-regular {
@@ -371,7 +366,7 @@ export default {
 }
 
 .round label {
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
   border: 2px solid #c4c4c4;
   border-radius: 50%;
   cursor: pointer;
@@ -385,7 +380,7 @@ export default {
 .round label:after {
   height: 25px;
   width: 25px;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
   border-radius: 50%;
   display: inline-block;
 }
@@ -396,7 +391,7 @@ export default {
 
 .round input[type="radio"]:checked + label {
   border: 8px solid #00ffff;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
 }
 
 .round input[type="checkbox"]:checked + label:after {

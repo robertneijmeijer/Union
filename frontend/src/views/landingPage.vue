@@ -33,7 +33,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/landingspage.jpg");
+  background-image: url("../assets/img/landingspage.jpg");
   background-repeat: no-repeat;
   background-position: 10% center;
   background-size: 40rem auto;
