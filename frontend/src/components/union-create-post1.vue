@@ -80,7 +80,7 @@ export default {
   height: 100%;
   max-width: 1000px;
   width: 100%;
-  background-color: $cardBackgroundColor;
+  background-color: $secondary-gray;
   border-radius: $borderRadiusSmall;
 }
 
@@ -90,7 +90,7 @@ export default {
   max-height: 200px;
   height: 100%;
   border-radius: $borderRadiusSmall;
-  margin-top: $paddingExtreme;
+  margin-top: $paddingHuge;
 }
 
 .invite-text {
@@ -133,7 +133,7 @@ export default {
 .invite-buttons {
   display: flex;
   flex-direction: row;
-  padding-top: $paddingExtreme;
+  padding-top: $paddingHuge;
 }
 
 .invite-button {
