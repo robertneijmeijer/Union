@@ -1,7 +1,7 @@
 <template>
   <nav class="primary">
     <section class="">
-      <img src="../assets/union.png" height="60" width="170" />
+      <img src="../assets/img/union.png" height="60" width="170" />
     </section>
     <section class="buttons">
       <button class="primary">Sign in</button>
