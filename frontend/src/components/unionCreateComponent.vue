@@ -48,7 +48,10 @@
                 />
                 <label for="onlyMe"></label>
               </div>
-              <img src="../assets/svg/singleEnvelope.svg" class="top-envelope" />
+              <img
+                src="../assets/svg/singleEnvelope.svg"
+                class="top-envelope"
+              />
 
               <h6 class="only-i-invite horizontal-padding">
                 {{ $t("union_create.only_i") }}
