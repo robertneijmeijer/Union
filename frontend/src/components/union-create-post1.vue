@@ -10,13 +10,17 @@
         </div>
       </div>
       <div class="invite-center">
-        <p class="invite-text">Koen Lippe has invited you to UnionName</p>
+        <div class="invite-row">
+          <p class="invite-text">Koen Lippe</p>
+          <p class="invite-text">{{ $t("invite.invited") }}</p>
+          <p class="invite-text">UnionName</p>
+        </div>
         <div class="invite-buttons">
           <button class=" btn btn-primary invite-button">
-            Accept
+            {{ $t("invite.accept") }}
           </button>
           <button class=" btn btn-primary invite-button invite-button-decline">
-            Decline
+            {{ $t("invite.decline") }}
           </button>
         </div>
       </div>
@@ -72,6 +76,7 @@ export default {
   padding-top: $paddingMedium;
   margin-top: $paddingLarge;
   margin-bottom: $paddingSmall;
+  margin-left: $paddingSmall;
 }
 
 .invite-icon {
@@ -81,7 +86,7 @@ export default {
   height: 100%;
   left: 10%;
   top: 50%;
-  transform: translate(-400%,-50%);
+  transform: translate(-400%, -50%);
   margin-top: $paddingMedium;
 }
 
@@ -92,7 +97,7 @@ export default {
   margin-top: $paddingMedium * 1.5;
   left: 10%;
   top: 50%;
-  transform: translate(-160%,-40%);
+  transform: translate(-160%, -40%);
   user-select: none;
 }
 
@@ -108,7 +113,7 @@ export default {
 }
 
 .invite-button {
-  max-width: 120px;
+  max-width: 150px;
   border-radius: $borderRadius;
   border: $buttonBorder $unionBlue;
   color: white;
@@ -121,5 +126,10 @@ export default {
 
 .invite-button-decline {
   border: $buttonBorder $errorColor;
+}
+
+.invite-row {
+  display: flex;
+  flex-direction: row;
 }
 </style>

@@ -46,5 +46,10 @@
     "invite-members": "Nodig uit",
     "created": "Aangemakt op",
     "joined": "Toegetreden"
+  },
+  "invite": {
+    "invited": "heeft je uitgenodigd op",
+    "accept": "Accepteren",
+    "decline": "Afwijzen"
   }
 }
