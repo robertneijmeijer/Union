@@ -15,7 +15,7 @@ class InvitationTests(APITestCase):
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
 
-    def test_create_union_endpoint(self):
+    def test_create_invitation_endpoint(self):
         invitation_data = {
             "union_id": self.union.union_id
         }

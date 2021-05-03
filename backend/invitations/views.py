@@ -2,24 +2,30 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from authentication.backends import JWTAuthentication
 from invitations.serializers import InvitationSerializer
+from project import settings
 
 
 class InvitationsAPIView(APIView):
     serializer_class = InvitationSerializer
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        # TODO: error handling
-        union_id = request.data['union_id']
+        try:
+            union_id = request.data['union_id']
+        except KeyError:
+            return Response({'errors': "Missing union_id key"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # TODO: parse jwt
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         creation_data = {
             'union': union_id,
-            'invite_creator': 1
+            'invite_creator': user.user_id
         }
 
         serializer = self.serializer_class(data=creation_data)
