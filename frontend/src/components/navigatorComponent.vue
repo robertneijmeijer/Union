@@ -14,7 +14,7 @@ import router from "@/router";
 export default {
   name: "navigator",
   methods: {
-    toLogin: function () {
+    toLogin: function() {
       router.push("login");
     },
   },
@@ -25,7 +25,7 @@ export default {
 @import "../assets/theme";
 
 nav.primary {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
