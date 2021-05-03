@@ -8,6 +8,6 @@ unionRouter = routers.DefaultRouter()
 unionRouter.register(r'', UnionViewSet)
 
 urlpatterns = [
-    path('/invite', InvitationsAPIView.as_view()),
     path('', include(unionRouter.urls)),
+    path('/invite', InvitationsAPIView.as_view()),
 ]

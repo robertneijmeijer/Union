@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'unions',
-    'comments'
+    'comments',
+    'invitations'
 ]
 
 REST_FRAMEWORK = {

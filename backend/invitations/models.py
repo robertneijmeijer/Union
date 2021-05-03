@@ -9,16 +9,13 @@ from users.models import User
 # TODO: Check indexing
 class Invitation(models.Model):
     invite_id = models.AutoField(primary_key=True)
-    invite_creator_id = models.ForeignKey(User, on_delete=models.PROTECT, null=False)
-    invite_acceptor_id = models.ForeignKey(User, on_delete=models.PROTECT)
-    union_id = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
-    token = models.CharField()
+    invite_creator = models.ForeignKey(User, on_delete=models.PROTECT, null=False, related_name='invite_creator')
+    invite_acceptor = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='invite_acceptor', )
+    union = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
+    token = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    accepted_at = models.DateTimeField()
+    accepted_at = models.DateTimeField(null=True)
 
-    def _accepted(self):
-        return self.accepted_at is not None
-        # TODO: Test this function
-
-    def _generate_invite_token(self):
-        return "TODO"
+    @staticmethod
+    def generate_invite_token():
+        return "TODO:CREATE_TOKEN"
