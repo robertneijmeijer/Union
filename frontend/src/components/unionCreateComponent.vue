@@ -284,7 +284,8 @@ export default {
 }
 
 .union-create-btn {
-  padding-top: $paddingHuge;
+  padding-top: $paddingMedium;
+  padding-bottom: $paddingMedium;
   margin-bottom: 0;
 }
 
