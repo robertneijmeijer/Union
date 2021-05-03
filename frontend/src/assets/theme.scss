@@ -1,15 +1,15 @@
 $landingsPageImage: url("/landingspage.jpg");
-$unionBlue: #00FFFF;
+$unionBlue: #00ffff;
 $borderRadius: 33px;
 $borderRadiusInput: 8px;
 $buttonBorder: 3px solid;
-$inputTextFieldSelectedBorderColor: #4C4C4D;
-$inputTextFieldBorderColor: #2E2E2E;
-$cardBackgroundColor: #2C2C2C;
-$errorColor: #FF00FF;
-$buttonHoverColor: #2C2C2C;
-$inputTextfielColor: #6C6D6E;
-$lightGreyColor: #C8C8C8;
+$inputTextFieldSelectedBorderColor: #4c4c4d;
+$inputTextFieldBorderColor: #2e2e2e;
+$cardBackgroundColor: #2c2c2c;
+$errorColor: #ff00ff;
+$buttonHoverColor: #2c2c2c;
+$inputTextfielColor: #6c6d6e;
+$lightGreyColor: #c8c8c8;
 $darkGreyColor: #424242;
 $darkerGreyColor: #1a1a1b;
 $blackColor: #161617;
@@ -20,3 +20,10 @@ $paddingHuge: 40px;
 $buttonwidth: 120px;
 $unionlogo: 76px;
 $unionheaderheight: 267px;
+$borderColor: #343536;
+
+.border-for-div {
+  border: 1px solid $borderColor;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="community">
+  <div class="community border-for-div">
     <p class="community-title">{{ $t("union_overview.community-info") }}</p>
     <p class="community-about">{{ about }}</p>
     <div class="community-info">

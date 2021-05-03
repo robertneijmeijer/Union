@@ -28,6 +28,13 @@ export default class App extends Vue {}
     url("./assets/fonts/Overpass-Bold.ttf") format("truetype");
 }
 
+#app {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;

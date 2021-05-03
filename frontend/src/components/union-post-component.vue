@@ -1,34 +1,21 @@
 <template>
-  <div class="post">
-    <table class="table">
-      <tr>
-        <td class="votes">
-          <div>
-            <button class="upvote-button">
-              <img class="upvote-image" src="../assets/up-arrow.png" />
-            </button>
-          </div>
-          <div class="vote-amount">
-            <span>603</span>
-          </div>
-          <div>
-            <button class="downvote-button">
-              <img class="downvote-image" src="../assets/up-arrow.png" />
-            </button>
-          </div>
-        </td>
-        <td class="post-content">
-          <span class="post-info">{{ post.info }}</span>
-          <h4 class="post-title">{{ post.title }}</h4>
-          <div class="post-text">{{ post.content }}</div>
-          <div class="comments-amount">
-            <a class="comments-link" href="" v-on:click="toComments">
-              {{ post.comments }}</a
-            >
-          </div>
-        </td>
-      </tr>
-    </table>
+  <div class="votes">
+    <button>
+      <img src="../assets/up-arrow.png" />
+    </button>
+    <p class="votes-amount">603</p>
+    <button>
+      <img class="votes-downvote-img" src="../assets/up-arrow.png" />
+    </button>
+  </div>
+
+  <div class="table-post-content">
+    <p class="table-post-info">{{ post.info }}</p>
+    <h4>{{ post.title }}</h4>
+    <p class="table-post-text">{{ post.content }}</p>
+    <div class="table-comments-amount">
+      <a href="" v-on:click="toComments">{{ post.comments }}</a>
+    </div>
   </div>
 </template>
 
@@ -43,26 +30,23 @@ export default {
       comments: String,
     },
   },
-  methods: {
-    toComments: function() {},
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-.post {
-  // margin-top: 15px;
+p,
+h4,
+a {
+  color: white;
 }
 
-.post-info {
-  color: white;
-  opacity: 60%;
-}
-
-.vote-amount {
-  color: white;
+td:first-child,
+td:last-child {
+  border-spacing: 0;
+  border-radius: 6px 0 0 6px;
+  border: none;
 }
 
 .votes {
@@ -70,10 +54,30 @@ export default {
   height: 250px;
   vertical-align: top;
   text-align: center;
-  background-color: $blackColor;
+
+  button {
+    background-color: transparent;
+    border: none;
+  }
+
+  img {
+    background-color: transparent;
+    height: 20px;
+  }
 }
 
-.post-content {
+.votes-amount {
+  margin: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  color: $unionBlue;
+}
+
+.votes-downvote-img {
+  transform: rotate(180deg);
+}
+
+.table-post-content {
   width: 90%;
   text-align: left;
   vertical-align: top;
@@ -82,74 +86,26 @@ export default {
   position: relative;
 }
 
-.upvote-button {
-  background-color: transparent;
-  border: none;
-}
-
-.upvote-image {
-  background-color: transparent;
-  height: 20px;
-}
-
-.downvote-button {
-  background-color: transparent;
-  border: none;
-}
-
-.downvote-image {
-  background-color: transparent;
-  height: 20px;
-  transform: rotate(180deg);
-}
-
-.vote-amount {
-  margin: 7px;
-  text-align: center;
-  font-weight: bold;
-  color: $unionBlue;
-}
-
-.post-title {
-  color: white;
+.table-post-info {
   font-weight: bold;
   margin-top: 5px;
+  opacity: 60%;
 }
 
-.post-text {
+.table-post-text {
   width: 100%;
   overflow: hidden;
-  color: white;
   height: auto;
   max-height: 150px;
 }
 
-.comments-amount {
+.table-comments-amount {
   width: 100%;
-  position: absolute;
   bottom: 0;
   margin-bottom: 5px;
-}
 
-.comments-link {
-  color: white;
-  opacity: 60%;
-}
-
-.table {
-  width: 100%;
-  // margin-top: 15px;
-}
-
-.table td:first-child {
-  border-spacing: 0;
-  border-radius: 6px 0 0 6px;
-  border: none;
-}
-
-.table td:last-child {
-  border-spacing: 0;
-  border-radius: 0 6px 6px 0;
-  border: none;
+  a {
+    opacity: 60%;
+  }
 }
 </style>

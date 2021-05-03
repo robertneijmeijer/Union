@@ -1,7 +1,11 @@
 <template>
   <div class="union-section">
     <div class="union-section-post">
-      <div v-for="post of posts" v-bind:key="post.id">
+      <div
+        class="union-section-post-comment border-for-div"
+        v-for="post of posts"
+        v-bind:key="post.id"
+      >
         <union-post-component :post="post"></union-post-component>
       </div>
     </div>
@@ -60,8 +64,8 @@ export default {
 .union-section {
   display: grid;
   grid-template-columns: 25fr 50fr 25fr;
-  padding: 1em;
-  column-gap: 1em;
+  padding: 2em;
+  column-gap: 2em;
 }
 
 .union-section-post {
@@ -74,19 +78,21 @@ export default {
   grid-column-end: 3;
 }
 
+.union-section-post-comment {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: $blackColor;
+  margin-bottom: 1em;
+}
+
 @media only screen and (max-width: 80rem) {
   .union-section {
-    grid-template-columns: 20fr 60fr 20fr;
+    grid-template-columns: 5fr 90fr 5fr;
     column-gap: 0;
   }
   .union-section-community {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 65rem) {
-  .union-section {
-    grid-template-columns: 10fr 80fr 10fr;
   }
 }
 
