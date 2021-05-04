@@ -66,10 +66,10 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
           let translation = value;
           switch (key) {
             case "username":
-              translation = i18n.global.t("register.username_already_taken");
+              translation = i18n.global.t("register.errors.username_already_taken");
               break;
             case "email":
-              translation = i18n.global.t("register.email_already_taken");
+              translation = i18n.global.t("register.errors.email_already_taken");
               break;
           }
           return { [key]: translation };

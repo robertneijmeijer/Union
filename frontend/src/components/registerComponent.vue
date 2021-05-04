@@ -7,6 +7,9 @@
         </div>
         <div class="card-body">
           <form>
+            <div v-if="formErrors.username" class="error-message overpass" role="alert">
+              {{ formErrors.username }}
+            </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"
@@ -23,11 +26,10 @@
                   v-on:focusout="onUsernameFocusout"
               />
             </div>
-            <div v-if="formErrors.username" class="error-message overpass" role="alert">
-              {{ formErrors.username }}
+            <div v-if="formErrors.email" class="error-message overpass" role="alert">
+              {{ formErrors.email }}
             </div>
             <div class="input-group form-group">
-
               <div class="input-group-prepend">
                 <span class="input-group-text white"
                       v-bind:class="{ 'error-input': formErrors.email }"
@@ -43,13 +45,13 @@
                   v-on:focusout="onEmailFocusout"
               />
             </div>
-            <div v-if="formErrors.email" class="error-message overpass" role="alert">
-              {{ formErrors.email }}
+            <div v-if="formErrors.password" class="error-message overpass" role="alert">
+              {{ formErrors.password }}
             </div>
-
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
+                      v-bind:class="{ 'error-input': formErrors.password }"
                 ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
@@ -64,6 +66,7 @@
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
+                      v-bind:class="{ 'error-input': formErrors.password }"
                 ><i class="fa fa-lock fa-lg center"></i
                 ></span>
               </div>
@@ -108,6 +111,7 @@ import {ActionTypes} from "@/actions/user";
 import {MutationTypes as FormMutations} from "@/mutations/form";
 import {sha256} from "js-sha256";
 import {FORM_ID} from "@/store/modules/form";
+import { i18n } from "@/main";
 
 const {mapFields} = require("vuex-map-fields");
 
@@ -159,7 +163,9 @@ export default {
       event.preventDefault()
 
       if (this.password !== this.pwd_repeat) {
-        this.$store.commit(FormMutations.FORM_SET_ERRORS, {password: "Passwords do not match"})
+        this.$store.commit(
+            FormMutations.FORM_SET_ERROR,
+            {key: "password", value: i18n.global.t("register.errors.passwords_do_not_match")});
         return;
       }
 
@@ -180,6 +186,10 @@ export default {
 
 .error-input {
   background-color: $errorColor !important;
+}
+
+.error-message {
+  margin-bottom: $paddingSmall / 3;
 }
 
 .container {

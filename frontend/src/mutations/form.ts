@@ -5,6 +5,7 @@ export enum MutationTypes {
   FORM_INIT = "FORM_INIT",
   FORM_DESTROY = "FORM_DESTROY",
   FORM_SET_ERRORS = "FORM_SET_ERRORS",
+  FORM_SET_ERROR = "FORM_SET_ERROR",
   FORM_UNSET_ERROR = "FORM_UNSET_ERROR",
   FORM_UNSET_ERRORS = "FORM_UNSET_ERRORS",
 }
@@ -15,6 +16,11 @@ export interface FormInitInterface {
 }
 
 export interface FormErrorInterface {
+  key: string,
+  value: string
+}
+
+export interface FormErrorsInterface {
   [key: string]: string;
 }
 
@@ -33,7 +39,11 @@ export interface MutationsInterface {
   ): void;
   [MutationTypes.FORM_SET_ERRORS](
     state: FormModuleState,
-    payload: FormErrorInterface
+    payload: FormErrorsInterface
+  ): void;
+  [MutationTypes.FORM_SET_ERROR](
+      state: FormModuleState,
+      payload: FormErrorInterface
   ): void;
   [MutationTypes.FORM_UNSET_ERROR](state: FormModuleState, key: string): void;
   [MutationTypes.FORM_UNSET_ERRORS](state: FormModuleState): void;
@@ -59,9 +69,16 @@ export const mutations: MutationTree<FormModuleState> & MutationsInterface = {
     state.fields = undefined;
     state.errors = {};
   },
-  [MutationTypes.FORM_SET_ERRORS](
+  [MutationTypes.FORM_SET_ERROR](
     state: FormModuleState,
     payload: FormErrorInterface
+  ) {
+    if(!state.errors) return
+    state.errors[payload.key] = payload.value
+  },
+  [MutationTypes.FORM_SET_ERRORS](
+      state: FormModuleState,
+      payload: FormErrorsInterface
   ) {
     state.errors = payload;
   },

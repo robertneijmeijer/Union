@@ -12,13 +12,13 @@ export interface MutationsInterface {
 export const mutations: MutationTree<UserState> & MutationsInterface = {
   [ActionTypes.REGISTER_ACTION_SUBMIT](state: UserState) {
     state.isFetching = true;
-    state.errors = {};
   },
   [ActionTypes.REGISTER_ACTION_SUCCESS](state: UserState, payload: any) {
     state.isFetching = false;
+    state.errors = {}
   },
   [ActionTypes.REGISTER_ACTION_FAILED](state: UserState, payload: any) {
-    state.errors = payload;
+    state.errors = { ...state.errors, ...payload};
     state.isFetching = false;
   },
   [ActionTypes.LOGIN_ACTION_SUBMIT](state: UserState) {
