@@ -161,6 +161,7 @@ export default {
     },
     submit: function (event) {
       event.preventDefault()
+      this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
 
       if (this.password !== this.pwd_repeat) {
         this.$store.commit(
