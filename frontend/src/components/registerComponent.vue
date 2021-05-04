@@ -210,14 +210,6 @@ export default {
   color: black;
 }
 
-.card {
-  height: 410px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  background-color: $primary-black;
-}
-
 .registerTitle {
   color: white;
   text-align: center;
