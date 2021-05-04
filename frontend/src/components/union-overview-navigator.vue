@@ -5,7 +5,7 @@
         <img
           id="union-logo"
           class="img-fluid"
-          src="../assets/union_logo.png"
+          src="../assets/img/union_logo.png"
           max-height="60"
           max-width="70"
           alt=""
@@ -23,7 +23,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <img class="dropdown-logo" src="../assets/bitcoin-icon.png" />
+                <img class="dropdown-logo" src="../assets/img/bitcoin-icon.png" />
                 TheCryptoUnion
               </button>
             </div>

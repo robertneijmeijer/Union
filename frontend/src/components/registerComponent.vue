@@ -97,11 +97,11 @@ import { sha256 } from "js-sha256";
 export default {
   name: "registerComponent",
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("login");
     },
 
-    submit: function(event) {
+    submit: function (event) {
       event.preventDefault();
 
       // TODO Implement form handling in later ticket after dicussion
@@ -147,7 +147,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
 }
 
 .registerTitle {
@@ -204,8 +204,8 @@ input:focus {
   margin-top: 10px;
 
   &:hover {
-    background-color: $cardBackgroundColor;
-    border: $buttonBorder $cardBackgroundColor;
+    background-color: $primary-black;
+    border: $buttonBorder $primary-black;
   }
 }
 

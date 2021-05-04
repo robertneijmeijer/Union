@@ -1,22 +1,45 @@
+// Union stuff
 $landingsPageImage: url("/landingspage.jpg");
-$unionBlue: #00FFFF;
+$unionBlue: #00ffff;
+$unionlogo: 4.75em;
+$unionheaderheight: 16.7em;
+
+// Padding
+$paddingSmall: 0.625rem;
+$paddingMedium: 1.25rem;
+$paddingLarge: 1.875rem;
+$paddingHuge: 2.5rem;
+$buttonwidth: 7.5rem;
+
+//Colors
+$primary-black: #2c2c2c;
+$primary-gray: #1a1a1b;
+$secondary-gray: #424242;
+$primary-light-gray: #c8c8c8;
+
+$errorColor: #ff00ff;
+
+// Button stuff
+$primary-btn: $primary-light-gray;
+$primary-btn-hover: #eeeeee;
+$primary-btn-active: $unionBlue;
+$secondary-btn-active: $errorColor;
+
+// Input stuff
+$inputTextFieldSelectedBorderColor: #4c4c4d;
+$inputTextFieldBorderColor: #2e2e2e;
+$inputTextfielColor: #6c6d6e;
+
+// Border stuff
 $borderRadius: 33px;
+$borderRadiusSmall: 20px;
 $borderRadiusInput: 8px;
 $buttonBorder: 3px solid;
-$inputTextFieldSelectedBorderColor: #4C4C4D;
-$inputTextFieldBorderColor: #2E2E2E;
-$cardBackgroundColor: #2C2C2C;
-$errorColor: #FF00FF;
-$buttonHoverColor: #2C2C2C;
-$inputTextfielColor: #6C6D6E;
-$lightGreyColor: #C8C8C8;
-$darkGreyColor: #424242;
-$darkerGreyColor: #1a1a1b;
-$blackColor: #161617;
-$paddingSmall: 10px;
-$paddingMedium: 20px;
-$paddingLarge: 30px;
-$paddingHuge: 40px;
-$buttonwidth: 120px;
-$unionlogo: 76px;
-$unionheaderheight: 267px;
+$borderColor: #343536;
+
+.border-for-div {
+  border: 1px solid $borderColor;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+

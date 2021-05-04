@@ -42,9 +42,14 @@
     "community-info": "Over de community",
     "members": "leden",
     "online-members": "online",
-    "create-post": "Creeër post",
+    "create-post": "Gecreëerd",
     "invite-members": "Nodig uit",
     "created": "Aangemakt op",
     "joined": "Toegetreden"
+  },
+  "invite": {
+    "invited": "heeft je uitgenodigd op",
+    "accept": "Accepteren",
+    "decline": "Afwijzen"
   }
 }

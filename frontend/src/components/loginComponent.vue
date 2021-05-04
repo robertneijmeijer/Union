@@ -12,7 +12,7 @@
                 class="input-group-text"
                 v-bind:class="{ 'error-input': errorValue }"
               >
-                <i style="color: #2C2C2C" class="fa fa-user fa-lg center"></i>
+                <i style="color: #2c2c2c" class="fa fa-user fa-lg center"></i>
               </span>
             </div>
             <input
@@ -33,7 +33,7 @@
               <span
                 class="input-group-text"
                 v-bind:class="{ 'error-input': errorValue }"
-                ><i style="color: #2C2C2C" class="fa fa-lock fa-lg center"></i
+                ><i style="color: #2c2c2c" class="fa fa-lock fa-lg center"></i
               ></span>
             </div>
             <input
@@ -52,7 +52,7 @@
           <div class="form-group">
             <div class="text-center loginbtn">
               <button
-                class="btn btn-primary login "
+                class="btn btn-primary login"
                 type="submit"
                 name="login-button"
                 v-on:click="signIn"
@@ -93,10 +93,10 @@ export default {
     },
   },
   methods: {
-    toSignUp: function() {
+    toSignUp: function () {
       router.push("register");
     },
-    signIn: function(e) {
+    signIn: function (e) {
       e.preventDefault();
       const hashed = sha256(this.password);
       const user = {
@@ -133,7 +133,7 @@ export default {
   margin-bottom: auto;
   max-width: 450px;
   width: 100%;
-  background-color: $cardBackgroundColor;
+  background-color: $primary-black;
   border-radius: 20px;
 }
 
@@ -166,13 +166,13 @@ export default {
     width: 8px;
     height: 14px;
     border-style: solid;
-    border-color: $cardBackgroundColor;
+    border-color: $primary-black;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
     opacity: 0;
   }
   &:checked {
-    color: $cardBackgroundColor;
+    color: $primary-black;
     border-color: $unionBlue;
     background: $unionBlue;
     &::before {
@@ -203,8 +203,8 @@ export default {
   margin-top: 10%;
 
   &:hover {
-    background-color: $cardBackgroundColor;
-    border: $buttonBorder $cardBackgroundColor;
+    background-color: $primary-black;
+    border: $buttonBorder $primary-black;
   }
 }
 
