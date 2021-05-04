@@ -50,8 +50,9 @@ class InvitationTests(APITestCase):
     def test_create_with_invalid_union(self):
         res, res_body = self.perform_request(self.koen, 9999)
 
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        # str() to flatten json
+        print(res_body)
+
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue("The given union does not exist" in str(res_body))
 
     def test_create_with_user_not_in_union(self):
