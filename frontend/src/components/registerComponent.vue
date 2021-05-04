@@ -32,9 +32,9 @@
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text white"
-                      v-bind:class="{ 'error-input': formErrors.email }"
-                ><i class="fa fa-envelope fa-lg unique"></i
-                ></span>
+                      v-bind:class="{ 'error-input': formErrors.email }">
+                  <i class="fa fa-envelope fa-lg unique"></i>
+                </span>
               </div>
               <input
                   type="text"
@@ -51,9 +51,9 @@
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                      v-bind:class="{ 'error-input': formErrors.password }"
-                ><i class="fa fa-lock fa-lg center"></i
-                ></span>
+                      v-bind:class="{ 'error-input': formErrors.password }">
+                  <i class="fa fa-lock fa-lg center"></i>
+                </span>
               </div>
               <input
                   type="password"
@@ -66,9 +66,9 @@
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text black"
-                      v-bind:class="{ 'error-input': formErrors.password }"
-                ><i class="fa fa-lock fa-lg center"></i
-                ></span>
+                      v-bind:class="{ 'error-input': formErrors.password }">
+                  <i class="fa fa-lock fa-lg center"></i>
+                </span>
               </div>
               <input
                   type="password"
