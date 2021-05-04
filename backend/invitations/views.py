@@ -34,7 +34,6 @@ class InvitationsAPIView(APIView):
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
-
             if type(e) is PermissionError:
                 return Response(str(e), status=status.HTTP_403_FORBIDDEN)
             elif type(e) is ValidationError:
@@ -42,7 +41,9 @@ class InvitationsAPIView(APIView):
                     return Response(str(e), status=status.HTTP_404_NOT_FOUND)
                 else:
                     return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
-            # Value errors will be thrown below
+
+            # Error went through all catches
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         serializer.save()
         serialized_data = serializer.data
