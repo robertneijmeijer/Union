@@ -25,7 +25,12 @@
     "errors": {
       "username_already_taken": "Username already taken",
       "email_already_taken": "Email already taken",
-      "passwords_do_not_match":  "Passwords do not match"
+      "email_not_valid": "Please fill in a valid email",
+      "password_not_valid": "Password must contain eight characters, at least one letter, one number and one special character",
+      "minimum_characters": "must contain at least %s characters",
+      "username": "Username",
+      "password": "Password",
+      "passwords_do_not_match": "Passwords do not match"
     }
   },
   "login": {
