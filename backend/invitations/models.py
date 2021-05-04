@@ -19,3 +19,8 @@ class Invitation(models.Model):
     @staticmethod
     def generate_invite_token():
         return "TODO:CREATE_TOKEN"
+    def __str__(self):
+        status = "Open"
+        if self.accepted_at is not None:
+            status = "Accepted"
+        return str(self.union.name) + " - " + self.token + " - " + status

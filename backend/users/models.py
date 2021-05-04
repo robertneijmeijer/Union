@@ -83,3 +83,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+
+    def __str__(self):
+        return str(self.user_id) + " - " + self.username
