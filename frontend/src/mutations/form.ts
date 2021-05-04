@@ -16,8 +16,8 @@ export interface FormInitInterface {
 }
 
 export interface FormErrorInterface {
-  key: string,
-  value: string
+  key: string;
+  value: string;
 }
 
 export interface FormErrorsInterface {
@@ -42,8 +42,8 @@ export interface MutationsInterface {
     payload: FormErrorsInterface
   ): void;
   [MutationTypes.FORM_SET_ERROR](
-      state: FormModuleState,
-      payload: FormErrorInterface
+    state: FormModuleState,
+    payload: FormErrorInterface
   ): void;
   [MutationTypes.FORM_UNSET_ERROR](state: FormModuleState, key: string): void;
   [MutationTypes.FORM_UNSET_ERRORS](state: FormModuleState): void;
@@ -73,12 +73,12 @@ export const mutations: MutationTree<FormModuleState> & MutationsInterface = {
     state: FormModuleState,
     payload: FormErrorInterface
   ) {
-    if(!state.errors) return
-    state.errors[payload.key] = payload.value
+    if (!state.errors) return;
+    state.errors[payload.key] = payload.value;
   },
   [MutationTypes.FORM_SET_ERRORS](
-      state: FormModuleState,
-      payload: FormErrorsInterface
+    state: FormModuleState,
+    payload: FormErrorsInterface
   ) {
     state.errors = payload;
   },
