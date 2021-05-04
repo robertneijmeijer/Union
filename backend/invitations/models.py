@@ -3,6 +3,9 @@ from django.db import models
 from unions.models import Union
 from users.models import User
 
+import uuid
+
+
 # Create your models here.
 
 # TODO: Check cascading
@@ -18,7 +21,8 @@ class Invitation(models.Model):
 
     @staticmethod
     def generate_invite_token():
-        return "TODO:CREATE_TOKEN"
+        return uuid.uuid1()
+
     def __str__(self):
         status = "Open"
         if self.accepted_at is not None:

@@ -1,6 +1,9 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from invitations.models import Invitation
+from unions.models import Union
+from users.models import User
 
 
 class InvitationSerializer(serializers.ModelSerializer):
@@ -9,16 +12,33 @@ class InvitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invitation
         fields = ['union', 'invite_creator', 'invite_token']
+        extra_kwargs = {"union": {"error_messages": {"does_not_exist": "The given union does not exist"}}}
 
-    def get_invite_token(self, invitation: Invitation):
+    @staticmethod
+    def get_invite_token(invitation: Invitation):
         return invitation.token
 
-    # def validate(self, attrs):
-    #     # TODO: Do validations here
-    #     # TODO Validate if union has invites left
-    #     # TODO Validate if invite has already been used?
-    #     # TODO Validate if the union even exists
-    #     pass
+    def validate(self, data):
+        # TODO Validate if union has invites left -> spec
+        union: Union = data["union"]
+        invite_creator: User = data["invite_creator"]
+        user_in_union = len(union.union_users.filter(user_id=invite_creator.user_id)) > 0
+
+        if user_in_union is False or invite_creator.user_id is not union.creator.user_id:
+            raise ValidationError(
+                # TODO: Is this something for validate()? this might be more of constraint instead of validation?
+                # TODO: This was no 401 can be thrown from the API
+                'This user cannot create an invite for this union'
+            )
+
+        if invite_creator is not union.creator and union.members_can_invite is False:
+            # User is not the creator and members_can_invite=False
+            # so no invite can be created by this invite_creator
+            raise ValidationError(
+                'Only the admin can invite for this union'
+            )
+
+        return data
 
     def create(self, validated_data):
         token = Invitation.generate_invite_token()
