@@ -39,6 +39,8 @@ function isValidUsername(username: string): validatorResponse {
             i18n.global.t("register.errors.minimum_characters").replace("%s", MINIMUM_LENGTH.toString());
     }
 
+    //Can add more username checks here
+
     return response;
 }
 

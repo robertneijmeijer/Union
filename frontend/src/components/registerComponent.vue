@@ -111,7 +111,8 @@ import {ActionTypes} from "@/actions/user";
 import {MutationTypes as FormMutations} from "@/mutations/form";
 import {sha256} from "js-sha256";
 import {FORM_ID} from "@/store/modules/form";
-import { i18n } from "@/main";
+import {i18n} from "@/main";
+import {isValidEmail, isValidUsername, isValidPassword, validatorResponse} from "../validation/validation";
 
 const {mapFields} = require("vuex-map-fields");
 
@@ -136,7 +137,10 @@ export default {
   data() {
     return {
       prevUsername: "",
-      prevEmail: ""
+      prevEmail: "",
+      validUsername: validatorResponse,
+      validEmail: validatorResponse,
+      validPassword: validatorResponse,
     }
   },
   // Unmount Form
@@ -149,12 +153,16 @@ export default {
     },
     onUsernameFocusout: function () {
       if (!this.username || this.username === "" || this.username === this.prevUsername) return
+      this.validUsername = isValidUsername(this.username);
+      if (!this.validUsername.isValid) return;
       this.$store.commit(FormMutations.FORM_UNSET_ERROR, "username");
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
       this.prevUsername = this.username
     },
     onEmailFocusout: function () {
       if (!this.email || this.email === "" || this.email === this.prevEmail) return
+      this.validEmail = isValidEmail(this.email);
+      if(!this.validEmail.isValid) return;
       this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
       this.prevEmail = this.email
