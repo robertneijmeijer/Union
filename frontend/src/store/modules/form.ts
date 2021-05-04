@@ -2,7 +2,7 @@ import { Module } from "vuex";
 // @ts-ignore -> there are no types for this
 import { getField, updateField } from "vuex-map-fields";
 import { RootState } from "@/store/store";
-import { mutations } from "@/mutations/form";
+import {FormErrorInterface, FormFieldsInterface, mutations} from "@/mutations/form";
 
 export enum FORM_ID {
   REGISTER = "REGISTER",
@@ -10,8 +10,8 @@ export enum FORM_ID {
 
 export interface FormModuleStateInterface {
   formId: FORM_ID | undefined;
-  fields: {} | undefined;
-  errors: {} | undefined;
+  fields: FormFieldsInterface | undefined;
+  errors: FormErrorInterface | undefined;
 }
 
 export type FormModuleState = FormModuleStateInterface;

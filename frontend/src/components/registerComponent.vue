@@ -9,7 +9,8 @@
           <form>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">
+                <span class="input-group-text"
+                      v-bind:class="{ 'error-input': formErrors.username }">
                   <i class="fa fa-user fa-lg center black"></i>
                 </span>
               </div>
@@ -29,6 +30,7 @@
 
               <div class="input-group-prepend">
                 <span class="input-group-text white"
+                      v-bind:class="{ 'error-input': formErrors.email }"
                 ><i class="fa fa-envelope fa-lg unique"></i
                 ></span>
               </div>
@@ -89,7 +91,8 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            {{ $t("register.already_member")
+            {{
+              $t("register.already_member")
             }}<a class="link-text" v-on:click="toLogin" href="">{{
               $t("register.sign_in")
             }}</a>
@@ -101,9 +104,9 @@
 </template>
 <script>
 import router from "@/router";
-import { ActionTypes } from "@/actions/user";
+import {ActionTypes} from "@/actions/user";
 import {MutationTypes as FormMutations} from "@/mutations/form";
-import { sha256 } from "js-sha256";
+import {sha256} from "js-sha256";
 import {FORM_ID} from "@/store/modules/form";
 
 const {mapFields} = require("vuex-map-fields");
@@ -142,11 +145,13 @@ export default {
     },
     onUsernameFocusout: function () {
       if (!this.username || this.username === "" || this.username === this.prevUsername) return
+      this.$store.commit(FormMutations.FORM_UNSET_ERROR, "username");
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
       this.prevUsername = this.username
     },
     onEmailFocusout: function () {
       if (!this.email || this.email === "" || this.email === this.prevEmail) return
+      this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_VALIDATE, {username: this.username, email: this.email});
       this.prevEmail = this.email
     },
@@ -154,7 +159,7 @@ export default {
       event.preventDefault()
 
       if (this.password !== this.pwd_repeat) {
-        this.$store.commit(FormMutations.FORM_SET_ERRORS, { password: "Passwords do not match" })
+        this.$store.commit(FormMutations.FORM_SET_ERRORS, {password: "Passwords do not match"})
         return;
       }
 
