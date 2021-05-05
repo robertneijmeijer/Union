@@ -18,7 +18,7 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text"
-                  v-bind:class="{ 'error-input': formErrors.username }"
+                  v-bind:class="{ 'error-input': formErrors.username || !validUsername.isValid }"
                 >
                   <i class="fa fa-user fa-lg center black"></i>
                 </span>
@@ -43,7 +43,7 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text white"
-                  v-bind:class="{ 'error-input': formErrors.email }"
+                  v-bind:class="{ 'error-input': formErrors.email || !validEmail.isValid }"
                 >
                   <i class="fa fa-envelope fa-lg unique"></i>
                 </span>
