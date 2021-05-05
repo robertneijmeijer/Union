@@ -58,17 +58,17 @@
               />
             </div>
             <div
-              v-if="formErrors.password"
+              v-if="formErrors.password || !validPassword.isValid"
               class="error-message overpass"
               role="alert"
             >
-              {{ formErrors.password }}
+              {{ getPasswordErrorMessage() }}
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span
                   class="input-group-text black"
-                  v-bind:class="{ 'error-input': formErrors.password }"
+                  v-bind:class="{ 'error-input': formErrors.password || !validPassword.isValid }"
                 >
                   <i class="fa fa-lock fa-lg center"></i>
                 </span>
@@ -79,13 +79,14 @@
                 class="form-control input"
                 v-bind:placeholder="$t('register.password')"
                 v-model="password"
+                v-on:focusout="onPasswordFocusout"
               />
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span
                   class="input-group-text black"
-                  v-bind:class="{ 'error-input': formErrors.password }"
+                  v-bind:class="{ 'error-input': formErrors.password || !validPassword.isValid }"
                 >
                   <i class="fa fa-lock fa-lg center"></i>
                 </span>
@@ -131,7 +132,7 @@ import { MutationTypes as FormMutations } from "@/mutations/form";
 import { sha256 } from "js-sha256";
 import { FORM_ID } from "@/store/modules/form";
 import { i18n } from "@/main";
-import { isValidEmail, isValidUsername } from "../validation/validation";
+import { isValidEmail, isValidUsername, isValidPassword } from "../validation/validation";
 import ValidatorResponse from "../validation/validation";
 
 const { mapFields } = require("vuex-map-fields");
@@ -155,6 +156,7 @@ export default {
     });
     this.validUsername = { isValid: true, message: "" };
     this.validEmail = { isValid: true, message: "" };
+    this.validPassword = { isValid: true, message: "" };
   },
   data() {
     return {
@@ -162,6 +164,7 @@ export default {
       prevEmail: "",
       validUsername: ValidatorResponse,
       validEmail: ValidatorResponse,
+      validPassword: ValidatorResponse,
       username: "",
       email: "",
       password: "",
@@ -203,6 +206,9 @@ export default {
       });
       this.prevEmail = this.email;
     },
+    onPasswordFocusout: function (){
+      this.validPassword = isValidPassword(this.password);
+    },
     submit: function(event) {
       event.preventDefault();
       this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
@@ -232,13 +238,19 @@ export default {
       }
     },
     getEmailErrorMessage: function() {
-      console.log("EMAIL ERROR")
       if (!this.validEmail.isValid) {
         return this.validEmail.message;
       } else {
         return this.formErrors.email;
       }
     },
+    getPasswordErrorMessage: function () {
+      if (!this.validPassword.isValid) {
+        return this.validPassword.message;
+      } else {
+        return this.formErrors.password;
+      }
+    }
   },
 };
 </script>
