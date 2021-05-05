@@ -6,7 +6,7 @@ export interface ValidatorResponse {
 }
 const MINIMUM_LENGTH: number = 6;
 
-function isValidLength(string: string): ValidatorResponse {
+export function isValidLength(string: string): ValidatorResponse {
   const response: ValidatorResponse = { isValid: false, message: "" };
   if (string.length >= MINIMUM_LENGTH) {
     response.isValid = true;
@@ -14,7 +14,7 @@ function isValidLength(string: string): ValidatorResponse {
   return response;
 }
 
-function isValidEmail(email: string): ValidatorResponse {
+export function isValidEmail(email: string): ValidatorResponse {
   const response: ValidatorResponse = { isValid: true, message: "" };
   // regex from: https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression
   const regex: RegExp = RegExp(
@@ -35,7 +35,7 @@ function isValidEmail(email: string): ValidatorResponse {
   return response;
 }
 
-function isValidUsername(username: string): ValidatorResponse {
+export function isValidUsername(username: string): ValidatorResponse {
   const response: ValidatorResponse = { isValid: false, message: "" };
   const regex: String = "";
 
@@ -54,7 +54,7 @@ function isValidUsername(username: string): ValidatorResponse {
   return response;
 }
 
-function isValidPassword(password: string): ValidatorResponse {
+export function isValidPassword(password: string): ValidatorResponse {
   const response: ValidatorResponse = {
     isValid: false,
     message: i18n.global.t("register.errors.password_not_valid"),
@@ -69,5 +69,3 @@ function isValidPassword(password: string): ValidatorResponse {
   }
   return response;
 }
-
-export default { isValidEmail, isValidUsername, isValidPassword };

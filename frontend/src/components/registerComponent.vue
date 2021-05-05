@@ -132,6 +132,7 @@ import { sha256 } from "js-sha256";
 import { FORM_ID } from "@/store/modules/form";
 import { i18n } from "@/main";
 import { isValidEmail, isValidUsername } from "../validation/validation";
+import ValidatorResponse from "../validation/validation";
 
 const { mapFields } = require("vuex-map-fields");
 
@@ -159,8 +160,8 @@ export default {
     return {
       prevUsername: "",
       prevEmail: "",
-      validUsername: { },
-      validEmail: { },
+      validUsername: ValidatorResponse,
+      validEmail: ValidatorResponse,
       username: "",
       email: "",
       password: "",
@@ -175,7 +176,6 @@ export default {
       router.push("login");
     },
     onUsernameFocusout: function() {
-      console.log(this.username)
       if (
         !this.username ||
         this.username === "" ||
