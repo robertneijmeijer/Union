@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import unionOverviewNavigator from "@/components/union-overview-navigator";
 import UnionOverviewHeader from "@/components/union-overview-header";
 import UnionPostOverview from "@/components/union-content-section";
+import UnionOverviewNavigator from "@/components/union-overview-navigator";
 
 export default {
   name: "unionOverviewView",
   components: {
+    UnionOverviewNavigator,
     UnionPostOverview,
     UnionOverviewHeader,
-    unionOverviewNavigator,
   },
 };
 </script>

@@ -1,154 +1,122 @@
 <template>
-  <div class="flex">
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">
-        <img
-          id="union-logo"
-          class="img-fluid"
-          src="../assets/union_logo.png"
-          max-height="60"
-          max-width="70"
-          alt=""
-        />
-      </a>
-      <div class="collapse navbar-collapse" id="navbar-content">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li>
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle dropdownButton"
-                type="button"
-                id="dropdownMenu2"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <img class="dropdown-logo" src="../assets/bitcoin-icon.png" />
-                TheCryptoUnion
-              </button>
-            </div>
-            <form class="form-inline">
-              <input
-                class="form-control search"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-            </form>
-            <img
-              id="user-img"
-              class="user"
-              height="35"
-              width="35"
-              src="../assets/user-icon-png-person-user-profile-icon-20.png"
-              alt=""
-            />
-            <div id="user" class="dropdown-user">
-              <button
-                class="btn btn-secondary dropdown-toggle user-dropdown"
-                type="button"
-                id="dropdownMenu1"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Joel verhagen
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+    <div class="container">
+        <div class="item logo">
+            <a href="#">
+                <img
+                        id="union-logo"
+                        class="union-logo"
+                        src="../assets/union_logo.png"></a>
+        </div>
+        <div id="search" class="item search">
+            <searchbar-component></searchbar-component>
+        </div>
+        <div id="user" class="item user">
+            <button  class="dropdown_btn">
+                <img class="user-image" src="../assets/user-icon-png-person-user-profile-icon-20.png">
+            </button>
+        </div>
+        <div id="burger" class="item burger user">
+            <button v-on:click="isHidden = !isHidden" class="burger-button">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
+    </div>
+    <div v-if="!isHidden" class="toggle-menu">
+        <union-toggle-menu></union-toggle-menu>
+    </div>
 </template>
 
 <script>
-export default {
-  name: "union-overview-navigator",
-};
+  import SearchbarComponent from "@/components/searchbarComponent";
+
+  import UnionToggleMenu from "@/components/union-toggle-menu";
+
+  export default {
+    name: "union-overview-navigator",
+    components: { UnionToggleMenu, SearchbarComponent },
+    data() {
+      return {
+        isHidden: true,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/theme";
+    @import "../assets/theme";
 
-@media only screen and (max-width: 1376px) {
-  #user {
-    display: none;
-  }
-  #user-img {
-    display: none;
-  }
-}
+    @media only screen and (max-width: 1026px) {
+        #search {
+            display: none;
+        }
+        #burger {
+            display: block;
+        }
+        #user {
+            display: none;
+        }
+    }
 
-@media only screen and (max-width: 1026px) {
-  #navbar-content {
-    display: none;
-  }
-  #union-logo {
-    max-width: 100px;
-    max-height: 110px;
-  }
-}
+    .burger {
+        display: none;
+        float: right;
+        margin-top: 10px;
+        div {
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            margin: 6px 0;
+        }
+    }
 
-.img-fluid {
-  margin-bottom: 10px;
-}
+    .burger-button {
+        border: none;
+        background-color: transparent;
+        float: right;
+    }
 
-.flex {
-  max-width: 100vw;
-}
+    .container {
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        background-color: $darkerGreyColor;
+    }
 
-.navbar {
-  background-color: #1a1a1b;
-  max-height: 60px;
-}
+    .item {
+        padding: 10px 0 10px 5px;
+    }
 
-.navbar-brand {
-  width: 15%;
-}
+    .union-logo {
+        max-width: 140px;
+        max-height: 37px;
+    }
 
-.dropdown {
-  display: inline;
-  width: 20%;
-}
+    .logo {
+        flex: 1;
+    }
 
-.dropdownButton {
-  background-color: transparent;
-  margin-top: 10px;
-  display: inline;
-  text-align: left;
-  max-width: 20%;
-  vertical-align: bottom;
-}
+    .search {
+        flex: 3;
+    }
 
-.dropdown-logo {
-  width: 10%;
-  height: 10%;
-}
+    .user {
+        flex: 1;
+    }
 
-.search {
-  display: inline;
-  width: 60%;
-  background-color: #1a1a1b;
-  color: white;
-}
+    .user-image {
+        width: 27px;
+        height: 27px;
+        margin-top: 7px;
+    }
 
-.form-inline {
-  display: inline;
-  margin-left: 25px;
-}
+    .dropdown_btn {
+        float: right;
+        border: none;
+        background-color: transparent;
+    }
 
-.user-dropdown {
-  border: none;
-  background-color: transparent;
-}
 
-.user {
-  margin-left: 30px;
-}
-
-.dropdown-user {
-  display: inline;
-  width: 10%;
-}
 </style>

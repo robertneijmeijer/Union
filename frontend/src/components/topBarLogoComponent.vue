@@ -5,7 +5,6 @@
         <div @click="onClickImage">
           <img src="../assets/union.png" height="60" width="170" />
         </div>
-        <LocaleSwitcher class="switcher" />
       </div>
     </section>
   </nav>
@@ -13,7 +12,6 @@
 
 <script>
 import router from "@/router";
-import LocaleSwitcher from "./localeSwitcher";
 
 export default {
   name: "topBarLogo",
@@ -21,8 +19,7 @@ export default {
     onClickImage: function () {
       router.push("/");
     },
-  },
-  components: { LocaleSwitcher },
+  }
 };
 </script>
 
