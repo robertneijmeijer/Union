@@ -3,7 +3,7 @@
         <input
                 class="form-control search"
                 type="search"
-                placeholder="Search"
+                placeholder="Search unions"
                 aria-label="Search"
         />
     </form>

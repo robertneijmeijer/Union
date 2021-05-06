@@ -11,9 +11,12 @@
             <searchbar-component></searchbar-component>
         </div>
         <div id="user" class="item user">
-            <button class="dropdown_btn">
+            <button v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
                 <img class="user-image" src="../assets/user-icon-png-person-user-profile-icon-20.png">
             </button>
+        </div>
+        <div id="user-menu" v-if="!menuIsHidden" class="user-menu">
+            <union-user-menu></union-user-menu>
         </div>
         <div id="burger" class="item burger user">
             <button v-on:click="isHidden = !isHidden" class="burger-button">
@@ -32,13 +35,15 @@
   import SearchbarComponent from "@/components/searchbarComponent";
 
   import UnionToggleMenu from "@/components/union-toggle-menu";
+  import UnionUserMenu from "@/components/union-user-menu";
 
   export default {
     name: "union-overview-navigator",
-    components: { UnionToggleMenu, SearchbarComponent },
+    components: { UnionUserMenu, UnionToggleMenu, SearchbarComponent },
     data() {
       return {
         isHidden: true,
+        menuIsHidden: true
       };
     },
   };
@@ -57,6 +62,9 @@
         #user {
             display: none;
         }
+        #user-menu {
+            display: none;
+        }
     }
 
     @media only screen and (min-width: 1026px) {
@@ -69,6 +77,7 @@
         display: none;
         float: right;
         margin-top: 10px;
+        opacity: 60%;
 
         div {
             width: 30px;
@@ -119,11 +128,15 @@
         margin-top: 7px;
     }
 
-    .dropdown_btn {
+    .user_btn {
         float: right;
         border: none;
         background-color: transparent;
     }
 
-
+    .user-menu {
+        position: absolute;
+        right: 0;
+        top: 55px
+    }
 </style>

@@ -1,29 +1,23 @@
 <template>
     <div class="menu">
-        <div class="item search">
-            <searchbar-component></searchbar-component>
-        </div>
         <div class="item line">
             <a href="">Account</a>
         </div>
         <div class="item line">
-            <a href="">Unions</a>
+            <a href="">Settings</a>
         </div>
         <div class="item line">
-            <div class="switcher">
-                <LocaleSwitcher class="switcher"/>
-            </div>
+            <LocaleSwitcher class="switcher"/>
         </div>
     </div>
 </template>
 
 <script>
-  import SearchbarComponent from "@/components/searchbarComponent";
-  import LocaleSwitcher from "@/components/localeSwitcher";
+  import LocaleSwitcher from "./localeSwitcher";
 
   export default {
-    name: "union-toggle-menu",
-    components: { SearchbarComponent, LocaleSwitcher },
+    name: "union-user-menu",
+    components: {LocaleSwitcher}
   };
 </script>
 
@@ -32,20 +26,17 @@
 
     .menu {
         background-color: $darkerGreyColor;
+        max-width: 20vw;
     }
 
     .item {
         padding: 10px 5px 10px 5px;
     }
 
-    .search {
-        margin: 0 10px 0 10px;
-    }
-
     a {
-        color: white;
         text-decoration: none;
         margin: 0 10px 0 10px;
+        color: white;
     }
 
     .line {
@@ -56,11 +47,5 @@
             background-color: black;
             color: white;
         }
-    }
-
-    .switcher {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px 0 5px;
     }
 </style>
