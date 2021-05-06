@@ -1,15 +1,17 @@
 <template>
     <div class="menu">
-    <div class="row">
         <div class="item search">
-            <searchbar-component></searchbar-component>
+        <searchbar-component></searchbar-component>
         </div>
-    </div>
-      <div class="row">
-          <div class="item user">
-              <user-dropdown-component></user-dropdown-component>
-          </div>
-      </div>
+        <div class="item line">
+            <a href="">Account</a>
+        </div>
+        <div class="item line">
+            <a href="">Unions</a>
+        </div>
+        <div class="item line">
+            <a href="">Settings</a>
+        </div>
     </div>
 </template>
 
@@ -18,7 +20,7 @@
 
   export default {
     name: "union-toggle-menu",
-    components: {SearchbarComponent },
+    components: { SearchbarComponent },
   };
 </script>
 
@@ -29,28 +31,28 @@
         background-color: $darkerGreyColor;
     }
 
-    .row {
-        max-width: 100%;
-        display: flex;
-    }
-
     .item {
-        padding: 10px 0 10px 5px;
-        margin: 0 15px 0 15px;
+        padding: 10px 5px 10px 5px;
     }
 
     .search {
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem;
-        margin: 0 auto;
+        margin: 0 10px 0 10px;
     }
 
-    .user {
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem;
-        margin: 0 auto;
+    a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px 0 10px;
+    }
+
+    .line {
+        border-bottom: 1px solid rgb(238,235,227);
+        opacity: 60%;
+
+        &:hover {
+            background-color: black;
+            color: white;
+        }
     }
 
 </style>

@@ -11,7 +11,7 @@
             <searchbar-component></searchbar-component>
         </div>
         <div id="user" class="item user">
-            <button  class="dropdown_btn">
+            <button class="dropdown_btn">
                 <img class="user-image" src="../assets/user-icon-png-person-user-profile-icon-20.png">
             </button>
         </div>
@@ -23,7 +23,7 @@
             </button>
         </div>
     </div>
-    <div v-if="!isHidden" class="toggle-menu">
+    <div id="menu" v-if="!isHidden" class="toggle-menu">
         <union-toggle-menu></union-toggle-menu>
     </div>
 </template>
@@ -59,10 +59,17 @@
         }
     }
 
+    @media only screen and (min-width: 1026px) {
+        #menu {
+            display: none;
+        }
+    }
+
     .burger {
         display: none;
         float: right;
         margin-top: 10px;
+
         div {
             width: 30px;
             height: 2px;
