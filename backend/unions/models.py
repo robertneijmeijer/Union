@@ -14,4 +14,3 @@ class Union(models.Model):
     creator = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creator", null=False)
     union_users = models.ManyToManyField(User, related_name="union_user")
     created_at = models.DateTimeField(auto_now_add=True)
-
