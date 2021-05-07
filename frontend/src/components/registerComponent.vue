@@ -154,9 +154,9 @@ export default {
       formId: FORM_ID.REGISTER,
       fields: formFields,
     });
-    this.validUsername = { isValid: true, message: "" };
-    this.validEmail = { isValid: true, message: "" };
-    this.validPassword = { isValid: true, message: "" };
+    this.validUsername = { isValid: true, errorMessage: "" };
+    this.validEmail = { isValid: true, errorMessage: "" };
+    this.validPassword = { isValid: true, errorMessage: "" };
   },
   data() {
     return {
@@ -165,6 +165,9 @@ export default {
       validUsername: ValidatorResponse,
       validEmail: ValidatorResponse,
       validPassword: ValidatorResponse,
+      username: "",
+      password: "",
+      email: "",
     };
   },
   // Unmount Form
@@ -231,21 +234,21 @@ export default {
     },
     getUsernameErrorMessage: function() {
       if (!this.validUsername.isValid) {
-        return this.validUsername.message;
+        return this.validUsername.errorMessage;
       } else {
         return this.formErrors.username;
       }
     },
     getEmailErrorMessage: function() {
       if (!this.validEmail.isValid) {
-        return this.validEmail.message;
+        return this.validEmail.errorMessage;
       } else {
         return this.formErrors.email;
       }
     },
     getPasswordErrorMessage: function () {
       if (!this.validPassword.isValid) {
-        return this.validPassword.message;
+        return this.validPassword.errorMessage;
       } else {
         return this.formErrors.password;
       }
