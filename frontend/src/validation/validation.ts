@@ -7,9 +7,9 @@ export interface ValidatorResponse {
 const MINIMUM_LENGTH: number = 6;
 
 export function isValidLength(string: string): ValidatorResponse {
-  const response: ValidatorResponse = { isValid: false, message: "" };
-  if (string.length >= MINIMUM_LENGTH) {
-    response.isValid = true;
+  const response: ValidatorResponse = { isValid: true, message: "" };
+  if (string.length < MINIMUM_LENGTH) {
+    response.isValid = false;
   }
   return response;
 }
@@ -36,7 +36,7 @@ export function isValidEmail(email: string): ValidatorResponse {
 }
 
 export function isValidUsername(username: string): ValidatorResponse {
-  const response: ValidatorResponse = { isValid: false, message: "" };
+  const response: ValidatorResponse = { isValid: true, message: "" };
   const regex: String = "";
 
   if (!isValidLength(username).isValid) {
@@ -56,16 +56,15 @@ export function isValidUsername(username: string): ValidatorResponse {
 
 export function isValidPassword(password: string): ValidatorResponse {
   const response: ValidatorResponse = {
-    isValid: false,
+    isValid: true,
     message: i18n.global.t("register.errors.password_not_valid"),
   };
   // Minimum eight characters, at least one letter, one number and one special character:
   const regex: RegExp = RegExp(
     "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
   );
-  if (regex.test(password)) {
-    response.isValid = true;
-    response.message = "";
+  if (!regex.test(password)) {
+    response.isValid = false;
   }
   return response;
 }
