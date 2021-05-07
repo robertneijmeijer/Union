@@ -165,9 +165,6 @@ export default {
       validUsername: ValidatorResponse,
       validEmail: ValidatorResponse,
       validPassword: ValidatorResponse,
-      username: "",
-      email: "",
-      password: "",
     };
   },
   // Unmount Form
@@ -207,6 +204,8 @@ export default {
       this.prevEmail = this.email;
     },
     onPasswordFocusout: function (){
+      if (!this.password || this.password === "")
+        return;
       this.validPassword = isValidPassword(this.password);
     },
     submit: function(event) {
