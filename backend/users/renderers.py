@@ -8,6 +8,7 @@ this is not needed anymore as the only thing the frontend needs is a 200 OK and
 a token in the cookies when the login is successful. Errors are still returned normally.
 """
 
+
 class UserJSONRenderer(JSONRenderer):
     charset = 'utf-8'
 

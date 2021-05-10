@@ -23,9 +23,12 @@ class ValidationAPIView(APIView):
         errors = {}
         return_status = status.HTTP_200_OK
 
-        if len(username_user) > 0: errors["username"] = "Username already exists"
-        if len(email_user) > 0: errors["email"] = "Email already exists"
-        if len(errors) > 0: return_status = status.HTTP_406_NOT_ACCEPTABLE
+        if len(username_user) > 0:
+            errors["username"] = "Username already exists"
+        if len(email_user) > 0:
+            errors["email"] = "Email already exists"
+        if len(errors) > 0:
+            return_status = status.HTTP_406_NOT_ACCEPTABLE
 
         return Response(errors, status=return_status)
 
@@ -38,7 +41,8 @@ class RegistrationAPIView(APIView):
     def post(self, request):
         try:
             user = request.data.get('user')
-            if user is None: raise Exception
+            if user is None:
+                raise Exception
         except:
             return Response({'errors': "Missing user key or empty body "}, status=status.HTTP_400_BAD_REQUEST)
 
