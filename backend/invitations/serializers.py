@@ -1,3 +1,4 @@
+from django.utils.timezone import now
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -44,3 +45,11 @@ class InvitationSerializer(serializers.ModelSerializer):
             **validated_data,
             token=token
         )
+
+    @staticmethod
+    def accept_invitation(instance: Invitation, user: User):
+        instance.union.union_users.add(user)
+        instance.accepted_at = now()
+        instance.invite_acceptor = user
+        instance.save()
+        return instance

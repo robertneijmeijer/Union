@@ -3,7 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework import status
-from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,7 +11,6 @@ from rest_framework.views import APIView
 from authentication.backends import JWTAuthentication
 from invitations.models import Invitation
 from invitations.serializers import InvitationSerializer
-from project import settings
 
 
 class InvitationsAPIView(APIView):
@@ -84,6 +82,5 @@ class InvitationsAcceptAPIView(APIView):
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         # Add user to unions
-        database_invitation.union.union_users.add(user)
-
+        InvitationSerializer.accept_invitation(database_invitation, user)
         return Response({}, status=status.HTTP_202_ACCEPTED)
