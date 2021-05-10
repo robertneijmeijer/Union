@@ -42,8 +42,8 @@ class RegistrationAPIView(APIView):
         try:
             user = request.data.get('user')
             if user is None:
-                raise Exception
-        except:
+                raise ValueError
+        except ValueError:
             return Response({'errors': "Missing user key or empty body "}, status=status.HTTP_400_BAD_REQUEST)
 
         if User.objects.filter(username__iexact=user["username"]):
