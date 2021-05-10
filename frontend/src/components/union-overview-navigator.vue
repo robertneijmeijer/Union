@@ -23,7 +23,10 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <img class="dropdown-logo" src="../assets/img/bitcoin-icon.png" />
+                <img
+                  class="dropdown-logo"
+                  src="../assets/img/bitcoin-icon.png"
+                />
                 TheCryptoUnion
               </button>
             </div>
