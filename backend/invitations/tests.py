@@ -51,8 +51,6 @@ class InvitationTests(APITestCase):
     def test_create_with_invalid_union(self):
         res, res_body = self.perform_request(self.koen, 9999)
 
-        print(res_body)
-
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue("The given union does not exist" in str(res_body))
 
@@ -113,10 +111,7 @@ class InvitationAcceptTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_202_ACCEPTED)
         self.assertEqual(res_body, {})
         self.assertIsNotNone(invite.accepted_at)
-        print(invite.accepted_at)
         self.assertEqual(invite.invite_acceptor, self.koen)
-
-        # TODO: Validate if invite has already been used
 
     def test_bad_request(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.koen.token)
@@ -131,10 +126,10 @@ class InvitationAcceptTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_invite_already_used(self):
-        # Accept our own request
+        # Accept our own invite
         self.perform_request(self.koen, self.invitation_data['invite_token'])
         # Try to use invitation again
         res, res_body = self.perform_request(self.koen, self.invitation_data['invite_token'])
 
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(res_body, {"This invite has already been accepted"})
+        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(res_body, ['This invite has already been accepted'])

@@ -53,11 +53,7 @@ class InvitationsAPIView(APIView):
 
 
 class InvitationsAcceptAPIView(APIView):
-    serializer_class = InvitationSerializer  # TODO: Needed?
     permission_classes = [IsAuthenticated]
-
-    # TODO: Replace this complete new view with a function in the other view? Lets find out if thats possible
-    # TODO: This is the easiest for now
 
     def post(self, request):
         try:
@@ -65,7 +61,7 @@ class InvitationsAcceptAPIView(APIView):
             if parsed_token == "":
                 raise ValueError
         except (MultiValueDictKeyError, ValueError):
-            return Response({"invite_token query params is missing/incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"The invite_token query params is missing/incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
         invite_token = request.GET['invite_token']
         database_invitation: Invitation = Invitation.objects.filter(token=invite_token).first()
@@ -75,12 +71,13 @@ class InvitationsAcceptAPIView(APIView):
 
         if not database_invitation.can_be_accepted():
             return Response({"This invite has already been accepted"},
-                            status=status.HTTP_400_BAD_REQUEST)  # TODO: Check status for this
+                            status=status.HTTP_403_FORBIDDEN)
 
-        # TODO: Check for archived union if we want to implement it
+        # Check for archived union if we want to implement it
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         # Add user to unions
         InvitationSerializer.accept_invitation(database_invitation, user)
+
         return Response({}, status=status.HTTP_202_ACCEPTED)
