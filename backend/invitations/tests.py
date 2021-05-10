@@ -29,8 +29,8 @@ class InvitationTests(APITestCase):
                                                  creator=self.koen)
         self.union.union_users.add(self.koen)
         self.union_members_cant_invite: Union = Union.objects.create(
-                                                name="Crypto SECRET", description="Bitcoin",
-                                                members_can_invite=False, creator=self.koen)
+            name="Crypto SECRET", description="Bitcoin",
+            members_can_invite=False, creator=self.koen)
         self.union_members_cant_invite.union_users.add(self.teun)
 
     def test_create_invitation_endpoint(self):
@@ -76,4 +76,3 @@ class InvitationTests(APITestCase):
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue("Only the admin can invite for this union" in str(res_body))
-
