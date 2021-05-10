@@ -52,3 +52,14 @@ class CreateUnion(APITestCase):
         union.save()
         req = self.client.delete(f'/unions/{union.union_id}/', format='json')
         self.assertEqual(req.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_union_users(self):
+        union1: Union = Union(name="union1", description="joels union1", members_can_invite=True,
+                             creator=self.joel)
+        union2: Union = Union(name="union2", description="teun union2", members_can_invite=True,
+                             creator=self.teun)
+        union1.save()
+        union2.save()
+
+        self.assertTrue(union1.union_users, self.joel.user_id)
+        self.assertTrue(union2.union_users, self.teun.user_id)
