@@ -124,6 +124,8 @@ class InvitationAcceptTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
         res = self.client.post(f'/unions/invite/accept?token=', format='json')
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+        res = self.client.post(f'/unions/invite/accept?invite_token=aasdfsadf', format='json')
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_invite_already_used(self):
         # Accept our own invite
