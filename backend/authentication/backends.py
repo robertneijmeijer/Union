@@ -9,7 +9,17 @@ from users.models import User
 
 
 class JWTAuthentication(authentication.BaseAuthentication):
-    authentication_header_prefix = 'token'
+    AUTH_HEADER_PREFIX = 'Token'
+
+    @staticmethod
+    def authenticate_credentials_from_request_header(request):
+        token = request.headers['Authorization'].replace(JWTAuthentication.AUTH_HEADER_PREFIX + " ", "")
+        return JWTAuthentication.authenticate_credentials(token)
+
+    @staticmethod
+    def authenticate_credentials_from_request_cookie(request):
+        token = request.stream.COOKIES.get('Authorization').replace(JWTAuthentication.AUTH_HEADER_PREFIX, '')
+        return JWTAuthentication.authenticate_credentials(token)
 
     def authenticate(self, request):
         """
@@ -38,7 +48,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
         # the authentication header (in this case, "Token") and 2) the JWT
         # that we should authenticate against.
         auth_header = authentication.get_authorization_header(request).split()
-        auth_header_prefix = self.authentication_header_prefix.lower()
+        auth_header_prefix = self.AUTH_HEADER_PREFIX.lower()
 
         if not auth_header:
             return None
@@ -69,9 +79,10 @@ class JWTAuthentication(authentication.BaseAuthentication):
         # By now, we are sure there is a *chance* that authentication will
         # succeed. We delegate the actual credentials authentication to the
         # method below.
-        return self._authenticate_credentials(request, token)
+        return JWTAuthentication.authenticate_credentials(token)
 
-    def _authenticate_credentials(self, request, token):
+    @staticmethod
+    def authenticate_credentials(token):
         """
         Try to authenticate the given credentials. If authentication is
         successful, return the user and token. If not, throw an error.
