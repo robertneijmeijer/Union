@@ -6,15 +6,11 @@ from users.models import User
 import uuid
 
 
-# Create your models here.
-
-# TODO: Check cascading
-# TODO: Check indexing
 class Invitation(models.Model):
     invite_id = models.AutoField(primary_key=True)
     invite_creator = models.ForeignKey(User, on_delete=models.PROTECT, null=False, related_name='invite_creator')
-    invite_acceptor = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='invite_acceptor', )
-    union = models.ForeignKey(Union, on_delete=models.PROTECT, null=False)
+    invite_acceptor = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='invite_acceptor')
+    union = models.ForeignKey(Union, on_delete=models.PROTECT, null=False, db_index=True)
     token = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     accepted_at = models.DateTimeField(null=True)
