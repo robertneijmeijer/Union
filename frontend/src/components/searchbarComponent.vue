@@ -19,7 +19,7 @@
     @import "../assets/theme";
 
     .search {
-        background-color: $darkerGreyColor;
+        background-color: $primary-black;
         color: white;
         max-width: 100%;
         display: inline;

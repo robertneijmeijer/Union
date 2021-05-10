@@ -1,22 +1,22 @@
 <template>
-    <div class="container">
+    <div class="container-nav">
         <div class="item logo">
             <a href="#">
                 <img
                         id="union-logo"
                         class="union-logo"
-                        src="../assets/union_logo.png"></a>
+                        src="../assets/svg/union.svg"></a>
         </div>
         <div id="search" class="item search">
             <searchbar-component></searchbar-component>
         </div>
         <div id="user" class="item user">
             <button v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
-                <img class="user-image" src="../assets/user-icon-png-person-user-profile-icon-20.png">
+                <img class="user-image" src="../assets/img/user-icon-png-person-user-profile-icon-20.png">
             </button>
         </div>
         <div id="user-menu" v-if="!menuIsHidden" class="user-menu">
-            <union-user-menu></union-user-menu>
+            <union-user-toggle-menu></union-user-toggle-menu>
         </div>
         <div id="burger" class="item burger user">
             <button v-on:click="isHidden = !isHidden" class="burger-button">
@@ -33,13 +33,11 @@
 
 <script>
   import SearchbarComponent from "@/components/searchbarComponent";
-
-  import UnionToggleMenu from "@/components/union-toggle-menu";
-  import UnionUserMenu from "@/components/union-user-menu";
-
+  import UnionToggleMenu from "@/components/unionNavigatorToggleMenu";
+  import UnionUserToggleMenu from "@/components/unionUserToggleMenu";
   export default {
     name: "union-overview-navigator",
-    components: { UnionUserMenu, UnionToggleMenu, SearchbarComponent },
+    components: { UnionUserToggleMenu, UnionToggleMenu, SearchbarComponent  },
     data() {
       return {
         isHidden: true,
@@ -76,7 +74,6 @@
     .burger {
         display: none;
         float: right;
-        margin-top: 10px;
         opacity: 60%;
 
         div {
@@ -88,26 +85,29 @@
     }
 
     .burger-button {
+        margin-top: 10px;
         border: none;
         background-color: transparent;
         float: right;
     }
 
-    .container {
+    .container-nav {
         max-width: 100%;
         display: flex;
         flex-direction: row;
         align-items: start;
-        background-color: $darkerGreyColor;
+        background-color: $primary-gray;
     }
 
     .item {
         padding: 10px 0 10px 5px;
+        margin: 0 10px 0 10px;
     }
 
     .union-logo {
-        max-width: 140px;
-        max-height: 37px;
+        margin-top: 3px;
+        max-width: 120px;
+        max-height: 30px;
     }
 
     .logo {

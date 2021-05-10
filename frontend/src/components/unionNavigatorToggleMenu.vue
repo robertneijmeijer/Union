@@ -7,9 +7,6 @@
             <a href="">Account</a>
         </div>
         <div class="item line">
-            <a href="">Unions</a>
-        </div>
-        <div class="item line">
             <div class="switcher">
                 <LocaleSwitcher class="switcher"/>
             </div>
@@ -31,7 +28,7 @@
     @import "../assets/theme";
 
     .menu {
-        background-color: $darkerGreyColor;
+        background-color: $primary-gray;
     }
 
     .item {

@@ -15,8 +15,7 @@ export default class ApiBase {
         withCredentials: true,
         ...config,
       })
-      .then(response => response)
-      .catch(handleError);
+      .then(response => response);
   }
 
   public static async requestGet(

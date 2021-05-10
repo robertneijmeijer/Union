@@ -4,7 +4,7 @@
             <img
                     class="img-fluid"
                     alt="Responsive image"
-                    src="../assets/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+                    src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
             />
         </div>
     </div>
@@ -14,7 +14,7 @@
             <img
                     id="logo-image"
                     class="logo-image"
-                    src="../assets/bitcoin-icon.png"
+                    src="../assets/img/bitcoin-icon.png"
             />
             <h3 class="union-name">TheCryptoUnion</h3>
             <button id="tag" class="member-tag">

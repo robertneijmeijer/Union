@@ -1,3 +1,7 @@
-
+.border-for-div {
+  border: 1px solid #343536;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
 
 /*# sourceMappingURL=theme.css.map */

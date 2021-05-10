@@ -4,20 +4,18 @@
             <a href="">Account</a>
         </div>
         <div class="item line">
-            <a href="">Settings</a>
-        </div>
-        <div class="item line">
-            <LocaleSwitcher class="switcher"/>
+            <div class="switcher">
+                <LocaleSwitcher class="switcher"/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
   import LocaleSwitcher from "./localeSwitcher";
-
   export default {
-    name: "union-user-menu",
-    components: {LocaleSwitcher}
+    name: "unionUserToggleMenu",
+    components: { LocaleSwitcher },
   };
 </script>
 
@@ -25,8 +23,7 @@
     @import "../assets/theme";
 
     .menu {
-        background-color: $darkerGreyColor;
-        max-width: 20vw;
+        background-color: $primary-gray;
     }
 
     .item {
@@ -34,9 +31,9 @@
     }
 
     a {
+        color: white;
         text-decoration: none;
         margin: 0 10px 0 10px;
-        color: white;
     }
 
     .line {
@@ -48,4 +45,11 @@
             color: white;
         }
     }
+
+    .switcher {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px 0 5px;
+    }
+
 </style>
