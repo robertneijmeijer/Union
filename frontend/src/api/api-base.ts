@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 export default class ApiBase {
   private static BASE_URL = "http://127.0.0.1:8000"; // TODO: Replace with env var
 
+  // TODO: Handle support for query params?
   protected static executeRequest(
     method: "get" | "delete" | "post" | "put",
     url: string,

@@ -1,65 +1,96 @@
 <template>
   <div class="invite-container invite-center">
     <div class="invite-card">
-      <div class="invite-center">
-        <img
-          v-bind:src="getImage(invite.banner)"
-          alt="Responsive banner"
-          class="invite-banner"
-        />
-        <div class="invite-overlay">
+      <div v-if="!invite.fetching">
+        <div class="invite-center">
+<!--          v-bind:src="getImage(invite.banner)"-->
           <img
-            v-bind:src="getImage(invite.icon)"
-            alt="Responsive icon"
-            class="invite-icon"
+
+            alt="Responsive banner"
+            class="invite-banner"
           />
-          <p class="invite-union-name">{{ invite.union }}</p>
+          <div class="invite-overlay">
+<!--            v-bind:src="getImage(invite.icon)"-->
+            <img
+
+              alt="Responsive icon"
+              class="invite-icon"
+            />
+            <p class="invite-union-name">{{ invite.union.name }}</p>
+          </div>
+        </div>
+        <div class="invite-center">
+          <div class="invite-row">
+            <p class="invite-text">{{ invite.username }}</p>
+            <p class="invite-text">{{ $t("invite.invited") }}</p>
+            <p class="invite-text">{{ invite.union.name }}</p>
+          </div>
+          <div class="invite-buttons">
+            <button class="btn btn-primary invite-button" v-on:click="accept()">
+              {{ $t("invite.accept") }}
+            </button>
+            <button
+              class="btn btn-primary invite-button invite-button-decline"
+              v-on:click="decline()"
+            >
+              {{ $t("invite.decline") }}
+            </button>
+          </div>
+
+          <div v-if="(invite.status === 'error')" class="white-text">
+            "ERRORR"
+          </div>
         </div>
       </div>
-      <div class="invite-center">
-        <div class="invite-row">
-          <p class="invite-text">{{ invite.user }}</p>
-          <p class="invite-text">{{ $t("invite.invited") }}</p>
-          <p class="invite-text">{{ invite.union }}</p>
-        </div>
-        <div class="invite-buttons">
-          <button class="btn btn-primary invite-button" v-on:click="accept()">
-            {{ $t("invite.accept") }}
-          </button>
-          <button
-            class="btn btn-primary invite-button invite-button-decline"
-            v-on:click="decline()"
-          >
-            {{ $t("invite.decline") }}
-          </button>
-        </div>
-      </div>
+    </div>
+    <div class="white-text">
+      {{ invite }}
     </div>
   </div>
 </template>
 
 <script>
+import { ActionTypes } from "@/actions/invite";
+
 function getImage(path) {
   return require(`../assets/img/${path}`);
 }
 
-function accept() {}
-
-function decline() {}
-
 export default {
   name: "inviteAccept",
   props: {
-    invite: {
+    invites: {
       user: String,
       union: String,
       banner: String,
       icon: String,
     },
   },
+  computed: {
+    invite() {
+      return this.$store.state.invite;
+    },
+  },
+  data() {
+    return {
+      id: null,
+    };
+  },
+  created() {
+    this.id = this.$route.params.id;
+    this.$store.dispatch(ActionTypes.INVITE_GET_INFO, {
+      invite_token: this.id,
+    });
+  },
   methods: {
-    accept,
-    decline,
+    accept: function() {
+      this.$store.dispatch(ActionTypes.INVITE_ACCEPT, {
+        invite_token: this.id,
+      });
+    },
+    decline: function() {
+      // TODO: Route to home
+    },
     getImage,
   },
 };

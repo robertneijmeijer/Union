@@ -9,9 +9,14 @@ axios.interceptors.request.use(
       config.url?.indexOf("login") > -1
     )
       return config;
+
+    console.log("COOKIE")
+    console.log(Cookie.get("Authorization"));
+
     config.headers = {
       Authorization: `Token ${Cookie.get("Authorization")}`,
     };
+    // TODO add redirect to login when cookie is null
     return config;
   },
   function(error) {

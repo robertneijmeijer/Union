@@ -2,9 +2,12 @@ import { CommitOptions, createStore, DispatchOptions, Store } from "vuex";
 import { user, UserModuleStateInterface } from "@/store/modules/user";
 import { ActionsInterface as userActions } from "@/actions/user";
 import { ActionsInterface as formActions } from "@/actions/form";
+import { ActionsInterface as inviteActions } from "@/actions/invite";
 import { MutationsInterface as userMutations } from "@/mutations/user";
 import { MutationsInterface as formMutations } from "@/mutations/form";
+import { MutationsInterface as inviteMutations } from "@/mutations/invite";
 import { form, FormModuleStateInterface } from "@/store/modules/form";
+import { invite } from "@/store/modules/invite";
 
 // More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
 
@@ -12,8 +15,8 @@ export interface RootState {
   user: UserModuleStateInterface;
   form: FormModuleStateInterface;
 }
-export type MutationTypes = userMutations & formMutations;
-export type ActionTypes = userActions & formActions;
+export type MutationTypes = userMutations & formMutations & inviteMutations;
+export type ActionTypes = userActions & formActions & inviteActions;
 
 // Override commit and dispatch to only accept our own typings
 export interface StoreInterface
@@ -35,5 +38,6 @@ export const store: StoreInterface = createStore<RootState>({
   modules: {
     user,
     form,
+    invite,
   },
 });

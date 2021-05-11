@@ -33,7 +33,7 @@ const routes = [
     component: unionOverviewView,
   },
   {
-    path: "/unions/invite/accept",
+    path: "/union/invite/accept/:id",
     name: "accept-invite",
     component: acceptInviteView,
   },
