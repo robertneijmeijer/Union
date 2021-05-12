@@ -73,9 +73,3 @@ class CreateUnion(APITestCase):
 
         # creator of a union will be the first in union users
         self.assertEqual(union.union_users.first(), self.joel)
-
-
-
-
-
-
