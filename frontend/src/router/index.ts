@@ -5,11 +5,12 @@ import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
 import acceptInviteView from "../views/acceptInviteView.vue";
 import unionOverviewView from "@/views/unionView.vue";
+import Cookie from "js-cookie";
 
 const routes = [
   {
     path: "/",
-    name: "landingspage",
+    name: "/",
     component: landingPage,
   },
   {
@@ -43,5 +44,11 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== "/" && to.name !== "login" && to.name !== "register" && !Cookie.get("Authentication")) next({ name: "login" }); else next();
+});
+
 
 export default router;
