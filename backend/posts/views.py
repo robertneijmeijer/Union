@@ -27,8 +27,8 @@ class PostViewSet(ModelViewSet):
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
-        if token is None:
-            return Response(status.HTTP_401_UNAUTHORIZED)
+        if token or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         post['creator'] = user.user_id
 

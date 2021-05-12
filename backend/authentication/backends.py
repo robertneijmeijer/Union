@@ -13,8 +13,12 @@ class JWTAuthentication(authentication.BaseAuthentication):
 
     @staticmethod
     def authenticate_credentials_from_request_header(request):
-        token = request.headers['Authorization'].replace(JWTAuthentication.AUTH_HEADER_PREFIX + " ", "")
-        return JWTAuthentication.authenticate_credentials(token)
+        try:
+            token = request.headers['Authorization'].replace(JWTAuthentication.AUTH_HEADER_PREFIX + " ", "")
+            return JWTAuthentication.authenticate_credentials(token)
+        except KeyError:
+            return None, None
+
 
     @staticmethod
     def authenticate_credentials_from_request_cookie(request):

@@ -4,6 +4,7 @@ from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
+from authentication.backends import JWTAuthentication
 from comments.serializer import CommentSerializer
 from comments.models import Comment
 from project import settings
@@ -36,21 +37,13 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(result_set)
 
     def create(self, request, *args, **kwargs):
-        token = request.headers.get('Authorization', None)
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
-        if token is None:
+        if token or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        token = token.replace('Token ', '')
-
-        # Retrieve user_id from JWT
-        user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
-
-        if user_id is None:
-            return Response("Invalid JWT", status.HTTP_400_BAD_REQUEST)
-
         comment = request.data
-        comment['user'] = user_id
+        comment['user'] = user.user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=comment)
