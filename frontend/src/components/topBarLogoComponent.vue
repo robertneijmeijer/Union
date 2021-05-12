@@ -19,7 +19,7 @@ export default {
     onClickImage: function() {
       router.push("/");
     },
-  }
+  },
 };
 </script>
 
