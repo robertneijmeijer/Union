@@ -45,7 +45,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
     { commit, state },
     values: RegistrationFormInterface
   ) {
-    RegisterApi.register(values.username, values.username, values.password)
+    RegisterApi.register(values)
       .then(result => {
         store.commit(ActionTypes.REGISTER_ACTION_SUCCESS, result.data);
         router.push("login");
