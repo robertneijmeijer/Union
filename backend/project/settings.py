@@ -1,5 +1,6 @@
 from pathlib import Path
-import datetime, os
+import datetime
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'unions',
-    'comments'
+    'comments',
+    'invitations'
 ]
 
 REST_FRAMEWORK = {

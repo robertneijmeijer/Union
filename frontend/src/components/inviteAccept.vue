@@ -2,10 +2,17 @@
   <div class="invite-container invite-center">
     <div class="invite-card">
       <div class="invite-center">
-        <img v-bind:src="getImage(invite.banner)" alt="Responsive banner"
-             class="invite-banner">
+        <img
+          v-bind:src="getImage(invite.banner)"
+          alt="Responsive banner"
+          class="invite-banner"
+        />
         <div class="invite-overlay">
-          <img v-bind:src="getImage(invite.icon)" alt="Responsive icon" class="invite-icon">
+          <img
+            v-bind:src="getImage(invite.icon)"
+            alt="Responsive icon"
+            class="invite-icon"
+          />
           <p class="invite-union-name">{{ invite.union }}</p>
         </div>
       </div>
@@ -19,7 +26,10 @@
           <button class="btn btn-primary invite-button" v-on:click="accept()">
             {{ $t("invite.accept") }}
           </button>
-          <button class="btn btn-primary invite-button invite-button-decline" v-on:click="decline()">
+          <button
+            class="btn btn-primary invite-button invite-button-decline"
+            v-on:click="decline()"
+          >
             {{ $t("invite.decline") }}
           </button>
         </div>
@@ -29,18 +39,13 @@
 </template>
 
 <script>
-
-function getImage(path){
+function getImage(path) {
   return require(`../assets/img/${path}`);
 }
 
-function accept(){
+function accept() {}
 
-}
-
-function decline(){
-
-}
+function decline() {}
 
 export default {
   name: "inviteAccept",
@@ -52,11 +57,11 @@ export default {
       icon: String,
     },
   },
-  methods:{
+  methods: {
     accept,
     decline,
-    getImage
-  }
+    getImage,
+  },
 };
 </script>
 

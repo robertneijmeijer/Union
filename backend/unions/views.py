@@ -18,7 +18,8 @@ class UnionViewSet(viewsets.ModelViewSet):
 
         # If its a string and not empty
         if not str(token) or not token:
-            return Response('No Authorization header present. Header should be: "Authorization: Bearer JWT" ', status=status.HTTP_401_UNAUTHORIZED)
+            return Response('No Authorization header present. Header should be: "Authorization: Bearer JWT" ',
+                            status=status.HTTP_401_UNAUTHORIZED)
 
         token = token.replace('Bearer ', '')
 

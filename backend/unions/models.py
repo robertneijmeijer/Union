@@ -15,3 +15,5 @@ class Union(models.Model):
     union_users = models.ManyToManyField(User, related_name="union_user")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name

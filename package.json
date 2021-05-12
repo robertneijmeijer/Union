@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "docker-compose -f docker-compose-dev.yml up",
-    "preinstall": "npx only-allow npm"
+    "preinstall": "npx only-allow npm",
+    "lint-fix-backend": "autopep8 -i -r -v --max-line-length 127 backend/",
+    "lint-backend": "pycodestyle backend/ --max-line-length=127"
   },
   "repository": {
     "type": "git",
