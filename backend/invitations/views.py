@@ -8,13 +8,24 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from authentication.backends import JWTAuthentication
-from invitations.serializers import InvitationSerializer
-from project import settings
+from invitations.models import Invitation
+from invitations.serializers import InvitationCreateSerializer, InvitationSerializer
 
 
 class InvitationsAPIView(APIView):
-    serializer_class = InvitationSerializer
+    serializer_class = InvitationCreateSerializer
     permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        print(request.data)
+        invitation = Invitation.objects.get(token=request.data['invite_token'])
+
+        serializer = InvitationSerializer(invitation)
+
+        # TODO: Check for permissions
+        # TODO: Error handling
+
+        return Response(serializer.data)
 
     def post(self, request):
         try:

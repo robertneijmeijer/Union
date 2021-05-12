@@ -1,12 +1,22 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from invitations.models import Invitation
 from unions.models import Union
+from unions.serializer import UnionSerializerSimple
 from users.models import User
+from users.serializers import UserSerializerSimple
 
 
 class InvitationSerializer(serializers.ModelSerializer):
+    union = UnionSerializerSimple()
+    invite_creator = UserSerializerSimple()
+
+    class Meta:
+        model = Invitation
+        fields = ["union", "invite_creator", "token"]
+
+
+class InvitationCreateSerializer(serializers.ModelSerializer):
     invite_token = serializers.SerializerMethodField(read_only=True)
 
     class Meta:

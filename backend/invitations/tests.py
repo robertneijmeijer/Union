@@ -76,3 +76,18 @@ class InvitationTests(APITestCase):
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue("Only the admin can invite for this union" in str(res_body))
+
+    def test_invite_details(self):
+        #TODO: test backend
+        res, res_body = self.perform_request(self.koen, self.union.union_id)
+        created_invite: Invitation = Invitation.objects.first()
+
+        data = {
+            "invite_token": created_invite.token
+        }
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.koen.token)
+        res = self.client.get('/unions/invite', data=data, format='json')
+        res_body = json.loads(res.content.decode('utf-8'))
+
+        print(res)
+        print(res_body)

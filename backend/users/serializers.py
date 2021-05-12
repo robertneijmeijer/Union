@@ -3,6 +3,13 @@ from users.models import User
 from django.contrib.auth import authenticate
 
 
+class UserSerializerSimple(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'avatar']
+
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
