@@ -16,21 +16,21 @@ export default class ApiBase {
         withCredentials: true,
         ...config,
       })
-      .then(response => response);
+      .then(response => response.data);
   }
 
   public static async requestGet(
     resource: string,
     id: string,
     config?: AxiosRequestConfig
-  ) {
+  ): Promise<any> {
     return this.executeRequest("get", `/${resource}/${id}`, { ...config });
   }
 
   public static async requestGetAll(
     resource: string,
     config?: AxiosRequestConfig
-  ) {
+  ): Promise<any> {
     return this.executeRequest("get", `/${resource}`, { ...config });
   }
 

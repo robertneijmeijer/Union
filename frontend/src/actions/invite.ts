@@ -31,20 +31,18 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
     payload: InviteTokenInterface
   ) {
     commit(ActionTypes.INVITE_SET_IS_LOADING, true);
-    setTimeout(() => {
-      // TODO: Call info endpoint
-      commit(ActionTypes.INVITE_SET_INFO, {
-        status: "open",
-        invite_username: "KOEN",
-        union: {
-          name: "CRYPTOTEST",
-          banner:
-            "https://ps.w.org/simple-banner/assets/banner-772x250.png?rev=1198699",
-          icon: "TEST2",
-        },
+    InviteApi.getInviteInfo(payload.invite_token)
+      .then(result => {
+        commit(ActionTypes.INVITE_SET_INFO, {
+          ...result,
+        });
+        commit(ActionTypes.INVITE_SET_IS_LOADING, false);
+        console.log(result);
+      })
+      .catch(error => {
+        // TODO: Error handling
+        console.log(error);
       });
-      commit(ActionTypes.INVITE_SET_IS_LOADING, false);
-    }, 1000);
   },
   [ActionTypes.INVITE_ACCEPT](
     { commit, state },

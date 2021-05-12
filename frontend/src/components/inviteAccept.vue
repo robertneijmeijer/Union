@@ -4,15 +4,14 @@
       <div v-if="!invite.fetching">
         <div class="invite-center">
           <img
-
             v-bind:src="invite.union.banner"
             alt="Responsive banner"
             class="invite-banner"
           />
           <div class="invite-overlay">
-<!--            v-bind:src="getImage(invite.icon)"-->
+<!--            TODO: Check if banner / icon is available and do if check-->
             <img
-
+              v-bind:src="invite.union.icon"
               alt="Responsive icon"
               class="invite-icon"
             />
@@ -21,7 +20,7 @@
         </div>
         <div class="invite-center">
           <div class="invite-row">
-            <p class="invite-text">{{ invite.username }}</p>
+            <p class="invite-text">{{ invite.invite_creator.username }}</p>
             <p class="invite-text">{{ $t("invite.invited") }}</p>
             <p class="invite-text">{{ invite.union.name }}</p>
           </div>

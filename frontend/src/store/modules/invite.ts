@@ -3,11 +3,12 @@ import { RootState } from "@/store/store";
 import { mutations } from "@/mutations/invite";
 import { actions } from "@/actions/invite";
 import { Union } from "@/types/union";
+import { User } from "@/types/user";
 
 export interface InviteModuleStateInterface {
   token: string | undefined;
   status: "accepted" | "open" | "error" | undefined;
-  username: string | undefined;
+  invite_creator: User | undefined;
   union: Union | undefined;
   fetching: boolean;
 }
@@ -18,7 +19,7 @@ export const invite: Module<InviteState, RootState> = {
   state: () => ({
     token: undefined,
     status: undefined,
-    username: undefined,
+    invite_creator: undefined,
     union: undefined,
     fetching: false,
   }),

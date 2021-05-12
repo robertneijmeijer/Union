@@ -14,11 +14,11 @@ from invitations.serializers import InvitationCreateSerializer, InvitationSerial
 
 class InvitationsAPIView(APIView):
     serializer_class = InvitationCreateSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         print(request.data)
-        invitation = Invitation.objects.get(token=request.data['invite_token'])
+        invitation = Invitation.objects.get(token="6787d064-b174-11eb-8f7d-0242ac140004")
 
         serializer = InvitationSerializer(invitation)
 

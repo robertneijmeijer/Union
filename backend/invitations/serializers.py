@@ -10,10 +10,19 @@ from users.serializers import UserSerializerSimple
 class InvitationSerializer(serializers.ModelSerializer):
     union = UnionSerializerSimple()
     invite_creator = UserSerializerSimple()
+    status = serializers.SerializerMethodField()
 
     class Meta:
         model = Invitation
-        fields = ["union", "invite_creator", "token"]
+        fields = ["union", "invite_creator", "token", "status"]
+
+    def get_status(self, invite: Invitation):
+        status = "open"
+        if invite.accepted_at is not None:
+            status = "accepted"
+        return status
+
+
 
 
 class InvitationCreateSerializer(serializers.ModelSerializer):

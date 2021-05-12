@@ -30,7 +30,7 @@ export const mutations: MutationTree<InviteState> & MutationsInterface = {
   ) {
     state.union = payload.union;
     state.status = payload.status;
-    state.username = payload.invite_username;
+    state.invite_creator = payload.invite_creator;
   },
   [ActionTypes.INVITE_RESET_STATE](state: InviteState) {
     state.token = undefined;
