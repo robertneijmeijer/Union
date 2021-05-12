@@ -60,5 +60,13 @@
     "invited": "has invited you to",
     "accept": "Accept",
     "decline": "Decline"
+  },
+  "create_post": {
+    "post": "Post",
+    "discard": "Discard",
+    "title": "Create post",
+    "post_title": "Title",
+    "post_content": "Content",
+    "image": "Image"
   }
 }

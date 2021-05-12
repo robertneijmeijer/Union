@@ -12,7 +12,7 @@
     "@vue/cli": "^4.5.12",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "fork-ts-checker-webpack-plugin": "^6.2.6",
+    "js-cookie": "^2.2.1",
     "js-sha256": "^0.9.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^2.1.0",
+    "@types/js-cookie": "^2.2.6",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

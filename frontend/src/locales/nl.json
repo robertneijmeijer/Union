@@ -61,5 +61,13 @@
     "invited": "heeft je uitgenodigd op",
     "accept": "Accepteren",
     "decline": "Afwijzen"
+  },
+  "create_post": {
+    "post": "Post",
+    "discard": "Weggooien",
+    "title": "Post maken",
+    "post_title": "Titel",
+    "post_content": "Inhoud",
+    "image": "Afbeelding"
   }
 }
