@@ -15,6 +15,9 @@ class Invitation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     accepted_at = models.DateTimeField(null=True)
 
+    def can_be_accepted(self):
+        return self.accepted_at is None
+
     @staticmethod
     def generate_invite_token():
         return uuid.uuid1()
