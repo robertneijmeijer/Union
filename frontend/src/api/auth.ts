@@ -1,5 +1,5 @@
 import ApiBase from "@/api/api-base";
-import {RegistrationFormInterface} from "@/actions/user";
+import { RegistrationFormInterface } from "@/actions/user";
 
 export default class RegisterApi extends ApiBase {
   public static register = async (

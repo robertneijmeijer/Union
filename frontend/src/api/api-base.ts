@@ -17,7 +17,6 @@ export default class ApiBase {
       })
       .then(response => response)
       .catch(error => {
-        // Explicitly throw it
         throw error;
       });
   }
