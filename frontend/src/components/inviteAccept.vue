@@ -3,9 +3,9 @@
     <div class="invite-card">
       <div v-if="!invite.fetching">
         <div class="invite-center">
-<!--          v-bind:src="getImage(invite.banner)"-->
           <img
 
+            v-bind:src="invite.union.banner"
             alt="Responsive banner"
             class="invite-banner"
           />

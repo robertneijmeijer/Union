@@ -35,12 +35,14 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
       // TODO: Call info endpoint
       commit(ActionTypes.INVITE_SET_INFO, {
         status: "open",
-        user: "KOEN",
+        invite_username: "KOEN",
         union: {
           name: "CRYPTOTEST",
-          banner: "TEST",
+          banner:
+            "https://ps.w.org/simple-banner/assets/banner-772x250.png?rev=1198699",
           icon: "TEST2",
-      }});
+        },
+      });
       commit(ActionTypes.INVITE_SET_IS_LOADING, false);
     }, 1000);
   },

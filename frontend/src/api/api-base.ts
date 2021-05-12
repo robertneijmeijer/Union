@@ -37,7 +37,7 @@ export default class ApiBase {
   public static async requestPost(
     resource: string,
     config?: AxiosRequestConfig
-  ) {
+  ): Promise<any> {
     return this.executeRequest("post", `/${resource}`, { ...config });
   }
 }

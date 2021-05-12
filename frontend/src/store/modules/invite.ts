@@ -2,12 +2,13 @@ import { Module } from "vuex";
 import { RootState } from "@/store/store";
 import { mutations } from "@/mutations/invite";
 import { actions } from "@/actions/invite";
+import { Union } from "@/types/union";
 
 export interface InviteModuleStateInterface {
   token: string | undefined;
   status: "accepted" | "open" | "error" | undefined;
   username: string | undefined;
-  union: {} | undefined;
+  union: Union | undefined;
   fetching: boolean;
 }
 
