@@ -47,6 +47,9 @@
 <script>
 export default {
   name: "createPostComponent",
+  mounted() {
+    document.documentElement.style.overflow = null
+  },
   methods: {
     post: function () {
       this.toggleCreatePost();

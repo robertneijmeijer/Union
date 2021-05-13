@@ -28,7 +28,22 @@ export default {
     toggleCreatePost() {
       console.log("TOGGLE");
       this.showCreatePost = !this.showCreatePost
+      this.showCreatePost ? this.showModal() : this.hideModal();
+    },
+    showModal() {
+      document.body.classList.add("modal-open");
+    },
+    hideModal() {
+      document.body.classList.remove("modal-open");
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/theme";
+
+.modal-open {
+  overflow: hidden;
+}
+</style>
