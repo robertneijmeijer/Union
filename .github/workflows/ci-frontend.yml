@@ -24,16 +24,16 @@ jobs:
       - name: Run eslint
         run: eslint . --max-warnings 0\
 
-prettier:
-  runs-on: ubuntu-latest
+  prettier:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-
-    - name: Prettify code
-      uses: creyD/prettier_action@v3.3
-      with:
-        prettier_options: --write **/*.
+      - name: Prettify code
+        uses: creyD/prettier_action@v3.3
+        with:
+          prettier_options: --write **/*.
