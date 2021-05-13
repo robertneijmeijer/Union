@@ -45,10 +45,15 @@ const router = createRouter({
   routes,
 });
 
-
 router.beforeEach((to, from, next) => {
-  if (to.name !== "/" && to.name !== "login" && to.name !== "register" && !Cookie.get("Authentication")) next({ name: "login" }); else next();
+  if (
+    to.name !== "/" &&
+    to.name !== "login" &&
+    to.name !== "register" &&
+    !Cookie.get("Authentication")
+  )
+    next({ name: "login" });
+  else next();
 });
-
 
 export default router;
