@@ -15,7 +15,7 @@ class UnionViewSet(viewsets.ModelViewSet):
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
-        if token or user is None:
+        if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         union['creator_id'] = user.user_id
