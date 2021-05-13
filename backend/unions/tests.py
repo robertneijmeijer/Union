@@ -1,6 +1,8 @@
+from django.db.models import QuerySet
 from rest_framework.test import APIClient, APITestCase
 from rest_framework import status
 
+from unions.serializer import UnionSerializer
 from users.models import User
 from unions.models import Union
 import json
@@ -52,3 +54,22 @@ class CreateUnion(APITestCase):
         union.save()
         req = self.client.delete(f'/unions/{union.union_id}/', format='json')
         self.assertEqual(req.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_union_users(self):
+        data = {
+            "creator_id": self.joel.user_id,
+            "name": "test",
+            "description": "test",
+            "members_can_invite": True,
+            "icon": "test",
+            "banner": "test"
+        }
+        ser = UnionSerializer(data=data)
+        ser.is_valid(raise_exception=True)
+        ser.save()
+        union = Union.objects.first()
+
+        self.assertEqual(union.union_users.get(user_id=self.joel.user_id), self.joel)
+
+        # creator of a union will be the first in union users
+        self.assertEqual(union.union_users.first(), self.joel)
