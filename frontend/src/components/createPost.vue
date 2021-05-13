@@ -5,26 +5,30 @@
       <div>
         <p class="create-text">{{ $t("create_post.post_title") }}</p>
         <input
-            type="text"
-            name="title"
-            class="create-input input create-title-input"
-            v-model="title"/>
+          type="text"
+          name="title"
+          class="create-input input create-title-input"
+          v-model="title"
+        />
       </div>
       <div class="create-row">
         <div>
           <p class="create-text">{{ $t("create_post.post_content") }}</p>
           <textarea
-              type="text"
-              name="content"
-              class="create-input create-content-input input"
-              v-model="content"/>
+            type="text"
+            name="content"
+            class="create-input create-content-input input"
+            v-model="content"
+          />
         </div>
         <div class="create-column">
           <p class="create-text">{{ $t("create_post.image") }}</p>
           <div class="create-circle">
-            <img src="../assets/svg/imageIcon.svg"
-                 v-on:click="uploadImage()"
-                 alt="image Icon">
+            <img
+              src="../assets/svg/imageIcon.svg"
+              v-on:click="uploadImage()"
+              alt="image Icon"
+            />
           </div>
         </div>
       </div>
@@ -33,8 +37,8 @@
           {{ $t("create_post.post") }}
         </button>
         <button
-            class="btn btn-primary create-button create-button-cancel"
-            v-on:click="discard()"
+          class="btn btn-primary create-button create-button-cancel"
+          v-on:click="discard()"
         >
           {{ $t("create_post.discard") }}
         </button>
@@ -47,14 +51,11 @@
 export default {
   name: "createPostComponent",
   methods: {
-    post: function () {
-    },
-    uploadImage: function () {
-    },
-    discard: function () {
-    },
+    post: function () {},
+    uploadImage: function () {},
+    discard: function () {},
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -163,5 +164,4 @@ export default {
   place-items: center;
   margin-left: $paddingHuge;
 }
-
 </style>
