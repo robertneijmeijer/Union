@@ -32,6 +32,7 @@ export default {
     },
     showModal() {
       document.body.classList.add("modal-open");
+      window.scrollTo(0,0);
     },
     hideModal() {
       document.body.classList.remove("modal-open");
