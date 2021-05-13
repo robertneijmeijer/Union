@@ -1,6 +1,6 @@
 <template>
   <union-overview-navigator></union-overview-navigator>
-  <CreatePostComponent v-if="showCreatePost" />
+  <CreatePostComponent v-if="showCreatePost" @callbackToggleCreatePost="toggleCreatePost"/>
   <UnionHeader/>
   <UnionContent @callbackToggleCreatePost="toggleCreatePost"/>
 </template>

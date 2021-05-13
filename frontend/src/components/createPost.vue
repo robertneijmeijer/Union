@@ -49,11 +49,16 @@ export default {
   name: "createPostComponent",
   methods: {
     post: function () {
+      this.toggleCreatePost();
     },
     uploadImage: function () {
     },
     discard: function () {
+      this.toggleCreatePost();
     },
+    toggleCreatePost() {
+      this.$emit("callbackToggleCreatePost");
+    }
   },
 }
 </script>
@@ -101,8 +106,8 @@ export default {
 
 .create-input {
   margin-left: $paddingHuge;
-  max-width: 1400px;
-  width: 50%;
+  max-width: 700px;
+  width: 45%;
   background-color: #232323;
   border-radius: $borderRadiusInput;
   border: 3px solid $inputTextFieldBorderColor;
