@@ -19,7 +19,6 @@ class JWTAuthentication(authentication.BaseAuthentication):
         except KeyError:
             return None, None
 
-
     @staticmethod
     def authenticate_credentials_from_request_cookie(request):
         token = request.stream.COOKIES.get('Authorization').replace(JWTAuthentication.AUTH_HEADER_PREFIX, '')
@@ -107,4 +106,4 @@ class JWTAuthentication(authentication.BaseAuthentication):
             msg = 'This user has been deactivated.'
             raise exceptions.AuthenticationFailed(msg)
 
-        return (user, token)
+        return user, token
