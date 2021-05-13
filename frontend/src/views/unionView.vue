@@ -1,13 +1,15 @@
 <template>
   <union-overview-navigator></union-overview-navigator>
-  <UnionHeader />
-  <UnionContent />
+  <CreatePostComponent v-show="showCreatePost" />
+  <UnionHeader/>
+  <UnionContent @callbackToggleCreatePost="toggleCreatePost"/>
 </template>
 
 <script>
 import UnionHeader from "@/components/unionHeader";
 import UnionContent from "@/components/unionContent";
 import UnionOverviewNavigator from "@/components/unionOverviewNavigator";
+import CreatePostComponent from "../components/createPost"
 
 export default {
   name: "unionOverviewView",
@@ -15,6 +17,18 @@ export default {
     UnionOverviewNavigator,
     UnionHeader,
     UnionContent,
+    CreatePostComponent,
   },
+  data() {
+    return {
+      showCreatePost: false
+    }
+  },
+  methods: {
+    toggleCreatePost() {
+      console.log("TOGGLE");
+      this.showCreatePost = !this.showCreatePost
+    }
+  }
 };
 </script>
