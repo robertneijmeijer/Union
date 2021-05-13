@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
 
 axios.interceptors.request.use(
-  function (config: AxiosRequestConfig) {
+  function(config: AxiosRequestConfig) {
     if (
       !config.url ||
       config.url?.indexOf("register") > -1 ||
@@ -14,7 +14,7 @@ axios.interceptors.request.use(
     };
     return config;
   },
-  function (error) {
+  function(error) {
     return Promise.reject(error);
   }
 );

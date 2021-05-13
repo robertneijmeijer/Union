@@ -51,9 +51,9 @@
 export default {
   name: "createPostComponent",
   methods: {
-    post: function () {},
-    uploadImage: function () {},
-    discard: function () {},
+    post: function() {},
+    uploadImage: function() {},
+    discard: function() {},
   },
 };
 </script>

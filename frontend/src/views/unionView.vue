@@ -22,7 +22,7 @@ export default {
     UnionHeader,
     UnionContent,
   },
-  beforeCreate: function () {
+  beforeCreate: function() {
     UnionApi.getUnion(this.$route.params.unionName);
   },
 };

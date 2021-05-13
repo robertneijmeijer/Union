@@ -16,7 +16,7 @@ import router from "@/router";
 export default {
   name: "topBarLogo",
   methods: {
-    onClickImage: function () {
+    onClickImage: function() {
       router.push("/");
     },
   },
