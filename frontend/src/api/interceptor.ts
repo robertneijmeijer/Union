@@ -10,7 +10,7 @@ axios.interceptors.request.use(
     )
       return config;
     config.headers = {
-      Authorization: `Token ${Cookie.get("Authorization")}`,
+      Authorization: Cookie.get("Authorization"),
     };
     return config;
   },
