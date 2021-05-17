@@ -3,7 +3,7 @@
     <!--    TODO: Do background scaling-->
     <!--    TODO: Add local switcher-->
     <div class="invite-card">
-      <div v-if="false">
+      <div v-if="!invite.fetching">
         <div v-if="invite.status_code === 404 || invite.status === 'accepted'">
           <div class="invite-center">
             <div class="invite-text">{{ $t("invite.invalid") }}</div>
@@ -49,13 +49,15 @@
           </div>
         </div>
         <div v-else class="white-text">
-          Something went wrong, please try again later
-          <!--          TODO: Implement Something went wrong -->
+          <div class="invite-center">
+            <div class="invite-text">
+              {{ $t("global.generalized_error_message") }}
+            </div>
+          </div>
         </div>
       </div>
       <div v-else class="white-text">
-        <!--          TODO: Implement Spinner -->
-        TODO: SHOW SPINNER
+        <clip-loader :size="'100px'"></clip-loader>
       </div>
     </div>
 
@@ -67,6 +69,7 @@
 
 <script>
 import { ActionTypes } from "@/actions/invite";
+import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
 function getImage(path) {
   return require(`../assets/img/${path}`);
@@ -74,6 +77,7 @@ function getImage(path) {
 
 export default {
   name: "inviteAccept",
+  components: { ClipLoader },
   computed: {
     invite() {
       return this.$store.state.invite;
