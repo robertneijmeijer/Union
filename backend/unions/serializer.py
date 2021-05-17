@@ -1,6 +1,8 @@
+
 from rest_framework import serializers
 
 from unions.models import Union
+from users.models import User
 
 
 class UnionSerializerSimple(serializers.ModelSerializer):
@@ -19,4 +21,7 @@ class UnionSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'members_can_invite', 'icon', 'creator_id', 'banner']
 
     def create(self, validated_data):
-        return Union.objects.create(**validated_data)
+        union: Union = Union.objects.create(**validated_data)
+        user: User = User.objects.filter(user_id=union.creator_id).first()
+        union.union_users.add(user)
+        return union

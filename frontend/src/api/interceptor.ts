@@ -15,7 +15,7 @@ axios.interceptors.request.use(
     console.log(Cookie.get("Authorization"));
 
     config.headers = {
-      Authorization: `Token ${Cookie.get("Authorization")}`,
+      Authorization: Cookie.get("Authorization"),
     };
     // TODO add redirect to login when cookie is null
     return config;

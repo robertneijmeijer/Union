@@ -11,16 +11,25 @@
                 <LocaleSwitcher class="switcher"/>
             </div>
         </div>
+        <div class="item line">
+            <a href="" v-on:click="logout()">Logout</a>
+        </div>
     </div>
 </template>
 
 <script>
   import SearchbarComponent from "@/components/searchbarComponent";
   import LocaleSwitcher from "@/components/localeSwitcher";
+  import { logout } from "@/router";
 
   export default {
     name: "union-toggle-menu",
     components: { SearchbarComponent, LocaleSwitcher },
+    methods: {
+      logout: function() {
+        logout();
+      },
+    },
   };
 </script>
 

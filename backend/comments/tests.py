@@ -36,7 +36,9 @@ class CreateUnion(APITestCase):
             "union": self.union.union_id
         }
         wrong_req = self.client.post('/comments/', comment_data, format='json')
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.teun.token)
+
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.teun.token)
+
         req = self.client.post('/comments/', comment_data, format='json')
 
         self.assertEqual(req.status_code, status.HTTP_201_CREATED)

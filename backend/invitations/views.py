@@ -40,6 +40,9 @@ class InvitationsAPIView(APIView):
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
+        if token is None or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
+
         creation_data = {
             'union': union_id,
             'invite_creator': user.user_id
