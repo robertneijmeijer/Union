@@ -31,7 +31,12 @@ const routes = [
   {
     path: "/union",
     name: "union-overview",
-    component: unionOverviewView,
+    component: unionOverView,
+  },
+  {
+    path: "/union/:unionName",
+    name: "union-view",
+    component: unionView,
   },
   {
     path: "/unions/invite/accept",
