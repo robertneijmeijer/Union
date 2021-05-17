@@ -59,5 +59,11 @@
     "post_title": "Title",
     "post_content": "Content",
     "image": "Image"
+  },
+  "union_join": {
+    "welcome": "Welcome to",
+    "to_join": "To join a Union you",
+    "must": "must have an invite",
+    "or": "or"
   }
 }
