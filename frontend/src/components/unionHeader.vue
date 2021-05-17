@@ -1,16 +1,12 @@
 <template>
   <div class="header-background">
     <div class="header">
-      <img
-        class="header-img"
-        alt="Responsive image"
-        src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
-      />
+      <img class="header-img" alt="Responsive image" :src="getBanner()" />
     </div>
     <div class="header-title">
       <div class="header-title-content">
-        <img class="header-title-logo" src="../assets/img/bitcoin-icon.png" />
-        <h3 class="header-title-text">TheCryptoUnion</h3>
+        <img class="header-title-logo" :src="getLogo()" />
+        <h3 class="header-title-text">{{ name }}</h3>
         <button class="header-title-btn">
           {{ $t("union_overview.joined") }}
         </button>
@@ -20,8 +16,24 @@
 </template>
 
 <script>
+import DefaultBanner from "../assets/img/landingspage.jpg";
+import DefaultLogo from "../assets/svg/unionCircle.svg";
+
 export default {
   name: "union-overview-header",
+  props: {
+    banner: { type: String },
+    icon: { type: String },
+    name: { type: String, required: true },
+  },
+  methods: {
+    getBanner() {
+      return this.banner ? this.banner : DefaultBanner;
+    },
+    getLogo() {
+      return this.logo ? this.logo : DefaultLogo;
+    },
+  },
 };
 </script>
 
@@ -41,6 +53,7 @@ export default {
   max-height: 17em;
   width: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .header-title {
@@ -60,6 +73,8 @@ export default {
   height: $unionlogo;
   width: $unionlogo;
   margin-top: -1em;
+  object-fit: cover;
+  object-position: center;
 }
 
 .header-title-text {

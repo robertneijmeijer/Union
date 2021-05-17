@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <p>Piemel</p>
-  </div>
+  <div></div>
 </template>
 
 <script>

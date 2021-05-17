@@ -5,7 +5,7 @@ export type UnionType = {
   name: string;
   description: string;
   members_can_invite: boolean;
-  icon: string;
+  icon?: string;
   banner?: string;
 };
 
