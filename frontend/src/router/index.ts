@@ -45,12 +45,19 @@ const router = createRouter({
   routes,
 });
 
+export const logout = () => {
+  if(Cookie.get("Authorization")) {
+    Cookie.remove("Authorization");
+  }
+  router.push("login");
+  };
+
 router.beforeEach((to, from, next) => {
   if (
     to.name !== "/" &&
     to.name !== "login" &&
     to.name !== "register" &&
-    !Cookie.get("Authentication")
+    !Cookie.get("Authorization")
   )
     next({ name: "login" });
   else next();
