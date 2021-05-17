@@ -15,15 +15,6 @@
             <a href="" v-on:click="logout()">Logout</a>
         </div>
     </div>
-    <div class="item line">
-      <a href="">Account</a>
-    </div>
-    <div class="item line">
-      <div class="switcher">
-        <LocaleSwitcher class="switcher" />
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
