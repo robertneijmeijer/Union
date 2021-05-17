@@ -37,7 +37,7 @@ class CreateUnion(APITestCase):
                 "creator_id": self.teun.user_id,
             }
         }
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.teun.token)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.teun.token)
         req = self.client.post('/unions', union_data, format='json')
         self.assertEqual(req.status_code, status.HTTP_201_CREATED)
 

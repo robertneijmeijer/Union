@@ -59,6 +59,9 @@ class LoginAPIView(APIView):
             key='Authentication',
             value='Bearer ' + serializer.data.get('token'),
             httponly=False,
+            key='Authorization',
+            value='Token ' + serializer.data.get('token'),
+            httponly=False,
             samesite='none',
             secure=True,
         )
