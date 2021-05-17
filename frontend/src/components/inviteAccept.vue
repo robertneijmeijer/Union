@@ -1,7 +1,5 @@
 <template>
   <div class="invite-container invite-center">
-    <!--    TODO: Do background scaling-->
-    <!--    TODO: Add local switcher-->
     <div class="invite-card">
       <div v-if="!invite.fetching">
         <div v-if="invite.status_code === 404 || invite.status === 'accepted'">
@@ -57,7 +55,7 @@
         </div>
       </div>
       <div v-else>
-        <clip-loader :size="'100px'"></clip-loader>
+        <spinner size="large"></spinner>
       </div>
     </div>
   </div>
@@ -65,12 +63,12 @@
 
 <script>
 import { ActionTypes } from "@/actions/invite";
-import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 import router from "@/router";
+import Spinner from "@/components/spinner";
 
 export default {
   name: "inviteAccept",
-  components: { ClipLoader },
+  components: { Spinner },
   computed: {
     invite() {
       return this.$store.state.invite;

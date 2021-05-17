@@ -1,5 +1,5 @@
 <template>
-  <top-bar-logo />
+  <top-bar-logo show-locale="true" />
   <AcceptInvite />
 </template>
 
