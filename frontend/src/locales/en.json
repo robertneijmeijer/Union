@@ -35,7 +35,7 @@
     "dont_have_account": "Don't have an account?",
     "sign_up": "Sign up",
     "errors": {
-      "incorrect_username_password": "Incorrect username or password",
+      "incorrect_username_password": "Incorrect username or password"
     }
   },
   "union_overview": {

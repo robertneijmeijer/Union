@@ -36,7 +36,7 @@
     "sign_up": "Aanmelden",
     "forgot_password": "Wachtwoord vergeten?",
     "errors": {
-      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord",
+      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord"
     }
   },
   "union_overview": {

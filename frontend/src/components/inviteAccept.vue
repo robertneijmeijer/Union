@@ -6,7 +6,7 @@
       <div v-if="!invite.fetching">
         <div v-if="invite.status_code === 404 || invite.status === 'accepted'">
           <div class="invite-center">
-            <div class="invite-text">{{ $t("invite.invalid") }}</div>
+            <div class="invite-error-text">{{ $t("invite.invalid") }}</div>
           </div>
         </div>
         <div v-else-if="invite.status_code === 200">
@@ -48,21 +48,17 @@
             </div>
           </div>
         </div>
-        <div v-else class="white-text">
+        <div v-else>
           <div class="invite-center">
-            <div class="invite-text">
+            <div class="invite-error-text">
               {{ $t("global.generalized_error_message") }}
             </div>
           </div>
         </div>
       </div>
-      <div v-else class="white-text">
+      <div v-else>
         <clip-loader :size="'100px'"></clip-loader>
       </div>
-    </div>
-
-    <div class="white-text">
-      {{ invite }}
     </div>
   </div>
 </template>
@@ -124,12 +120,14 @@ export default {
 }
 
 .invite-card {
-  max-height: 500px;
-  height: 100%;
-  max-width: 1000px;
-  width: 100%;
+  max-width: 1100px;
+  min-width: 700px;
   background-color: $secondary-gray;
   border-radius: $borderRadiusSmall;
+  padding: ($paddingMedium * 2) ($paddingMedium * 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .invite-banner {
@@ -138,17 +136,21 @@ export default {
   max-height: 200px;
   height: 100%;
   border-radius: $borderRadiusSmall;
-  margin-top: $paddingHuge;
 }
 
 .invite-text {
   font-size: 36px;
-  font-family: "Overpass-SemiBold";
+  font-family: "Overpass-SemiBold", serif;
   color: white;
   padding-top: $paddingMedium;
   margin-top: $paddingLarge;
   margin-bottom: $paddingSmall;
   margin-left: $paddingSmall;
+}
+
+.invite-error-text {
+  @extend .invite-text;
+  margin: $paddingMedium;
 }
 
 .invite-icon {
