@@ -95,9 +95,10 @@ class InvitationsAcceptAPIView(APIView):
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
+        if user is None or token is None:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
         # Add user to unions
         InvitationCreateSerializer.accept_invitation(database_invitation, user)
 
-        # TODO: Respond with union redirect ID
-
-        return Response({}, status=status.HTTP_202_ACCEPTED)
+        return Response({"union_id": database_invitation.union.union_id}, status=status.HTTP_202_ACCEPTED)

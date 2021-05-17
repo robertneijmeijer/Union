@@ -12,7 +12,7 @@ export interface InviteInfoResponse {
 export default class InviteApi extends ApiBase {
   public static acceptInvite = (invite_token: string): Promise<any> => {
     return InviteApi.requestPost(
-      `unions/invite/accept?invite_token?${invite_token}`
+      `unions/invite/accept?invite_token=${invite_token}`
     );
   };
 

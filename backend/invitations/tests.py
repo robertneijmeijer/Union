@@ -146,7 +146,8 @@ class InvitationAcceptTests(APITestCase):
         invite: Invitation = Invitation.objects.filter(token=self.invitation_data['invite_token']).first()
 
         self.assertEqual(res.status_code, status.HTTP_202_ACCEPTED)
-        self.assertEqual(res_body, {})
+        self.assertTrue("union_id" in res_body)
+        self.assertEqual(res_body["union_id"], invite.union.union_id)
         self.assertIsNotNone(invite.accepted_at)
         self.assertEqual(invite.invite_acceptor, self.koen)
 

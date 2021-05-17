@@ -66,10 +66,7 @@
 <script>
 import { ActionTypes } from "@/actions/invite";
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
-
-function getImage(path) {
-  return require(`../assets/img/${path}`);
-}
+import router from "@/router";
 
 export default {
   name: "inviteAccept",
@@ -97,9 +94,8 @@ export default {
       });
     },
     decline: function() {
-      // TODO: Route to home
+      router.push(`/`);
     },
-    getImage,
   },
 };
 </script>

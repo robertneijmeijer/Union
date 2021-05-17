@@ -9,7 +9,6 @@ export enum ActionTypes {
   INVITE_SET_INFO = "INVITE_SET_INFO",
   INVITE_SET_STATUS_CODE = "INVITE_SET_STATUS_CODE",
   INVITE_ACCEPT = "INVITE_ACCEPT",
-  INVITE_RESET_STATE = "INVITE_RESET_STATE",
   INVITE_SET_IS_LOADING = "INVITE_SET_IS_LOADING",
 }
 
@@ -38,7 +37,10 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
         commit(ActionTypes.INVITE_SET_IS_LOADING, false);
       })
       .catch(error => {
-        commit(ActionTypes.INVITE_SET_STATUS_CODE, error.response.status);
+        commit(
+          ActionTypes.INVITE_SET_STATUS_CODE,
+          error.response.status || 500
+        );
         commit(ActionTypes.INVITE_SET_IS_LOADING, false);
       });
   },
@@ -46,14 +48,15 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
     { commit, state },
     payload: InviteTokenInterface
   ) {
-    // TODO: Call accept endpoint
     InviteApi.acceptInvite(payload.invite_token)
       .then(result => {
-        // TODO Redirect to result id
-        router.push("union");
+        router.push(`/union/${result.union_id}`);
       })
       .catch(error => {
-        // commit(ActionTypes.INVITE_ACCEPT_FAILED);
+        commit(
+          ActionTypes.INVITE_SET_STATUS_CODE,
+          error.response.status_code || 500
+        );
       });
   },
 };
