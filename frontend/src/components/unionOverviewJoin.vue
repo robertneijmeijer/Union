@@ -1,5 +1,4 @@
 <template>
-    <union-overview-navigator></union-overview-navigator>
     <div class="box">
         <div class="welcome">
             <div class="title-items">
@@ -25,12 +24,10 @@
 </template>
 
 <script>
-  import UnionOverviewNavigator from "@/components/unionOverviewNavigator";
   import router from "@/router";
 
   export default {
-    name: "unionOverView",
-    components: { UnionOverviewNavigator },
+    name: "unionOverviewJoin",
     methods: {
       createUnion: function() {
         router.push("createunion");
@@ -38,6 +35,7 @@
     },
   };
 </script>
+
 
 <style lang="scss" scoped>
     @import "../assets/theme";
