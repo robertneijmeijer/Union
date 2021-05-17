@@ -151,6 +151,8 @@ export default {
 .invite-error-text {
   @extend .invite-text;
   margin: $paddingMedium;
+  padding: 0;
+  text-align: center;
 }
 
 .invite-icon {
