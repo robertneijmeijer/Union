@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework import status
@@ -11,20 +9,26 @@ from rest_framework.views import APIView
 from authentication.backends import JWTAuthentication
 from invitations.models import Invitation
 from invitations.serializers import InvitationCreateSerializer, InvitationSerializer
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class InvitationsAPIView(APIView):
     serializer_class = InvitationCreateSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        print(request.data)
-        invitation = Invitation.objects.get(token="6787d064-b174-11eb-8f7d-0242ac140004")
+        try:
+            invite_token = request.GET.get('invite_token')
+            if invite_token is None:
+                raise KeyError
+
+            invitation = Invitation.objects.get(token=invite_token)
+        except KeyError:
+            return Response({"invite_token query param is missing"}, status=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = InvitationSerializer(invitation)
-
-        # TODO: Check for permissions
-        # TODO: Error handling
 
         return Response(serializer.data)
 
@@ -89,6 +93,8 @@ class InvitationsAcceptAPIView(APIView):
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         # Add user to unions
-        InvitationSerializer.accept_invitation(database_invitation, user)
+        InvitationCreateSerializer.accept_invitation(database_invitation, user)
+
+        # TODO: Respond with union redirect ID
 
         return Response({}, status=status.HTTP_202_ACCEPTED)
