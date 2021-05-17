@@ -7,6 +7,8 @@ import acceptInviteView from "../views/acceptInviteView.vue";
 import Cookie from "js-cookie";
 import unionView from "@/views/unionView.vue";
 import noUnionOverview from "@/views/noUnionOverview.vue";
+import unionOverview from "@/views/unionOverview.vue"
+
 
 const routes = [
   {
@@ -31,8 +33,13 @@ const routes = [
   },
   {
     path: "/union",
-    name: "union-overview",
+    name: "union-no-overview",
     component: noUnionOverview,
+  },
+  {
+    path: "/union/unions",
+    name: "union-overview",
+    component: unionOverview,
   },
   {
     path: "/union/:unionName",
