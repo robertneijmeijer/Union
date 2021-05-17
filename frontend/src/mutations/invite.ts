@@ -12,7 +12,6 @@ export interface MutationsInterface {
     state: InviteState,
     payload: InviteInfoResponse
   ): void;
-  [ActionTypes.INVITE_RESET_STATE](state: InviteState): void;
   [ActionTypes.INVITE_SET_IS_LOADING](
     state: InviteState,
     payload: boolean
@@ -30,12 +29,6 @@ export const mutations: MutationTree<InviteState> & MutationsInterface = {
     state.union = payload.union;
     state.status = payload.status;
     state.invite_creator = payload.invite_creator;
-  },
-  [ActionTypes.INVITE_RESET_STATE](state: InviteState) {
-    state.token = undefined;
-    state.fetching = false;
-    state.union = undefined;
-    state.status = undefined;
   },
   [ActionTypes.INVITE_SET_STATUS_CODE](state: InviteState, payload: number) {
     state.status_code = payload;

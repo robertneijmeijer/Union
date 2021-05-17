@@ -7,11 +7,11 @@ import { User } from "@/types/user";
 
 export interface InviteModuleStateInterface {
   token: string | undefined;
-  status: "accepted" | "open" | "error" | undefined;
+  status: "accepted" | "open" | undefined;
   invite_creator: User | undefined;
   union: Union | undefined;
   fetching: boolean;
-  status_code: number | undefined
+  status_code: number | undefined;
 }
 
 export type InviteState = InviteModuleStateInterface;

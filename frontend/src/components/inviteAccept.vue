@@ -1,10 +1,13 @@
 <template>
   <div class="invite-container invite-center">
+    <!--    TODO: Do background scaling-->
+    <!--    TODO: Add local switcher-->
     <div class="invite-card">
-      <div v-if="!invite.fetching">
-        <div v-if="invite.status_code === 404">
-          <div>NOT FOUND</div>
-          <!--          TODO: Implement not found-->
+      <div v-if="false">
+        <div v-if="invite.status_code === 404 || invite.status === 'accepted'">
+          <div class="invite-center">
+            <div class="invite-text">{{ $t("invite.invalid") }}</div>
+          </div>
         </div>
         <div v-else-if="invite.status_code === 200">
           <div class="invite-center">
@@ -71,42 +74,33 @@ function getImage(path) {
 
 export default {
   name: "inviteAccept",
-  // TODO: Remove
-  props: {
-    invites: {
-      user: String,
-      union: String,
-      banner: String,
-      icon: String
-    }
-  },
   computed: {
     invite() {
       return this.$store.state.invite;
-    }
+    },
   },
   data() {
     return {
-      id: null
+      id: null,
     };
   },
   created() {
     this.id = this.$route.params.id;
     this.$store.dispatch(ActionTypes.INVITE_GET_INFO, {
-      invite_token: this.id
+      invite_token: this.id,
     });
   },
   methods: {
     accept: function() {
       this.$store.dispatch(ActionTypes.INVITE_ACCEPT, {
-        invite_token: this.id
+        invite_token: this.id,
       });
     },
     decline: function() {
       // TODO: Route to home
     },
-    getImage
-  }
+    getImage,
+  },
 };
 </script>
 
