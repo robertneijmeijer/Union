@@ -5,6 +5,7 @@ import jwt
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
+from authentication.backends import JWTAuthentication
 from posts.models import Post
 from posts.serializer import PostSerializer
 from project import settings
@@ -24,17 +25,12 @@ class PostViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         post = request.data
 
-        token = request.headers.get('Authorization', None)
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
-        if token is None:
-            return Response(status.HTTP_401_UNAUTHORIZED)
+        if token is None or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        token = token.replace('Bearer ', '')
-
-        # Retrieve user_id from JWT
-        user_id = jwt.decode(token, settings.SECRET_KEY, ["HS256"])['id']
-
-        post['creator'] = user_id
+        post['creator'] = user.user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=post)
