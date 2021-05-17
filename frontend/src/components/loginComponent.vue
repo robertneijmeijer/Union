@@ -58,7 +58,7 @@
             </div>
             <div class="row align-items-center remember overpass gray">
               <input type="checkbox" class="checkbox" />{{
-              $t("login.remember_me")
+                $t("login.remember_me")
               }}
             </div>
           </div>
