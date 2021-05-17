@@ -23,11 +23,6 @@ export default class App extends Vue {}
   font-family: "Overpass-SemiBold";
   src: local("Overpass-SemiBold"),
     url("./assets/fonts/Overpass-SemiBold.ttf") format("truetype");
-  /*Overpass bold is broken (for some reason).
-    Temporarily removed to avoid issues*/
-  /*font-family: "Overpass-Bold";*/
-  /*src: local("Overpass-Bold"),*/
-  /*  url("./assets/fonts/Overpass-Bold.ttf") format("truetype");*/
 }
 
 #app {
