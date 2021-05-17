@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     toggleCreatePost() {
-      console.log("TOGGLE");
-      this.showCreatePost = !this.showCreatePost
+      this.showCreatePost = !this.showCreatePost;
       this.showCreatePost ? this.showModal() : this.hideModal();
     },
     showModal() {
