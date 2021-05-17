@@ -24,8 +24,6 @@ class InvitationSerializer(serializers.ModelSerializer):
         return status
 
 
-
-
 class InvitationCreateSerializer(serializers.ModelSerializer):
     invite_token = serializers.SerializerMethodField(read_only=True)
 
