@@ -11,7 +11,7 @@ axios.interceptors.request.use(
     )
       return config;
 
-    console.log("COOKIE")
+    console.log("COOKIE");
     console.log(Cookie.get("Authorization"));
 
     config.headers = {
