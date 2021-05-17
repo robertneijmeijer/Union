@@ -68,6 +68,7 @@
         color: white;
         font-size: 48px;
         font-family: "Overpass-SemiBold", serif;
+        user-select: none;
     }
 
     .join {
@@ -103,6 +104,7 @@
         border-radius: $borderRadius;
         font-size: 26px;
         outline: none;
+        user-select: none;
 
         &:hover,
         &:active,
