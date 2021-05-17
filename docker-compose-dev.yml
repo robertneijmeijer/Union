@@ -1,6 +1,16 @@
 version: "3.9"
 
 services:
+  minio:
+    image: minio/minio
+    volumes:
+      - data1-1:/data1
+    expose:
+      - "9000"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command: server /data
   database:
     container_name: db
     image: postgres
@@ -36,3 +46,5 @@ services:
     volumes:
       - ./frontend:/app
     command: npm run serve
+volumes:
+  data1-1:
