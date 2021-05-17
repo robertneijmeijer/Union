@@ -1,5 +1,5 @@
 import { ActionTree } from "vuex";
-import { RootState, store } from "@/store/store";
+import { RootState } from "@/store/store";
 import { InviteState } from "@/store/modules/invite";
 import InviteApi from "@/api/invite";
 import router from "@/router";
@@ -7,10 +7,10 @@ import router from "@/router";
 export enum ActionTypes {
   INVITE_GET_INFO = "INVITE_GET_INFO",
   INVITE_SET_INFO = "INVITE_SET_INFO",
+  INVITE_SET_STATUS_CODE = "INVITE_SET_STATUS_CODE",
   INVITE_ACCEPT = "INVITE_ACCEPT",
   INVITE_RESET_STATE = "INVITE_RESET_STATE",
   INVITE_SET_IS_LOADING = "INVITE_SET_IS_LOADING",
-  INVITE_ACCEPT_FAILED = "INVITE_ACCEPT_FAILED",
 }
 
 export interface InviteTokenInterface {
@@ -33,15 +33,13 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
     commit(ActionTypes.INVITE_SET_IS_LOADING, true);
     InviteApi.getInviteInfo(payload.invite_token)
       .then(result => {
-        commit(ActionTypes.INVITE_SET_INFO, {
-          ...result,
-        });
+        commit(ActionTypes.INVITE_SET_INFO, result);
+        commit(ActionTypes.INVITE_SET_STATUS_CODE, 200);
         commit(ActionTypes.INVITE_SET_IS_LOADING, false);
-        console.log(result);
       })
       .catch(error => {
-        // TODO: Error handling
-        console.log(error);
+        commit(ActionTypes.INVITE_SET_STATUS_CODE, error.response.status);
+        commit(ActionTypes.INVITE_SET_IS_LOADING, false);
       });
   },
   [ActionTypes.INVITE_ACCEPT](
@@ -55,7 +53,7 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
         router.push("union");
       })
       .catch(error => {
-        commit(ActionTypes.INVITE_ACCEPT_FAILED);
+        // commit(ActionTypes.INVITE_ACCEPT_FAILED);
       });
   },
 };

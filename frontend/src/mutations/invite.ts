@@ -17,7 +17,6 @@ export interface MutationsInterface {
     state: InviteState,
     payload: boolean
   ): void;
-  [ActionTypes.INVITE_ACCEPT_FAILED](state: InviteState, payload: any): void;
 }
 
 export const mutations: MutationTree<InviteState> & MutationsInterface = {
@@ -38,7 +37,7 @@ export const mutations: MutationTree<InviteState> & MutationsInterface = {
     state.union = undefined;
     state.status = undefined;
   },
-  [ActionTypes.INVITE_ACCEPT_FAILED](state: InviteState) {
-    state.status = "error";
+  [ActionTypes.INVITE_SET_STATUS_CODE](state: InviteState, payload: number) {
+    state.status_code = payload;
   },
 };

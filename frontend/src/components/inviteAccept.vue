@@ -2,46 +2,60 @@
   <div class="invite-container invite-center">
     <div class="invite-card">
       <div v-if="!invite.fetching">
-        <div class="invite-center">
-          <img
-            v-bind:src="invite.union.banner"
-            alt="Responsive banner"
-            class="invite-banner"
-          />
-          <div class="invite-overlay">
-<!--            TODO: Check if banner / icon is available and do if check-->
+        <div v-if="invite.status_code === 404">
+          <div>NOT FOUND</div>
+          <!--          TODO: Implement not found-->
+        </div>
+        <div v-else-if="invite.status_code === 200">
+          <div class="invite-center">
             <img
-              v-bind:src="invite.union.icon"
-              alt="Responsive icon"
-              class="invite-icon"
+              v-bind:src="invite.union.banner"
+              alt="Responsive banner"
+              class="invite-banner"
             />
-            <p class="invite-union-name">{{ invite.union.name }}</p>
+            <div class="invite-overlay">
+              <!--            TODO: Check if banner / icon is available and do if check-->
+              <img
+                v-bind:src="invite.union.icon"
+                alt="Responsive icon"
+                class="invite-icon"
+              />
+              <p class="invite-union-name">{{ invite.union.name }}</p>
+            </div>
+          </div>
+          <div class="invite-center">
+            <div class="invite-row">
+              <p class="invite-text">{{ invite.invite_creator.username }}</p>
+              <p class="invite-text">{{ $t("invite.invited") }}</p>
+              <p class="invite-text">{{ invite.union.name }}</p>
+            </div>
+            <div class="invite-buttons">
+              <button
+                class="btn btn-primary invite-button"
+                v-on:click="accept()"
+              >
+                {{ $t("invite.accept") }}
+              </button>
+              <button
+                class="btn btn-primary invite-button invite-button-decline"
+                v-on:click="decline()"
+              >
+                {{ $t("invite.decline") }}
+              </button>
+            </div>
           </div>
         </div>
-        <div class="invite-center">
-          <div class="invite-row">
-            <p class="invite-text">{{ invite.invite_creator.username }}</p>
-            <p class="invite-text">{{ $t("invite.invited") }}</p>
-            <p class="invite-text">{{ invite.union.name }}</p>
-          </div>
-          <div class="invite-buttons">
-            <button class="btn btn-primary invite-button" v-on:click="accept()">
-              {{ $t("invite.accept") }}
-            </button>
-            <button
-              class="btn btn-primary invite-button invite-button-decline"
-              v-on:click="decline()"
-            >
-              {{ $t("invite.decline") }}
-            </button>
-          </div>
-
-          <div v-if="(invite.status === 'error')" class="white-text">
-            "ERRORR"
-          </div>
+        <div v-else class="white-text">
+          Something went wrong, please try again later
+          <!--          TODO: Implement Something went wrong -->
         </div>
       </div>
+      <div v-else class="white-text">
+        <!--          TODO: Implement Spinner -->
+        TODO: SHOW SPINNER
+      </div>
     </div>
+
     <div class="white-text">
       {{ invite }}
     </div>
@@ -57,41 +71,42 @@ function getImage(path) {
 
 export default {
   name: "inviteAccept",
+  // TODO: Remove
   props: {
     invites: {
       user: String,
       union: String,
       banner: String,
-      icon: String,
-    },
+      icon: String
+    }
   },
   computed: {
     invite() {
       return this.$store.state.invite;
-    },
+    }
   },
   data() {
     return {
-      id: null,
+      id: null
     };
   },
   created() {
     this.id = this.$route.params.id;
     this.$store.dispatch(ActionTypes.INVITE_GET_INFO, {
-      invite_token: this.id,
+      invite_token: this.id
     });
   },
   methods: {
     accept: function() {
       this.$store.dispatch(ActionTypes.INVITE_ACCEPT, {
-        invite_token: this.id,
+        invite_token: this.id
       });
     },
     decline: function() {
       // TODO: Route to home
     },
-    getImage,
-  },
+    getImage
+  }
 };
 </script>
 

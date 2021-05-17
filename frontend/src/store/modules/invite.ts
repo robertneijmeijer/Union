@@ -11,6 +11,7 @@ export interface InviteModuleStateInterface {
   invite_creator: User | undefined;
   union: Union | undefined;
   fetching: boolean;
+  status_code: number | undefined
 }
 
 export type InviteState = InviteModuleStateInterface;
@@ -22,6 +23,7 @@ export const invite: Module<InviteState, RootState> = {
     invite_creator: undefined,
     union: undefined,
     fetching: false,
+    status_code: undefined,
   }),
   mutations,
   actions,
