@@ -28,11 +28,11 @@ class InvitationTests(APITestCase):
         self.teun: User = User.objects.create_user("teun@hva.nl", "teun")
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
-        self.union.union_users.add(self.koen)
+        self.union.users.add(self.koen)
         self.union_members_cant_invite: Union = Union.objects.create(
             name="Crypto SECRET", description="Bitcoin",
             members_can_invite=False, creator=self.koen)
-        self.union_members_cant_invite.union_users.add(self.teun)
+        self.union_members_cant_invite.users.add(self.teun)
 
     def test_create_invitation_endpoint(self):
         res, res_body = self.perform_request(self.koen, self.union.union_id)
@@ -56,7 +56,7 @@ class InvitationTests(APITestCase):
 
     def test_create_with_user_not_in_union(self):
         # Before we start lets make sure that test user Teun has access to the union
-        union_users: QuerySet[User] = self.union_members_cant_invite.union_users.all()
+        union_users: QuerySet[User] = self.union_members_cant_invite.users.all()
         self.assertTrue(len(union_users.filter(user_id=self.teun.user_id)) == 1)
 
         res, res_body = self.perform_request(self.koen, self.union_members_cant_invite.union_id)
@@ -66,7 +66,7 @@ class InvitationTests(APITestCase):
 
     def test_create_when_members_cant_invite(self):
         # Teun is user & Koen is Admin -> members can't invite
-        union_users: QuerySet[User] = self.union_members_cant_invite.union_users.all()
+        union_users: QuerySet[User] = self.union_members_cant_invite.users.all()
         self.assertTrue(len(union_users.filter(user_id=self.teun.user_id)) == 1)
         self.assertEqual(self.union_members_cant_invite.creator.user_id, self.koen.user_id)
 
@@ -92,7 +92,7 @@ class InvitationAcceptTests(APITestCase):
         self.teun: User = User.objects.create_user("teun@hva.nl", "teun")
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
-        self.union.union_users.add(self.teun)
+        self.union.users.add(self.teun)
 
         # Creating via serializer because it needs a token
         data = {

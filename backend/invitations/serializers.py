@@ -22,7 +22,7 @@ class InvitationSerializer(serializers.ModelSerializer):
     def validate(self, data):
         union: Union = data["union"]
         invite_creator: User = data["invite_creator"]
-        user_in_union = len(union.union_users.filter(user_id=invite_creator.user_id)) > 0
+        user_in_union = len(union.users.filter(user_id=invite_creator.user_id)) > 0
 
         if user_in_union is False:
             raise PermissionError(
@@ -48,7 +48,7 @@ class InvitationSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def accept_invitation(instance: Invitation, user: User):
-        instance.union.union_users.add(user)
+        instance.union.users.add(user)
         instance.accepted_at = now()
         instance.invite_acceptor = user
         instance.save()
