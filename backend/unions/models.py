@@ -28,7 +28,6 @@ class UnionUsersManager(models.Manager):
         return entry
 
 
-# TODO Check cascading
 class UnionUsers(models.Model):
     id = models.AutoField(primary_key=True)
     union = models.ForeignKey(Union, on_delete=models.PROTECT)
