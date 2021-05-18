@@ -3,7 +3,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from invitations.models import Invitation
-from unions.models import Union
+from unions.models import Union, UnionUsers
 from users.models import User
 
 
@@ -35,6 +35,17 @@ class InvitationSerializer(serializers.ModelSerializer):
             raise PermissionError(
                 'Only the admin can invite for this union'
             )
+
+        invites_left_data: UnionUsers = UnionUsers.objects.get(union=union, user=invite_creator)
+
+        if invites_left_data.invites_left == 0:
+            raise PermissionError(
+                'This user has no invites left'
+            )
+
+        # Deduct 1 from invites_left
+        invites_left_data.invites_left = invites_left_data.invites_left - 1
+        invites_left_data.save()
 
         return data
 
