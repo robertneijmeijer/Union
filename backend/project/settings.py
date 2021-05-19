@@ -131,3 +131,5 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+MINIO_STORAGE_USE_HTTPS=False

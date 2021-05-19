@@ -1,12 +1,13 @@
 from minio import Minio
 from minio.error import S3Error
 
-def fileUploader():
+def file_uploader():
     print("running")
     client = Minio(
-        "http://localhost:9000/minio/",
+        "minio:9000",
         access_key="minio",
         secret_key="minio123",
+        secure= False,
     )
 
     found = client.bucket_exists("union")
@@ -16,12 +17,9 @@ def fileUploader():
     else:
         print("Bucket already exists")
 
-    client.fput_object(
-        "union","",""
-    )
 
-if __name__ == "__fileUploader__":
+if __name__ == "__file_uploader__":
     try:
-        fileUploader()
+        file_uploader()
     except S3Error as exc:
         print("error occurred", exc)
