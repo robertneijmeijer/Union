@@ -21,7 +21,7 @@ npm run build
 ### Lints and fixes files
 
 ```
-eslint . --fix
+npm run lint
 ```
 
 ### Customize configuration
