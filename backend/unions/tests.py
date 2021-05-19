@@ -69,7 +69,7 @@ class CreateUnion(APITestCase):
         ser.save()
         union = Union.objects.first()
 
-        self.assertEqual(union.union_users.get(user_id=self.joel.user_id), self.joel)
+        self.assertEqual(union.users.get(user_id=self.joel.user_id), self.joel)
 
         # creator of a union will be the first in union users
-        self.assertEqual(union.union_users.first(), self.joel)
+        self.assertEqual(union.users.first(), self.joel)
