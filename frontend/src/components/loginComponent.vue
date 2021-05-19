@@ -44,11 +44,7 @@
               v-model="password"
             />
           </div>
-          <div class="row align-items-center remember overpass gray">
-            <input type="checkbox" class="checkbox" />{{
-              $t("login.remember_me")
-            }}
-          </div>
+
           <div class="form-group">
             <div class="text-center loginbtn">
               <button
@@ -59,6 +55,11 @@
               >
                 {{ $t("login.sign_in") }}
               </button>
+            </div>
+            <div class="row align-items-center remember overpass gray">
+              <input type="checkbox" class="checkbox" />{{
+                $t("login.remember_me")
+              }}
             </div>
           </div>
         </div>
@@ -237,6 +238,7 @@ input:focus {
   color: white;
   user-select: none;
   justify-content: center;
+  margin-top: 5%;
 }
 
 .remember input {
