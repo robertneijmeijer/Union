@@ -41,8 +41,8 @@ jobs:
 
       - name: Run lint
         run: |
-          pycodestyle . --max-line-length=127 --statistics
-          echo "If the above fails please run `autopep8 -i -r -v --max-line-length 127 .` (see root npm package.json)"
+          pycodestyle . --max-line-length=160 --statistics
+          echo "If the above fails please run `autopep8 -i -r -v --max-line-length 160 .` (see root npm package.json)"
 
       - name: Run migrations
         run: python manage.py migrate

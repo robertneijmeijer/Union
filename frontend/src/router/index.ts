@@ -4,7 +4,8 @@ import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
 import acceptInviteView from "../views/acceptInviteView.vue";
-import unionOverviewView from "@/views/unionView.vue";
+import unionView from "@/views/unionView.vue";
+import unionOverView from "@/views/unionOverView.vue";
 import Cookie from "js-cookie";
 
 const routes = [
@@ -31,7 +32,12 @@ const routes = [
   {
     path: "/union",
     name: "union-overview",
-    component: unionOverviewView,
+    component: unionOverView,
+  },
+  {
+    path: "/union/:unionName",
+    name: "union-view",
+    component: unionView,
   },
   {
     path: "/unions/invite/accept",
