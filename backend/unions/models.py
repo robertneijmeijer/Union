@@ -6,7 +6,7 @@ from users.models import User
 
 
 class Union(models.Model):
-    name = models.TextField(primary_key=True)
+    name = models.CharField(max_length=100, primary_key=True)
     description = models.TextField(blank=True)
     members_can_invite = models.BooleanField()
     icon = models.TextField(null=True)

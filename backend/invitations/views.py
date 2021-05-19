@@ -19,9 +19,9 @@ class InvitationsAPIView(APIView):
 
     def post(self, request):
         try:
-            union_id = request.data['union_id']
+            name = request.data['name']
         except KeyError:
-            return Response({'errors': "Missing union_id key"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'errors': "Missing Union name pk"}, status=status.HTTP_400_BAD_REQUEST)
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
@@ -29,7 +29,7 @@ class InvitationsAPIView(APIView):
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         creation_data = {
-            'union': union_id,
+            'union': name,
             'invite_creator': user.user_id
         }
 

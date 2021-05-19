@@ -45,14 +45,14 @@ class CreateUnion(APITestCase):
         union: Union = Union(name="test", description="name should be 'Worked'", members_can_invite=True,
                              creator=self.teun)
         union.save()
-        req = self.client.patch(f'/unions/{union.union_id}/', {"name": "Worked"}, format='json')
+        req = self.client.patch(f'/unions/{union.name}/', {"name": "Worked"}, format='json')
         self.assertEqual(req.status_code, status.HTTP_200_OK)
 
     def test_delete_union_endpoint(self):
         union: Union = Union(name="test", description="name should be 'Worked'", members_can_invite=True,
                              creator=self.teun)
         union.save()
-        req = self.client.delete(f'/unions/{union.union_id}/', format='json')
+        req = self.client.delete(f'/unions/{union.name}/', format='json')
         self.assertEqual(req.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_union_users(self):
