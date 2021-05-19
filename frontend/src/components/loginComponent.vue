@@ -93,10 +93,10 @@ export default {
     },
   },
   methods: {
-    toSignUp: function () {
+    toSignUp: function() {
       router.push("register");
     },
-    signIn: function (e) {
+    signIn: function(e) {
       e.preventDefault();
       const hashed = sha256(this.password);
       const user = {

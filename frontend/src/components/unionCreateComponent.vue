@@ -123,7 +123,7 @@ import UnionApi from "../api/union";
 export default {
   name: "unionCreate",
   methods: {
-    create: function () {
+    create: function() {
       router.push("/");
       const formValues = {
         name: this.name,
@@ -136,10 +136,10 @@ export default {
 
       console.log(formValues);
     },
-    upload_banner: function () {
+    upload_banner: function() {
       // TODO: add avatar stuff here
     },
-    upload_avatar: function () {
+    upload_avatar: function() {
       // TODO: add avatar stuff here
     },
   },

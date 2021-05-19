@@ -27,7 +27,7 @@ class UserTests(APITestCase):
 
     def test_create_user_endpoint(self):
         self.client = APIClient()
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.user.token)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.user.token)
         user = self.client.post('/users/', {"email": "gijs@hva.nl", "username": "bollegijs", "password": "dezezooi"},
                                 format='json')
         self.assertTrue(user)
