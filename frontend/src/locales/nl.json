@@ -5,7 +5,7 @@
     "fields_required": "* Verplichte velden",
     "name": "Naam *",
     "description": "Beschrijving *",
-    "invite_privilege": "Uitnodiging mogenlijkheden *",
+    "invite_privilege": "Uitnodiging instellingen *",
     "only_i": "Alleen ik kan uitnodigen",
     "everyone": "Iedereen kan uitnodigen *",
     "max_invites": "Leden krijgen maximaal 2 uitnodigingen",

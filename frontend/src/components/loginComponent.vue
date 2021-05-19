@@ -274,10 +274,6 @@ input:focus {
   font-family: Overpass-SemiBold, serif;
 }
 
-.overpass-bold {
-  font-family: Overpass-Bold, serif;
-}
-
 .form-control {
   background-color: #232323;
   border-radius: $borderRadiusInput;
