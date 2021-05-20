@@ -1,10 +1,17 @@
+from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
 import os, logging
+from PIL import Image
+from django import forms
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 MINIO_ADDRESS= os.environ.get('MINIO_ADDRESS')
 MINIO_ACCESS_KEY= os.environ.get('MINIO_ACCESS_KEY')
 MINIO_SECRET_KEY= os.environ.get('MINIO_SECRET_KEY')
+
+class ImageForm(forms.Form):
+    img = forms.ImageField()
 
 
 def file_uploader(name,file):
@@ -12,6 +19,11 @@ def file_uploader(name,file):
         logging.warning(name)
         logging.warning(file)
         return
+
+    file_data = {'img': SimpleUploadedFile('name', file.read() )}
+    form = ImageForm({}, file_data)
+
+    form.is_valid()
 
     bucketName = "union"
     client = Minio(
@@ -28,9 +40,7 @@ def file_uploader(name,file):
         print("Bucket already exists")
 
     logging.warning(file)
-    url = client.put_object(
-        bucketName,os.stat(str(file)),os.stat(str(file))
-    )
+    url = client.put_object( bucketName,name,file.read(),file.size)
     logging.warning("Result of put", url)
     return url
 
