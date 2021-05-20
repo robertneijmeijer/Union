@@ -3,15 +3,24 @@ from unions.models import Union
 from unions.serializer import UnionSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets, status
+from s3.file_uploader import file_uploader
+import logging
 
 
 # TODO: Implement delete authentication and test update
 class UnionViewSet(viewsets.ModelViewSet):
     queryset = Union.objects.all()
     serializer_class = UnionSerializer
+    logging.warning("test")
 
     def create(self, request, *args, **kwargs):
+        
         union = request.data.get('union', {})
+
+        logging.warning("FILES:")
+        logging.warning(request.FILES)
+
+        union['banner'] = file_uploader(name="zarina.png", file=request.FILES['banner'])
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
