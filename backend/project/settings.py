@@ -105,6 +105,14 @@ DATABASES = {
     }
 }
 
+MINIO = {
+    'default': {
+        'MINIO_ADDRESS': os.getenv("MINIO_ADDRESS"),
+        'MINIO_ACCESS_KEY': os.getenv("MINIO_ACCESS_KEY"),
+        'MINIO_SECRET_KEY': os.getenv("MINIO_SECRET_KEY"),
+    }
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
