@@ -1,16 +1,21 @@
 <template>
-    <div class="union-section">
-        <div class="union-section-post">
-            <div class="union-section-post-comment border-for-div" v-for="(union, index) in unions"
+    <div class="union-grid">
+        <h2>Unions</h2>
+        <div id="union" class="union-section">
+            <div class="union-section-post-comment " v-for="(union, index) in unions"
                  v-bind:key="union.id">
-                <union-list-item :union="union" :index="index" />
+                <union-list-item :union="union" :index="index"/>
             </div>
         </div>
+        <div class="side-menu">
+        </div>
     </div>
+
 </template>
 
 <script>
   import UnionListItem from "@/components/unionListItem";
+
   export default {
     name: "unionDashboard",
     components: { UnionListItem },
@@ -24,37 +29,53 @@
             creator: "Joel",
           },
           {
-            id: 2,
-            name: "Another one",
+            id: 1,
+            name: "The crypto union",
             url: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg",
-            creator: "Koen",
+            creator: "Joel",
           },
           {
-            id: 2,
-            name: "Another one",
+            id: 1,
+            name: "The crypto union",
             url: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg",
-            creator: "Koen",
-          }]
-    }}
+            creator: "Joel",
+          }
+        ],
+      };
+    },
   };
 </script>
 
 <style lang="scss" scoped>
     @import "../assets/theme";
-    
-    .union-section {
-        display: grid;
-        grid-template-columns: 25fr 50fr 25fr;
-        padding: 2em;
-        column-gap: 2em;
-        max-width: 40em;
-        margin: 0 auto;
+
+    @media only screen and (max-width: 726px) {
+        #union {
+            grid-template-columns: 100fr;
+        }
     }
 
-    .union-section-post {
-        grid-column-start: 2;
-        grid-column-end: 2;
+    h2 {
+        text-align: center;
+        color: white;
+        padding-top: 8px;
     }
+
+    .union-grid {
+        width: 75%;
+        background-color: $primary-gray;
+        border-radius: $borderRadius;
+        margin: 15px 0 0 15px;
+    }
+
+    .union-section {
+        display: grid;
+        grid-template-columns: 50fr 50fr;
+        padding: 2em;
+        column-gap: 1em;
+        max-width: 50em;
+    }
+
 
     .union-section-post-comment {
         display: flex;
@@ -64,19 +85,18 @@
         background-color: $primary-gray;
     }
 
-    @media only screen and (max-width: 80rem) {
-        .union-section {
-            grid-template-columns: 5fr 90fr 5fr;
-            column-gap: 0;
-        }
-        .union-section-community {
-            display: none;
-        }
+    .side-menu {
+        width: 25%;
+        background-color: green;
+        height: 100%;
+        display: inline;
+        flex: 3
     }
 
-    @media only screen and (max-width: 45rem) {
-        .union-section {
-            grid-template-columns: 0 1fr 0;
-        }
+    .hover {
+        height: 100%;
+        background-color: $primary-gray;
+        width: 20%;
     }
+
 </style>

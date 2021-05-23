@@ -1,13 +1,18 @@
 <template>
-    <div class="content">
-        <p class="union-name">{{ union.name}}</p>
+
+    <a href="" class="table-post-content">
         <div class="banner">
-            <img class="banner-image" src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg" >
+            <img class="banner-image" src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg">
+            <div class="col-9 logo"><img
+                    id="logo-image"
+                    class="logo-image"
+                    src="../assets/img/bitcoin-icon.png"
+            /></div>
         </div>
-        <div class="union-description">
-            <p>{{union.creator }}</p>
+        <div class="union">
+            <h2>The Crypto World</h2>
         </div>
-    </div>
+    </a>
 </template>
 
 <script>
@@ -33,14 +38,6 @@
         color: white;
     }
 
-    .content {
-        max-height: 300px;
-        text-align: left;
-        vertical-align: top;
-        padding: 8px;
-        position: relative;
-    }
-
     .union-name {
         font-weight: bold;
         margin-top: 5px;
@@ -58,15 +55,55 @@
     }
 
     .banner-image {
-        border-radius: $borderRadius;
         width: 100%;
+        height: 100%;
         object-fit: cover;
         margin: 0 auto;
+        border-radius: 33px 33px 0 0;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 22px;
+        color: white;
     }
 
     .banner {
-        max-height: 30%;
-        padding: $paddingSmall;
+        height: 60%;
+        position: relative;
+    }
+
+    .union {
+        height: 40%;
+        background-color: $primary-black;
+        border-radius: 0 0 33px 33px;
+        padding-top: 10px;
+    }
+
+
+    .table-post-content {
+        width: 100%;
+        border-radius: $borderRadius;
+        opacity: 80%;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background-color: $primary-gray;
+            opacity: 100%;
+            text-decoration: none;
+        }
+    }
+
+    .logo-image {
+        height: 56px;
+        width: 56px;
+    }
+
+    .logo {
+        position: absolute;
+        left: 35px;
+        top: 65px;
     }
 
 
