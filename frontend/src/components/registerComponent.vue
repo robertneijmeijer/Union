@@ -220,7 +220,6 @@ export default {
       this.prevUsername = this.username;
     },
     onEmailFocusout: function() {
-      console.log(this.email)
       if (this.email === "") {
         this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
         this.validEmail = { isValid: true, errorMessage: "" };
