@@ -2,11 +2,11 @@ from django.db import models
 
 from users.models import User
 
-
 # Create your models here.
+
+
 class Union(models.Model):
-    union_id = models.AutoField(primary_key=True)
-    name = models.TextField()
+    name = models.CharField(max_length=100, primary_key=True)
     description = models.TextField(blank=True)
     members_can_invite = models.BooleanField()
     icon = models.TextField(null=True)

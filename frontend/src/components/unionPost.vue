@@ -46,22 +46,23 @@
     <h4>{{ post.title }}</h4>
     <p class="table-post-text">{{ post.content }}</p>
     <div class="table-comments-amount">
-      <a href="" v-on:click="toComments">{{ post.comments }}</a>
+      <a href="" v-on:click="toComments">TODO: get comments</a>
     </div>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+import { PostInterface } from "../views/unionView.vue";
+
+export default defineComponent({
   name: "union-post-component",
   props: {
-    post: {
-      info: String,
-      title: String,
-      content: String,
-      comments: String,
-    },
-    index: Number,
+    post: { type: Object as PropType<PostInterface>, required: true },
+    index: { type: Number },
+  },
+  beforeCreate: function () {
+    // TODO: Get ammount of comments
   },
   methods: {
     upvote() {
@@ -70,7 +71,8 @@ export default {
     downvote() {
       this.vote("down");
     },
-    vote(vote) {
+    vote(vote: string) {
+      if (!this.index) return;
       const up = document.getElementsByName("upvote")[this.index];
       const down = document.getElementsByName("downvote")[this.index];
       const counter = document.getElementsByName("counter")[this.index];
@@ -94,7 +96,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
