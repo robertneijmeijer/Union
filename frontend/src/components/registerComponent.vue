@@ -117,6 +117,14 @@
                   class="btn btn-primary register_btn"
                   type="submit"
                   name="login-button"
+                  :disabled="
+                    !validPassword.isValid ||
+                      !validEmail.isValid ||
+                      !validUsername.isValid ||
+                      formErrors.password ||
+                      formErrors.username ||
+                      formErrors.password
+                  "
                   v-on:click="submit"
                 >
                   {{ $t("register.register") }}
@@ -144,7 +152,11 @@ import { MutationTypes as FormMutations } from "@/mutations/form";
 import { sha256 } from "js-sha256";
 import { FORM_ID } from "@/store/modules/form";
 import { i18n } from "@/main";
-import { isValidEmail, isValidPassword, isValidUsername } from "../validation/validation";
+import {
+  isValidEmail,
+  isValidPassword,
+  isValidUsername,
+} from "../validation/validation";
 import { ValidatorResponse } from "../validation/validation";
 
 const { mapFields } = require("vuex-map-fields");
@@ -158,7 +170,7 @@ export default {
     ...mapFields(formFields.map(field => `fields.${field}`)),
     formErrors() {
       return this.$store.state.form.errors;
-    }
+    },
   },
   // Init Form
   created() {
@@ -208,8 +220,12 @@ export default {
       this.prevUsername = this.username;
     },
     onEmailFocusout: function() {
-      if (!this.email || this.email === "" || this.email === this.prevEmail)
-        return;
+      console.log(this.email)
+      if (this.email === "") {
+        this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
+        this.validEmail = { isValid: true, errorMessage: "" };
+      }
+      if (!this.email || this.email === this.prevEmail) return;
       this.validEmail = isValidEmail(this.email);
       if (!this.validEmail.isValid) return;
       this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
