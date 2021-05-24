@@ -2,7 +2,13 @@
   <div class="invite-container invite-center">
     <div class="invite-card">
       <div v-if="!invite.fetching">
-        <div v-if="invite.status_code === 404 || invite.status === 'accepted'">
+        <div
+          v-if="
+            invite.status_code === 404 ||
+              invite.status === 'accepted' ||
+              !invite.union
+          "
+        >
           <div class="invite-center">
             <div class="invite-error-text">{{ $t("invite.invalid") }}</div>
           </div>
@@ -10,13 +16,18 @@
         <div v-else-if="invite.status_code === 200">
           <div class="invite-center">
             <img
-              v-bind:src="invite.union.banner || 'test'"
+              v-bind:style="
+                !invite.union.banner ? { visibility: 'hidden' } : ''
+              "
+              v-bind:src="invite.union.banner"
               alt="Responsive banner"
               class="invite-banner"
             />
             <div class="invite-overlay">
-              <!--            TODO: Check if banner / icon is available and do if check-->
               <img
+                v-bind:style="
+                  !invite.union.icon ? { visibility: 'hidden' } : ''
+                "
                 v-bind:src="invite.union.icon"
                 alt="Responsive icon"
                 class="invite-icon"

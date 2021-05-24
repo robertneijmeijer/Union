@@ -7,6 +7,7 @@ export interface InviteInfoResponse {
   status: "accepted" | "open";
   invite_creator: UserType;
   union: UnionType;
+  token: string;
 }
 
 export default class InviteApi extends ApiBase {

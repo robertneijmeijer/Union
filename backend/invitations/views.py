@@ -101,4 +101,4 @@ class InvitationsAcceptAPIView(APIView):
         # Add user to unions
         InvitationCreateSerializer.accept_invitation(database_invitation, user)
 
-        return Response({"union_id": database_invitation.union.union_id}, status=status.HTTP_202_ACCEPTED)
+        return Response({"name": database_invitation.union.name}, status=status.HTTP_202_ACCEPTED)

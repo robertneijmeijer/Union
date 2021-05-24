@@ -91,7 +91,7 @@ class InvitationTests(APITestCase):
         self.assertTrue("This user has no invites left" in str(res_body))
 
     def test_invite_details(self):
-        self.perform_request(self.koen, self.union.union_id)
+        self.perform_request(self.koen, self.union.name)
         created_invite: Invitation = Invitation.objects.first()
 
         data = {
@@ -109,8 +109,9 @@ class InvitationTests(APITestCase):
         self.assertEqual(res_body['union']['name'], created_invite.union.name)
         self.assertEqual(res_body['invite_creator']['username'], created_invite.invite_creator.username)
 
+
     def test_invite_details_not_found(self):
-        self.perform_request(self.koen, self.union.union_id)
+        self.perform_request(self.koen, self.union.name)
         data = {
             "invite_token": "9999"
         }
@@ -119,7 +120,7 @@ class InvitationTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_invite_details_bad_request(self):
-        self.perform_request(self.koen, self.union.union_id)
+        self.perform_request(self.koen, self.union.name)
         data = {
             "bad": "9999"
         }
@@ -164,8 +165,8 @@ class InvitationAcceptTests(APITestCase):
             token=self.invitation_data['invite_token']).first()
 
         self.assertEqual(res.status_code, status.HTTP_202_ACCEPTED)
-        self.assertTrue("union_id" in res_body)
-        self.assertEqual(res_body["union_id"], invite.union.union_id)
+        self.assertTrue("name" in res_body)
+        self.assertEqual(res_body["name"], invite.union.name)
         self.assertIsNotNone(invite.accepted_at)
         self.assertEqual(invite.invite_acceptor, self.koen)
 

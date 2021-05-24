@@ -133,8 +133,6 @@ export default {
         banner: "img",
       };
       UnionApi.postUnion({ union: formValues });
-
-      console.log(formValues);
     },
     upload_banner: function() {
       // TODO: add avatar stuff here

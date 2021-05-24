@@ -32,7 +32,7 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
     commit(ActionTypes.INVITE_SET_IS_LOADING, true);
     InviteApi.getInviteInfo(payload.invite_token)
       .then(result => {
-        commit(ActionTypes.INVITE_SET_INFO, result);
+        commit(ActionTypes.INVITE_SET_INFO, result.data);
         commit(ActionTypes.INVITE_SET_STATUS_CODE, 200);
         commit(ActionTypes.INVITE_SET_IS_LOADING, false);
       })
@@ -50,7 +50,7 @@ export const actions: ActionTree<InviteState, RootState> & ActionsInterface = {
   ) {
     InviteApi.acceptInvite(payload.invite_token)
       .then(result => {
-        router.push(`/union/${result.union_id}`);
+        router.push(`/union/${result.name}`);
       })
       .catch(error => {
         commit(
