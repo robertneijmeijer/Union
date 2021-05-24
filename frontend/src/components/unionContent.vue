@@ -16,9 +16,7 @@
 <script lang="ts">
 import UnionAbout from "./unionCommunity.vue";
 import UnionPost from "./unionPost.vue";
-// eslint-disable-next-line no-unused-vars
 import { defineComponent, PropType } from "vue";
-// eslint-disable-next-line no-unused-vars
 import { PostInterface } from "../views/unionView.vue";
 
 export default defineComponent({

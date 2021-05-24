@@ -109,7 +109,6 @@ class InvitationTests(APITestCase):
         self.assertEqual(res_body['union']['name'], created_invite.union.name)
         self.assertEqual(res_body['invite_creator']['username'], created_invite.invite_creator.username)
 
-
     def test_invite_details_not_found(self):
         self.perform_request(self.koen, self.union.name)
         data = {
