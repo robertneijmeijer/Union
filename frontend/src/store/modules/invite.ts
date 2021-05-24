@@ -2,14 +2,14 @@ import { Module } from "vuex";
 import { RootState } from "@/store/store";
 import { mutations } from "@/mutations/invite";
 import { actions } from "@/actions/invite";
-import { Union } from "@/types/union";
-import { User } from "@/types/user";
+import { UserType } from "@/api/user";
+import { UnionType } from "@/api/union";
 
 export interface InviteModuleStateInterface {
   token: string | undefined;
   status: "accepted" | "open" | undefined;
-  invite_creator: User | undefined;
-  union: Union | undefined;
+  invite_creator: UserType | undefined;
+  union: UnionType | undefined;
   fetching: boolean;
   status_code: number | undefined;
 }

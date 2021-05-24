@@ -3,10 +3,6 @@ import { InviteState } from "@/store/modules/invite";
 import { ActionTypes } from "@/actions/invite";
 import { InviteInfoResponse } from "@/api/invite";
 
-// export enum MutationTypes {
-//   INVITE_SET_INFO = "INVITE_SET_INFO",
-// } TODO: Fix this
-
 export interface MutationsInterface {
   [ActionTypes.INVITE_SET_INFO](
     state: InviteState,

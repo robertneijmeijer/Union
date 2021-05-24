@@ -10,7 +10,7 @@
         <div v-else-if="invite.status_code === 200">
           <div class="invite-center">
             <img
-              v-bind:src="invite.union.banner"
+              v-bind:src="invite.union.banner || 'test'"
               alt="Responsive banner"
               class="invite-banner"
             />

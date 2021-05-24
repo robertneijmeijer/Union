@@ -1,12 +1,12 @@
 import ApiBase from "@/api/api-base";
-import { Union } from "@/types/union";
 import { AxiosResponse } from "axios";
-import { User } from "@/types/user";
+import { UnionType } from "@/api/union";
+import { UserType } from "@/api/user";
 
 export interface InviteInfoResponse {
   status: "accepted" | "open";
-  invite_creator: User;
-  union: Union;
+  invite_creator: UserType;
+  union: UnionType;
 }
 
 export default class InviteApi extends ApiBase {
@@ -18,7 +18,7 @@ export default class InviteApi extends ApiBase {
 
   public static getInviteInfo = (
     invite_token: string
-  ): Promise<InviteInfoResponse> => {
+  ): Promise<AxiosResponse<InviteInfoResponse>> => {
     return InviteApi.requestGetAll(
       `unions/invite?invite_token=${invite_token}`
     );
