@@ -18,7 +18,10 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text"
-                  v-bind:class="{ 'error-input': formErrors.username || !validUsername.isValid }"
+                  v-bind:class="{
+                    'error-input':
+                      formErrors.username || !validUsername.isValid,
+                  }"
                 >
                   <i class="fa fa-user fa-lg center black"></i>
                 </span>
@@ -43,7 +46,9 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text white"
-                  v-bind:class="{ 'error-input': formErrors.email || !validEmail.isValid }"
+                  v-bind:class="{
+                    'error-input': formErrors.email || !validEmail.isValid,
+                  }"
                 >
                   <i class="fa fa-envelope fa-lg unique"></i>
                 </span>
@@ -68,7 +73,10 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text black"
-                  v-bind:class="{ 'error-input': formErrors.password || !validPassword.isValid }"
+                  v-bind:class="{
+                    'error-input':
+                      formErrors.password || !validPassword.isValid,
+                  }"
                 >
                   <i class="fa fa-lock fa-lg center"></i>
                 </span>
@@ -86,7 +94,10 @@
               <div class="input-group-prepend">
                 <span
                   class="input-group-text black"
-                  v-bind:class="{ 'error-input': formErrors.password || !validPassword.isValid }"
+                  v-bind:class="{
+                    'error-input':
+                      formErrors.password || !validPassword.isValid,
+                  }"
                 >
                   <i class="fa fa-lock fa-lg center"></i>
                 </span>
@@ -97,6 +108,7 @@
                 class="form-control input"
                 v-bind:placeholder="$t('register.password_confirm')"
                 v-model="pwd_repeat"
+                v-on:focusout="onPasswordFocusout"
               />
             </div>
             <div class="form-group">
@@ -132,8 +144,8 @@ import { MutationTypes as FormMutations } from "@/mutations/form";
 import { sha256 } from "js-sha256";
 import { FORM_ID } from "@/store/modules/form";
 import { i18n } from "@/main";
-import { isValidEmail, isValidUsername, isValidPassword } from "../validation/validation";
-import ValidatorResponse from "../validation/validation";
+import { isValidEmail, isValidPassword, isValidUsername } from "../validation/validation";
+import { ValidatorResponse } from "../validation/validation";
 
 const { mapFields } = require("vuex-map-fields");
 
@@ -146,7 +158,7 @@ export default {
     ...mapFields(formFields.map(field => `fields.${field}`)),
     formErrors() {
       return this.$store.state.form.errors;
-    },
+    }
   },
   // Init Form
   created() {
@@ -167,6 +179,7 @@ export default {
       validPassword: ValidatorResponse,
       username: "",
       password: "",
+      password_repeat: "",
       email: "",
     };
   },
@@ -206,22 +219,22 @@ export default {
       });
       this.prevEmail = this.email;
     },
-    onPasswordFocusout: function (){
-      if (!this.password || this.password === "")
-        return;
-      this.validPassword = isValidPassword(this.password);
-    },
-    submit: function(event) {
-      event.preventDefault();
-      this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
+    onPasswordFocusout: function() {
+      if (!this.password || !this.pwd_repeat) return;
 
       if (this.password !== this.pwd_repeat) {
         this.$store.commit(FormMutations.FORM_SET_ERROR, {
           key: "password",
           value: i18n.global.t("register.errors.passwords_do_not_match"),
         });
-        return;
+      } else {
+        this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
+        this.validPassword = isValidPassword(this.password);
       }
+    },
+    submit: function(event) {
+      event.preventDefault();
+      this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
 
       const hashed = sha256(this.password);
       const formValues = {
@@ -246,13 +259,13 @@ export default {
         return this.formErrors.email;
       }
     },
-    getPasswordErrorMessage: function () {
+    getPasswordErrorMessage: function() {
       if (!this.validPassword.isValid) {
         return this.validPassword.errorMessage;
       } else {
         return this.formErrors.password;
       }
-    }
+    },
   },
 };
 </script>
