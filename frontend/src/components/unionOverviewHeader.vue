@@ -54,7 +54,7 @@ export default {
 }
 
 .title {
-  background-color: $darkerGreyColor;
+  background-color: $primary-gray;
   height: 80px;
 }
 

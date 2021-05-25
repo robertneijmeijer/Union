@@ -1,16 +1,13 @@
 <template>
     <div class="union-grid">
-        <h2>Unions</h2>
+        <h2>Joined Unions</h2>
         <div id="union" class="union-section">
             <div class="union-section-post-comment " v-for="(union, index) in unions"
                  v-bind:key="union.id">
                 <union-list-item :union="union" :index="index"/>
             </div>
         </div>
-        <div class="side-menu">
-        </div>
     </div>
-
 </template>
 
 <script>
@@ -25,20 +22,21 @@
           {
             id: 1,
             name: "The crypto union",
-            url: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg",
-            creator: "Joel",
+            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           },
           {
-            id: 1,
+            id: 2,
             name: "The crypto union",
-            url: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg",
-            creator: "Joel",
+            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+          }, {
+            id: 3,
+            name: "The crypto union",
+            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           },
           {
-            id: 1,
+            id: 4,
             name: "The crypto union",
-            url: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg",
-            creator: "Joel",
+            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           }
         ],
       };
@@ -49,33 +47,31 @@
 <style lang="scss" scoped>
     @import "../assets/theme";
 
-    @media only screen and (max-width: 726px) {
+    @media only screen and (max-width: 1000px) {
         #union {
             grid-template-columns: 100fr;
         }
     }
 
     h2 {
-        text-align: center;
         color: white;
         padding-top: 8px;
+        text-align: center;
     }
 
     .union-grid {
-        width: 75%;
         background-color: $primary-gray;
         border-radius: $borderRadius;
-        margin: 15px 0 0 15px;
+        margin: 40px 40px 0 40px;
     }
 
     .union-section {
         display: grid;
-        grid-template-columns: 50fr 50fr;
+        grid-template-columns: 33fr 33fr 33fr;
         padding: 2em;
         column-gap: 1em;
-        max-width: 50em;
+        max-width: 100em;
     }
-
 
     .union-section-post-comment {
         display: flex;
@@ -84,19 +80,4 @@
         margin-bottom: 1em;
         background-color: $primary-gray;
     }
-
-    .side-menu {
-        width: 25%;
-        background-color: green;
-        height: 100%;
-        display: inline;
-        flex: 3
-    }
-
-    .hover {
-        height: 100%;
-        background-color: $primary-gray;
-        width: 20%;
-    }
-
 </style>

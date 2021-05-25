@@ -1,19 +1,17 @@
 <template>
-
-    <a href="" class="table-post-content">
+    <a href="" id="card" class="table-union-content">
         <div class="banner">
-            <img class="banner-image" src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg">
-            <div class="col-9 logo"><img
-                    id="logo-image"
-                    class="logo-image"
-                    src="../assets/img/bitcoin-icon.png"
-            /></div>
+            <img class="image" src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg">
         </div>
         <div class="union">
-            <h2>The Crypto World</h2>
+            <h2 class="name">{{union.name}}</h2>
+        </div>
+        <div id="icon" class="icon-content">
+            <img class="image-logo " src="../assets/img/bitcoin-icon.png">
         </div>
     </a>
 </template>
+
 
 <script>
   export default {
@@ -21,68 +19,36 @@
     props: {
       union: {
         name: String,
-        banner: URL,
-        creator: String,
+        imageUrl: String,
       },
       index: Number,
-    },
+    }
   };
 </script>
 
 <style lang="scss" scoped>
     @import "../assets/theme";
 
-    p,
-    h4,
-    a {
-        color: white;
+
+    @media only screen and (max-width: 1400px) {
+        #icon {
+            left: 30px;
+        }
     }
 
-    .union-name {
-        font-weight: bold;
-        margin-top: 5px;
-        opacity: 60%;
-        text-align: center;
+    @media only screen and (max-width: 1000px) {
+        #icon {
+            left: 40px;
+            top: 110px;
+            max-height: 70px;
+            max-width: 70px;
+        }
     }
 
-    .union-description {
-        width: 100%;
-        bottom: 0;
-        margin-top: 50px;
-        padding: 8px;
-        user-select: none;
-        overflow: hidden;
-    }
-
-    .banner-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        margin: 0 auto;
-        border-radius: 33px 33px 0 0;
-    }
-
-    h2 {
-        text-align: center;
-        font-size: 22px;
-        color: white;
-    }
-
-    .banner {
-        height: 60%;
+    .table-union-content {
+        height: 250px;
         position: relative;
-    }
-
-    .union {
-        height: 40%;
-        background-color: $primary-black;
-        border-radius: 0 0 33px 33px;
-        padding-top: 10px;
-    }
-
-
-    .table-post-content {
-        width: 100%;
+        padding: 6px;
         border-radius: $borderRadius;
         opacity: 80%;
 
@@ -95,16 +61,40 @@
         }
     }
 
-    .logo-image {
-        height: 56px;
-        width: 56px;
+    .banner {
+        height: 60%;
     }
 
-    .logo {
+    .union {
+        padding-top: 25px;
+        height: 40%;
+        background-color: $primary-black;
+        border-radius: 0 0 33px 33px;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+        border-radius: 33px 33px 0 0;
+    }
+
+    .name {
+        font-size: 22px;
+        color: white;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .image-logo {
+        width: 100%;
+        height: 100%;
+    }
+
+    .icon-content {
+        max-height: 75px;
+        max-width: 75px;
         position: absolute;
-        left: 35px;
-        top: 65px;
+        top: 100px;
+        left: 45px;
     }
-
-
 </style>
