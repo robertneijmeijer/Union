@@ -129,7 +129,7 @@ export default {
 }
 
 .card {
-  height: 440px;
+  min-height: 440px;
   margin-top: auto;
   margin-bottom: auto;
   max-width: 450px;

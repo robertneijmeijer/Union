@@ -24,7 +24,17 @@
     "password_confirm": "Repeat Password",
     "register": "Register",
     "already_member": "Already a member?",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "errors": {
+      "username_already_taken": "Username already taken",
+      "email_already_taken": "Email already taken",
+      "email_not_valid": "Please fill in a valid email",
+      "password_not_valid": "Password must contain eight characters, at least one letter, one number and one special character",
+      "minimum_characters": "must contain at least %s characters",
+      "username": "Username",
+      "password": "Password",
+      "passwords_do_not_match": "Passwords do not match"
+    }
   },
   "login": {
     "sign_in_union": "Connect to your account",
