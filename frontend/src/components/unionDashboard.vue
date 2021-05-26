@@ -22,21 +22,21 @@
           {
             id: 1,
             name: "The crypto union",
-            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg"
           },
           {
             id: 2,
             name: "The crypto union",
-            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg"
           }, {
             id: 3,
             name: "The crypto union",
-            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg"
           },
           {
             id: 4,
             name: "The crypto union",
-            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg"
           }
         ],
       };

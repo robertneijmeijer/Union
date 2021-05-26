@@ -8,8 +8,6 @@ export type UserType = {
   avatar?: string;
 };
 
-export type UserType = {};
-
 export default class UserApi extends ApiBase {
   public static getUsers = (): Promise<UserType[]> => {
     return UserApi.requestGetAll("users")
