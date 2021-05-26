@@ -10,8 +10,11 @@
 import UnionHeader from "../components/unionHeader.vue";
 import UnionContent from "../components/unionContent.vue";
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
+// eslint-disable-next-line
 import { defineComponent, PropType } from "vue";
+// eslint-disable-next-line
 import UnionApi, { UnionType } from "../api/union";
+// eslint-disable-next-line
 import { AxiosResponse } from "axios";
 
 export interface PostInterface {
