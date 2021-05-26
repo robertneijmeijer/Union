@@ -28,10 +28,8 @@ def file_uploader(name,file):
         print("Bucket already exists")
 
     logging.warning("SIZE")
-    savingFile = io.BytesIO(file.read())
-    logging.warning(savingFile.read())
     url = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
-    logging.warning("Result of put", url)
+    logging.warning(url._location)
     return url
 
 
