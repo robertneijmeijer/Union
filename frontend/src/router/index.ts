@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: "/createunion",
-    name: "createunion",
+    name: "create-union",
     component: unionCreateView,
   },
   {
