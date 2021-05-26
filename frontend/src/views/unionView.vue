@@ -1,18 +1,22 @@
 <template>
   <div>
     <union-overview-navigator />
-    <UnionHeader :name="union.name" :banner="union.banner" :icon="union.icon" />
-    <UnionContent :posts="posts" />
+    <UnionHeader
+      v-if="union"
+      :name="union.name"
+      :banner="union.banner"
+      :icon="union.icon"
+    />
+    <UnionContent v-if="posts" :posts="posts" />
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import UnionHeader from "../components/unionHeader.vue";
 import UnionContent from "../components/unionContent.vue";
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
 import { ActionTypes } from "../actions/union";
 // eslint-disable-next-line no-unused-vars
-import { UnionType } from "../api/union";
 
 export default {
   name: "unionView",
@@ -25,7 +29,7 @@ export default {
     UnionContent,
   },
   computed: {
-    union: function(): any {
+    union() {
       return this.$store.state.union;
     },
   },
