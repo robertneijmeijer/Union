@@ -13,6 +13,26 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
+class ValidationAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username_user = User.objects.filter(username=request.data.get("username", ""))
+        email_user = User.objects.filter(email=request.data.get("email", ""))
+
+        errors = {}
+        return_status = status.HTTP_200_OK
+
+        if len(username_user) > 0:
+            errors["username"] = "Username already exists"
+        if len(email_user) > 0:
+            errors["email"] = "Email already exists"
+        if len(errors) > 0:
+            return_status = status.HTTP_406_NOT_ACCEPTABLE
+
+        return Response(errors, status=return_status)
+
+
 class RegistrationAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = RegistrationSerializer
