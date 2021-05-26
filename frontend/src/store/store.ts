@@ -1,8 +1,10 @@
 import { CommitOptions, createStore, DispatchOptions, Store } from "vuex";
 import { user, UserModuleStateInterface } from "@/store/modules/user";
 import { ActionsInterface as userActions } from "@/actions/user";
+import { ActionsInterface as unionActions } from "@/actions/union";
 import { MutationsInterface as userMutations } from "@/mutations/user";
 import { MutationsInterface as formMutations } from "@/mutations/form";
+import { MutationsInterface as unionMutations } from "@/mutations/union";
 import { form, FormModuleStateInterface } from "@/store/modules/form";
 import { UnionModuleStateInterface, union } from "./modules/union";
 
@@ -13,8 +15,8 @@ export interface RootState {
   form: FormModuleStateInterface;
   union: UnionModuleStateInterface;
 }
-export type MutationTypes = userMutations & formMutations;
-export type ActionTypes = userActions;
+export type MutationTypes = userMutations & formMutations & unionMutations;
+export type ActionTypes = userActions & unionActions;
 
 // Override commit and dispatch to only accept our own typings
 export interface StoreInterface

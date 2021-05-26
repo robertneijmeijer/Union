@@ -52,8 +52,11 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line no-unused-vars
 import { defineComponent, PropType } from "vue";
-import { PostInterface } from "../views/unionView.vue";
+// eslint-disable-next-line no-unused-vars
+import { PostInterface } from "./unionContent.vue";
+// eslint-disable-next-line no-unused-vars
 
 export default defineComponent({
   name: "union-post-component",
