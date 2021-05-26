@@ -10,9 +10,9 @@ axios.interceptors.request.use(
       config.url?.indexOf("validate") > -1
     )
       return config;
-    config.headers = {
-      Authorization: Cookie.get("Authorization"),
-    };
+
+    config.headers.Authorization = Cookie.get("Authorization");
+
     return config;
   },
   function(error) {

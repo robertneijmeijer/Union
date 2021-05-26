@@ -1,4 +1,7 @@
 {
+  "global": {
+    "generalized_error_message": "Er ging iets fout, probeer later nog eens."
+  },
   "union_create": {
     "welcome": "Welkom op",
     "create_community": "Maak een community",
@@ -43,8 +46,7 @@
     "sign_up": "Aanmelden",
     "forgot_password": "Wachtwoord vergeten?",
     "errors": {
-      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord",
-      "generalized_error_message": "Er ging iets fout, probeer later nog eens."
+      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord"
     }
   },
   "union_overview": {
@@ -60,7 +62,8 @@
   "invite": {
     "invited": "heeft je uitgenodigd op",
     "accept": "Accepteren",
-    "decline": "Afwijzen"
+    "decline": "Afwijzen",
+    "invalid": "Deze uitnodiging kan niet worden gevonden of is al gebruikt"
   },
   "create_post": {
     "post": "Post",

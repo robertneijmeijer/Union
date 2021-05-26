@@ -1,13 +1,30 @@
 from django.utils.timezone import now
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from invitations.models import Invitation
 from unions.models import Union, UnionUsers
+from unions.serializer import UnionSerializerSimple
 from users.models import User
+from users.serializers import UserSerializerSimple
 
 
 class InvitationSerializer(serializers.ModelSerializer):
+    union = UnionSerializerSimple()
+    invite_creator = UserSerializerSimple()
+    status = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Invitation
+        fields = ["union", "invite_creator", "token", "status"]
+
+    def get_status(self, invite: Invitation):
+        status = "open"
+        if invite.accepted_at is not None:
+            status = "accepted"
+        return status
+
+
+class InvitationCreateSerializer(serializers.ModelSerializer):
     invite_token = serializers.SerializerMethodField(read_only=True)
 
     class Meta:

@@ -5,6 +5,7 @@
         <div @click="onClickImage">
           <img src="../assets/img/union.png" height="60" width="170" />
         </div>
+        <locale-switcher v-if="showLocale"/>
       </div>
     </section>
   </nav>
@@ -12,9 +13,16 @@
 
 <script>
 import router from "@/router";
+import LocaleSwitcher from "@/components/localeSwitcher";
 
 export default {
   name: "topBarLogo",
+  components: { LocaleSwitcher },
+  props: {
+    showLocale: {
+      type: Boolean
+    },
+  },
   methods: {
     onClickImage: function() {
       router.push("/");
