@@ -52,7 +52,9 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line
 import { defineComponent, PropType } from "vue";
+// eslint-disable-next-line
 import { PostInterface } from "../views/unionView.vue";
 
 export default defineComponent({
