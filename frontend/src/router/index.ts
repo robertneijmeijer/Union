@@ -65,15 +65,15 @@ export const logout = () => {
   router.push("login");
 };
 
-// router.beforeEach((to, from, next) => {
-//   if (
-//     to.name !== "/" &&
-//     to.name !== "login" &&
-//     to.name !== "register" &&
-//     !Cookie.get("Authorization")
-//   )
-//     next({ name: "login" });
-//   else next();
-// });
+router.beforeEach((to, from, next) => {
+  if (
+    to.name !== "/" &&
+    to.name !== "login" &&
+    to.name !== "register" &&
+    !Cookie.get("Authorization")
+  )
+    next({ name: "login" });
+  else next();
+});
 
 export default router;
