@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from unions.models import Union
+from unions.models import Union, UnionUsers
 from users.models import User
 
 
@@ -17,5 +17,7 @@ class UnionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         union: Union = Union.objects.create(**validated_data)
         user: User = User.objects.filter(user_id=union.creator_id).first()
-        union.union_users.add(user)
+
+        # Saving new user using custom ModelManager
+        UnionUsers.objects.create(union, user)
         return union

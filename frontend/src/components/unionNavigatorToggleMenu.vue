@@ -1,36 +1,36 @@
 <template>
-    <div class="menu">
-        <div class="item search">
-            <searchbar-component></searchbar-component>
-        </div>
-        <div class="item line">
-            <a href="">Account</a>
-        </div>
-        <div class="item line">
-            <div class="switcher">
-                <LocaleSwitcher class="switcher"/>
-            </div>
-        </div>
-        <div class="item line">
-            <a href="" v-on:click="logout()">Logout</a>
-        </div>
+  <div class="menu">
+    <div class="item search">
+      <searchbar-component></searchbar-component>
     </div>
+    <div class="item line">
+      <a href="">Account</a>
+    </div>
+    <div class="item line">
+      <div class="switcher">
+        <LocaleSwitcher class="switcher" />
+      </div>
+    </div>
+    <div class="item line">
+      <a href="" v-on:click="logout()">Logout</a>
+    </div>
+  </div>
 </template>
 
 <script>
-  import SearchbarComponent from "@/components/searchbarComponent";
-  import LocaleSwitcher from "@/components/localeSwitcher";
-  import { logout } from "@/router";
+import SearchbarComponent from "@/components/searchbarComponent";
+import LocaleSwitcher from "@/components/localeSwitcher";
+import { logout } from "@/router";
 
-  export default {
-    name: "union-toggle-menu",
-    components: { SearchbarComponent, LocaleSwitcher },
-    methods: {
-      logout: function() {
-        logout();
-      },
+export default {
+  name: "union-toggle-menu",
+  components: { SearchbarComponent, LocaleSwitcher },
+  methods: {
+    logout: function() {
+      logout();
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

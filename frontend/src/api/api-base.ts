@@ -10,7 +10,7 @@ export default class ApiBase {
   ): Promise<AxiosResponse<T>> {
     const response = await axios.request({
       method,
-      url: `${this.BASE_URL}${url}/`,
+      url: `${this.BASE_URL}${url}`,
       withCredentials: true,
       ...config,
     });
@@ -45,11 +45,3 @@ export default class ApiBase {
     });
   }
 }
-
-const handleError = (error: any) => {
-  if (error.data) {
-    return error.data;
-  }
-
-  return error;
-};

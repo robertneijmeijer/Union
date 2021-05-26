@@ -5,7 +5,7 @@
     "fields_required": "* Verplichte velden",
     "name": "Naam *",
     "description": "Beschrijving *",
-    "invite_privilege": "Uitnodiging mogenlijkheden *",
+    "invite_privilege": "Uitnodiging instellingen *",
     "only_i": "Alleen ik kan uitnodigen",
     "everyone": "Iedereen kan uitnodigen *",
     "max_invites": "Leden krijgen maximaal 2 uitnodigingen",
@@ -21,7 +21,17 @@
     "password_confirm": "Herhaal wachtwoord",
     "register": "Registreren",
     "already_member": "Al lid?",
-    "sign_in": "Log in"
+    "sign_in": "Log in",
+    "errors": {
+      "username_already_taken": "Gebruikersnaam is al in gebruik",
+      "email_already_taken": "Email is al in gebruik",
+      "email_not_valid": "Vul een geldige email in",
+      "password_not_valid": "Je wachtwoord moet uit acht tekens bestaan, minimaal één letter, één cijfer en één speciaal teken",
+      "minimum_characters": "moet minimaal %s karakters bevatten",
+      "username": "Gebruikersnaam",
+      "password": "Wachtwoord",
+      "passwords_do_not_match": "Wachtwoorden komen niet overeen"
+    }
   },
   "login": {
     "sign_in_union": "Meld je aan bij Union",

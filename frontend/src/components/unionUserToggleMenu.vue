@@ -1,32 +1,32 @@
 <template>
-    <div class="menu">
-        <div class="item line">
-            <a href="">Account</a>
-        </div>
-        <div class="item line">
-            <div class="switcher">
-                <LocaleSwitcher class="switcher"/>
-            </div>
-        </div>
-        <div class="item line">
-            <a href="" v-on:click="logout()">Logout</a>
-        </div>
+  <div class="menu">
+    <div class="item line">
+      <a href="">Account</a>
     </div>
+    <div class="item line">
+      <div class="switcher">
+        <LocaleSwitcher class="switcher" />
+      </div>
+    </div>
+    <div class="item line">
+      <a href="" v-on:click="logout()">Logout</a>
+    </div>
+  </div>
 </template>
 
 <script>
-  import LocaleSwitcher from "./localeSwitcher";
-  import { logout } from "@/router";
+import LocaleSwitcher from "./localeSwitcher";
+import { logout } from "@/router";
 
-  export default {
-    name: "unionUserToggleMenu",
-    components: { LocaleSwitcher },
-    methods: {
-      logout: function() {
-        logout();
-      },
+export default {
+  name: "unionUserToggleMenu",
+  components: { LocaleSwitcher },
+  methods: {
+    logout: function() {
+      logout();
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -56,9 +56,9 @@ a {
   }
 }
 
-    .switcher {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px 0 5px;
-    }
+.switcher {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px 0 5px;
+}
 </style>
