@@ -1,4 +1,7 @@
 {
+  "global": {
+    "generalized_error_message": "Something went wrong, please try again later."
+  },
   "union_create": {
     "welcome": "Welcome to",
     "create_community": "Create a community",
@@ -43,8 +46,7 @@
     "sign_up": "Sign up",
     "forgot_password": "Forgot your password?",
     "errors": {
-      "incorrect_username_password": "Incorrect username or password",
-      "generalized_error_message": "Something went wrong, please try again later."
+      "incorrect_username_password": "Incorrect username or password"
     }
   },
   "union_overview": {
@@ -60,7 +62,8 @@
   "invite": {
     "invited": "has invited you to",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "invalid": "This invite cannot be found or has already been used"
   },
   "create_post": {
     "post": "Post",

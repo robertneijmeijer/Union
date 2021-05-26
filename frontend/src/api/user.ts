@@ -2,7 +2,11 @@ import ApiBase from "@/api/api-base";
 import { UsernameEmailInterface } from "@/actions/user";
 import { AxiosResponse } from "axios";
 
-export type UserType = {};
+export type UserType = {
+  username: string;
+  email: string;
+  avatar?: string;
+};
 
 export type UserType = {};
 

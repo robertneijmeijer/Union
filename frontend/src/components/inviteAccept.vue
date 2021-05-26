@@ -1,66 +1,110 @@
 <template>
   <div class="invite-container invite-center">
     <div class="invite-card">
-      <div class="invite-center">
-        <img
-          v-bind:src="getImage(invite.banner)"
-          alt="Responsive banner"
-          class="invite-banner"
-        />
-        <div class="invite-overlay">
-          <img
-            v-bind:src="getImage(invite.icon)"
-            alt="Responsive icon"
-            class="invite-icon"
-          />
-          <p class="invite-union-name">{{ invite.union }}</p>
+      <div v-if="!invite.fetching">
+        <div
+          v-if="
+            invite.status_code === 404 ||
+              invite.status === 'accepted' ||
+              !invite.union
+          "
+        >
+          <div class="invite-center">
+            <div class="invite-error-text">{{ $t("invite.invalid") }}</div>
+          </div>
+        </div>
+        <div v-else-if="invite.status_code === 200">
+          <div class="invite-center">
+            <img
+              v-bind:style="
+                !invite.union.banner ? { visibility: 'hidden' } : ''
+              "
+              v-bind:src="invite.union.banner"
+              alt="Responsive banner"
+              class="invite-banner"
+            />
+            <div class="invite-overlay">
+              <img
+                v-bind:style="
+                  !invite.union.icon ? { visibility: 'hidden' } : ''
+                "
+                v-bind:src="invite.union.icon"
+                alt="Responsive icon"
+                class="invite-icon"
+              />
+              <p class="invite-union-name">{{ invite.union.name }}</p>
+            </div>
+          </div>
+          <div class="invite-center">
+            <div class="invite-row">
+              <p class="invite-text">{{ invite.invite_creator.username }}</p>
+              <p class="invite-text">{{ $t("invite.invited") }}</p>
+              <p class="invite-text">{{ invite.union.name }}</p>
+            </div>
+            <div class="invite-buttons">
+              <button
+                class="btn btn-primary invite-button"
+                v-on:click="accept()"
+              >
+                {{ $t("invite.accept") }}
+              </button>
+              <button
+                class="btn btn-primary invite-button invite-button-decline"
+                v-on:click="decline()"
+              >
+                {{ $t("invite.decline") }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="invite-center">
+            <div class="invite-error-text">
+              {{ $t("global.generalized_error_message") }}
+            </div>
+          </div>
         </div>
       </div>
-      <div class="invite-center">
-        <div class="invite-row">
-          <p class="invite-text">{{ invite.user }}</p>
-          <p class="invite-text">{{ $t("invite.invited") }}</p>
-          <p class="invite-text">{{ invite.union }}</p>
-        </div>
-        <div class="invite-buttons">
-          <button class="btn btn-primary invite-button" v-on:click="accept()">
-            {{ $t("invite.accept") }}
-          </button>
-          <button
-            class="btn btn-primary invite-button invite-button-decline"
-            v-on:click="decline()"
-          >
-            {{ $t("invite.decline") }}
-          </button>
-        </div>
+      <div v-else>
+        <spinner size="large"></spinner>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-function getImage(path) {
-  return require(`../assets/img/${path}`);
-}
-
-function accept() {}
-
-function decline() {}
+import { ActionTypes } from "@/actions/invite";
+import router from "@/router";
+import Spinner from "@/components/spinner";
 
 export default {
   name: "inviteAccept",
-  props: {
-    invite: {
-      user: String,
-      union: String,
-      banner: String,
-      icon: String,
+  components: { Spinner },
+  computed: {
+    invite() {
+      return this.$store.state.invite;
     },
   },
+  data() {
+    return {
+      id: null,
+    };
+  },
+  created() {
+    this.id = this.$route.params.id;
+    this.$store.dispatch(ActionTypes.INVITE_GET_INFO, {
+      invite_token: this.id,
+    });
+  },
   methods: {
-    accept,
-    decline,
-    getImage,
+    accept: function() {
+      this.$store.dispatch(ActionTypes.INVITE_ACCEPT, {
+        invite_token: this.id,
+      });
+    },
+    decline: function() {
+      router.push(`/`);
+    },
   },
 };
 </script>
@@ -81,12 +125,14 @@ export default {
 }
 
 .invite-card {
-  max-height: 500px;
-  height: 100%;
-  max-width: 1000px;
-  width: 100%;
+  max-width: 1100px;
+  min-width: 700px;
   background-color: $secondary-gray;
   border-radius: $borderRadiusSmall;
+  padding: ($paddingMedium * 2) ($paddingMedium * 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .invite-banner {
@@ -95,17 +141,23 @@ export default {
   max-height: 200px;
   height: 100%;
   border-radius: $borderRadiusSmall;
-  margin-top: $paddingHuge;
 }
 
 .invite-text {
   font-size: 36px;
-  font-family: "Overpass-SemiBold";
+  font-family: "Overpass-SemiBold", serif;
   color: white;
   padding-top: $paddingMedium;
   margin-top: $paddingLarge;
   margin-bottom: $paddingSmall;
   margin-left: $paddingSmall;
+}
+
+.invite-error-text {
+  @extend .invite-text;
+  margin: $paddingMedium;
+  padding: 0;
+  text-align: center;
 }
 
 .invite-icon {
