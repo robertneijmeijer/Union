@@ -22,21 +22,21 @@
           {
             id: 1,
             name: "The crypto union",
-            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           },
           {
             id: 2,
             name: "The crypto union",
-            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           }, {
             id: 3,
             name: "The crypto union",
-            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           },
           {
             id: 4,
             name: "The crypto union",
-            imageUrl: "../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
+            imageUrl: "bravenewcoin-Fungibility-in-Crypto-banner.jpeg"
           }
         ],
       };

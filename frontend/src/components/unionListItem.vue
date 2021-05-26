@@ -1,7 +1,8 @@
 <template>
-    <a href="" id="card" class="table-union-content">
+    <a href="" class="table-union-content">
         <div class="banner">
-            <img class="image" src="../assets/img/bravenewcoin-Fungibility-in-Crypto-banner.jpeg">
+            <img class="image" v-bind:src="getImage(union.imageUrl)"
+                 alt="Responsive banner">
         </div>
         <div class="union">
             <h2 class="name">{{union.name}}</h2>
@@ -12,8 +13,11 @@
     </a>
 </template>
 
-
 <script>
+  function getImage(path) {
+    return require(`../assets/img/${path}`);
+  }
+
   export default {
     name: "unionListItem",
     props: {
@@ -22,13 +26,15 @@
         imageUrl: String,
       },
       index: Number,
-    }
+    },
+    methods: {
+      getImage,
+    },
   };
 </script>
 
 <style lang="scss" scoped>
     @import "../assets/theme";
-
 
     @media only screen and (max-width: 1400px) {
         #icon {
