@@ -58,7 +58,7 @@
         color: white;
         width: 100%;
         text-align: center;
-        margin-top: 10vh;
+        margin-top: 5%;
         display: inline;
     }
 
@@ -80,7 +80,7 @@
     }
 
     .join {
-        margin-top: 10vh;
+        margin-top: 5%;
     }
 
     .centered-text {
@@ -100,7 +100,7 @@
     }
 
     .create-community {
-        margin-top: 5vh;
+        margin-top: 25px;
     }
 
     .button {
