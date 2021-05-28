@@ -25,7 +25,8 @@ export default {
   color: white;
   max-width: 100%;
   display: inline;
-  padding-left: 5%;
+  padding-left: 30px;
+  padding-bottom: 3px;
 }
 
 .search-icon {
@@ -34,5 +35,6 @@ export default {
   position: absolute;
   top: 19px;
   margin-left: 10px;
+  pointer-events: none;
 }
 </style>
