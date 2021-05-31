@@ -1,6 +1,6 @@
 <template>
-    <union-overview-navigator></union-overview-navigator>
-    <union-dashboard></union-dashboard>
+    <UnionOverviewNavigator></UnionOverviewNavigator>
+    <UnionDashboard></UnionDashboard>
 </template>
 
 <script>

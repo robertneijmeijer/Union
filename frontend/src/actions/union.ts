@@ -19,9 +19,9 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
   [ActionTypes.UNION_ACTION_SUBMIT]({ commit, state }, unionName: string) {
     UnionApi.getUnion(unionName)
       .then((res: AxiosResponse<UnionType>) => {
-        if (res.status === 200 && res.data.name)
+        if (res.status === 200 && res.data.name) {
           commit(ActionTypes.UNION_ACTION_SUCCESS, res.data);
-        else throw Error("User is not authorized to visit this union");
+        } else throw Error("User is not authorized to visit this union");
       })
       .catch(err => {
         console.error(err);

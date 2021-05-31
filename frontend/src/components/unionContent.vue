@@ -2,15 +2,15 @@
   <div class="union-section">
     <div class="union-section-post">
       <div
-          class="union-section-post-comment border-for-div"
-          v-for="(post, index) in posts"
-          v-bind:key="post.id"
+        class="union-section-post-comment border-for-div"
+        v-for="(post, index) in posts"
+        v-bind:key="post.id"
       >
-        <UnionPost :post="post" :index="index"/>
+        <UnionPost :post="post" :index="index" />
       </div>
     </div>
     <div class="union-section-community">
-      <UnionAbout @callbackToggleCreatePost="toggleCreatePost"/>
+      <UnionAbout :about="description" @callbackToggleCreatePost="toggleCreatePost" />
     </div>
   </div>
 </template>
@@ -28,18 +28,17 @@ export interface PostInterface {
   content: String;
 }
 
-
-
 export default defineComponent({
   name: "union-post-overview",
-  components: {UnionPost, UnionAbout},
+  components: { UnionPost, UnionAbout },
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
-    }
+    },
   },
-    props: {
+  props: {
     posts: { type: Object as PropType<PostInterface[]>, required: true },
+    description: { type: String, required: true },
   },
 });
 </script>
