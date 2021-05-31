@@ -70,9 +70,14 @@ router.beforeEach((to, from, next) => {
     to.name !== "login" &&
     to.name !== "register" &&
     !Cookie.get("Authorization")
-  )
+  ) {
     next({ name: "login" });
-  else next();
+  } else if (
+      to.name === "login" &&
+      Cookie.get("Authorization")
+  ) {
+    next({ path: "/overview" });
+  } else next();
 });
 
 export default router;
