@@ -43,6 +43,9 @@
 </template>
 
 <script>
+
+// TODO: Clean up and add logic for event handling
+
 export default {
   name: "votingComponent"
 }
