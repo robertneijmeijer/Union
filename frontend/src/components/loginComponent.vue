@@ -102,8 +102,6 @@ export default {
     },
     signIn: function(e) {
       e.preventDefault();
-      console.log(this.password)
-      console.log(this.username)
       if(!this.password || !this.username) return
 
       const hashed = sha256(this.password);
