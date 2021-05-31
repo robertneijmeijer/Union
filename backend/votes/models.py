@@ -7,7 +7,7 @@ from comments.models import Comment
 
 class Vote(models.Model):
 
-    class Vote(models.TextChoices):
+    class VoteENUM(models.TextChoices):
         UPVOTE = 'UPVOTE'
         DOWNVOTE = 'DOWNVOTE'
 
@@ -17,4 +17,4 @@ class Vote(models.Model):
         Comment, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=False, blank=False)
-    vote = models.TextField(choices=Vote.choices, blank=False, null=False)
+    vote = models.TextField(choices=VoteENUM.choices, blank=False, null=False)
