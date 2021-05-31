@@ -70,13 +70,14 @@ export default {
 @import "../assets/theme";
 
 .create-container {
-  position: absolute;
   z-index: 2;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
+  position: fixed;
+  top: 0;
+  height: 100vh;
 }
 
 .create-card {
@@ -84,7 +85,7 @@ export default {
   background-color: $primary-black;
   border-radius: $borderRadius;
   max-height: 1400px;
-  max-width: 800px;
+  max-width: 600px;
   width: 100%;
 }
 
@@ -102,7 +103,7 @@ export default {
 .create-text {
   font-size: 24px;
   color: white;
-  padding-top: $paddingHuge;
+  padding-top: $paddingMedium;
   padding-left: $paddingHuge;
   padding-right: $buttonwidth * 2.5;
 }
@@ -179,12 +180,13 @@ export default {
 }
 
 .create-background {
-  position: absolute;
+  position: fixed;
   background-color: $primary-black;
+  left: 0;
+  height: 100vh;
   opacity: 60%;
   width: 100%;
   z-index: 1;
-  height: 100%;
 }
 
 </style>
