@@ -1,9 +1,7 @@
 <template>
-  <div id="unionCreateView">
-    <top-bar-logo></top-bar-logo>
-    <div id="unionCreateCard">
-      <union-create-component></union-create-component>
-    </div>
+  <div>
+    <TopBarLogo />
+    <UnionCreateComponent />
   </div>
 </template>
 
@@ -16,13 +14,3 @@ export default {
   components: { TopBarLogo, UnionCreateComponent },
 };
 </script>
-
-<style lang="scss" scoped>
-#unionCreateView {
-  max-height: 100%;
-}
-
-#unionCreateCard {
-  margin-top: 20px;
-}
-</style>
