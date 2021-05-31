@@ -78,5 +78,12 @@
     "to_join": "Om een Union to betreden",
     "must": "moet je uitnodiging hebben",
     "or": "of"
+  },
+  "post": {
+    "posted_by": "Gepost door",
+    "comments": "reacties",
+    "comment_as": "Reageer als",
+    "comment_hint": "Deel je mening...",
+    "submit": "Plaats"
   }
 }

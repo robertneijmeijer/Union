@@ -2,38 +2,36 @@
   <div class="post-card border-for-div">
     <voting-component class=""/>
     <div class="post-content text-white">
-      <!--      TOOD: Icon-->
-      <div><img class="union-icon" src="../assets/img/bitcoin-icon.png" />{{ "TheCryptoUnion" }} <span>• Posted by {{ "MrCypher" }} {{ "20h ago" }}</span></div>
+      <div><img class="union-icon" src="../assets/img/bitcoin-icon.png" alt="Union icon"/>
+        {{ "TheCryptoUnion" }} <span>• {{ $t("post.posted_by") }} {{ "MrCypher" }} {{ "20h ago" }}</span>
+      </div>
       <h1>{{ "How does proof of stake work?" }}</h1>
       <p>{{
           `Nulla quis lorem ut libero malesuada feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Proin eget tortor risus.\n\n        Sed porttitor lectus nibh. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.\n\n        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. `
         }}
       </p>
-      <!--      TODO Translations-->
-      <p><img src="../assets/img/comment.png" alt="Comment Icon" class="comment-icon"/><span>{{ "57" }} comments</span>
+      <p>
+        <img src="../assets/img/comment.png" alt="Comment Icon" class="comment-icon"/>
+          <span>{{"57"}} {{ $t("post.comments") }}</span>
       </p>
 
       <div class="post-comment">
-        <p>Comment as <span class="user">{{ "yan_alex" }}</span></p>
-        <!--          TODO: Translation-->
-<!--        TODO: New div under the textarea to create view like design-->
+        <p>{{ $t("post.comment_as") }} <span class="user">{{ "yan_alex" }}</span></p>
+        <!--        TODO: New div under the textarea to create view like design-->
         <textarea
             type="text"
             class="form-control input"
-            placeholder="Share your thoughts..."
+            :placeholder="$t('post.comment_hint')"
         />
-
         <button class="btn btn-primary union-button-medium">
-          Submit
+          {{ $t('post.submit') }}
         </button>
-
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 
 import votingComponent from "@/components/votingComponent"
 
@@ -45,7 +43,6 @@ export default {
 
 <style lang="scss">
 @import "../assets/theme";
-
 
 .post-card {
   width: 80%;
