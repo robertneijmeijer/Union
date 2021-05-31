@@ -30,7 +30,6 @@ def file_uploader(name,file):
 
     logging.warning("SIZE")
     object = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
-    logging.warning(bucketName + "/" + name)
     return bucketName + "/" + name
 
 
