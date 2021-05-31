@@ -1,4 +1,4 @@
-
+<template>
   <div>
     <union-overview-navigator />
     <CreatePostComponent v-if="showCreatePost" @callbackToggleCreatePost="toggleCreatePost"/>
@@ -55,9 +55,6 @@ export default defineComponent({
     hideModal() {
       document.body.classList.remove("modal-open");
     }
-  }
-};
-    };
   },
   created: function () {
     const union = Array.isArray(this.$route.params.unionName)
