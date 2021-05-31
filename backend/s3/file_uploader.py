@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
@@ -28,9 +29,9 @@ def file_uploader(name,file):
         print("Bucket already exists")
 
     logging.warning("SIZE")
-    url = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
-    logging.warning(url._location)
-    return url
+    object = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
+    logging.warning(bucketName + "/" + name)
+    return bucketName + "/" + name
 
 
 if __name__ == "__file_uploader__":

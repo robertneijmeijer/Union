@@ -20,7 +20,7 @@ class UnionViewSet(viewsets.ModelViewSet):
         logging.warning("FILES:")
         logging.warning(request.FILES)
 
-        union['banner'] = file_uploader(name="zarina", file=request.FILES['banner'])
+        union['banner'] = file_uploader(name=request.FILES['banner'].name, file=request.FILES['banner'])
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
