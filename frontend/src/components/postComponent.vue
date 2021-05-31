@@ -17,7 +17,6 @@
 
       <div class="post-comment">
         <p>{{ $t("post.comment_as") }} <span class="user">{{ "yan_alex" }}</span></p>
-        <!--        TODO: New div under the textarea to create view like design-->
         <textarea
             type="text"
             class="form-control input"
