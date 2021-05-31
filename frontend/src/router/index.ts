@@ -72,10 +72,7 @@ router.beforeEach((to, from, next) => {
     !Cookie.get("Authorization")
   ) {
     next({ name: "login" });
-  } else if (
-      to.name === "login" &&
-      Cookie.get("Authorization")
-  ) {
+  } else if (to.name === "login" && Cookie.get("Authorization")) {
     next({ path: "/overview" });
   } else next();
 });
