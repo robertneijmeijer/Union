@@ -19,7 +19,7 @@ You can connect to the database with the same settings as would do locally (chec
 Make sure that the postgresql instance is stopped on your local machine -> the docker container can't map its ports otherwise.
 
 #### Migrations
-It may happen that you need to run migrations on your backend. Normally you would do that by going to your terminal and executing the command. You first have to enter the docker container by executing the following command.
+It may happen that you need to run migrations on your backend. Normally you would do that by going to your terminal and executing the command. You first have to enter the docker container by executing the following command. Or by opening the docker, going to the container, and pressing the cli/terminal button.
 
 ```
 docker exec -it backend /bin/bash
