@@ -8,6 +8,7 @@ import Cookie from "js-cookie";
 import unionView from "@/views/unionView.vue";
 import noUnionOverview from "@/views/noUnionOverview.vue";
 import unionOverview from "@/views/unionOverview.vue";
+import postView from "@/views/postView.vue";
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: "/union/:unionName",
     name: "union-view",
     component: unionView,
+  },
+  {
+    path: "/post",
+    name: "post",
+    component: postView,
   },
   {
     path: "/union/invite/accept/:id",
