@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework import status
@@ -10,18 +8,35 @@ from rest_framework.views import APIView
 
 from authentication.backends import JWTAuthentication
 from invitations.models import Invitation
-from invitations.serializers import InvitationSerializer
+from invitations.serializers import InvitationCreateSerializer, InvitationSerializer
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class InvitationsAPIView(APIView):
-    serializer_class = InvitationSerializer
+    serializer_class = InvitationCreateSerializer
     permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            invite_token = request.GET.get('invite_token')
+            if invite_token is None:
+                raise KeyError
+
+            invitation = Invitation.objects.get(token=invite_token)
+        except KeyError:
+            return Response({"invite_token query param is missing"}, status=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = InvitationSerializer(invitation)
+
+        return Response(serializer.data)
 
     def post(self, request):
         try:
-            union_id = request.data['union_id']
+            name = request.data['name']
         except KeyError:
-            return Response({'errors': "Missing union_id key"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'errors': "Missing Union name pk"}, status=status.HTTP_400_BAD_REQUEST)
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
@@ -29,7 +44,7 @@ class InvitationsAPIView(APIView):
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         creation_data = {
-            'union': union_id,
+            'union': name,
             'invite_creator': user.user_id
         }
 
@@ -80,7 +95,10 @@ class InvitationsAcceptAPIView(APIView):
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
-        # Add user to unions
-        InvitationSerializer.accept_invitation(database_invitation, user)
+        if user is None or token is None:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response({}, status=status.HTTP_202_ACCEPTED)
+        # Add user to unions
+        InvitationCreateSerializer.accept_invitation(database_invitation, user)
+
+        return Response({"name": database_invitation.union.name}, status=status.HTTP_202_ACCEPTED)

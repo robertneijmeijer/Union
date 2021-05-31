@@ -5,6 +5,7 @@ import { ActionTree } from "vuex";
 import router from "@/router";
 import { UserState } from "@/store/modules/user";
 import { i18n } from "@/main";
+import { MutationTypes } from "@/mutations/form";
 
 export interface RegistrationFormInterface {
   username: string;
@@ -12,15 +13,16 @@ export interface RegistrationFormInterface {
   password: string;
 }
 
-export interface LoginFormInterface {
-  username: string;
-  password: string;
+export interface UsernameEmailInterface {
+  username: string | null;
+  password: string | null;
 }
 
 export enum ActionTypes {
   REGISTER_ACTION_SUBMIT = "REGISTER_ACTION_SUBMIT",
   REGISTER_ACTION_FAILED = "REGISTER_ACTION_FAILED",
   REGISTER_ACTION_SUCCESS = "REGISTER_ACTION_SUCCESS",
+  REGISTER_ACTION_VALIDATE = "REGISTER_ACTION_VALIDATE",
   LOGIN_ACTION_SUCCESS = "LOGIN_ACTION_SUCCESS",
   LOGIN_ACTION_SUBMIT = "LOGIN_ACTION_SUBMIT",
   LOGIN_ACTION_FAILED = "LOGIN_ACTION_FAILED",
@@ -31,6 +33,11 @@ export interface ActionsInterface {
     commit: any,
     payload: RegistrationFormInterface
   ): void;
+
+  [ActionTypes.REGISTER_ACTION_VALIDATE](
+    commit: any,
+    payload: UsernameEmailInterface
+  ): void;
 }
 
 export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
@@ -38,7 +45,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
     { commit, state },
     values: RegistrationFormInterface
   ) {
-    RegisterApi.register(values.username, values.username, values.password)
+    RegisterApi.register(values)
       .then(result => {
         store.commit(ActionTypes.REGISTER_ACTION_SUCCESS, result.data);
         router.push("login");
@@ -47,10 +54,39 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
         commit(ActionTypes.REGISTER_ACTION_FAILED, error.message);
       });
   },
+  [ActionTypes.REGISTER_ACTION_VALIDATE](
+    { commit, state },
+    values: UsernameEmailInterface
+  ) {
+    UserApi.validateUsernameEmail(values)
+      .then() // Do nothing because it succeeded
+      .catch(error => {
+        const errors = error.response.data;
+        const translatedArray = Object.entries(errors).map(([key, value]) => {
+          let translation = value;
+          switch (key) {
+            case "username":
+              translation = i18n.global.t(
+                "register.errors.username_already_taken"
+              );
+              break;
+            case "email":
+              translation = i18n.global.t(
+                "register.errors.email_already_taken"
+              );
+              break;
+          }
+          return { [key]: translation };
+        });
+        const translatedErrorObject = Object.assign({}, ...translatedArray);
+
+        commit(MutationTypes.FORM_SET_ERRORS, translatedErrorObject);
+      });
+  },
 
   [ActionTypes.LOGIN_ACTION_SUBMIT](
     { commit, state },
-    values: LoginFormInterface
+    values: UsernameEmailInterface
   ) {
     UserApi.signIn(values)
       .then(response => {
@@ -59,7 +95,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
           router.push("union");
         } else {
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
-            general: i18n.global.t("generalized_error_message"),
+            general: i18n.global.t("global.generalized_error_message"),
           });
         }
       })
@@ -70,7 +106,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
           });
         } else {
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
-            general: i18n.global.t("generalized_error_message"),
+            general: i18n.global.t("global.generalized_error_message"),
           });
         }
       });

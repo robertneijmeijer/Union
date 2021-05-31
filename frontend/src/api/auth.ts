@@ -1,13 +1,12 @@
 import ApiBase from "@/api/api-base";
+import { RegistrationFormInterface } from "@/actions/user";
 
 export default class RegisterApi extends ApiBase {
   public static register = async (
-    username: string,
-    email: string,
-    password: string
+    values: RegistrationFormInterface
   ): Promise<any> => {
     return RegisterApi.requestPost("users/register", {
-      data: { user: { username, email, password } },
+      data: { user: { ...values } },
     })
       .then(res => {
         return res;

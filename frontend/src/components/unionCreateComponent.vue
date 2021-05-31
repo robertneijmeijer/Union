@@ -13,7 +13,7 @@
         <p class="createTitle">{{ $t("union_create.create_community") }}</p>
         <div class="union-card-body">
           <div class="column-left">
-            <h4 class="white-text overpass-bold">
+            <h4 class="white-text">
               {{ $t("union_create.name") }}
             </h4>
             <input
@@ -22,7 +22,7 @@
               class="form-control name-height input"
               v-model="name"
             />
-            <h4 class="white-text overpass-bold">
+            <h4 class="white-text">
               {{ $t("union_create.description") }}
             </h4>
             <textarea
@@ -34,7 +34,7 @@
             />
           </div>
           <div class="column-right">
-            <h4 class="white-text overpass-bold">
+            <h4 class="white-text">
               {{ $t("union_create.invite_privilege") }}
             </h4>
             <div class="rows">
@@ -133,8 +133,6 @@ export default {
         banner: "img",
       };
       UnionApi.postUnion({ union: formValues });
-
-      console.log(formValues);
     },
     upload_banner: function() {
       // TODO: add avatar stuff here
