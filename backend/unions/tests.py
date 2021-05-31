@@ -11,11 +11,14 @@ import json
 class CreateUnion(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.teun: User = User.objects.create_user("teun.stout@hva.nl", "teun", "test")
-        self.joel: User = User.objects.create_user("test@hva.nl", "joel", "test")
+        self.teun: User = User.objects.create_user(
+            "teun.stout@hva.nl", "teun", "test")
+        self.joel: User = User.objects.create_user(
+            "test@hva.nl", "joel", "test")
 
     def test_get_unions(self):
-        union: Union = Union(name="crypto", description="", members_can_invite=True, creator=self.teun)
+        union: Union = Union(name="crypto", description="",
+                             members_can_invite=True, creator=self.teun)
         union.save()
 
         req = self.client.get(f'/unions', format='json')
@@ -33,6 +36,7 @@ class CreateUnion(APITestCase):
         union_data = {
             "union": {
                 "name": "test",
+                "description": "fit moet inderdaad hier hahahaha",
                 "members_can_invite": True,
                 "creator_id": self.teun.user_id,
             }
@@ -45,7 +49,8 @@ class CreateUnion(APITestCase):
         union: Union = Union(name="test", description="name should be 'Worked'", members_can_invite=True,
                              creator=self.teun)
         union.save()
-        req = self.client.patch(f'/unions/{union.name}/', {"name": "Worked"}, format='json')
+        req = self.client.patch(
+            f'/unions/{union.name}/', {"name": "Worked"}, format='json')
         self.assertEqual(req.status_code, status.HTTP_200_OK)
 
     def test_delete_union_endpoint(self):
