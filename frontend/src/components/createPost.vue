@@ -1,78 +1,92 @@
 <template>
-  <div class="create-container create-center">
-    <div class="create-card">
-      <p class="create-title create-center">{{ $t("create_post.title") }}</p>
-      <div>
-        <p class="create-text">{{ $t("create_post.post_title") }}</p>
-        <input
-          type="text"
-          name="title"
-          class="create-input input create-title-input"
-          v-model="title"
-        />
-      </div>
-      <div class="create-row">
+    <div class="create-container create-center">
+      <div class="create-card">
+        <p class="create-title create-center">{{ $t("create_post.title") }}</p>
         <div>
-          <p class="create-text">{{ $t("create_post.post_content") }}</p>
-          <textarea
-            type="text"
-            name="content"
-            class="create-input create-content-input input"
-            v-model="content"
-          />
+          <p class="create-text">{{ $t("create_post.post_title") }}</p>
+          <input
+              type="text"
+              name="title"
+              class="create-input input create-title-input"
+              v-model="title"/>
         </div>
-        <div class="create-column">
-          <p class="create-text">{{ $t("create_post.image") }}</p>
-          <div class="create-circle">
-            <img
-              src="../assets/svg/imageIcon.svg"
-              v-on:click="uploadImage()"
-              alt="image Icon"
-            />
+        <div class="create-row">
+          <div>
+            <p class="create-text">{{ $t("create_post.post_content") }}</p>
+            <textarea
+                type="text"
+                name="content"
+                class="create-input create-content-input input"
+                v-model="content"/>
+          </div>
+          <div class="create-column">
+            <p class="create-text">{{ $t("create_post.image") }}</p>
+            <div class="create-circle">
+              <img src="../assets/svg/imageIcon.svg"
+                   v-on:click="uploadImage()"
+                   alt="image Icon">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="create-buttons">
-        <button class="btn btn-primary create-button" v-on:click="post()">
-          {{ $t("create_post.post") }}
-        </button>
-        <button
-          class="btn btn-primary create-button create-button-cancel"
-          v-on:click="discard()"
-        >
-          {{ $t("create_post.discard") }}
-        </button>
+        <div class="create-buttons">
+          <button class="btn btn-primary create-button" v-on:click="post()">
+            {{ $t("create_post.post") }}
+          </button>
+          <button
+              class="btn btn-primary create-button create-button-cancel"
+              v-on:click="discard()"
+          >
+            {{ $t("create_post.discard") }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  <div class="create-background"  />
 </template>
 
 <script>
 export default {
   name: "createPostComponent",
-  methods: {
-    post: function() {},
-    uploadImage: function() {},
-    discard: function() {},
+  mounted() {
+    document.documentElement.style.overflow = null
   },
-};
+  methods: {
+    post: function () {
+      this.toggleCreatePost();
+    },
+    uploadImage: function () {
+    },
+    discard: function () {
+      this.toggleCreatePost();
+    },
+    toggleCreatePost() {
+      this.$emit("callbackToggleCreatePost");
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
 .create-container {
-  height: 100%;
+  z-index: 2;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 0;
+  height: 100vh;
 }
 
 .create-card {
-  max-height: 1400px;
-  max-width: 800px;
-  height: 100%;
-  width: 100%;
   align-content: center;
   background-color: $primary-black;
   border-radius: $borderRadius;
+  max-height: 1400px;
+  max-width: 600px;
+  width: 100%;
 }
 
 .create-title {
@@ -89,15 +103,15 @@ export default {
 .create-text {
   font-size: 24px;
   color: white;
-  padding-top: $paddingHuge;
+  padding-top: $paddingMedium;
   padding-left: $paddingHuge;
   padding-right: $buttonwidth * 2.5;
 }
 
 .create-input {
   margin-left: $paddingHuge;
-  max-width: 1400px;
-  width: 50%;
+  max-width: 700px;
+  width: 45%;
   background-color: #232323;
   border-radius: $borderRadiusInput;
   border: 3px solid $inputTextFieldBorderColor;
@@ -164,4 +178,15 @@ export default {
   place-items: center;
   margin-left: $paddingHuge;
 }
+
+.create-background {
+  position: fixed;
+  background-color: $primary-black;
+  left: 0;
+  height: 100vh;
+  opacity: 60%;
+  width: 100%;
+  z-index: 1;
+}
+
 </style>

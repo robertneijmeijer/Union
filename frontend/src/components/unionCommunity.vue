@@ -12,7 +12,8 @@
       </p>
     </div>
     <p>{{ $t("union_overview.created") }} 18 dec. 2008</p>
-    <button class="community-btn-create-post">
+    <button class="community-btn-create-post"
+    v-on:click="toggleCreatePost">
       {{ $t("union_overview.create-post") }}
     </button>
     <button class="community-btn-invite">
@@ -24,6 +25,11 @@
 <script>
 export default {
   name: "union-about-community",
+  methods: {
+    toggleCreatePost() {
+      this.$emit("callbackToggleCreatePost");
+    }
+  },
   data() {
     return {
       about:
