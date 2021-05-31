@@ -16,7 +16,6 @@ import UnionHeader from "../components/unionHeader.vue";
 import UnionContent from "../components/unionContent.vue";
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
 import { ActionTypes } from "../actions/union";
-// eslint-disable-next-line no-unused-vars
 
 export default {
   name: "unionView",
