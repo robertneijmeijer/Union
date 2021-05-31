@@ -36,7 +36,7 @@ const routes = [
     component: noUnionOverview,
   },
   {
-    path: "/union/unions",
+    path: "/overview",
     name: "union-overview",
     component: unionOverview,
   },
