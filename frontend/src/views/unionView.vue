@@ -11,7 +11,7 @@
 import UnionHeader from "../components/unionHeader.vue";
 import UnionContent from "../components/unionContent.vue";
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
-import CreatePostComponent from "../components/createPost"
+import CreatePostComponent from "../components/createPost.vue"
 // eslint-disable-next-line
 import { defineComponent, PropType } from "vue";
 // eslint-disable-next-line
