@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from authentication.backends import JWTAuthentication
 from posts.models import Post
 from posts.serializer import PostSerializer
-from project import settings
 
 
 class PostsPagination(PageNumberPagination):
@@ -22,6 +21,21 @@ class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     pagination_class = PostsPagination
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            data = self.get_paginated_response(serializer.data)
+            return data
+
+        serializer = self.get_serializer(queryset, many=True)
+        data = Response(serializer.data)
+        return data
+
+
+
     def create(self, request, *args, **kwargs):
         post = request.data
 
@@ -30,7 +44,7 @@ class PostViewSet(ModelViewSet):
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        post['creator'] = user.user_id
+        post['user'] = user.user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=post)
@@ -40,3 +54,4 @@ class PostViewSet(ModelViewSet):
         serialized_data = serializer.data
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
+

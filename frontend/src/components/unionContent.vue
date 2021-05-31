@@ -23,14 +23,13 @@ import { defineComponent, PropType } from "vue";
 // eslint-disable-next-line
 import { PostInterface } from "../views/unionView.vue";
 
-
 export default defineComponent({
   name: "union-post-overview",
   components: {UnionPost, UnionAbout},
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
-    }
+    },
   },
     props: {
     posts: { type: Object as PropType<PostInterface[]>, required: true },
