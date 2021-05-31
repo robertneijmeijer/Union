@@ -30,13 +30,11 @@ export default defineComponent({
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
-    },
+    }
+  },
     props: {
     posts: { type: Object as PropType<PostInterface[]>, required: true },
   },
-  components: { UnionPost, UnionAbout },
-  }
- 
 });
 </script>
 
