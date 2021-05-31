@@ -72,5 +72,11 @@
     "post_title": "Titel",
     "post_content": "Inhoud",
     "image": "Afbeelding"
+  },
+  "union_join": {
+    "welcome": "Welkom op",
+    "to_join": "Om een Union to betreden",
+    "must": "moet je uitnodiging hebben",
+    "or": "of"
   }
 }
