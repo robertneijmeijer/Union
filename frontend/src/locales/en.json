@@ -78,5 +78,12 @@
     "to_join": "To join a Union you",
     "must": "must have an invite",
     "or": "or"
+  },
+  "post": {
+    "posted_by": "Posted by",
+    "comments": "comments",
+    "comment_as": "Comment as",
+    "comment_hint": "Share your thoughts...",
+    "submit": "Submit"
   }
 }
