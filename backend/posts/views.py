@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from authentication.backends import JWTAuthentication
 from posts.models import Post
 from posts.serializer import PostSerializer, PostRetrieveSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class PostsPagination(PageNumberPagination):
@@ -19,6 +20,7 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     pagination_class = PostsPagination
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         post = request.data
