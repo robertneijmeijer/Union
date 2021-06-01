@@ -1,21 +1,31 @@
 <template>
-  <div class="post-card border-for-div">
-    <voting-component class=""/>
+  <!--  If fetching show spinner-->
+  <div v-if="postState.isFetching">
+    <spinner size="large"></spinner>
+  </div>
+
+  <!--  Not fetching-->
+  <div v-else-if="postState.post" class="post-card border-for-div">
+    <!--    If success show post-->
+
+    <voting-component :votes="postState.post.votes"/>
     <div class="post-content text-white">
+      <!--        TODO: Icon from s3-->
       <div><img class="union-icon" src="../assets/img/bitcoin-icon.png" alt="Union icon"/>
-        {{ "TheCryptoUnion" }} <span>• {{ $t("post.posted_by") }} {{ "MrCypher" }} {{ "20h ago" }}</span>
+        {{ postState.post.union.name }} <span>• {{ $t("post.posted_by") }} {{
+            postState.post.user.username
+          }} {{ moment(postState.post.created_at) }}</span>
       </div>
-      <h1>{{ "How does proof of stake work?" }}</h1>
-      <p>{{
-          `Nulla quis lorem ut libero malesuada feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Proin eget tortor risus.\n\n        Sed porttitor lectus nibh. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.\n\n        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. `
-        }}
+      <h1>{{ postState.post.title }}</h1>
+      <p>{{ postState.post.message }}
       </p>
       <p>
         <img src="../assets/img/comment.png" alt="Comment Icon" class="comment-icon"/>
-          <span>{{"57"}} {{ $t("post.comments") }}</span>
+        <span>{{ postState.post.number_of_comments }} {{ $t("post.comments") }}</span>
       </p>
 
       <div class="post-comment">
+        <!--          TODO: Fetch current user and show user here-->
         <p>{{ $t("post.comment_as") }} <span class="user">{{ "yan_alex" }}</span></p>
         <textarea
             type="text"
@@ -28,20 +38,43 @@
       </div>
     </div>
   </div>
+  <!--    If error show error-->
+  <div v-else class="post-card border-for-div text-white center-center">
+    <h1 v-if="JSON.stringify(postState.errors).includes('Not found')">{{ $t("post.post_not_found") }}</h1>
+    <h1 v-else>{{ $t("global.generalized_error_message") }}</h1>
+  </div>
 </template>
-
 <script>
 
 import votingComponent from "@/components/votingComponent"
+import Spinner from "@/components/spinner";
+import moment from "moment/moment";
 
 export default {
   name: "postComponent",
-  components: {votingComponent}
+  components: {votingComponent, Spinner},
+  computed: {
+    postState() {
+      return this.$store.state.posts;
+    },
+  },
+  methods: {
+    moment: function (value) {
+      return moment(value).fromNow();
+    }
+  },
 }
 </script>
 
 <style lang="scss">
 @import "../assets/theme";
+
+.center-center {
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  grid-template-columns: unset !important;
+}
 
 .post-card {
   width: 80%;

@@ -10,7 +10,7 @@ import { MutationsInterface as postMutations } from "@/mutations/post";
 import { form, FormModuleStateInterface } from "@/store/modules/form";
 import { UnionModuleStateInterface, union } from "./modules/union";
 import { invite } from "@/store/modules/invite";
-import {PostModuleStateInterface} from "@/store/modules/post";
+import { posts, PostModuleStateInterface } from "@/store/modules/post";
 
 // More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
 
@@ -20,7 +20,10 @@ export interface RootState {
   union: UnionModuleStateInterface;
   post: PostModuleStateInterface;
 }
-export type MutationTypes = userMutations & formMutations & unionMutations & postMutations;
+export type MutationTypes = userMutations &
+  formMutations &
+  unionMutations &
+  postMutations;
 export type ActionTypes = userActions & unionActions & postActions;
 
 // Override commit and dispatch to only accept our own typings
@@ -45,5 +48,6 @@ export const store: StoreInterface = createStore<RootState>({
     form,
     union,
     invite,
+    posts,
   },
 });

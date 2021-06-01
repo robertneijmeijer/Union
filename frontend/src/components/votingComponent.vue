@@ -18,8 +18,7 @@
         />
       </svg>
     </button>
-<!--    TODO: Replace value-->
-    <p class="votes-amount" name="counter">603</p>
+    <p class="votes-amount" name="counter">{{ votes }}</p>
     <button @click="downvote">
       <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,9 +44,13 @@
 <script>
 
 // TODO: Clean up and add logic for event handling
+// TODO: Do eventhandling
 
 export default {
-  name: "votingComponent"
+  name: "votingComponent",
+  props: {
+    votes: String,
+  },
 }
 </script>
 

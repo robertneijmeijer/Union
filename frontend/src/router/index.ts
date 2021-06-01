@@ -47,7 +47,7 @@ const routes = [
     component: unionView,
   },
   {
-    path: "/post",
+    path: "/post/:id",
     name: "post",
     component: postView,
   },
