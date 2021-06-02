@@ -29,4 +29,10 @@ export default class UnionApi extends ApiBase {
       `/unions/invite/open?union=${encodeURIComponent(name)}`
     );
   };
+
+  public static generateInvite = (
+    name: string
+  ): Promise<AxiosResponse<InviteInfoResponse>> => {
+    return UnionApi.requestPost("unions/invite", { data: { name } });
+  };
 }
