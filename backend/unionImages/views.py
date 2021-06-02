@@ -11,6 +11,7 @@ from s3.file_uploader import file_uploader
 
 # Create your views here.
 
+
 class UnionImagesViewSet(viewsets.ModelViewSet):
     queryset = UnionImages.objects.all()
     serializer_class = UnionImageSerializer
@@ -18,12 +19,15 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         unionImages = request.data.get('data', {})
-        
-        unionImages['union_id'] = request.POST.get('id')
-        unionImages['banner'] = file_uploader(name=request.FILES['banner'].name, file=request.FILES['banner'])
-        unionImages['icon'] = file_uploader(name=request.FILES['icon'].name, file=request.FILES['icon'])
 
-        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+        unionImages['union_id'] = request.POST.get('id')
+        unionImages['banner'] = file_uploader(
+            name=request.FILES['banner'].name, file=request.FILES['banner'])
+        unionImages['icon'] = file_uploader(
+            name=request.FILES['icon'].name, file=request.FILES['icon'])
+
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
 
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)

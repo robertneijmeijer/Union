@@ -101,7 +101,8 @@ DATABASES = {
         'NAME': os.getenv("POSTGRES_DB") or "postgres",
         'USER': os.getenv("POSTGRES_USER") or "postgres",
         'PASSWORD': os.getenv("POSTGRES_PASSWORD") or "root",
-        'HOST': os.getenv("POSTGRES_HOST") or "localhost",  # Should be container name or localhost for standalone run
+        # Should be container name or localhost for standalone run
+        'HOST': os.getenv("POSTGRES_HOST") or "localhost",
         'PORT': 5432
     }
 }
@@ -141,4 +142,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MINIO_STORAGE_USE_HTTPS=False
+MINIO_STORAGE_USE_HTTPS = False
