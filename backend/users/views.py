@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from authentication.backends import JWTAuthentication
 from .renderers import UserJSONRenderer
 from users.models import User
 from users.serializers import UserSerializer, RegistrationSerializer, LoginSerializer
@@ -11,6 +12,20 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+
+class CurrentUserAPIView(APIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+
+        if token is None or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
+
+        ser = UserSerializer(user)
+        return Response(ser.data)
 
 
 class ValidationAPIView(APIView):
