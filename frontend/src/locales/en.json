@@ -84,6 +84,7 @@
     "comments": "comments",
     "comment_as": "Comment as",
     "comment_hint": "Share your thoughts...",
-    "submit": "Submit"
+    "submit": "Submit",
+    "post_not_found": "Post not found"
   }
 }

@@ -27,8 +27,8 @@ const routes = [
     component: registerView,
   },
   {
-    path: "/createunion",
-    name: "createunion",
+    path: "/create-union",
+    name: "create-union",
     component: unionCreateView,
   },
   {
@@ -47,7 +47,7 @@ const routes = [
     component: unionView,
   },
   {
-    path: "/post",
+    path: "/post/:id",
     name: "post",
     component: postView,
   },
@@ -76,9 +76,14 @@ router.beforeEach((to, from, next) => {
     to.name !== "login" &&
     to.name !== "register" &&
     !Cookie.get("Authorization")
-  )
+  ) {
     next({ name: "login" });
-  else next();
+  } else if (
+    (to.name === "login" || to.name === "register" || to.name === "/") &&
+    Cookie.get("Authorization")
+  ) {
+    next({ path: "/overview" });
+  } else next();
 });
 
 export default router;

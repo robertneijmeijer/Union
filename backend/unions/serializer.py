@@ -13,12 +13,15 @@ class UnionSerializerSimple(serializers.ModelSerializer):
 
 class UnionSerializer(serializers.ModelSerializer):
     creator_id = serializers.IntegerField()
-    banner = serializers.CharField(required=False, default=None)
-    icon = serializers.CharField(required=False, default=None)
+    banner = serializers.CharField(
+        required=False,  allow_null=True, allow_blank=True,  default=None)
+    icon = serializers.CharField(
+        required=False, allow_null=True, allow_blank=True, default=None)
 
     class Meta:
         model = Union
-        fields = ['name', 'description', 'members_can_invite', 'icon', 'creator_id', 'banner']
+        fields = ['name', 'description', 'members_can_invite',
+                  'icon', 'creator_id', 'banner']
 
     def create(self, validated_data):
         union: Union = Union.objects.create(**validated_data)

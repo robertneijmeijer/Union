@@ -84,6 +84,7 @@
     "comments": "reacties",
     "comment_as": "Reageer als",
     "comment_hint": "Deel je mening...",
-    "submit": "Plaats"
+    "submit": "Plaats",
+    "post_not_found": "Post niet gevonden"
   }
 }

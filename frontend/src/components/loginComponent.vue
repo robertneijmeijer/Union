@@ -5,65 +5,68 @@
         <div class="card-header overpass-semi-bold">
           <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
-        <div class="card-body">
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span
-                class="input-group-text"
-                v-bind:class="{ 'error-input': errorValue }"
-              >
-                <i style="color: #2c2c2c" class="fa fa-user fa-lg center"></i>
-              </span>
+        <form v-on:submit="signIn">
+          <div class="card-body">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text"
+                  v-bind:class="{ 'error-input': errorValue }"
+                >
+                  <i style="color: #2c2c2c" class="fa fa-user fa-lg center"></i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="usernameId"
+                class="form-control input overpass-semi-bold"
+                v-bind:placeholder="$t('login.username')"
+                v-model="username"
+              />
             </div>
-            <input
-              type="text"
-              name="usernameId"
-              class="form-control input overpass-semi-bold"
-              v-bind:placeholder="$t('login.username')"
-              v-model="username"
-            />
+
+            <div class="error-message overpass" role="alert">
+              {{ errorValue }}
+            </div>
+
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text"
+                  v-bind:class="{ 'error-input': errorValue }"
+                  ><i style="color: #2c2c2c" class="fa fa-lock fa-lg center"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                name="passwordId"
+                class="form-control input overpass-semi-bold"
+                v-bind:placeholder="$t('login.password')"
+                v-model="password"
+              />
+            </div>
+
+            <div class="form-group">
+              <div class="text-center loginbtn">
+                <button
+                  class="btn btn-primary login"
+                  type="submit"
+                  name="login-button"
+                  v-on:click="signIn"
+                >
+                  {{ $t("login.sign_in") }}
+                </button>
+              </div>
+              <div class="row align-items-center remember overpass gray">
+                <input type="checkbox" class="checkbox" />{{
+                  $t("login.remember_me")
+                }}
+              </div>
+            </div>
           </div>
 
-          <div class="error-message overpass" role="alert">
-            {{ errorValue }}
-          </div>
-
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span
-                class="input-group-text"
-                v-bind:class="{ 'error-input': errorValue }"
-                ><i style="color: #2c2c2c" class="fa fa-lock fa-lg center"></i
-              ></span>
-            </div>
-            <input
-              type="password"
-              name="passwordId"
-              class="form-control input overpass-semi-bold"
-              v-bind:placeholder="$t('login.password')"
-              v-model="password"
-            />
-          </div>
-
-          <div class="form-group">
-            <div class="text-center loginbtn">
-              <button
-                class="btn btn-primary login"
-                type="submit"
-                name="login-button"
-                v-on:click="signIn"
-              >
-                {{ $t("login.sign_in") }}
-              </button>
-            </div>
-            <div class="row align-items-center remember overpass gray">
-              <input type="checkbox" class="checkbox" />{{
-                $t("login.remember_me")
-              }}
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
+        </form>
+          <div class="card-footer">
           <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
 
@@ -99,6 +102,8 @@ export default {
     },
     signIn: function(e) {
       e.preventDefault();
+      if(!this.password || !this.username) return
+
       const hashed = sha256(this.password);
       const user = {
         user: {

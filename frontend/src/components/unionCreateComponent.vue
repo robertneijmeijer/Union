@@ -123,21 +123,23 @@ import UnionApi from "../api/union";
 export default {
   name: "unionCreate",
   methods: {
-    create: function() {
-      router.push("/");
-      const formValues = {
-        name: this.name,
-        description: this.description,
-        members_can_invite: this.members_can_invite,
-        icon: "img",
-        banner: "img",
-      };
-      UnionApi.postUnion({ union: formValues });
+    create: function () {
+      UnionApi.postUnion({
+        union: {
+          name: this.name,
+          description: this.description,
+          members_can_invite: this.members_can_invite,
+          icon: "", // If no img don't give it one because it will grap default
+          banner: "",
+        },
+      }).then(() =>
+        router.push({ name: "union-view", params: { unionName: this.name } })
+      );
     },
-    upload_banner: function() {
+    upload_banner: function () {
       // TODO: add avatar stuff here
     },
-    upload_avatar: function() {
+    upload_avatar: function () {
       // TODO: add avatar stuff here
     },
   },
