@@ -2,13 +2,39 @@ from datetime import timedelta
 from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
-import os, logging, io
+import os,json
 
 MINIO_ADDRESS= os.environ.get('MINIO_ADDRESS')
 MINIO_ACCESS_KEY= os.environ.get('MINIO_ACCESS_KEY')
 MINIO_SECRET_KEY= os.environ.get('MINIO_SECRET_KEY')
 
-
+policy = {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {"AWS": "*"},
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+            ],
+            "Resource": "arn:aws:s3:::union",
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {"AWS": "*"},
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:ListMultipartUploadParts",
+                "s3:AbortMultipartUpload",
+            ],
+            "Resource": "arn:aws:s3:::union/*",
+        },
+    ],
+}
 
 def file_uploader(name,file):
     if not name or not file:
@@ -25,6 +51,8 @@ def file_uploader(name,file):
     bucketExists = client.bucket_exists(bucketName)
     if not bucketExists:
         client.make_bucket(bucketName)
+        # Set policy for images so that the frontend can get them
+        client.set_bucket_policy(bucket_name=bucketName, policy=json.dumps(policy))
     else:
         print("Bucket already exists")
 
