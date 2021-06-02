@@ -16,11 +16,6 @@ class UnionViewSet(viewsets.ModelViewSet):
         
         union = request.data.get('union', {})
 
-        logging.warning("FILES:")
-        logging.warning(request.FILES)
-
-        union['banner'] = file_uploader(name=request.FILES['banner'].name, file=request.FILES['banner'])
-
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         if token is None or user is None:

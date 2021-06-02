@@ -12,7 +12,7 @@ class UnionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Union
-        fields = ['name', 'description', 'members_can_invite', 'icon', 'creator_id', 'banner']
+        fields = ['name', 'description', 'members_can_invite', 'creator_id', 'icon', 'banner']
 
     def create(self, validated_data):
         union: Union = Union.objects.create(**validated_data)
