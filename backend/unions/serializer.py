@@ -39,4 +39,4 @@ class UnionUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = UnionUsers
         fields = ['union', 'user']
-        depth: 2
+        depth: 1

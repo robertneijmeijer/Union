@@ -42,12 +42,7 @@ class UnionOverviewAPIView(APIView):
         if user is None or token is None:
             return Response("No credentials were provided", status=status.HTTP_401_UNAUTHORIZED)
 
-        my_unions = UnionUsers.objects.get(user=user)
+        my_unions = UnionUsers.objects.filter(user=user)
+        ser = UnionUsersSerializer(my_unions, many=True)
 
-        serializer = self.serializer_class(data=my_unions)
-        serializer.is_valid(raise_exception=True)
-
-        # union_users = list(UnionUsers.objects.values())
-        # return JsonResponse({"unions": union_users })
-
-        return Response(serializer.data, status.HTTP_200_OK)
+        return Response(ser.data, status.HTTP_200_OK)
