@@ -11,6 +11,7 @@ axios.interceptors.request.use(
     )
       return config;
 
+    config.withCredentials = false;
     config.headers.Authorization = Cookie.get("Authorization");
 
     return config;
