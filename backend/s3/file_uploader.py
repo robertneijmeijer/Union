@@ -28,9 +28,8 @@ def file_uploader(name,file):
     else:
         print("Bucket already exists")
 
-    logging.warning("SIZE")
     object = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
-    return bucketName + "/" + name
+    return "http://localhost:9000/" + bucketName + "/" + name
 
 
 if __name__ == "__file_uploader__":

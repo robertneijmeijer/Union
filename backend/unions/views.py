@@ -11,7 +11,6 @@ import logging
 class UnionViewSet(viewsets.ModelViewSet):
     queryset = Union.objects.all()
     serializer_class = UnionSerializer
-    logging.warning("test")
 
     def create(self, request, *args, **kwargs):
         
