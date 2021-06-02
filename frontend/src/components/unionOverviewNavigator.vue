@@ -3,17 +3,25 @@
     <div class="item logo">
       <a href="#">
         <img id="union-logo" class="union-logo" src="../assets/svg/union.svg"
-      /></a>
+        /></a>
     </div>
     <div id="search" class="item search">
       <searchbar-component></searchbar-component>
     </div>
     <div id="user" class="item user">
       <button v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
-        <img
-          class="user-image"
-          src="../assets/img/user-icon-png-person-user-profile-icon-20.png"
-        />
+        <div class="user-dropdown">
+          <div v-if="userState.isFetching" class="d-flex justify-content-end align-items-center">
+            <spinner size="small"></spinner>
+          </div>
+          <div v-else class="user-dropdown">
+            <h5 v-if="userState.user" class="text-white">{{ userState.user.username }}</h5>
+            <img
+                class="user-image"
+                src="../assets/img/user-icon-png-person-user-profile-icon-20.png"
+            />
+          </div>
+        </div>
       </button>
     </div>
     <div id="user-menu" v-if="!menuIsHidden" class="user-menu">
@@ -36,15 +44,26 @@
 import SearchbarComponent from "@/components/searchbarComponent";
 import UnionToggleMenu from "@/components/unionNavigatorToggleMenu";
 import UnionUserToggleMenu from "@/components/unionUserToggleMenu";
+import {ActionTypes} from "@/actions/user";
+import Spinner from "@/components/spinner";
+
 export default {
   name: "union-overview-navigator",
-  components: { UnionUserToggleMenu, UnionToggleMenu, SearchbarComponent },
+  components: {UnionUserToggleMenu, UnionToggleMenu, SearchbarComponent, Spinner},
   data() {
     return {
       isHidden: true,
       menuIsHidden: true,
     };
   },
+  computed: {
+    userState() {
+      return this.$store.state.user;
+    },
+  },
+  created() {
+    this.$store.dispatch(ActionTypes.USER_FETCH);
+  }
 };
 </script>
 
@@ -82,6 +101,18 @@ export default {
     height: 2px;
     background-color: white;
     margin: 6px 0;
+  }
+}
+
+.user-dropdown {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  margin-top: 7px;
+
+  button, h5 {
+    padding: 0 $paddingSmall;
+    margin: 0;
   }
 }
 
@@ -126,13 +157,13 @@ export default {
 .user-image {
   width: 27px;
   height: 27px;
-  margin-top: 7px;
 }
 
 .user_btn {
   float: right;
   border: none;
   background-color: transparent;
+  margin-right: $paddingSmall * 2;
 }
 
 .user-menu {
