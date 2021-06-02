@@ -1,4 +1,7 @@
 {
+  "global": {
+    "generalized_error_message": "Something went wrong, please try again later."
+  },
   "union_create": {
     "welcome": "Welcome to",
     "create_community": "Create a community",
@@ -21,7 +24,17 @@
     "password_confirm": "Repeat Password",
     "register": "Register",
     "already_member": "Already a member?",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "errors": {
+      "username_already_taken": "Username already taken",
+      "email_already_taken": "Email already taken",
+      "email_not_valid": "Please fill in a valid email",
+      "password_not_valid": "Password must contain eight characters, at least one letter, one number and one special character",
+      "minimum_characters": "must contain at least %s characters",
+      "username": "Username",
+      "password": "Password",
+      "passwords_do_not_match": "Passwords do not match"
+    }
   },
   "login": {
     "sign_in_union": "Connect to your account",
@@ -33,8 +46,7 @@
     "sign_up": "Sign up",
     "forgot_password": "Forgot your password?",
     "errors": {
-      "incorrect_username_password": "Incorrect username or password",
-      "generalized_error_message": "Something went wrong, please try again later."
+      "incorrect_username_password": "Incorrect username or password"
     }
   },
   "union_overview": {
@@ -50,7 +62,8 @@
   "invite": {
     "invited": "has invited you to",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "invalid": "This invite cannot be found or has already been used"
   },
   "create_post": {
     "post": "Post",
@@ -59,5 +72,19 @@
     "post_title": "Title",
     "post_content": "Content",
     "image": "Image"
+  },
+  "union_join": {
+    "welcome": "Welcome to",
+    "to_join": "To join a Union you",
+    "must": "must have an invite",
+    "or": "or"
+  },
+  "post": {
+    "posted_by": "Posted by",
+    "comments": "comments",
+    "comment_as": "Comment as",
+    "comment_hint": "Share your thoughts...",
+    "submit": "Submit",
+    "post_not_found": "Post not found"
   }
 }

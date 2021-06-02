@@ -11,11 +11,14 @@ import json
 class CreateUnion(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.teun: User = User.objects.create_user("teun.stout@hva.nl", "teun", "test")
-        self.joel: User = User.objects.create_user("test@hva.nl", "joel", "test")
+        self.teun: User = User.objects.create_user(
+            "teun.stout@hva.nl", "teun", "test")
+        self.joel: User = User.objects.create_user(
+            "test@hva.nl", "joel", "test")
 
     def test_get_unions(self):
-        union: Union = Union(name="crypto", description="", members_can_invite=True, creator=self.teun)
+        union: Union = Union(name="crypto", description="",
+                             members_can_invite=True, creator=self.teun)
         union.save()
 
         req = self.client.get(f'/unions', format='json')
@@ -33,6 +36,7 @@ class CreateUnion(APITestCase):
         union_data = {
             "union": {
                 "name": "test",
+                "description": "fit moet inderdaad hier hahahaha",
                 "members_can_invite": True,
                 "creator_id": self.teun.user_id,
             }
@@ -45,14 +49,15 @@ class CreateUnion(APITestCase):
         union: Union = Union(name="test", description="name should be 'Worked'", members_can_invite=True,
                              creator=self.teun)
         union.save()
-        req = self.client.patch(f'/unions/{union.union_id}/', {"name": "Worked"}, format='json')
+        req = self.client.patch(
+            f'/unions/{union.name}/', {"name": "Worked"}, format='json')
         self.assertEqual(req.status_code, status.HTTP_200_OK)
 
     def test_delete_union_endpoint(self):
         union: Union = Union(name="test", description="name should be 'Worked'", members_can_invite=True,
                              creator=self.teun)
         union.save()
-        req = self.client.delete(f'/unions/{union.union_id}/', format='json')
+        req = self.client.delete(f'/unions/{union.name}/', format='json')
         self.assertEqual(req.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_union_users(self):
@@ -69,7 +74,7 @@ class CreateUnion(APITestCase):
         ser.save()
         union = Union.objects.first()
 
-        self.assertEqual(union.union_users.get(user_id=self.joel.user_id), self.joel)
+        self.assertEqual(union.users.get(user_id=self.joel.user_id), self.joel)
 
         # creator of a union will be the first in union users
-        self.assertEqual(union.union_users.first(), self.joel)
+        self.assertEqual(union.users.first(), self.joel)

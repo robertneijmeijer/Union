@@ -6,12 +6,14 @@ axios.interceptors.request.use(
     if (
       !config.url ||
       config.url?.indexOf("register") > -1 ||
-      config.url?.indexOf("login") > -1
+      config.url?.indexOf("login") > -1 ||
+      config.url?.indexOf("validate") > -1
     )
       return config;
-    config.headers = {
-      Authorization: Cookie.get("Authorization"),
-    };
+
+    config.withCredentials = false;
+    config.headers.Authorization = Cookie.get("Authorization");
+
     return config;
   },
   function(error) {

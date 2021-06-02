@@ -12,8 +12,8 @@ class CreateUnion(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.teun: User = User.objects.create_user("teun.stout@hva.nl", "teun", "test")
-        self.union: Union = Union.objects.create(name="union", description="test post", members_can_invite=True,
-                                                 creator=self.teun)
+        self.union: Union = Union.objects.create(
+            name="union", description="test union", members_can_invite=True, creator=self.teun)
         self.post: Post = Post.objects.create(title="post", message="test post", union=self.union, user=self.teun)
 
     def test_list_comment(self):
@@ -33,7 +33,7 @@ class CreateUnion(APITestCase):
         comment_data = {
             "text": "create",
             "post": self.post.post_id,
-            "union": self.union.union_id
+            "union": self.union.name
         }
         wrong_req = self.client.post('/comments/', comment_data, format='json')
 

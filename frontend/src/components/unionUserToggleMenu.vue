@@ -8,14 +8,24 @@
         <LocaleSwitcher class="switcher" />
       </div>
     </div>
+    <div class="item line">
+      <a href="" v-on:click="logout()">Logout</a>
+    </div>
   </div>
 </template>
 
 <script>
 import LocaleSwitcher from "./localeSwitcher";
+import { logout } from "@/router";
+
 export default {
   name: "unionUserToggleMenu",
   components: { LocaleSwitcher },
+  methods: {
+    logout: function() {
+      logout();
+    },
+  },
 };
 </script>
 

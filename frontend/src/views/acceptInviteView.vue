@@ -1,13 +1,6 @@
 <template>
-  <top-bar-logo />
-  <AcceptInvite
-    v-bind:invite="{
-      user: 'Koen Lippe',
-      union: 'TheCryptoUnion',
-      banner: 'bravenewcoin-Fungibility-in-Crypto-banner.jpeg',
-      icon: 'bitcoin-icon.png',
-    }"
-  />
+  <top-bar-logo show-locale="true" />
+  <AcceptInvite />
 </template>
 
 <script>

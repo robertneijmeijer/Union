@@ -9,53 +9,38 @@
         <UnionPost :post="post" :index="index" />
       </div>
     </div>
-    <div class="union-section-community"><UnionAbout /></div>
+    <div class="union-section-community">
+      <UnionAbout :about="description" @callbackToggleCreatePost="toggleCreatePost" />
+    </div>
   </div>
 </template>
 
-<script>
-import UnionAbout from "@/components/unionCommunity";
-import UnionPost from "@/components/unionPost";
+<script lang="ts">
+import UnionAbout from "./unionCommunity.vue";
+import UnionPost from "./unionPost.vue";
+// eslint-disable-next-line no-unused-vars
+import { defineComponent, PropType } from "vue";
+// eslint-disable-next-line no-unused-vars
+export interface PostInterface {
+  id: Number;
+  info: String;
+  title: String;
+  content: String;
+}
 
-export default {
+export default defineComponent({
   name: "union-post-overview",
   components: { UnionPost, UnionAbout },
-  data() {
-    return {
-      posts: [
-        {
-          id: 1,
-          info: "created by Koen Lippe 22-04-2021",
-          title: "Koen ze post",
-          content:
-            '"Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
-          comments: "57 comments",
-        },
-        {
-          id: 2,
-          info: "date",
-          title: "title",
-          content: "content",
-          comments: "comments",
-        },
-        {
-          id: 3,
-          info: "date",
-          title: "title",
-          content: "content",
-          comments: "comments",
-        },
-        {
-          id: 4,
-          info: "date",
-          title: "title",
-          content: "content",
-          comments: "comments",
-        },
-      ],
-    };
+  methods: {
+    toggleCreatePost() {
+      this.$emit("callbackToggleCreatePost");
+    },
   },
-};
+  props: {
+    posts: { type: Object as PropType<PostInterface[]>, required: true },
+    description: { type: String, required: true },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

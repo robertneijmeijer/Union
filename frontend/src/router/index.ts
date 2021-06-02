@@ -4,12 +4,16 @@ import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
 import unionCreateView from "@/views/unionCreateView.vue";
 import acceptInviteView from "../views/acceptInviteView.vue";
-import unionOverviewView from "@/views/unionView.vue";
+import Cookie from "js-cookie";
+import unionView from "@/views/unionView.vue";
+import noUnionOverview from "@/views/noUnionOverview.vue";
+import unionOverview from "@/views/unionOverview.vue";
+import postView from "@/views/postView.vue";
 
 const routes = [
   {
     path: "/",
-    name: "landingspage",
+    name: "/",
     component: landingPage,
   },
   {
@@ -23,17 +27,32 @@ const routes = [
     component: registerView,
   },
   {
-    path: "/createunion",
-    name: "createunion",
+    path: "/create-union",
+    name: "create-union",
     component: unionCreateView,
   },
   {
     path: "/union",
-    name: "union-overview",
-    component: unionOverviewView,
+    name: "union-no-overview",
+    component: noUnionOverview,
   },
   {
-    path: "/unions/invite/accept",
+    path: "/overview",
+    name: "union-overview",
+    component: unionOverview,
+  },
+  {
+    path: "/union/:unionName",
+    name: "union-view",
+    component: unionView,
+  },
+  {
+    path: "/post/:id",
+    name: "post",
+    component: postView,
+  },
+  {
+    path: "/union/invite/accept/:id",
     name: "accept-invite",
     component: acceptInviteView,
   },
@@ -42,6 +61,29 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+export const logout = () => {
+  if (Cookie.get("Authorization")) {
+    Cookie.remove("Authorization");
+  }
+  router.push("login");
+};
+
+router.beforeEach((to, from, next) => {
+  if (
+    to.name !== "/" &&
+    to.name !== "login" &&
+    to.name !== "register" &&
+    !Cookie.get("Authorization")
+  ) {
+    next({ name: "login" });
+  } else if (
+    (to.name === "login" || to.name === "register" || to.name === "/") &&
+    Cookie.get("Authorization")
+  ) {
+    next({ path: "/overview" });
+  } else next();
 });
 
 export default router;
