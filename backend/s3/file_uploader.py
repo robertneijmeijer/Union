@@ -2,11 +2,13 @@ from datetime import timedelta
 from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
-import os,json, uuid
+import os
+import json
+import uuid
 
-MINIO_ADDRESS= os.environ.get('MINIO_ADDRESS')
-MINIO_ACCESS_KEY= os.environ.get('MINIO_ACCESS_KEY')
-MINIO_SECRET_KEY= os.environ.get('MINIO_SECRET_KEY')
+MINIO_ADDRESS = os.environ.get('MINIO_ADDRESS')
+MINIO_ACCESS_KEY = os.environ.get('MINIO_ACCESS_KEY')
+MINIO_SECRET_KEY = os.environ.get('MINIO_SECRET_KEY')
 
 policy = {
     "Version": "2012-10-17",
@@ -36,7 +38,8 @@ policy = {
     ],
 }
 
-def file_uploader(name,file):
+
+def file_uploader(name, file):
     if not name or not file:
         return
 
@@ -45,7 +48,7 @@ def file_uploader(name,file):
         "minio:9000",
         access_key="minio",
         secret_key="minio123",
-        secure= False,
+        secure=False,
     )
 
     name = str(uuid.uuid4()) + name.replace(" ", "")
@@ -54,11 +57,13 @@ def file_uploader(name,file):
     if not bucketExists:
         client.make_bucket(bucketName)
         # Set policy for images so that the frontend can get them
-        client.set_bucket_policy(bucket_name=bucketName, policy=json.dumps(policy))
+        client.set_bucket_policy(
+            bucket_name=bucketName, policy=json.dumps(policy))
     else:
         print("Bucket already exists")
 
-    object = client.put_object( bucket_name=bucketName,object_name=name,data=file,length=file.size)
+    client.put_object(bucket_name=bucketName, object_name=name,
+                      data=file, length=file.size)
     return "http://localhost:9000/" + bucketName + "/" + name
 
 
