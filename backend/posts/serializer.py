@@ -51,3 +51,19 @@ class PostRetrieveSerializer(serializers.ModelSerializer):
 
     def get_votes(self, post: Post):
         return post.upvotes - post.downvotes
+
+
+class MultiplePostRetrieveSerializer(serializers.ModelSerializer):
+    user = UserSerializerSimple()
+    number_of_comments = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Post
+        fields = ["post_id", "title", "message", "created_at", "user", "number_of_comments", "votes"]
+
+    def get_number_of_comments(self, post: Post):
+        return Comment.objects.filter(post=post).count()
+
+    def get_votes(self, post: Post):
+        return post.upvotes - post.downvotes
