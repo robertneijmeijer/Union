@@ -26,7 +26,7 @@
 
       <div class="post-comment">
         <!--          TODO: Fetch current user and show user here-->
-        <p>{{ $t("post.comment_as") }} <span class="user">{{ userState.user.username}}</span></p>
+        <p>{{ $t("post.comment_as") }} <span class="user">{{ userState.user.username }}</span></p>
         <textarea
             type="text"
             class="form-control input"
