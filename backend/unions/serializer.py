@@ -1,8 +1,8 @@
-
 from rest_framework import serializers
 
 from unions.models import Union, UnionUsers
 from users.models import User
+from users.serializers import UserSerializer
 
 
 class UnionSerializerSimple(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class UnionSerializerSimple(serializers.ModelSerializer):
 class UnionSerializer(serializers.ModelSerializer):
     creator_id = serializers.IntegerField()
     banner = serializers.CharField(
-        required=False,  allow_null=True, allow_blank=True,  default=None)
+        required=False, allow_null=True, allow_blank=True, default=None)
     icon = serializers.CharField(
         required=False, allow_null=True, allow_blank=True, default=None)
 
@@ -30,3 +30,13 @@ class UnionSerializer(serializers.ModelSerializer):
         # Saving new user using custom ModelManager
         UnionUsers.objects.create(union, user)
         return union
+
+
+class UnionUsersSerializer(serializers.ModelSerializer):
+    union = UnionSerializerSimple()
+    user = UserSerializer()
+
+    class Meta:
+        model = UnionUsers
+        fields = ['union', 'user']
+        depth: 2
