@@ -159,9 +159,8 @@ class UserTests(APITestCase):
         self.assertEqual(res_body['email'], self.user.email)
         self.assertEqual(res_body['avatar'], self.user.avatar)
 
-
     def test_get_current_user_info_with_invalid_token(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + "INVALID") # Set invalid token
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + "INVALID")  # Set invalid token
         res = self.client.get("/users/current", format='json')
         content_unicode = res.content.decode('utf-8')
         res_body = json.loads(content_unicode)
