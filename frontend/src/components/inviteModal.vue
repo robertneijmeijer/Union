@@ -1,6 +1,6 @@
 <template>
   <div class="modal-backdrop">
-    <div class="modal">
+    <div class="modal border-for-div ">
       <header class="modal-header">
         <h3 class="text-white">
 <!--          TODO: Translation-->
@@ -17,10 +17,14 @@
 
       <section class="modal-body">
         <div class="link-copy-container">
-          <a>https://union-project.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=UN&selectedIssue=UN-114</a>
-          <button class="btn btn-primary union-button-medium">
-            Copy Link
-          </button>
+          <div v-if="invites && invites.length > 0">
+            <a>{{setupLink(invites[0].token)}}</a>
+            <button class="btn btn-primary union-button-medium">
+              <!--            TODO: Logic-->
+              Copy Link
+            </button>
+          </div>
+          <spinner v-else size="medium"></spinner>
         </div>
       </section>
 
@@ -28,20 +32,37 @@
         <p>
          You have X invites left
         </p>
+
+        <div class="text-white">{{invites}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {ActionTypes} from "@/actions/union";
+import Spinner from "@/components/spinner";
+
 export default {
   name: "inviteModal",
+  components: {Spinner},
   methods: {
     close() {
       this.$emit('close');
     },
+    setupLink: function (token) {
+      return window.location.origin + `/union/invite/accept/${token}`;
+    }
   },
-
+  computed: {
+    invites() {
+      return this.$store.state.union.invites;
+    }
+  },
+  created() {
+    this.unionName = this.$route.params.unionName;
+    this.$store.dispatch(ActionTypes.UNION_GET_CURRENT_INVITES, this.unionName);
+  }
 }
 </script>
 

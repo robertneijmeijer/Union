@@ -2,6 +2,7 @@ import { ActionTypes } from "@/actions/union";
 import { UnionType } from "@/api/union";
 import { UnionState } from "@/store/modules/union";
 import { MutationTree } from "vuex";
+import { InviteInfoResponse } from "@/api/invite";
 
 export interface MutationsInterface {
   [ActionTypes.UNION_ACTION_SUBMIT](state: UnionState): void;
@@ -10,6 +11,14 @@ export interface MutationsInterface {
     payload: UnionType
   ): void;
   [ActionTypes.UNION_ACTION_FAILED](state: UnionState, payload: unknown): void;
+  [ActionTypes.UNION_SET_CURRENT_INVITES](
+    state: UnionState,
+    payload: InviteInfoResponse[]
+  ): void;
+  [ActionTypes.UNION_SET_IS_FETCHING](
+    state: UnionState,
+    payload: boolean
+  ): void;
 }
 
 export const mutations: MutationTree<UnionState> & MutationsInterface = {
@@ -25,5 +34,15 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
     state.errors = payload;
     state.isFetching = false;
     state.union = null;
+    state.invites = null;
+  },
+  [ActionTypes.UNION_SET_CURRENT_INVITES](
+    state: UnionState,
+    payload: InviteInfoResponse[]
+  ) {
+    state.invites = payload;
+  },
+  [ActionTypes.UNION_SET_IS_FETCHING](state: UnionState, payload: boolean) {
+    state.isFetching = payload;
   },
 };

@@ -1,5 +1,6 @@
 import ApiBase from "@/api/api-base";
 import { AxiosResponse } from "axios";
+import { InviteInfoResponse } from "@/api/invite";
 
 export type UnionType = {
   name: string;
@@ -18,5 +19,14 @@ export default class UnionApi extends ApiBase {
     name: string
   ): Promise<AxiosResponse<UnionType>> => {
     return UnionApi.requestGet<UnionType>("unions", name);
+  };
+
+  public static getInvites = (
+    name: string
+  ): Promise<AxiosResponse<InviteInfoResponse[]>> => {
+    return UnionApi.executeRequest(
+      "get",
+      `/unions/invite/open?union=${encodeURIComponent(name)}`
+    );
   };
 }

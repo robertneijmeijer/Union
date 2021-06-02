@@ -11,6 +11,8 @@ from invitations.models import Invitation
 from invitations.serializers import InvitationCreateSerializer, InvitationSerializer
 from django.core.exceptions import ObjectDoesNotExist
 
+from unions.models import Union
+
 
 class InvitationsAPIView(APIView):
     serializer_class = InvitationCreateSerializer
@@ -109,15 +111,27 @@ class OpenInvitationsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        try:
+            union_name = request.query_params['union']
+
+            if union_name is None:
+                raise KeyError
+
+            union = Union.objects.get(name=union_name)
+        except KeyError:
+            return Response({"union_id query param is missing"}, status=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
 
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        queryset = Invitation.objects.filter(invite_creator=user)
+        queryset = Invitation.objects.filter(invite_creator=user, union=union)
 
         if len(queryset) == 0:
-            return Response("No open invites")
+            return Response([])
 
         ser = self.serializer_class(queryset, many=True)
         return Response(ser.data)
