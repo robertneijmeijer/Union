@@ -6,7 +6,7 @@ export default class ApiBase {
   protected static async executeRequest<T = any>(
     method: "get" | "delete" | "post" | "put",
     url: string,
-    config: AxiosRequestConfig
+    config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
     const response = await axios.request({
       method,

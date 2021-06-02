@@ -26,6 +26,10 @@ export enum ActionTypes {
   LOGIN_ACTION_SUCCESS = "LOGIN_ACTION_SUCCESS",
   LOGIN_ACTION_SUBMIT = "LOGIN_ACTION_SUBMIT",
   LOGIN_ACTION_FAILED = "LOGIN_ACTION_FAILED",
+  USER_FETCH = "USER_FETCH",
+  USER_FETCH_SUCCESS = "USER_FETCH_SUCCESS",
+  USER_FETCH_FAILED = "USER_FETCH_FAILED",
+  USER_SET_IS_FETCHING = "USER_SET_IS_FETCHING",
 }
 
 export interface ActionsInterface {
@@ -109,6 +113,19 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
             general: i18n.global.t("global.generalized_error_message"),
           });
         }
+      });
+  },
+  [ActionTypes.USER_FETCH]({ commit }) {
+    commit(ActionTypes.USER_SET_IS_FETCHING, true); 
+    UserApi.getUser()
+      .then(res => {
+        console.log(res.data);
+        commit(ActionTypes.USER_FETCH_SUCCESS, res.data);
+        commit(ActionTypes.USER_SET_IS_FETCHING, false);
+      })
+      .catch(err => {
+        commit(ActionTypes.USER_FETCH_FAILED, err.response.data);
+        commit(ActionTypes.USER_SET_IS_FETCHING, false);
       });
   },
 };
