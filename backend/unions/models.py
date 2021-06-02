@@ -7,12 +7,14 @@ from users.models import User
 
 class Union(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
-    description = models.TextField(blank=True)
+    description = models.TextField()
     members_can_invite = models.BooleanField()
-    icon = models.TextField(null=True)
-    banner = models.TextField(null=True)
-    creator = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creator", null=False)
-    users = models.ManyToManyField(User, related_name="users", through="UnionUsers")
+    icon = models.TextField(blank=True, null=True)
+    banner = models.TextField(blank=True, null=True)
+    creator = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name="creator", null=False)
+    users = models.ManyToManyField(
+        User, related_name="users", through="UnionUsers")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,7 +25,8 @@ class UnionUsersManager(models.Manager):
     DEFAULT_INVITES_LEFT = 2
 
     def create(self, union: Union, user: User):
-        entry = self.model(union=union, user=user, invites_left=self.DEFAULT_INVITES_LEFT)
+        entry = self.model(union=union, user=user,
+                           invites_left=self.DEFAULT_INVITES_LEFT)
         entry.save()
         return entry
 

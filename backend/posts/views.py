@@ -1,13 +1,13 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
 
-import jwt
-from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
 from posts.models import Post
-from posts.serializer import PostSerializer
+from posts.serializer import PostSerializer, PostRetrieveSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class PostsPagination(PageNumberPagination):
@@ -20,6 +20,7 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     pagination_class = PostsPagination
+    permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -55,3 +56,8 @@ class PostViewSet(ModelViewSet):
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = PostRetrieveSerializer(instance)
+
+        return Response(serializer.data)
