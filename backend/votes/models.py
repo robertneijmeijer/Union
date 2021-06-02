@@ -14,7 +14,7 @@ class Vote(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, null=False, blank=False)
     comment = models.ForeignKey(
-        Comment, on_delete=models.CASCADE, null=True, blank=True)
+        Comment, on_delete=models.CASCADE, null=True, blank=True, default=None)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=False, blank=False)
     vote = models.TextField(choices=VoteENUM.choices, blank=False, null=False)
