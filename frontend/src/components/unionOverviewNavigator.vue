@@ -56,13 +56,11 @@ export default {
       menuIsHidden: true,
     };
   },
-
   computed: {
     userState() {
       return this.$store.state.user;
     },
   },
-
   created() {
     this.$store.dispatch(ActionTypes.USER_FETCH);
   }

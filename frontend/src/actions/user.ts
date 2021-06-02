@@ -116,10 +116,9 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
       });
   },
   [ActionTypes.USER_FETCH]({ commit }) {
-    commit(ActionTypes.USER_SET_IS_FETCHING, true); 
+    commit(ActionTypes.USER_SET_IS_FETCHING, true);
     UserApi.getUser()
       .then(res => {
-        console.log(res.data);
         commit(ActionTypes.USER_FETCH_SUCCESS, res.data);
         commit(ActionTypes.USER_SET_IS_FETCHING, false);
       })
