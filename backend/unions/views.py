@@ -13,10 +13,11 @@ class UnionViewSet(viewsets.ModelViewSet):
     serializer_class = UnionSerializer
 
     def create(self, request, *args, **kwargs):
-        
+
         union = request.data.get('union', {})
 
-        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
 
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
