@@ -30,7 +30,7 @@
     name: "unionOverviewJoin",
     methods: {
       createUnion: function() {
-        router.push("createunion");
+        router.push("create-union");
       },
     },
   };

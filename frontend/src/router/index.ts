@@ -8,6 +8,7 @@ import Cookie from "js-cookie";
 import unionView from "@/views/unionView.vue";
 import noUnionOverview from "@/views/noUnionOverview.vue";
 import unionOverview from "@/views/unionOverview.vue";
+import postView from "@/views/postView.vue";
 
 const routes = [
   {
@@ -26,8 +27,8 @@ const routes = [
     component: registerView,
   },
   {
-    path: "/createunion",
-    name: "createunion",
+    path: "/create-union",
+    name: "create-union",
     component: unionCreateView,
   },
   {
@@ -44,6 +45,11 @@ const routes = [
     path: "/union/:unionName",
     name: "union-view",
     component: unionView,
+  },
+  {
+    path: "/post/:id",
+    name: "post",
+    component: postView,
   },
   {
     path: "/union/invite/accept/:id",
@@ -70,9 +76,14 @@ router.beforeEach((to, from, next) => {
     to.name !== "login" &&
     to.name !== "register" &&
     !Cookie.get("Authorization")
-  )
+  ) {
     next({ name: "login" });
-  else next();
+  } else if (
+    (to.name === "login" || to.name === "register" || to.name === "/") &&
+    Cookie.get("Authorization")
+  ) {
+    next({ path: "/overview" });
+  } else next();
 });
 
 export default router;

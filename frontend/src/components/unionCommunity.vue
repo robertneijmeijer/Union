@@ -12,8 +12,7 @@
       </p>
     </div>
     <p>{{ $t("union_overview.created") }} 18 dec. 2008</p>
-    <button class="community-btn-create-post"
-    v-on:click="toggleCreatePost">
+    <button class="community-btn-create-post" v-on:click="toggleCreatePost">
       {{ $t("union_overview.create-post") }}
     </button>
     <button class="community-btn-invite">
@@ -28,13 +27,10 @@ export default {
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
-    }
+    },
   },
-  data() {
-    return {
-      about:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis quam ultricies, porta lacus nec, aliquet purus. Proin maximus diam risus, in commodo orci dapibus et. Integer vestibulum enim quis magna lacinia suscipit. Cras molestie, nibh vitae gravida feugiat, dolor nisl imperdiet ex, at scelerisque mi arcu id urna. Fusce lorem ipsum.",
-    };
+  props: {
+    about: { type: String, required: true },
   },
 };
 </script>

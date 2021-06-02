@@ -123,21 +123,23 @@ import UnionApi from "../api/union";
 export default {
   name: "unionCreate",
   methods: {
-    create: function() {
-      router.push("/");
-      const formValues = {
-        name: this.name,
-        description: this.description,
-        members_can_invite: this.members_can_invite,
-        icon: "img",
-        banner: "img",
-      };
-      UnionApi.postUnion({ union: formValues });
+    create: function () {
+      UnionApi.postUnion({
+        union: {
+          name: this.name,
+          description: this.description,
+          members_can_invite: this.members_can_invite,
+          icon: "", // If no img don't give it one because it will grap default
+          banner: "",
+        },
+      }).then(() =>
+        router.push({ name: "union-view", params: { unionName: this.name } })
+      );
     },
-    upload_banner: function() {
+    upload_banner: function () {
       // TODO: add avatar stuff here
     },
-    upload_avatar: function() {
+    upload_avatar: function () {
       // TODO: add avatar stuff here
     },
   },
@@ -288,7 +290,6 @@ export default {
   color: white;
   background: transparent;
   font-size: 24px;
-  border-radius: 33px;
 
   &:hover {
     background-color: $primary-black;
@@ -331,19 +332,6 @@ export default {
 
 .center {
   margin-left: 6px;
-}
-
-.form-control {
-  background-color: #232323;
-  border-radius: $borderRadiusInput;
-  border: 3px solid $inputTextFieldBorderColor;
-  color: #c8c8c8;
-}
-
-.form-control:focus {
-  background-color: #232323;
-  border: 3px solid $inputTextFieldSelectedBorderColor;
-  color: #c8c8c8;
 }
 
 .name-height {
@@ -402,20 +390,5 @@ export default {
   align-items: baseline;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  color: #c8c8c8;
-  font-family: Overpass;
-  border: 3px solid $inputTextFieldBorderColor;
-  -webkit-text-fill-color: #c8c8c8;
-  -webkit-box-shadow: 0 0 0px 1000px #232323 inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
+
 </style>
