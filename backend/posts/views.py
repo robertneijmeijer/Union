@@ -38,8 +38,7 @@ class PostViewSet(ModelViewSet):
             return data
 
         serializer = MultiplePostRetrieveSerializer(queryset)
-        data = Response(serializer.data)
-        return data
+        return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
         post = request.data

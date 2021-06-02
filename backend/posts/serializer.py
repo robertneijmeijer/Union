@@ -15,6 +15,7 @@ class PostSerializer(serializers.ModelSerializer):
         title = data.get('title', None)
         message = data.get('message', None)
         union = data.get('union', None)
+        user = data.get('user')
 
         if title is None:
             raise serializers.ValidationError(
@@ -32,7 +33,7 @@ class PostSerializer(serializers.ModelSerializer):
             'title': title,
             'message': message,
             'union': union,
-            'user': data.get('user')
+            'user': user
         }
 
 
