@@ -6,6 +6,7 @@ from unions.views import UnionViewSet, UnionOverviewAPIView
 
 unionRouter = routers.DefaultRouter()
 unionRouter.register(r'', UnionViewSet)
+unionRouter.register(r'images', UnionImagesViewSet)
 
 urlpatterns = [
     path('', include(unionRouter.urls)),

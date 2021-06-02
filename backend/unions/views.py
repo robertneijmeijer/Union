@@ -6,6 +6,8 @@ from unions.models import Union, UnionUsers
 from unions.serializer import UnionSerializer, UnionSerializerSimple, UnionUsersSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets, status
+from s3.file_uploader import file_uploader
+import logging
 
 
 # TODO: Implement delete authentication and test update
@@ -14,9 +16,11 @@ class UnionViewSet(viewsets.ModelViewSet):
     serializer_class = UnionSerializer
 
     def create(self, request, *args, **kwargs):
+
         union = request.data.get('union', {})
 
-        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
 
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
