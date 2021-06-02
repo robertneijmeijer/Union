@@ -3,8 +3,7 @@ from django.db import models
 # Create your models here.
 
 class UnionImages(models.Model):
-    id = models.AutoField(primary_key=True)
-    union_id = models.IntegerField(null=False)
+    union_id = models.CharField(null=False, primary_key=True, max_length=100)
     banner = models.TextField()
     icon = models.TextField()
 

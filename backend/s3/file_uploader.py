@@ -48,7 +48,7 @@ def file_uploader(name,file):
         secure= False,
     )
 
-    name = str(uuid.uuid4()) + name
+    name = str(uuid.uuid4()) + name.replace(" ", "")
 
     bucketExists = client.bucket_exists(bucketName)
     if not bucketExists:
