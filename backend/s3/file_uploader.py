@@ -2,7 +2,7 @@ from datetime import timedelta
 from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
-import os,json
+import os,json, uuid
 
 MINIO_ADDRESS= os.environ.get('MINIO_ADDRESS')
 MINIO_ACCESS_KEY= os.environ.get('MINIO_ACCESS_KEY')
@@ -47,6 +47,8 @@ def file_uploader(name,file):
         secret_key="minio123",
         secure= False,
     )
+
+    name = str(uuid.uuid4()) + name
 
     bucketExists = client.bucket_exists(bucketName)
     if not bucketExists:
