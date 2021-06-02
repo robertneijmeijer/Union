@@ -102,3 +102,22 @@ class InvitationsAcceptAPIView(APIView):
         InvitationCreateSerializer.accept_invitation(database_invitation, user)
 
         return Response({"name": database_invitation.union.name}, status=status.HTTP_202_ACCEPTED)
+
+
+class OpenInvitationsAPIView(APIView):
+    serializer_class = InvitationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+
+        if token is None or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
+
+        queryset = Invitation.objects.filter(invite_creator=user)
+
+        if len(queryset) == 0:
+            return Response("No open invites")
+
+        ser = self.serializer_class(queryset, many=True)
+        return Response(ser.data)
