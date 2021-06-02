@@ -18,16 +18,30 @@
     <button class="community-btn-invite">
       {{ $t("union_overview.invite-members") }}
     </button>
+
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+
+    <invite-modal v-if="showModal" @close="showModal = false" />
+
   </div>
 </template>
 
 <script>
+
+import InviteModal from "@/components/inviteModal";
+
 export default {
   name: "union-about-community",
+  components: { InviteModal },
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
     },
+  },
+  data() {
+    return {
+      showModal: true ,
+    }
   },
   props: {
     about: { type: String, required: true },
