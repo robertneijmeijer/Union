@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 
 from unions.models import Union, UnionUsers
@@ -14,7 +13,7 @@ class UnionSerializerSimple(serializers.ModelSerializer):
 class UnionSerializer(serializers.ModelSerializer):
     creator_id = serializers.IntegerField()
     banner = serializers.CharField(
-        required=False,  allow_null=True, allow_blank=True,  default=None)
+        required=False, allow_null=True, allow_blank=True, default=None)
     icon = serializers.CharField(
         required=False, allow_null=True, allow_blank=True, default=None)
 
