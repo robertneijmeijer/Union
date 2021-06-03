@@ -78,6 +78,7 @@
             <div>
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
               <div class="circle">
+                <input type="file" accept="image/*" @change="upload_avatar($event)">
                 <img
                   src="../assets/svg/imageIcon.svg"
                   class="image-upload"
@@ -88,6 +89,7 @@
             <div>
               <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
+                <input type="file" accept="image/*" @change="upload_banner($event)">
                 <img
                   src="../assets/svg/imageIcon.svg"
                   class="image-upload"
@@ -132,15 +134,25 @@ export default {
           icon: "", // If no img don't give it one because it will grap default
           banner: "",
         },
+      })
+      const data = new FormData();
+      data.append('union_id', this.name);
+      this.banner ? data.append("banner", this.banner) : data.append("banner", '');
+      this.icon ? data.append("icon", this.icon) : data.append("icon", '');
+      
+      UnionApi.postUnionImages({
+        data
       }).then(() =>
-        router.push({ name: "union-view", params: { unionName: this.name } })
+          router.push({ name: "union-view", params: { unionName: this.name } })
       );
     },
-    upload_banner: function () {
-      // TODO: add avatar stuff here
+    upload_banner: function (event) {
+      console.log("banner")
+      this.banner = event.target.files[0];
+      console.log(this.banner)
     },
-    upload_avatar: function () {
-      // TODO: add avatar stuff here
+    upload_avatar: function (event) {
+      this.icon = event.target.files[0];
     },
   },
 };
