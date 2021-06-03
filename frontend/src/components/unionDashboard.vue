@@ -1,6 +1,6 @@
 <template>
     <div class="union-grid">
-        <h2>Joined Unions</h2>
+        <h2>{{ $t("union-overview.joined_unions") }}</h2>
         <div id="union" class="union-section">
             <div
                     class="union-section-post-comment"

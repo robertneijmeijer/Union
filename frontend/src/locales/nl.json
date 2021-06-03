@@ -46,8 +46,9 @@
     "sign_up": "Aanmelden",
     "forgot_password": "Wachtwoord vergeten?",
     "errors": {
-      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord"
-    }
+      "incorrect_username_password": "Incorrecte gebuikersnaam of wachtwoord",
+    },
+    "logout": "Uitloggen"
   },
   "union_overview": {
     "search": "Zoeken",
@@ -86,5 +87,8 @@
     "comment_hint": "Deel je mening...",
     "submit": "Plaats",
     "post_not_found": "Post niet gevonden"
+  },
+  "union-overview": {
+    "joined_unions": "Jouw unions"
   }
 }

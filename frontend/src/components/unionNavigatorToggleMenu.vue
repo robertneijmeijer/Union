@@ -4,7 +4,7 @@
       <searchbar-component></searchbar-component>
     </div>
     <div class="item line">
-      <a href="" v-on:click="toUnions()">Joined Unions</a>
+      <a href="" v-on:click="toUnions()">{{ $t("union-overview.joined_unions") }}</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="item line">
-      <a href="" v-on:click="logout()">Logout</a>
+      <a href="" v-on:click="logout()">{{ $t("login.logout") }}</a>
     </div>
   </div>
 </template>
