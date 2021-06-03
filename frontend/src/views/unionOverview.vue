@@ -5,14 +5,10 @@
 
 <script>
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
-
-// eslint-disable-next-line
-import { defineComponent } from "vue";
-// eslint-disable-next-line
 import { ActionTypes } from "@/actions/union";
 import UnionDashboard from "../components/unionDashboard.vue";
 
-export default defineComponent({
+export default {
   name: "unionOverview",
   components: { UnionDashboard, UnionOverviewNavigator },
   created() {
@@ -22,8 +18,8 @@ export default defineComponent({
     unionState() {
       return this.$store.state.union.unions;
     },
-  },
-});
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -4,7 +4,7 @@
       <searchbar-component></searchbar-component>
     </div>
     <div class="item line">
-      <a href="">Account</a>
+      <a href="" v-on:click="toUnions()">Joined Unions</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -20,7 +20,7 @@
 <script>
 import SearchbarComponent from "@/components/searchbarComponent";
 import LocaleSwitcher from "@/components/localeSwitcher";
-import { logout } from "@/router";
+import { toOverview, logout } from "@/router";
 
 export default {
   name: "union-toggle-menu",
@@ -29,6 +29,10 @@ export default {
     logout: function() {
       logout();
     },
+    toUnions: function() {
+      toOverview()
+    }
+
   },
 };
 </script>

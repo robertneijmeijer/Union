@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div class="item line">
-      <a href="">Account</a>
+      <a href="" v-on:click="toUnions()">Joined Unions</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -16,7 +16,7 @@
 
 <script>
 import LocaleSwitcher from "./localeSwitcher";
-import { logout } from "@/router";
+import { logout, toOverview } from "@/router";
 
 export default {
   name: "unionUserToggleMenu",
@@ -25,6 +25,9 @@ export default {
     logout: function() {
       logout();
     },
+    toUnions: function() {
+     toOverview()
+    }
   },
 };
 </script>
