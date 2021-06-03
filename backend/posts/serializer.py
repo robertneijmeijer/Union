@@ -9,10 +9,14 @@ from votes.models import Vote
 
 
 class PostSerializer(serializers.ModelSerializer):
-
+    user_vote = serializers.SerializerMethodField()
+    number_of_comments = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
     class Meta:
         model = Post
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ["post_id", "title", "message", "created_at", "union", "user", "number_of_comments", "votes",
+                  "user_vote"]
 
     def validate(self, data):
         title = data.get('title', None)
@@ -38,6 +42,20 @@ class PostSerializer(serializers.ModelSerializer):
             'union': union,
             'user': user
         }
+
+    def get_number_of_comments(self, post: Post):
+        return Comment.objects.filter(post=post).count()
+
+    def get_votes(self, post: Post):
+        return post.upvotes - post.downvotes
+
+    def get_user_vote(self, post: Post):
+        votes: QuerySet[Vote] = Vote.objects.filter(
+            post=post.post_id, comment=None, user=post.user_id)
+        if votes.count() == 0:
+            return "NEUTRAL"
+        else:
+            return votes[0].vote
 
 
 class MultiplePostRetrieveSerializer(serializers.ModelSerializer):
