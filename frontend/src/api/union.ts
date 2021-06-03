@@ -9,6 +9,12 @@ export type UnionType = {
   banner?: string;
 };
 
+export type UnionImagesType = {
+  id: string;
+  banner: string;
+  icon: string;
+}
+
 export default class UnionApi extends ApiBase {
   public static postUnion = (data: any): Promise<any> => {
     return UnionApi.requestPost("unions", { data }).then(response => response);
@@ -28,4 +34,11 @@ export default class UnionApi extends ApiBase {
     console.log(data)
     return UnionApi.requestPostWithHeaders("unions/images/",  data ).then(response => response);
   }
+
+  public static getUnionImages = (
+      name:string
+  ): Promise<AxiosResponse<UnionImagesType>> => {
+    return UnionApi.requestGetUnionImages<UnionImagesType>("unions/images/", name);
+  }
+
 }
