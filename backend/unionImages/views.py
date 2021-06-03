@@ -24,14 +24,14 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
 
         try:
             unionImages['banner'] = file_uploader(
-            name=request.FILES['banner'].name, file=request.FILES['banner'])
-        except:
+                name=request.FILES['banner'].name, file=request.FILES['banner'])
+        except Exception:
             unionImages['banner'] = "../assets/img/landingspage.jpg"
 
         try:
             unionImages['icon'] = file_uploader(
-            name=request.FILES['icon'].name, file=request.FILES['icon'])
-        except:
+                name=request.FILES['icon'].name, file=request.FILES['icon'])
+        except Exception:
             unionImages['icon'] = "../assets/img/union.png"
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(
