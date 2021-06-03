@@ -105,7 +105,6 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
       })
       .catch(error => {
         if (error.response.status == 400) {
-          console.log(error.response.status)
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
             general: i18n.global.t("login.errors.incorrect_username_password"),
           });
