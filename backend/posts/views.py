@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
 
@@ -6,7 +7,7 @@ from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
 from posts.models import Post
-from posts.serializer import PostSerializer, PostRetrieveSerializer
+from posts.serializer import PostSerializer, PostRetrieveSerializer, MultiplePostRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -22,6 +23,23 @@ class PostViewSet(ModelViewSet):
     pagination_class = PostsPagination
     permission_classes = [IsAuthenticated]
 
+    def list(self, request, *args, **kwargs):
+        union_id = self.request.GET.get('union_id')
+
+        if union_id is None:
+            return HttpResponseBadRequest("Query param union_id required.")
+
+        queryset = self.filter_queryset(self.get_queryset())
+        queryset = queryset.filter(union_id=union_id)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = MultiplePostRetrieveSerializer(page, many=True)
+            data = self.get_paginated_response(serializer.data)
+            return data
+
+        serializer = MultiplePostRetrieveSerializer(queryset)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         post = request.data
 
@@ -30,7 +48,7 @@ class PostViewSet(ModelViewSet):
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        post['creator'] = user.user_id
+        post['user'] = user.user_id
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=post)
