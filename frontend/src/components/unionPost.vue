@@ -61,7 +61,7 @@ export default {
     post: { type: Object, required: true },
     index: { type: Number, required: true },
   },
-  created() {
+  mounted() {
     this.vote(this.post.user_vote);
   },
   methods: {
