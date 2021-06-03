@@ -9,13 +9,15 @@ export type UnionType = {
   banner?: string;
 };
 
-export type UnionList = [{
-  name: string;
-  description: string;
-  members_can_invite: boolean;
-  icon?: string;
-  banner?: string;
-}];
+export type UnionList = [
+  {
+    name: string;
+    description: string;
+    members_can_invite: boolean;
+    icon?: string;
+    banner?: string;
+  }
+];
 
 export default class UnionApi extends ApiBase {
   public static postUnion = (data: any): Promise<any> => {

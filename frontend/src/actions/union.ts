@@ -42,10 +42,10 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       .then((res: AxiosResponse<UnionList>) => {
         if (res && res.data) {
           commit(ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES, res.data);
-          if(res.data.length <= 0){
-            router.push("union")
+          if (res.data.length <= 0) {
+            router.push("union");
           } else {
-            router.push("overview")
+            router.push("overview");
           }
         } else throw Error("error");
       })

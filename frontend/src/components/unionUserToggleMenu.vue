@@ -1,7 +1,9 @@
 <template>
   <div class="menu">
     <div class="item line">
-      <a href="" v-on:click="toUnions()">{{ $t("union-overview.joined_unions") }}</a>
+      <a href="" v-on:click="toUnions()">{{
+        $t("union-overview.joined_unions")
+      }}</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -9,7 +11,7 @@
       </div>
     </div>
     <div class="item line">
-      <a href="" v-on:click="logout()">{{ $t("login.logout")}}</a>
+      <a href="" v-on:click="logout()">{{ $t("login.logout") }}</a>
     </div>
   </div>
 </template>
@@ -22,12 +24,12 @@ export default {
   name: "unionUserToggleMenu",
   components: { LocaleSwitcher },
   methods: {
-    logout: function() {
+    logout: function () {
       logout();
     },
-    toUnions: function() {
-     toOverview()
-    }
+    toUnions: function () {
+      toOverview();
+    },
   },
 };
 </script>
