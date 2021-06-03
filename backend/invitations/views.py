@@ -11,7 +11,7 @@ from invitations.models import Invitation
 from invitations.serializers import InvitationCreateSerializer, InvitationSerializer
 from django.core.exceptions import ObjectDoesNotExist
 
-from unions.models import Union
+from unions.models import Union, UnionUsers
 
 
 class InvitationsAPIView(APIView):
@@ -128,10 +128,12 @@ class OpenInvitationsAPIView(APIView):
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
+        # TODO: Filter on accepted at is Null
         queryset = Invitation.objects.filter(invite_creator=user, union=union)
+        invites_left = UnionUsers.objects.filter(union=union, user=user).get().invites_left
+        ser = self.serializer_class(queryset, many=True)
 
         if len(queryset) == 0:
-            return Response([])
+            return Response({"invites_left": invites_left, "invites": []})
 
-        ser = self.serializer_class(queryset, many=True)
-        return Response(ser.data)
+        return Response({"invites_left": invites_left, "invites": ser.data})

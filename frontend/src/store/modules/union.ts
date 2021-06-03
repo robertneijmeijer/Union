@@ -9,7 +9,7 @@ export interface UnionModuleStateInterface {
   isFetching: boolean;
   errors: unknown;
   union: UnionType | null;
-  invites: InviteInfoResponse[] | null;
+  invites: any | null;
 }
 
 export type UnionState = UnionModuleStateInterface;

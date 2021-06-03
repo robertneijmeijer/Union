@@ -17,8 +17,8 @@
 
       <section class="modal-body">
         <div class="link-copy-container">
-          <div v-if="invites && invites.length > 0">
-            <a>{{setupLink(invites[0].token)}}</a>
+          <div v-if="invites && invites.invites.length > 0">
+            <a>{{setupLink(invites.invites[0].token)}}</a>
             <button class="btn btn-primary union-button-medium">
               <!--            TODO: Logic-->
               Copy Link
@@ -28,14 +28,16 @@
         </div>
       </section>
 
-      <div class="modal-footer">
-        <p>
-         You have X invites left
-        </p>
 
-        <div class="text-white">{{invites}}</div>
+
+      <div v-if="invites" class="modal-footer">
+        <p>
+         You have {{invites.invites_left}} invites left
+        </p>
       </div>
     </div>
+
+    <div class="text-white"> {{ invites }}</div>
   </div>
 </template>
 

@@ -13,7 +13,7 @@ export interface MutationsInterface {
   [ActionTypes.UNION_ACTION_FAILED](state: UnionState, payload: unknown): void;
   [ActionTypes.UNION_SET_CURRENT_INVITES](
     state: UnionState,
-    payload: InviteInfoResponse[]
+    payload: any
   ): void;
   [ActionTypes.UNION_SET_IS_FETCHING](
     state: UnionState,
@@ -38,8 +38,9 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
   },
   [ActionTypes.UNION_SET_CURRENT_INVITES](
     state: UnionState,
-    payload: InviteInfoResponse[]
+    payload: any
   ) {
+    console.log("setting invites")
     state.invites = payload;
   },
   [ActionTypes.UNION_SET_IS_FETCHING](state: UnionState, payload: boolean) {

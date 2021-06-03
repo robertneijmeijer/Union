@@ -4,7 +4,6 @@ import router from "@/router";
 import UnionApi, { UnionType } from "@/api/union";
 import { AxiosResponse } from "axios";
 import { UnionState } from "@/store/modules/union";
-import { InviteInfoResponse } from "@/api/invite";
 
 export enum ActionTypes {
   UNION_ACTION_SUBMIT = "UNION_ACTION_SUBMIT",
@@ -42,11 +41,8 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
   ) {
     commit(ActionTypes.UNION_SET_IS_FETCHING, true);
     UnionApi.getInvites(unionName)
-      .then((res: AxiosResponse<InviteInfoResponse[]>) => {
-        console.log(res.data);
-        if (res.data.length == 0) {
-          console.log("EMPTY");
-          // TODO: Generate an invite
+      .then((res: AxiosResponse<any>) => {
+        if (res.data.invites.length == 0) {
           dispatch(ActionTypes.UNION_GENERATE_INVITE, unionName);
           return;
         }
@@ -54,7 +50,7 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         commit(ActionTypes.UNION_SET_IS_FETCHING, false);
       })
       .catch(err => {
-        commit(ActionTypes.UNION_ACTION_FAILED, err.response.data);
+        commit(ActionTypes.UNION_ACTION_FAILED, err.response && err.response.data);
         commit(ActionTypes.UNION_SET_IS_FETCHING, false);
       });
   },
