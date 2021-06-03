@@ -3,8 +3,6 @@ from unions.models import Union
 from unions.serializer import UnionSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets, status
-from s3.file_uploader import file_uploader
-import logging
 
 
 # TODO: Implement delete authentication and test update
