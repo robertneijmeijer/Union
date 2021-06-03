@@ -21,8 +21,12 @@ class Migration(migrations.Migration):
             fields=[
                 ('vote_id', models.AutoField(primary_key=True, serialize=False)),
                 ('vote', models.TextField(choices=[('UPVOTE', 'Upvote'), ('DOWNVOTE', 'Downvote')])),
-                ('comment', models.ForeignKey(blank=True, default=None, null=True, 
-                on_delete=django.db.models.deletion.CASCADE, to='comments.comment')),
+                ('comment', models.ForeignKey(
+                    blank=True,
+                    default=None,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='comments.comment')),
                 ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='posts.post')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

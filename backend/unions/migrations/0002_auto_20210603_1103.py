@@ -18,17 +18,24 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='unionusers',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='union',
             name='creator',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, 
-            related_name='creator', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='creator',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='union',
             name='users',
-            field=models.ManyToManyField(related_name='users', through='unions.UnionUsers', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='users',
+                through='unions.UnionUsers',
+                to=settings.AUTH_USER_MODEL),
         ),
     ]

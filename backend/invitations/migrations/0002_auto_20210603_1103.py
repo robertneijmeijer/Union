@@ -19,18 +19,25 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='invitation',
             name='invite_acceptor',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, 
-            related_name='invite_acceptor', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='invite_acceptor',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='invitation',
             name='invite_creator',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, 
-            related_name='invite_creator', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='invite_creator',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='invitation',
             name='union',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='unions.union'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to='unions.union'),
         ),
     ]
