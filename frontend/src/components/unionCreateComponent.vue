@@ -8,8 +8,10 @@
       </div>
     </div>
       <div class="union-card">
-<!--        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>-->
-<!--        <p class="createTitle">{{ $t("union_create.create_community") }}</p>-->
+       <div>
+         <p class="createTitle">{{ $t("union_create.create_community") }}</p>
+         <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
+       </div>
         <div class="union-card-body">
           <div>
             <section>
@@ -169,10 +171,11 @@ export default {
 }
 
 .union-card {
+  display: flex;
+  flex-direction: column;
   height: auto;
   padding: $paddingMedium;
   margin-bottom: 300px;
-
   background-color: $primary-black;
   border-radius: $borderRadius;
   font-family: "Overpass-SemiBold",serif;
@@ -272,18 +275,17 @@ export default {
   color: white;
   text-align: center;
   user-select: none;
-  margin-top: -$paddingMedium;
   font-size: 36px;
 }
 
 .requiredFields {
+  float: right;
   font-family: "Overpass",serif;
   user-select: none;
   color: #c8c8c8;
   font-size: 18px;
-  padding-left: $paddingHuge * 20;
-  margin-top: $paddingMedium;
   white-space: nowrap;
+  margin: 0 !important;
 }
 
 .union-create-btn {
