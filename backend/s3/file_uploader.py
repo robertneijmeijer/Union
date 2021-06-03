@@ -45,9 +45,9 @@ def file_uploader(name, file):
 
     bucketName = "union"
     client = Minio(
-        "minio:9000",
-        access_key="minio",
-        secret_key="minio123",
+        MINIO_ADDRESS,
+        access_key=MINIO_ACCESS_KEY,
+        secret_key=MINIO_SECRET_KEY,
         secure=False,
     )
 
