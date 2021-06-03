@@ -64,8 +64,8 @@ const router = createRouter({
 });
 
 export const toOverview = () => {
-  router.push("/overview")
-}
+  router.push("/overview");
+};
 
 export const logout = () => {
   if (Cookie.get("Authorization")) {

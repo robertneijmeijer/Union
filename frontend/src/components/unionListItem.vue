@@ -20,18 +20,20 @@
 </template>
 
 <script>
-  import router from "@/router"
+  import router from "@/router";
+
   export default {
     name: "unionListItem",
     props: {
-      unionfields: Object
+      unionfields: Object,
     },
     methods: {
       onClickUnion() {
-        let name = this.unionfields.union.name
-        router.push("/union/"+name)
+        const name = this.unionfields.union.name;
+        router.push("/union/" + name);
       },
-    }};
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
