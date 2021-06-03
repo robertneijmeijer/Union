@@ -2,7 +2,6 @@ from django.db.models import QuerySet
 from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 
-
 from authentication.backends import JWTAuthentication
 from votes.serializer import VoteSerializer
 from votes.models import Vote
@@ -33,7 +32,7 @@ class VoteViewSet(
             votes = Vote.objects.filter(
                 post=request.data['post'], comment=request.data['comment'], user=user.user_id)
         else:
-            votes = Vote.objects.filter(post=request.data['post'], user=user.user_id)
+            votes = Vote.objects.filter(post=request.data['post'], comment=None, user=user.user_id)
 
         if votes.count() != 0 or 'vote_id' in request.data:
             return Response("Can not modify existing data", status.HTTP_304_NOT_MODIFIED)

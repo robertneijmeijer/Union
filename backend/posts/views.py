@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
 from posts.models import Post
-from posts.serializer import PostSerializer, PostRetrieveSerializer
+from posts.serializer import PostSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -40,9 +40,3 @@ class PostViewSet(ModelViewSet):
         serialized_data = serializer.data
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = PostRetrieveSerializer(instance)
-
-        return Response(serializer.data)
