@@ -6,7 +6,6 @@ from posts.models import Post
 from unions.serializer import UnionSerializerSimple
 from users.serializers import UserSerializerSimple
 from votes.models import Vote
-import logging
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -18,7 +17,8 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ["title", "message", "created_at", "union", "user", "number_of_comments", "votes", "user_vote"]
+        fields = ["post_id", "title", "message", "created_at", "union", "user", "number_of_comments", "votes",
+                  "user_vote"]
 
     def get_number_of_comments(self, post: Post):
         return Comment.objects.filter(post=post).count()

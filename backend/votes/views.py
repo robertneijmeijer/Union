@@ -26,7 +26,7 @@ class VoteViewSet(
         request.data['user'] = user.user_id
 
         if 'post' not in request.data:
-            return Response("Post is id required", status=status.HTTP_400_BAD_REQUEST)
+            return Response("Post id is required", status=status.HTTP_400_BAD_REQUEST)
 
         if 'comment' in request.data:
             votes = Vote.objects.filter(
