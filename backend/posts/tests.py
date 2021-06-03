@@ -1,5 +1,6 @@
 # Create your tests here.
 import json
+import logging
 
 from rest_framework.test import APITestCase, APIClient
 
@@ -32,8 +33,18 @@ class PostTests(APITestCase):
         return req.status_code == status.HTTP_201_CREATED
 
     def test_retrieve(self):
-        self.create_post(self.koen)  # Create post
-        post: Post = Post.objects.first()
+        # self.create_post(self.koen)  # Create post
+        post: Post = Post({
+            "title": "WHat is this?",
+            "message": "This is the description",
+            "union": "Crypto",
+            "user": self.koen.user_id
+        })
+        post.save()
+        # post: Post = Post.objects.get(post_id=1)
+
+        logging.error("post")
+        logging.error(post)
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.koen.token)
         req = self.client.get(f'/posts/{post.post_id}/', format='json')
@@ -47,6 +58,7 @@ class PostTests(APITestCase):
         self.assertTrue("user" in res_body)
         self.assertTrue("number_of_comments" in res_body)
         self.assertTrue("votes" in res_body)
+        self.assertTrue("user_vote" in res_body)
 
         self.assertEqual(res_body['number_of_comments'], Comment.objects.filter(post=post).count())
         self.assertEqual(res_body['votes'], post.upvotes - post.downvotes)
