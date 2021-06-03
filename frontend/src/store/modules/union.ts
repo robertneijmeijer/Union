@@ -7,7 +7,7 @@ import { UnionType } from "@/api/union";
 export interface UnionModuleStateInterface {
   isFetching: boolean;
   errors: unknown;
-  union: UnionType | null;
+  data: UnionType | null;
   unions: UnionType[] | null;
 }
 
@@ -17,7 +17,7 @@ export const union: Module<UnionState, RootState> = {
   state: () => ({
     isFetching: false,
     errors: {},
-    union: null,
+    data: null,
     unions: null,
   }),
   mutations,

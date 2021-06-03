@@ -1,6 +1,6 @@
 import ApiBase from "@/api/api-base";
 import { AxiosResponse } from "axios";
-import { UnionType } from "./union";
+import { PostPageType, UnionType } from "./union";
 import { UserType } from "@/api/user";
 
 export type PostType = {
@@ -15,9 +15,12 @@ export type PostType = {
 
 export default class PostApi extends ApiBase {
   public static getAllPosts = (
-    unionNames: string
-  ): Promise<AxiosResponse<UnionType>> => {
-    return PostApi.requestGet<UnionType>("posts", unionNames);
+    unionName: string,
+    page: number
+  ): Promise<AxiosResponse<PostPageType>> => {
+    return PostApi.requestGetAll<PostPageType>(
+      `posts?page_size=10&page=${page}&union_id=${unionName}`
+    );
   };
 
   public static getPost = (id: string): Promise<AxiosResponse<PostType>> => {

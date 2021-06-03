@@ -6,7 +6,9 @@
     <div class="header-title">
       <div class="header-title-content">
         <img class="header-title-logo" :src="getLogo()" />
-        <h3 class="header-title-text">{{ name }}</h3>
+        <h3 class="header-title-text">
+          {{ union && union.name ? union.name : "" }}
+        </h3>
         <button class="header-title-btn">
           {{ $t("union_overview.joined") }}
         </button>
@@ -21,17 +23,19 @@ import DefaultLogo from "../assets/svg/unionCircle.svg";
 
 export default {
   name: "union-overview-header",
-  props: {
-    banner: { type: String },
-    icon: { type: String },
-    name: { type: String, required: true },
+  computed: {
+    union() {
+      return this.$store.state.union.data;
+    },
   },
   methods: {
     getBanner() {
-      return this.banner ? this.banner : DefaultBanner;
+      return this.union && this.union.banner
+        ? this.union.banner
+        : DefaultBanner;
     },
     getLogo() {
-      return this.logo ? this.logo : DefaultLogo;
+      return this.union && this.union.logo ? this.union.logo : DefaultLogo;
     },
   },
 };
