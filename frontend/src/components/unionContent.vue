@@ -48,16 +48,6 @@ export default {
       return u;
     },
   },
-  data() {
-    return {
-      t: {
-        id: 1,
-        info: "this is nice",
-        title: "hellow world",
-        content: "test",
-      },
-    };
-  },
 };
 </script>
 

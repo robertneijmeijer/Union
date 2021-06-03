@@ -3,6 +3,12 @@ import { AxiosResponse } from "axios";
 import { PostPageType, UnionType } from "./union";
 import { UserType } from "@/api/user";
 
+export enum VoteENUM {
+  "UPVOTE",
+  "NEUTRAL",
+  "DOWNVOTE",
+}
+
 export type PostType = {
   title: string;
   message: string;
@@ -11,6 +17,7 @@ export type PostType = {
   user: UserType;
   number_of_comments: number;
   votes: number;
+  user_vote: VoteENUM;
 };
 
 export default class PostApi extends ApiBase {

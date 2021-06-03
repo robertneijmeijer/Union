@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="votes-container">
     <div class="votes">
       <button @click="upvote">
         <svg
@@ -53,46 +53,47 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { VoteENUM } from "../api/posts";
 export default {
   name: "union-post-component",
   props: {
     post: { type: Object, required: true },
-    index: { type: Number },
+    index: { type: Number, required: true },
   },
-  beforeCreate: function () {
-    // TODO: Get ammount of comments
+  created() {
+    this.vote(this.post.user_vote);
   },
   methods: {
     upvote() {
-      this.vote("up");
+      this.vote(VoteENUM.UPVOTE);
     },
     downvote() {
-      this.vote("down");
+      this.vote(VoteENUM.UPVOTE);
     },
-    vote(vote: string) {
-      console.log(vote);
-      // if (!this.index) return;
-      // const up = document.getElementsByName("upvote")[this.index];
-      // const down = document.getElementsByName("downvote")[this.index];
-      // const counter = document.getElementsByName("counter")[this.index];
-      // switch (vote) {
-      //   case "down":
-      //     up.style.fill = "#424242";
-      //     down.style.fill = "#ff00ff";
-      //     counter.style.color = "#ff00ff";
-      //     break;
-      //   case "up":
-      //     up.style.fill = "#00ffff";
-      //     down.style.fill = "#424242";
-      //     counter.style.color = "#00ffff";
-      //     break;
-      //   default:
-      //     up.style.fill = "#424242";
-      //     down.style.fill = "#424242";
-      //     counter.style.color = "#424242";
-      //     break;
-      // }
+    vote(vote) {
+      if (!this.index) return;
+      const up = document.getElementsByName("upvote")[this.index];
+      const down = document.getElementsByName("downvote")[this.index];
+      const counter = document.getElementsByName("counter")[this.index];
+
+      switch (vote) {
+        case "down":
+          up.style.fill = "#424242";
+          down.style.fill = "#ff00ff";
+          counter.style.color = "#ff00ff";
+          break;
+        case "up":
+          up.style.fill = "#00ffff";
+          down.style.fill = "#424242";
+          counter.style.color = "#00ffff";
+          break;
+        default:
+          up.style.fill = "#424242";
+          down.style.fill = "#424242";
+          counter.style.color = "#424242";
+          break;
+      }
     },
   },
 };
@@ -100,6 +101,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/theme";
+
+.votes-container {
+  display: flex;
+  flex-direction: row;
+}
 
 p,
 h4,
