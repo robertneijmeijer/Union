@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 import logging
 
-#from s3.file_uploader import file_uploader
+# from s3.file_uploader import file_uploader
 
 # Create your views here.
 
