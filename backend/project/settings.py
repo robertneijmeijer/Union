@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'unions',
     'comments',
     'invitations',
+    'votes',
     'unionImages'
 ]
 

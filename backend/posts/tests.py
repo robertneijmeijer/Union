@@ -18,22 +18,12 @@ class PostTests(APITestCase):
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
 
-    def create_post(self, user: User):
-        data = {
-            "title": "WHat is this?",
-            "message": "This is the description",
-            "union": "Crypto",
-            "user": self.koen.user_id
-        }
-
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + user.token)
-        req = self.client.post('/posts/', data, format='json')
-
-        return req.status_code == status.HTTP_201_CREATED
-
     def test_retrieve(self):
-        self.create_post(self.koen)  # Create post
-        post: Post = Post.objects.first()
+        post: Post = Post(title="WHat is this?", message="This is the description",
+                          union=self.union,
+                          user=self.koen,
+                          )
+        post.save()
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.koen.token)
         req = self.client.get(f'/posts/{post.post_id}/', format='json')
@@ -47,6 +37,7 @@ class PostTests(APITestCase):
         self.assertTrue("user" in res_body)
         self.assertTrue("number_of_comments" in res_body)
         self.assertTrue("votes" in res_body)
+        self.assertTrue("user_vote" in res_body)
 
         self.assertEqual(res_body['number_of_comments'], Comment.objects.filter(post=post).count())
         self.assertEqual(res_body['votes'], post.upvotes - post.downvotes)

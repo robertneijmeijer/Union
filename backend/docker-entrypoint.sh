@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "installing dependencies"
+pip install -r ./requirements.txt
+echo "creating database migrations"
+python manage.py makemigrations
 echo "Apply database migrations"
 python manage.py migrate
 echo "Running server"

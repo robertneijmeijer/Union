@@ -7,14 +7,13 @@ from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
 from posts.models import Post
-from posts.serializer import PostSerializer, PostRetrieveSerializer, MultiplePostRetrieveSerializer
+from posts.serializer import PostSerializer, MultiplePostRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
 class PostsPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
-    max_page_size = 100
 
 
 class PostViewSet(ModelViewSet):
@@ -58,9 +57,3 @@ class PostViewSet(ModelViewSet):
         serialized_data = serializer.data
 
         return Response(serialized_data, status=status.HTTP_201_CREATED)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = PostRetrieveSerializer(instance)
-
-        return Response(serializer.data)
