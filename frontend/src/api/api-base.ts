@@ -17,6 +17,27 @@ export default class ApiBase {
     return response;
   }
 
+  protected static async executeRequestWithHeaders<T = any>(
+      method: "get" | "delete" | "post" | "put",
+      url: string,
+      config?: AxiosRequestConfig
+  ): Promise<AxiosResponse<T>> {
+    const headers = {
+        'Content-Type' : 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+    }
+    if(config) {
+      config.headers = headers
+      console.log(config.headers)
+    }
+    const response = await axios.request({
+      method,
+      url: `${this.BASE_URL}${url}`,
+      withCredentials: true,
+      ...config,
+    });
+    return response;
+  }
+
   public static async requestGet<T = any>(
     resource: string,
     id: string,
@@ -41,6 +62,15 @@ export default class ApiBase {
     config?: AxiosRequestConfig
   ) {
     return this.executeRequest<T>("post", `/${resource}`, {
+      ...config,
+    });
+  }
+
+  public static async requestPostWithHeaders<T = any>(
+      resource: string,
+      config?: AxiosRequestConfig,
+  ) {
+    return this.executeRequestWithHeaders<T>("post", `/${resource}`, {
       ...config,
     });
   }
