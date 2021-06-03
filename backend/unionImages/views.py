@@ -21,10 +21,18 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
         unionImages = request.data.get('data', {})
 
         unionImages['union_id'] = request.POST.get('union_id')
-        unionImages['banner'] = file_uploader(
+
+        try:
+            unionImages['banner'] = file_uploader(
             name=request.FILES['banner'].name, file=request.FILES['banner'])
-        unionImages['icon'] = file_uploader(
+        except:
+            unionImages['banner'] = "../assets/img/landingspage.jpg"
+
+        try:
+            unionImages['icon'] = file_uploader(
             name=request.FILES['icon'].name, file=request.FILES['icon'])
+        except:
+            unionImages['icon'] = "../assets/img/union.png"
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(
             request)
