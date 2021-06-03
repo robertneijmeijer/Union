@@ -38,7 +38,6 @@ class UnionViewSet(viewsets.ModelViewSet):
 
 
 class UnionOverviewAPIView(APIView):
-    serializer_class = UnionUsersSerializer
 
     def get(self, request):
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)

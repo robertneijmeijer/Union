@@ -35,9 +35,8 @@ class UnionSerializer(serializers.ModelSerializer):
 
 class UnionUsersSerializer(serializers.ModelSerializer):
     union = UnionSerializerSimple()
-    user = UserSerializer()
 
     class Meta:
         model = UnionUsers
-        fields = ['union', 'user']
+        fields = ['union']
         depth: 1

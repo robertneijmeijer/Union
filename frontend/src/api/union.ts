@@ -20,11 +20,9 @@ export default class UnionApi extends ApiBase {
     return UnionApi.requestGet<UnionType>("unions", name);
   };
 
-  public static getJoinedUnions = (
-    name: string
+  public static getUnions = (
   ): Promise<AxiosResponse<UnionType>> => {
-    return UnionApi.requestGet<UnionType>("union", name);
+    return UnionApi.requestGetAll<UnionType>("unions/overview");
   };
-
 
 }

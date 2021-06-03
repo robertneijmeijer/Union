@@ -8,6 +8,7 @@ export interface UnionModuleStateInterface {
   isFetching: boolean;
   errors: unknown;
   union: UnionType | null;
+  unions: UnionType[] | null;
 }
 
 export type UnionState = UnionModuleStateInterface;
@@ -17,6 +18,7 @@ export const union: Module<UnionState, RootState> = {
     isFetching: false,
     errors: {},
     union: null,
+    unions: null
   }),
   mutations,
   actions,

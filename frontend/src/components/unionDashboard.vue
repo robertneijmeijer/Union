@@ -4,10 +4,10 @@
         <div id="union" class="union-section">
             <div
                     class="union-section-post-comment"
-                    v-for="(union, index) in unions"
+                    v-for="union in unions"
                     v-bind:key="union.id"
             >
-                <union-list-item :union="union" :index="index"/>
+                <union-list-item :unionfields="union"/>
             </div>
         </div>
     </div>
@@ -18,14 +18,20 @@
   // eslint-disable-next-line
   import { defineComponent, PropType } from "vue";
   // eslint-disable-next-line
-  import { UnionType } from "@/api/union";
+
+  export interface UnionInterface {
+    name: String;
+    banner: String;
+    icon: String;
+    description: String
+  }
 
   export default defineComponent({
     name: "unionDashboard",
     components: { UnionListItem },
     props: {
-      unions: { type: Object as PropType<UnionType[]>, required: true },
-    },
+      unions: Array
+    }
   });
 </script>
 

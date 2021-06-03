@@ -1,17 +1,13 @@
 <template>
     <a href="" class="table-union-content">
         <div class="banner">
-            <img
-                    class="image"
-                    v-bind:src="getImage(union.banner)"
-                    alt="Responsive banner"
-            />
+            <img class="image" :src="require(`../assets/img/${unionfields.union.banner}`)" alt="responsive image"/>
         </div>
         <div class="union">
-            <h2 class="name">{{ union.name }}</h2>
+            <h2 class="name">{{ unionfields.union.name }}</h2>
         </div>
         <div id="icon" class="icon-content">
-            <img class="image-logo" v-bind:src="getImage(union.icon)"/>
+            <img class="image-logo" :src="require(`../assets/img/${unionfields.union.icon}`)"/>
         </div>
     </a>
 </template>
@@ -20,20 +16,12 @@
   // eslint-disable-next-line
   import { PropType, defineComponent } from "vue";
   // eslint-disable-next-line
-  import { UnionType } from "@/api/union";
-
-  function getImage(path: String) {
-    return require(`../assets/img/${path}`);
-  }
+  import { UnionInterface } from "./unionDashboard.vue";
 
   export default defineComponent({
     name: "unionListItem",
     props: {
-      union: { type: Object as PropType<UnionType>, required: true },
-      index: { type: Number },
-    },
-    methods: {
-      getImage,
+      unionfields: Object as PropType<UnionInterface>,
     },
   });
 </script>
