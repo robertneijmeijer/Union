@@ -66,6 +66,7 @@ export default {
   height: 5em;
   max-width: 120em;
   margin: 0 auto;
+  border-bottom: 2px solid $borderColor;
 }
 
 .header-title-content {

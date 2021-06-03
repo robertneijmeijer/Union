@@ -58,7 +58,7 @@ export default {
   display: grid;
   grid-template-columns: 25fr 50fr 25fr;
   padding: 2em;
-  column-gap: 2em;
+  column-gap: 1em;
   max-width: 120em;
   margin: 0 auto;
 }
@@ -71,6 +71,7 @@ export default {
 .union-section-community {
   grid-column-start: 3;
   grid-column-end: 3;
+  max-width: 22rem;
 }
 
 .union-section-post-comment {
