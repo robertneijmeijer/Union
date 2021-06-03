@@ -1,6 +1,5 @@
 # Create your tests here.
 import json
-import logging
 
 from rest_framework.test import APITestCase, APIClient
 
