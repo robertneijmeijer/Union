@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 import logging
 
-# from s3.file_uploader import file_uploader
+from s3.file_uploader import file_uploader
 
 # Create your views here.
 
@@ -18,13 +18,16 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
-        unionImages = request.data.get('data', {})
+        logging.warning("UNION IMAGES")
 
-        unionImages['union_id'] = request.POST.get('id')
-        # unionImages['banner'] = file_uploader(
-        #     name=request.FILES['banner'].name, file=request.FILES['banner'])
-        # unionImages['icon'] = file_uploader(
-        #     name=request.FILES['icon'].name, file=request.FILES['icon'])
+        unionImages = request.data.get('data', {})
+        logging.warning(request.FILES)
+
+        unionImages['union_id'] = request.POST.get('union_id')
+        unionImages['banner'] = file_uploader(
+            name=request.FILES['banner'].name, file=request.FILES['banner'])
+        unionImages['icon'] = file_uploader(
+            name=request.FILES['icon'].name, file=request.FILES['icon'])
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(
             request)
