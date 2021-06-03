@@ -7,24 +7,28 @@
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
-    <div class="d-flex justify-content-center h-100">
       <div class="union-card">
-        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
-        <p class="createTitle">{{ $t("union_create.create_community") }}</p>
+<!--        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>-->
+<!--        <p class="createTitle">{{ $t("union_create.create_community") }}</p>-->
         <div class="union-card-body">
-          <div class="column-left">
-            <h4 class="white-text">
-              {{ $t("union_create.name") }}
-            </h4>
-            <input
-              type="text"
-              name="usernameId"
-              class="form-control name-height input"
-              v-model="name"
-            />
+          <div>
+            <section>
+              <h4 class="white-text">
+                {{ $t("union_create.name") }}
+              </h4>
+              <input
+                  type="text"
+                  name="usernameId"
+                  class="form-control name-height input"
+                  v-model="name"
+              />
+            </section>
+
+            <section>
             <h4 class="white-text">
               {{ $t("union_create.description") }}
             </h4>
+
             <textarea
               size="lg"
               type="text"
@@ -32,8 +36,10 @@
               class="form-control input description-height"
               v-model="description"
             />
+            </section>
           </div>
-          <div class="column-right">
+          <div>
+            <section>
             <h4 class="white-text">
               {{ $t("union_create.invite_privilege") }}
             </h4>
@@ -75,7 +81,9 @@
               <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
               <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
             </div>
-            <div>
+            </section>
+
+            <section>
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
               <div class="circle">
                 <img
@@ -83,9 +91,11 @@
                   class="image-upload"
                   v-on:click="upload_avatar()"
                 />
-              </div>
             </div>
-            <div>
+
+            </section>
+
+            <section>
               <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
                 <img
@@ -94,10 +104,10 @@
                   v-on:click="upload_banner()"
                 />
               </div>
-            </div>
+            </section>
           </div>
         </div>
-        <div class="union-card-footer">
+        <div>
           <div class="form-group">
             <div class="text-center union-create-btn">
               <button
@@ -113,7 +123,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -149,9 +158,40 @@ export default {
 <style lang="scss">
 @import "../assets/theme";
 
-.container {
-  height: 100%;
-  align-content: center;
+@media (max-width: 992px)  {
+  .union-card-body {
+    grid-gap: $paddingHuge;
+  }
+
+  textarea, input {
+    width: 100% !important;
+  }
+}
+
+.union-card {
+  height: auto;
+  padding: $paddingMedium;
+  margin-bottom: 300px;
+
+  background-color: $primary-black;
+  border-radius: $borderRadius;
+  font-family: "Overpass-SemiBold",serif;
+
+  section {
+    margin-bottom: $paddingMedium;
+  }
+
+  textarea, input {
+    width: 90%;
+  }
+}
+
+.union-card-body {
+  padding: 0;
+  margin: $paddingMedium;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: $paddingSmall;
 }
 
 .required {
@@ -192,6 +232,7 @@ export default {
   margin-top: -$paddingMedium;
   width: max-content;
 }
+
 .only-i-invite {
   padding-left: $paddingMedium;
   padding-right: $paddingSmall;
@@ -209,7 +250,7 @@ export default {
 }
 
 .banner-image {
-  width: 350px;
+  max-width: 350px;
   height: 100px;
   background-color: $secondary-gray;
   border-radius: $borderRadius;
@@ -227,22 +268,6 @@ export default {
   padding-left: 18px;
 }
 
-.card-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.column-left {
-  padding-left: $paddingMedium;
-  width: 300px;
-}
-
-.column-right {
-  margin-left: auto;
-  padding-right: $paddingHuge * 2;
-}
-
 .createTitle {
   color: white;
   text-align: center;
@@ -252,7 +277,7 @@ export default {
 }
 
 .requiredFields {
-  font-family: "Overpass";
+  font-family: "Overpass",serif;
   user-select: none;
   color: #c8c8c8;
   font-size: 18px;
@@ -261,30 +286,13 @@ export default {
   white-space: nowrap;
 }
 
-.union-card {
-  height: 800px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 1000px;
-  background-color: $primary-black;
-  border-radius: $borderRadius;
-  font-family: "Overpass-SemiBold";
-}
-
-.union-card-body {
-  padding: 0;
-  margin: 10px 15px 0 15px;
-  display: flex;
-  flex-direction: row;
-}
-
 .union-create-btn {
-  padding-top: $paddingHuge * 1.5;
+  padding-top: $paddingSmall;
   margin-bottom: 0;
 }
 
 .create-union {
-  width: 250px;
+  max-width: 250px;
   border-radius: $borderRadius;
   border: $buttonBorder $unionBlue;
   color: white;
@@ -300,7 +308,6 @@ export default {
 .white-text {
   color: white;
   padding-bottom: $paddingSmall;
-  padding-top: $paddingMedium;
   font-size: 24px;
 }
 
@@ -319,30 +326,13 @@ export default {
   font-family: "Overpass-Bold", serif;
 }
 
-.card-header h3 {
-  color: white;
-}
-
-.input-group-prepend span {
-  width: 50px;
-  background-color: $unionBlue;
-  color: black;
-  border: 0 !important;
-}
-
 .center {
   margin-left: 6px;
 }
 
-.name-height {
-  width: 400px;
-}
-
 .description-height {
-  height: 300px !important;
-  width: 400px;
-  max-height: 300px;
-  max-width: 400px;
+  height: 100%;
+  min-height: 200px;
 }
 
 .round {
@@ -389,6 +379,5 @@ export default {
   user-select: none;
   align-items: baseline;
 }
-
 
 </style>
