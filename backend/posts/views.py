@@ -5,9 +5,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from rest_framework.response import Response
 
+from unions.models import Union
 from authentication.backends import JWTAuthentication
 from posts.models import Post
-from posts.serializer import PostSerializer, MultiplePostRetrieveSerializer
+from posts.serializer import PostSerializer, MultiplePostRetrieveSerializer, PostRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -39,10 +40,15 @@ class PostViewSet(ModelViewSet):
         serializer = MultiplePostRetrieveSerializer(queryset)
         return Response(serializer.data)
 
-    def create(self, request, *args, **kwargs):
-        post = request.data
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = PostRetrieveSerializer(instance)
+        return Response(serializer.data)
 
-        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
+    def create(self, request, *args, **kwargs):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
+        post = request.data
 
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
