@@ -50,7 +50,10 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         commit(ActionTypes.UNION_SET_IS_FETCHING, false);
       })
       .catch(err => {
-        commit(ActionTypes.UNION_ACTION_FAILED, err.response && err.response.data);
+        commit(
+          ActionTypes.UNION_ACTION_FAILED,
+          err.response && err.response.data
+        );
         commit(ActionTypes.UNION_SET_IS_FETCHING, false);
       });
   },
@@ -67,7 +70,7 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       })
       .catch(err => {
         console.log("invite generation failed");
-        commit(ActionTypes.UNION_ACTION_FAILED, err.response.data);
+        commit(ActionTypes.UNION_ACTION_FAILED, { message: err.response.data });
         commit(ActionTypes.UNION_SET_IS_FETCHING, false);
       });
   },

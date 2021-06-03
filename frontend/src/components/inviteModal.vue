@@ -3,22 +3,26 @@
     <div class="modal border-for-div ">
       <header class="modal-header">
         <h3 class="text-white">
-<!--          TODO: Translation-->
+          <!--          TODO: Translation-->
           Invite new member
+          <div class="text-white"> {{ this }}</div>
+          <!--          <div class="text-white"> {{ errorState.errors }}</div>-->
+
         </h3>
         <button
             type="button"
             class="btn-close"
             @click="close"
         >
-         X
+          X
         </button>
       </header>
 
-      <section class="modal-body">
+      <section class="modal-body">o
+
         <div class="link-copy-container">
           <div v-if="invites && invites.invites.length > 0">
-            <a>{{setupLink(invites.invites[0].token)}}</a>
+            <a>{{ setupLink(invites.invites[0].token) }}</a>
             <button class="btn btn-primary union-button-medium">
               <!--            TODO: Logic-->
               Copy Link
@@ -29,10 +33,9 @@
       </section>
 
 
-
       <div v-if="invites" class="modal-footer">
         <p>
-         You have {{invites.invites_left}} invites left
+          You have {{ invites.invites_left }} invites left
         </p>
       </div>
     </div>
@@ -44,21 +47,28 @@
 <script>
 import {ActionTypes} from "@/actions/union";
 import Spinner from "@/components/spinner";
+import {mapState} from "vuex"
 
 export default {
   name: "inviteModal",
   components: {Spinner},
+  computed: {
+    stateErrors () {
+      console.log("Computed")
+      console.log(this.$store.getters.unionErrorState)
+      return this.$store.getters.unionErrorState
+    },
+    ...mapState({
+      invites: state => state.union.invites,
+      stateErrors2: state => state.union.errors
+    })
+  },
   methods: {
     close() {
       this.$emit('close');
     },
     setupLink: function (token) {
       return window.location.origin + `/union/invite/accept/${token}`;
-    }
-  },
-  computed: {
-    invites() {
-      return this.$store.state.union.invites;
     }
   },
   created() {
