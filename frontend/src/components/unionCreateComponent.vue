@@ -128,15 +128,6 @@ export default {
   name: "unionCreate",
   methods: {
     create: function () {
-      UnionApi.postUnion({
-        union: {
-          name: this.name,
-          description: this.description,
-          members_can_invite: this.members_can_invite,
-          icon: "", // If no img don't give it one because it will grap default
-          banner: "",
-        },
-      })
       const data = new FormData();
       data.append('union_id', this.name);
       this.banner ? data.append("banner", this.banner) : data.append("banner", '');
@@ -144,14 +135,23 @@ export default {
 
       UnionApi.postUnionImages({
         data
-      }).then(() =>
-          router.push({name: "union-view", params: {unionName: this.name}})
-      );
+      }).then((response) => {
+        UnionApi.postUnion({
+          union: {
+            name: this.name,
+            description: this.description,
+            members_can_invite: this.members_can_invite,
+            icon: response.data.icon, // If no img don't give it one because it will grap default
+            banner: response.data.banner,
+          },
+        }).then(() =>
+            router.push({name: "union-view", params: {unionName: this.name}})
+        );
+      }
+    );
     },
     upload_banner: function (event) {
-      console.log("banner")
       this.banner = event.target.files[0];
-      console.log(this.banner)
     },
     upload_avatar: function (event) {
       this.icon = event.target.files[0];
