@@ -13,11 +13,20 @@ export type PostType = {
   votes: number;
 };
 
+export type AllPostsPostType = {
+  title: string;
+  message: string;
+  created_at: boolean;
+  user: UserType;
+  number_of_comments: number;
+  votes: number;
+};
+
 export default class PostApi extends ApiBase {
   public static getAllPosts = (
-    unionNames: string
-  ): Promise<AxiosResponse<UnionType>> => {
-    return PostApi.requestGet<UnionType>("posts", unionNames);
+    unionName: string
+  ): Promise<AxiosResponse<Array<AllPostsPostType>>> => {
+    return PostApi.requestGetAll<Array<AllPostsPostType>>("posts?union_id="+unionName);
   };
 
   public static getPost = (id: string): Promise<AxiosResponse<PostType>> => {

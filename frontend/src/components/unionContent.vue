@@ -19,6 +19,7 @@
 import UnionAbout from "./unionCommunity.vue";
 import UnionPost from "./unionPost.vue";
 // eslint-disable-next-line no-unused-vars
+import { ActionTypes } from "@/actions/post";
 
 export default {
   name: "union-post-overview",
@@ -31,6 +32,10 @@ export default {
   props: {
     posts: { type: [], required: true },
     description: { type: String, required: true },
+  },
+  created() {
+    let unionName = this.$route.params.unionName;
+    this.$store.dispatch(ActionTypes.ALL_POSTS_ACTION_FETCH, unionName);
   },
 };
 </script>

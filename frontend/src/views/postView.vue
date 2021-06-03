@@ -6,16 +6,15 @@
 </template>
 
 <script>
-
 import postComponent from "@/components/postComponent";
 import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
-import {ActionTypes} from "@/actions/post";
+import { ActionTypes } from "@/actions/post";
 
 export default {
   name: "postView",
   components: {
     UnionOverviewNavigator,
-    postComponent
+    postComponent,
   },
   data() {
     return {
