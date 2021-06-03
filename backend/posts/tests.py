@@ -19,32 +19,12 @@ class PostTests(APITestCase):
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
 
-    def create_post(self, user: User):
-        data = {
-            "title": "WHat is this?",
-            "message": "This is the description",
-            "union": "Crypto",
-            "user": self.koen.user_id
-        }
-
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + user.token)
-        req = self.client.post('/posts/', data, format='json')
-
-        return req.status_code == status.HTTP_201_CREATED
-
     def test_retrieve(self):
-        # self.create_post(self.koen)  # Create post
-        post: Post = Post({
-            "title": "WHat is this?",
-            "message": "This is the description",
-            "union": "Crypto",
-            "user": self.koen.user_id
-        })
+        post: Post = Post(title="WHat is this?", message="This is the description",
+                          union=self.union,
+                          user=self.koen,
+                          )
         post.save()
-        # post: Post = Post.objects.get(post_id=1)
-
-        logging.error("post")
-        logging.error(post)
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.koen.token)
         req = self.client.get(f'/posts/{post.post_id}/', format='json')
