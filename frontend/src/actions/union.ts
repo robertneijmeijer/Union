@@ -1,7 +1,7 @@
 import { RootState } from "@/store/store";
 import { ActionTree } from "vuex";
 import router from "@/router";
-import UnionApi, { UnionType } from "@/api/union";
+import UnionApi, { UnionList, UnionType } from "@/api/union";
 import { AxiosResponse } from "axios";
 import { UnionState } from "@/store/modules/union";
 
@@ -39,10 +39,14 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
   },
   [ActionTypes.UNION_ACTION_FETCH_OVERVIEW]({ commit, state }) {
     UnionApi.getUnions()
-      .then((res: AxiosResponse<UnionType>) => {
+      .then((res: AxiosResponse<UnionList>) => {
         if (res && res.data) {
-          console.log(res.data);
           commit(ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES, res.data);
+          if(res.data.length <= 0){
+            router.push("union")
+          } else {
+            router.push("overview")
+          }
         } else throw Error("error");
       })
       .catch(err => {
