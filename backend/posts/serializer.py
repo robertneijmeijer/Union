@@ -31,5 +31,4 @@ class PostSerializer(serializers.ModelSerializer):
         if votes.count() == 0:
             return "NEUTRAL"
         else:
-            logging.warning(votes[0].vote)
             return votes[0].vote
