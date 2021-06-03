@@ -4,39 +4,35 @@
     <div id="union" class="union-section">
       <div
         class="union-section-post-comment"
-        v-for="(union, index) in unions"
+        v-for="union in unions"
         v-bind:key="union.id"
       >
-        <union-list-item :union="union" :index="index" />
+        <union-list-item :unionfields="union" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import UnionListItem from "@/components/unionListItem";
+<script lang="ts">
+import UnionListItem from "../components/unionListItem.vue";
+// eslint-disable-next-line
+import { defineComponent, PropType } from "vue";
+// eslint-disable-next-line
 
-export default {
+export interface UnionInterface {
+  name: String;
+  banner: String;
+  icon: String;
+  description: String;
+}
+
+export default defineComponent({
   name: "unionDashboard",
   components: { UnionListItem },
-  data() {
-    return {
-      unions: [
-        {
-          id: 1,
-          name: "The crypto union",
-          imageUrl:
-            "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg",
-        },
-        {
-          id: 4,
-          name: "The crypto union",
-          imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg",
-        },
-      ],
-    };
+  props: {
+    unions: Array,
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

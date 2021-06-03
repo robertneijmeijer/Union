@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from unions.models import Union, UnionUsers
 from users.models import User
+from users.serializers import UserSerializer
 
 
 class UnionSerializerSimple(serializers.ModelSerializer):
@@ -19,6 +20,7 @@ class UnionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Union
+
         fields = ['name', 'description', 'members_can_invite',
                   'icon', 'creator_id', 'banner']
 
@@ -29,3 +31,12 @@ class UnionSerializer(serializers.ModelSerializer):
         # Saving new user using custom ModelManager
         UnionUsers.objects.create(union, user)
         return union
+
+
+class UnionUsersSerializer(serializers.ModelSerializer):
+    union = UnionSerializerSimple()
+
+    class Meta:
+        model = UnionUsers
+        fields = ['union']
+        depth: 1

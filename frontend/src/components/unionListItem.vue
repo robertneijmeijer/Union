@@ -3,37 +3,34 @@
     <div class="banner">
       <img
         class="image"
-        v-bind:src="getImage(union.imageUrl)"
-        alt="Responsive banner"
+        :src="require(`../assets/img/${unionfields.union.banner}`)"
+        alt="responsive image"
       />
     </div>
     <div class="union">
-      <h2 class="name">{{ union.name }}</h2>
+      <h2 class="name">{{ unionfields.union.name }}</h2>
     </div>
     <div id="icon" class="icon-content">
-      <img class="image-logo" src="../assets/img/bitcoin-icon.png" />
+      <img
+        class="image-logo"
+        :src="require(`../assets/img/${unionfields.union.icon}`)"
+      />
     </div>
   </a>
 </template>
 
-<script>
-function getImage(path) {
-  return require(`../assets/img/${path}`);
-}
+<script lang="ts">
+// eslint-disable-next-line
+import { PropType, defineComponent } from "vue";
+// eslint-disable-next-line
+import { UnionInterface } from "./unionDashboard.vue";
 
-export default {
+export default defineComponent({
   name: "unionListItem",
   props: {
-    union: {
-      name: String,
-      imageUrl: String,
-    },
-    index: Number,
+    unionfields: Object as PropType<UnionInterface>,
   },
-  methods: {
-    getImage,
-  },
-};
+});
 </script>
 
 <style lang="scss" scoped>

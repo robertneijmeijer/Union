@@ -9,10 +9,18 @@ export enum ActionTypes {
   UNION_ACTION_SUBMIT = "UNION_ACTION_SUBMIT",
   UNION_ACTION_SUCCESS = "UNION_ACTION_SUCCESS",
   UNION_ACTION_FAILED = "UNION_ACTION_FAILED",
+  UNION_ACTION_FETCH_OVERVIEW = "UNION_ACTION_FETCH_OVERVIEW",
+  UNION_ACTION_FETCH_OVERVIEW_SUCCES = "UNION_ACTION_FETCH_OVERVIEW_SUCCES",
 }
 
 export interface ActionsInterface {
   [ActionTypes.UNION_ACTION_SUBMIT](commit: any, unionName: string): void;
+  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW](
+    commit: any,
+    name: string,
+    banner: string,
+    icon: string
+  ): void;
 }
 
 export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
@@ -27,6 +35,18 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         console.error(err);
         commit(ActionTypes.UNION_ACTION_FAILED, err);
         router.push({ name: "union-overview" });
+      });
+  },
+  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW]({ commit, state }) {
+    UnionApi.getUnions()
+      .then((res: AxiosResponse<UnionType>) => {
+        if (res && res.data) {
+          console.log(res.data);
+          commit(ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES, res.data);
+        } else throw Error("error");
+      })
+      .catch(err => {
+        commit(ActionTypes.UNION_ACTION_FAILED, err);
       });
   },
 };
