@@ -18,7 +18,7 @@ export const union: Module<UnionState, RootState> = {
     isFetching: false,
     errors: {},
     union: null,
-    unions: null
+    unions: null,
   }),
   mutations,
   actions,

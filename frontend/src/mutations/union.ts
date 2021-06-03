@@ -10,7 +10,10 @@ export interface MutationsInterface {
     payload: UnionType
   ): void;
   [ActionTypes.UNION_ACTION_FAILED](state: UnionState, payload: unknown): void;
-  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](state: UnionState, payload: UnionType[]): void;
+  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](
+    state: UnionState,
+    payload: UnionType[]
+  ): void;
 }
 
 export const mutations: MutationTree<UnionState> & MutationsInterface = {
@@ -27,7 +30,10 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
     state.isFetching = false;
     state.union = null;
   },
-  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](state: UnionState, payload: UnionType[]) {
+  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](
+    state: UnionState,
+    payload: UnionType[]
+  ) {
     state.isFetching = false;
     state.unions = payload;
   },
