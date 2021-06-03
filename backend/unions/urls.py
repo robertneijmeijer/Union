@@ -3,6 +3,7 @@ from django.urls import include, path
 
 from invitations.views import InvitationsAPIView, InvitationsAcceptAPIView
 from unions.views import UnionViewSet, UnionOverviewAPIView
+from unionImages.views import UnionImagesViewSet
 
 unionRouter = routers.DefaultRouter()
 unionRouter.register(r'', UnionViewSet)
