@@ -6,11 +6,11 @@ from comments.models import Comment
 
 
 class Vote(models.Model):
-
     class VoteENUM(models.TextChoices):
         UPVOTE = 'UPVOTE'
         DOWNVOTE = 'DOWNVOTE'
 
+    vote_id = models.AutoField(primary_key=True)
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, null=False, blank=False)
     comment = models.ForeignKey(

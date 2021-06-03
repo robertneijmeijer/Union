@@ -8,4 +8,4 @@ class VoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vote
-        fields = ['post', 'comment', 'user', 'vote']
+        fields = ['vote_id', 'post', 'comment', 'user', 'vote']
