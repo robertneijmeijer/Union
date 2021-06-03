@@ -78,22 +78,22 @@
             <div>
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
               <div class="circle">
-                <input type="file" accept="image/*" @change="upload_avatar($event)">
+                <input type="file" ref="iconFile" accept="image/*" @change="upload_avatar($event)" style="display: none">
                 <img
                   src="../assets/svg/imageIcon.svg"
                   class="image-upload"
-                  v-on:click="upload_avatar()"
+                  v-on:click="$refs.iconFile.click()"
                 />
               </div>
             </div>
             <div>
               <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
-                <input type="file" accept="image/*" @change="upload_banner($event)">
+                <input type="file" ref="bannerFile" accept="image/*" @change="upload_banner($event)" style="display: none">
                 <img
                   src="../assets/svg/imageIcon.svg"
                   class="image-upload"
-                  v-on:click="upload_banner()"
+                  v-on:click="$refs.bannerFile.click()"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@ export default {
       data.append('union_id', this.name);
       this.banner ? data.append("banner", this.banner) : data.append("banner", '');
       this.icon ? data.append("icon", this.icon) : data.append("icon", '');
-      
+
       UnionApi.postUnionImages({
         data
       }).then(() =>
