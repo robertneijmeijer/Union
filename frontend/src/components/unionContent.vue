@@ -15,20 +15,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import UnionAbout from "./unionCommunity.vue";
 import UnionPost from "./unionPost.vue";
 // eslint-disable-next-line no-unused-vars
-import { defineComponent, PropType } from "vue";
-// eslint-disable-next-line no-unused-vars
-export interface PostInterface {
-  id: Number;
-  info: String;
-  title: String;
-  content: String;
-}
 
-export default defineComponent({
+export default {
   name: "union-post-overview",
   components: { UnionPost, UnionAbout },
   methods: {
@@ -37,10 +29,10 @@ export default defineComponent({
     },
   },
   props: {
-    posts: { type: Object as PropType<PostInterface[]>, required: true },
+    posts: { type: [], required: true },
     description: { type: String, required: true },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

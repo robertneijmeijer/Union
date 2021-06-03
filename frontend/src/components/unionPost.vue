@@ -55,13 +55,11 @@
 // eslint-disable-next-line no-unused-vars
 import { defineComponent, PropType } from "vue";
 // eslint-disable-next-line no-unused-vars
-import { PostInterface } from "./unionContent.vue";
-// eslint-disable-next-line no-unused-vars
 
 export default defineComponent({
   name: "union-post-component",
   props: {
-    post: { type: Object as PropType<PostInterface>, required: true },
+    post: { type: Object , required: true },
     index: { type: Number },
   },
   beforeCreate: function () {
