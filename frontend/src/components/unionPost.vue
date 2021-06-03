@@ -6,8 +6,6 @@
           version="1.1"
           class="vote-svg upvote"
           name="upvote"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 492.002 492.002"
           xml:space="preserve"
         >
@@ -20,12 +18,10 @@
           />
         </svg>
       </button>
-      <p class="votes-amount" name="counter">603</p>
+      <p class="votes-amount" name="counter">{{ post.votes }}</p>
       <button @click="downvote">
         <svg
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
           name="downvote"
           class="vote-svg downvote"
           viewBox="0 0 491.996 491.996"
@@ -43,11 +39,16 @@
     </div>
 
     <div class="table-post-content">
-      <p class="table-post-info">{{ post.info }}</p>
       <h4>{{ post.title }}</h4>
-      <p class="table-post-text">{{ post.content }}</p>
+      <p class="table-post-text">{{ post.message }}</p>
       <div class="table-comments-amount">
-        <a href="" v-on:click="toComments">TODO: get comments</a>
+        <a
+          href=""
+          v-on:click="toComments"
+          v-if="post.number_of_comments && post.number_of_comments > 0"
+          >Show comments ({{ number_of_comments }})</a
+        >
+        <a href="" v-on:click="toComments" v-else>Be the first to comment</a>
       </div>
     </div>
   </div>
@@ -122,8 +123,7 @@ td:last-child {
 
 .votes {
   vertical-align: top;
-  text-align: center;
-  padding: 1em;
+  padding: 0.2em 1em 0 0.2em;
 
   button {
     background-color: transparent;
@@ -134,7 +134,7 @@ td:last-child {
 
 .vote-svg {
   background-color: transparent;
-  width: 1.4em;
+  width: 1em;
   padding: 0.5em;
   box-sizing: content-box;
   fill: $secondary-gray;
@@ -146,13 +146,15 @@ td:last-child {
   font-weight: bold;
   color: $primary-light-gray;
   margin: 0;
+  line-height: 0.2;
+  font-weight: 700;
 }
 
 .table-post-content {
   width: 90%;
   text-align: left;
   vertical-align: top;
-  padding: 8px;
+  padding: 1rem;
   position: relative;
 }
 
