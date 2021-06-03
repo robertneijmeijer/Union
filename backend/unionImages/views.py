@@ -18,10 +18,7 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
-        logging.warning("UNION IMAGES")
-
         unionImages = request.data.get('data', {})
-        logging.warning(request.FILES)
 
         unionImages['union_id'] = request.POST.get('union_id')
         unionImages['banner'] = file_uploader(
