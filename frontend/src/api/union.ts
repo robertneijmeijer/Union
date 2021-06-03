@@ -31,7 +31,6 @@ export default class UnionApi extends ApiBase {
   };
 
   public static postUnionImages = (data: any):Promise<any> => {
-    console.log(data)
     return UnionApi.requestPostWithHeaders("unions/images/",  data ).then(response => response);
   }
 

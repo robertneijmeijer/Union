@@ -27,7 +27,6 @@ export default class ApiBase {
     }
     if(config) {
       config.headers = headers
-      console.log(config.headers)
     }
     const response = await axios.request({
       method,
