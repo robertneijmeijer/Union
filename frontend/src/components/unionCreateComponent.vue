@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center h-100">
       <div class="header-row">
         <h1 class="welcome-text">{{ $t("union_create.welcome") }}</h1>
-        <img src="../assets/svg/union.svg" />
+        <img src="../assets/svg/union.svg"/>
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
@@ -17,20 +17,20 @@
               {{ $t("union_create.name") }}
             </h4>
             <input
-              type="text"
-              name="usernameId"
-              class="form-control name-height input"
-              v-model="name"
+                type="text"
+                name="usernameId"
+                class="form-control name-height input"
+                v-model="name"
             />
             <h4 class="white-text">
               {{ $t("union_create.description") }}
             </h4>
             <textarea
-              size="lg"
-              type="text"
-              name="description"
-              class="form-control input description-height"
-              v-model="description"
+                size="lg"
+                type="text"
+                name="description"
+                class="form-control input description-height"
+                v-model="description"
             />
           </div>
           <div class="column-right">
@@ -40,17 +40,17 @@
             <div class="rows">
               <div class="round">
                 <input
-                  type="radio"
-                  id="onlyMe"
-                  name="invitePrivilege"
-                  v-model="members_can_invite"
-                  v-bind:value="false"
+                    type="radio"
+                    id="onlyMe"
+                    name="invitePrivilege"
+                    v-model="members_can_invite"
+                    v-bind:value="false"
                 />
                 <label for="onlyMe"></label>
               </div>
               <img
-                src="../assets/svg/singleEnvelope.svg"
-                class="top-envelope"
+                  src="../assets/svg/singleEnvelope.svg"
+                  class="top-envelope"
               />
 
               <h6 class="only-i-invite horizontal-padding">
@@ -60,17 +60,17 @@
             <div class="rows">
               <div class="round">
                 <input
-                  type="radio"
-                  id="everyone"
-                  name="invitePrivilege"
-                  v-model="members_can_invite"
-                  v-bind:value="true"
+                    type="radio"
+                    id="everyone"
+                    name="invitePrivilege"
+                    v-model="members_can_invite"
+                    v-bind:value="true"
                 />
                 <label for="everyone"></label>
               </div>
               <img
-                src="../assets/svg/multipleEnvelope.svg"
-                class="bottom-envelopes"
+                  src="../assets/svg/multipleEnvelope.svg"
+                  class="bottom-envelopes"
               />
               <p class="everyone-invite">{{ $t("union_create.everyone") }}</p>
               <p class="max-invites">{{ $t("union_create.max_invites") }}</p>
@@ -78,22 +78,24 @@
             <div>
               <h4 class="white-text">{{ $t("union_create.icon") }}</h4>
               <div class="circle">
-                <input type="file" ref="iconFile" accept="image/*" @change="upload_avatar($event)" style="display: none">
+                <input type="file" ref="iconFile" accept="image/*" @change="upload_avatar($event)"
+                       style="display: none">
                 <img
-                  src="../assets/svg/imageIcon.svg"
-                  class="image-upload"
-                  v-on:click="$refs.iconFile.click()"
+                    src="../assets/svg/imageIcon.svg"
+                    class="image-upload"
+                    v-on:click="$refs.iconFile.click()"
                 />
               </div>
             </div>
             <div>
               <h4 class="white-text">{{ $t("union_create.banner_image") }}</h4>
               <div class="banner-image">
-                <input type="file" ref="bannerFile" accept="image/*" @change="upload_banner($event)" style="display: none">
+                <input type="file" ref="bannerFile" accept="image/*" @change="upload_banner($event)"
+                       style="display: none">
                 <img
-                  src="../assets/svg/imageIcon.svg"
-                  class="image-upload"
-                  v-on:click="$refs.bannerFile.click()"
+                    src="../assets/svg/imageIcon.svg"
+                    class="image-upload"
+                    v-on:click="$refs.bannerFile.click()"
                 />
               </div>
             </div>
@@ -103,10 +105,10 @@
           <div class="form-group">
             <div class="text-center union-create-btn">
               <button
-                class="btn btn-primary create-union"
-                type="submit"
-                name="login-button"
-                v-on:click="create()"
+                  class="btn btn-primary create-union"
+                  type="submit"
+                  name="login-button"
+                  v-on:click="create()"
               >
                 {{ $t("union_create.create_button") }}
               </button>
@@ -143,7 +145,7 @@ export default {
       UnionApi.postUnionImages({
         data
       }).then(() =>
-          router.push({ name: "union-view", params: { unionName: this.name } })
+          router.push({name: "union-view", params: {unionName: this.name}})
       );
     },
     upload_banner: function (event) {
@@ -204,6 +206,7 @@ export default {
   margin-top: -$paddingMedium;
   width: max-content;
 }
+
 .only-i-invite {
   padding-left: $paddingMedium;
   padding-right: $paddingSmall;
