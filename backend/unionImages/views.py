@@ -28,7 +28,7 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
         except Exception:
             unionImages['banner'] = file_uploader(
                 name="defaultBanner.png", file=os.path.join('./assets', 'defaultBanner.png'))
-        
+
         try:
             unionImages['icon'] = file_uploader(
                 name=request.FILES['icon'].name, file=request.FILES['icon'])
