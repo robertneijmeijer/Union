@@ -6,12 +6,14 @@ export default class ApiBase {
   protected static async executeRequest<T = any>(
     method: "get" | "delete" | "post" | "put",
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
+    data?: T
   ): Promise<AxiosResponse<T>> {
     const response = await axios.request({
       method,
       url: `${this.BASE_URL}${url}`,
       withCredentials: true,
+      data: data,
       ...config,
     });
     return response;
@@ -38,9 +40,24 @@ export default class ApiBase {
 
   public static async requestPost<T = any>(
     resource: string,
+    config?: AxiosRequestConfig,
+    data?: T
+  ) {
+    return this.executeRequest<T>(
+      "post",
+      `/${resource}`,
+      {
+        ...config,
+      },
+      data
+    );
+  }
+  public static async requestDelete<T = any>(
+    resource: string,
+    id: string,
     config?: AxiosRequestConfig
   ) {
-    return this.executeRequest<T>("post", `/${resource}`, {
+    return this.executeRequest<T>("delete", `/${resource}/${id}`, {
       ...config,
     });
   }

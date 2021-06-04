@@ -2,7 +2,7 @@ import { RootState } from "@/store/store";
 import { ActionTree } from "vuex";
 import router from "@/router";
 import UnionApi, { PostPageType, UnionType } from "@/api/union";
-import PostsApi from "@/api/posts";
+import PostsApi, { PostType, VoteENUM } from "@/api/posts";
 import { AxiosResponse } from "axios";
 import { UnionState } from "@/store/modules/union";
 
@@ -13,6 +13,9 @@ export enum ActionTypes {
   UNION_POSTS_ACTION_SUBMIT = "UNION_POSTS_ACTION_SUBMIT",
   UNION_POSTS_ACTION_SUCCESS = "UNION_POSTS_ACTION_SUCCESS",
   UNION_POSTS_ACTION_FAILED = "UNION_POSTS_ACTION_FAILED",
+  UNION_POSTS_CHANGE_VOTE_ACTION = "UNION_POSTS_CHANGE_VOTE_ACTION",
+
+  // Why here
   UNION_ACTION_FETCH_OVERVIEW = "UNION_ACTION_FETCH_OVERVIEW",
   UNION_ACTION_FETCH_OVERVIEW_SUCCES = "UNION_ACTION_FETCH_OVERVIEW_SUCCES",
 }
@@ -57,6 +60,15 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         console.error(err);
         commit(ActionTypes.UNION_POSTS_ACTION_FAILED, err);
       });
+  },
+
+  [ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION](
+    { commit, state },
+    data: { vote: VoteENUM; post: PostType }
+  ) {
+    const newPost = data.post;
+    newPost.user_vote = data.vote;
+    commit(ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION, newPost);
   },
 
   // Waarom zit dit in een single union

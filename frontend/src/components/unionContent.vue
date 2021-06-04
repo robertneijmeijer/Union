@@ -37,6 +37,7 @@ export default {
   computed: {
     union() {
       const u = this.$store.state.union.data;
+
       // Get initial data
       if (u && u.name && !u.posts) {
         this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {

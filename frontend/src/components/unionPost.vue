@@ -55,7 +55,9 @@
 </template>
 
 <script>
-import { VoteENUM } from "../api/posts";
+import { ActionTypes } from "../actions/union";
+import PostApi, { VoteENUM } from "../api/posts";
+
 export default {
   name: "union-post-component",
   props: {
@@ -63,28 +65,38 @@ export default {
     index: { type: Number, required: true },
   },
   mounted() {
-    this.vote(this.post.user_vote);
+    this.vote(this.post.user_vote, true);
   },
   methods: {
     upvote() {
-      this.vote(VoteENUM.UPVOTE);
+      this.vote(VoteENUM.UPVOTE, false);
     },
     downvote() {
-      this.vote(VoteENUM.UPVOTE);
+      this.vote(VoteENUM.DOWNVOTE, false);
     },
-    vote(vote) {
-      if (!this.index) return;
+    async vote(vote, initial) {
+      if (this.index == null || this.index == undefined) return;
+
+      // Get elements
       const up = document.getElementsByName("upvote")[this.index];
       const down = document.getElementsByName("downvote")[this.index];
       const counter = document.getElementsByName("counter")[this.index];
 
+      // Disable clicking
+      up.style.pointerEvents = "none";
+      down.style.pointerEvents = "none";
+
+      // If not initial set database
+      if (!initial) this.setVoteDatabase(vote);
+
+      // Set element color
       switch (vote) {
-        case "down":
+        case VoteENUM.DOWNVOTE:
           up.style.fill = "#424242";
           down.style.fill = "#ff00ff";
           counter.style.color = "#ff00ff";
           break;
-        case "up":
+        case VoteENUM.UPVOTE:
           up.style.fill = "#00ffff";
           down.style.fill = "#424242";
           counter.style.color = "#00ffff";
@@ -95,6 +107,24 @@ export default {
           counter.style.color = "#424242";
           break;
       }
+
+      // Enable clicking
+      up.style.pointerEvents = "auto";
+      down.style.pointerEvents = "auto";
+    },
+    async setVoteDatabase(vote) {
+      // Set vote in database
+      await PostApi.postVote({
+        post: this.post.post_id,
+        vote: this.post.user_vote == vote ? VoteENUM.NEUTRAL : vote,
+      });
+
+      // Set vuex state
+      if (vote == this.post.user_vote) vote = VoteENUM.NEUTRAL;
+      this.$store.dispatch(ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION, {
+        vote: vote,
+        post: this.post,
+      });
     },
   },
 };

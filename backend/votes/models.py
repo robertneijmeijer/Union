@@ -8,6 +8,7 @@ from comments.models import Comment
 class Vote(models.Model):
     class VoteENUM(models.TextChoices):
         UPVOTE = 'UPVOTE'
+        NEUTRAL = 'NEUTRAL'
         DOWNVOTE = 'DOWNVOTE'
 
     vote_id = models.AutoField(primary_key=True)

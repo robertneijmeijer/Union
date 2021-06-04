@@ -4,9 +4,9 @@ import { PostPageType, UnionType } from "./union";
 import { UserType } from "@/api/user";
 
 export enum VoteENUM {
-  "UPVOTE",
-  "NEUTRAL",
-  "DOWNVOTE",
+  "UPVOTE" = "UPVOTE",
+  "NEUTRAL" = "NEUTRAL",
+  "DOWNVOTE" = "DOWNVOTE",
 }
 
 export type PostType = {
@@ -18,6 +18,12 @@ export type PostType = {
   number_of_comments: number;
   votes: number;
   user_vote: VoteENUM;
+};
+
+export type VoteType = {
+  post: Number;
+  comment?: string;
+  vote: VoteENUM;
 };
 
 export default class PostApi extends ApiBase {
@@ -32,5 +38,11 @@ export default class PostApi extends ApiBase {
 
   public static getPost = (id: string): Promise<AxiosResponse<PostType>> => {
     return PostApi.requestGet<PostType>("posts", id);
+  };
+
+  public static postVote = (
+    vote: VoteType
+  ): Promise<AxiosResponse<VoteType>> => {
+    return PostApi.requestPost<VoteType>("unions/vote/", {}, vote);
   };
 }

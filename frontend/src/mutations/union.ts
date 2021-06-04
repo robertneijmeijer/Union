@@ -59,6 +59,21 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
     state.errors = payload;
     state.isFetching = false;
   },
+  [ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION](
+    state: UnionState,
+    post: PostType
+  ) {
+    if (!state.data || !state.data.posts || !state.data.posts.results) return;
+    state.data.posts.results.forEach(p => {
+      if (
+        p.created_at == post.created_at &&
+        p.title == post.title &&
+        p.user.username == post.user.username
+      ) {
+        p = post;
+      }
+    });
+  },
 
   // Waarom zit dit hierin
   [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](
