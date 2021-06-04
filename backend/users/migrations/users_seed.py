@@ -12,13 +12,12 @@ def create_users(a, b):
     # sha256 hash of 'testpass'
     encryptedPassword = '13d249f2cb4127b40cfa757866850278793f814ded3c587fe5889e889a7a9f6c'
 
-    for i in range(2):
+    for i in range(15):
         email = "user%s@gmail.com".replace("%s", str(i))
         username = "user" + str(i)
         user = User.objects.create_user(username=username, email=email, password=encryptedPassword)
         user.save()
         logging.info(f"{user} user created.")
-
 
 
 class Migration(migrations.Migration):
