@@ -1,5 +1,6 @@
 import ApiBase from "@/api/api-base";
 import { AxiosResponse } from "axios";
+import { InviteInfoResponse } from "@/api/invite";
 import { PostType } from "./posts";
 
 export type UnionType = {
@@ -45,5 +46,22 @@ export default class UnionApi extends ApiBase {
           "multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
       },
     }).then(response => response);
+  };
+
+  public static getInvites = (
+    name: string
+  ): Promise<AxiosResponse<InviteInfoResponse[]>> => {
+    return UnionApi.executeRequest(
+      "get",
+      `/unions/invite/open?union=${encodeURIComponent(name)}`
+    );
+  };
+
+  public static generateInvite = (
+    name: string
+  ): Promise<AxiosResponse<InviteInfoResponse>> => {
+    return UnionApi.requestPost("unions/invite", {
+      data: { name },
+    });
   };
 }

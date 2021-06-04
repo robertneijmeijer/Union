@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="union-section-community">
-      <UnionAbout
+      <UnionCommunity
         :about="union.description"
         @callbackToggleCreatePost="toggleCreatePost"
       />
@@ -22,13 +22,13 @@
 </template>
 
 <script>
-import UnionAbout from "./unionCommunity.vue";
+import UnionCommunity from "./unionCommunity.vue";
 import UnionPost from "./unionPost.vue";
 import { ActionTypes } from "../actions/union";
 
 export default {
   name: "union-post-overview",
-  components: { UnionPost, UnionAbout },
+  components: { UnionPost, UnionCommunity },
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");

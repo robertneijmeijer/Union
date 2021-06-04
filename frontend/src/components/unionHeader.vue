@@ -35,7 +35,7 @@ export default {
         : DefaultBanner;
     },
     getLogo() {
-      return this.icon ? this.icon : DefaultLogo;
+      return this.union.icon ? this.union.icon : DefaultLogo;
     },
   },
 };

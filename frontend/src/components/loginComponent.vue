@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     toSignUp: function() {
-      router.push("register");
+      router.push("/register");
     },
     signIn: function(e) {
       e.preventDefault();

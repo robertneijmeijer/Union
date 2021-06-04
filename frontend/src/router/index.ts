@@ -75,7 +75,7 @@ export const logout = () => {
   if (Cookie.get("Authorization")) {
     Cookie.remove("Authorization");
   }
-  router.push("login");
+  router.push("/login");
 };
 
 router.beforeEach((to, from, next) => {
