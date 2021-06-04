@@ -5,7 +5,7 @@ from unionImages.serializer import UnionImageSerializer
 from authentication.backends import JWTAuthentication
 from rest_framework.response import Response
 
-import  sys, os
+import os
 
 from s3.file_uploader import file_uploader
 
