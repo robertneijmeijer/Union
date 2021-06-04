@@ -32,7 +32,7 @@ export default class ApiBase {
     id: string,
     config?: AxiosRequestConfig
   ) {
-    return this.executeRequest<T>("get",`/${resource}/${id}`, {
+    return this.executeRequest<T>("get", `/${resource}/${id}`, {
       ...config,
     });
   }
