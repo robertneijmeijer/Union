@@ -201,7 +201,7 @@ export default {
   },
   methods: {
     toLogin: function() {
-      router.push("login");
+      router.push("/login");
     },
     onUsernameFocusout: function() {
       if (

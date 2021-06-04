@@ -52,7 +52,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
     RegisterApi.register(values)
       .then(result => {
         store.commit(ActionTypes.REGISTER_ACTION_SUCCESS, result.data);
-        router.push("login");
+        router.push("/login");
       })
       .catch(error => {
         commit(ActionTypes.REGISTER_ACTION_FAILED, error.message);
@@ -96,7 +96,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
       .then(response => {
         if (response.status == 200) {
           store.commit(ActionTypes.LOGIN_ACTION_SUCCESS, response.data);
-          router.push("home");
+          router.push("/home");
         } else {
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
             general: i18n.global.t("global.generalized_error_message"),

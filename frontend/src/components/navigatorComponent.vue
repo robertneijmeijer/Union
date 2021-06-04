@@ -15,7 +15,7 @@ export default {
   name: "navigator",
   methods: {
     toLogin: function() {
-      router.push("login");
+      router.push("/login");
     },
   },
 };
