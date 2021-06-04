@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import PostApi from "../api/posts"
+
 export default {
   name: "createPostComponent",
   mounted() {
@@ -65,6 +67,14 @@ export default {
       console.log(this.content)
       console.log(this.name)
       console.log(this.user)
+      const data = {
+        title: this.title,
+        message: this.content,
+        union: this.name,
+        user: this.user.user_id
+      }
+      PostApi.postPost(data)
+
       this.toggleCreatePost();
     },
     uploadImage: function () {
