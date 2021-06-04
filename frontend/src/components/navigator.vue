@@ -48,7 +48,6 @@
       <button v-on:click="toLogin" class="primary">Sign in</button>
     </div>
   </div>
-
   <div id="menu" v-if="!isHidden && loggedIn" class="toggle-menu">
     <UserMenuHamburger />
   </div>
@@ -108,8 +107,9 @@ export default {
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: start;
   background-color: $primary-gray;
+  padding: 0.625rem 2rem;
+  align-items: center;
 }
 
 .notLoggedIn {
@@ -119,11 +119,14 @@ export default {
   align-items: center;
 }
 
+.user {
+  flex: 1;
+  margin-top: auto;
+}
 .user-dropdown {
   display: flex;
   justify-content: flex-end;
   align-content: center;
-  margin-top: 7px;
 
   button,
   h5 {
@@ -134,7 +137,6 @@ export default {
 
 .hamburger-icon {
   display: none;
-  margin: auto 1rem;
   border: none;
   background-color: transparent;
   float: right;
@@ -145,13 +147,12 @@ export default {
   }
 }
 
-.item {
-  padding: 10px 0 10px 5px;
-  margin: 0 10px 0 10px;
-}
+// .item {
+//   padding: 10px 0 10px 5px;
+//   margin: 0 10px 0 10px;
+// }
 
 .union-logo {
-  margin-top: 3px;
   max-width: 120px;
   max-height: 30px;
 }
@@ -164,10 +165,6 @@ export default {
   flex: 3;
 }
 
-.user {
-  flex: 1;
-}
-
 .user-image {
   width: 27px;
   height: 27px;
@@ -177,7 +174,6 @@ export default {
   float: right;
   border: none;
   background-color: transparent;
-  margin-right: $paddingSmall * 2;
 }
 
 .user-menu {
