@@ -50,8 +50,21 @@ export default {
   mounted() {
     document.documentElement.style.overflow = null
   },
+  props: {
+    name: { type: String, required: true },
+  },
+  data() {
+    return{
+      title : "",
+      content: "",
+    }
+  },
   methods: {
     post: function () {
+      console.log(this.title)
+      console.log(this.content)
+      console.log(this.name)
+      console.log(this.user)
       this.toggleCreatePost();
     },
     uploadImage: function () {
@@ -63,6 +76,12 @@ export default {
       this.$emit("callbackToggleCreatePost");
     }
   },
+  computed: {
+    user() {
+      console.log(this.$store.state.user.user);
+      return this.$store.state.user.user;
+    },
+  },
 }
 </script>
 
@@ -70,7 +89,7 @@ export default {
 @import "../assets/theme";
 
 .create-container {
-  z-index: 2;
+  z-index: 10;
   margin-left: auto;
   margin-right: auto;
   left: 0;

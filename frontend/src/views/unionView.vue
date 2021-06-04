@@ -1,11 +1,12 @@
 <template>
   <div>
     <union-overview-navigator />
-    <CreatePostComponent
-      v-if="showCreatePost"
-      @callbackToggleCreatePost="toggleCreatePost"
-    />
     <UnionHeader :name="union.name" :banner="union.banner" :icon="union.icon" />
+    <CreatePostComponent
+        v-if="showCreatePost"
+        @callbackToggleCreatePost="toggleCreatePost"
+        :name="union.name"
+    />
     <UnionContent
       :description="union.description"
       :posts="posts"
@@ -31,6 +32,11 @@ export default {
     UnionHeader,
     UnionContent,
     CreatePostComponent,
+  },
+  data() {
+    return {
+        showCreatePost: false
+    }
   },
   methods: {
     toggleCreatePost() {
