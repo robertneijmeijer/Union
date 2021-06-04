@@ -48,7 +48,7 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
 
     if (payload && payload.next) state.data.posts.next = payload.next;
 
-    state.data.posts.results = payload.results
+    state.data.posts.results = payload.results;
   },
   [ActionTypes.UNION_POSTS_ACTION_FAILED](state: UnionState, payload: unknown) {
     state.errors = payload;
