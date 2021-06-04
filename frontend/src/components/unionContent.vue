@@ -14,7 +14,7 @@
     </div>
     <div class="union-section-community">
       <UnionCommunity
-        :about="union.description"
+        :union="union"
         @callbackToggleCreatePost="toggleCreatePost"
       />
     </div>
