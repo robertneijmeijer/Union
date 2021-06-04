@@ -27,6 +27,12 @@ export type VoteType = {
 };
 
 export default class PostApi extends ApiBase {
+  public static postPost = (
+    data: Partial<PostType>
+  ): Promise<AxiosResponse<PostType>> => {
+    return PostApi.requestPost<PostType>("posts/", { data: data });
+  };
+
   public static getAllPosts = (
     unionName: string,
     page: number

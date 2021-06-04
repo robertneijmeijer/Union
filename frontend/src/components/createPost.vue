@@ -45,13 +45,37 @@
 </template>
 
 <script>
+import PostApi from "../api/posts"
+import { ActionTypes } from "../actions/union";
+
 export default {
   name: "createPostComponent",
   mounted() {
-    document.documentElement.style.overflow = null
+    document.documentElement.style.overflow = null;
+  },
+  props: {
+    name: { type: String, required: true },
+  },
+  data() {
+    return{
+      title : "",
+      content: "",
+      currentUnion: null,
+    }
   },
   methods: {
     post: function () {
+      PostApi.postPost({
+        title: this.title,
+        message: this.content,
+        union: this.name,
+        user: this.user
+      }).then(() => {
+        this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
+          unionName: this.name,
+          page: 1,
+        });
+      })
       this.toggleCreatePost();
     },
     uploadImage: function () {
@@ -63,6 +87,11 @@ export default {
       this.$emit("callbackToggleCreatePost");
     }
   },
+  computed: {
+    user() {
+      return this.$store.state.user.user;
+    },
+  },
 }
 </script>
 
@@ -70,7 +99,7 @@ export default {
 @import "../assets/theme";
 
 .create-container {
-  z-index: 2;
+  z-index: 10;
   margin-left: auto;
   margin-right: auto;
   left: 0;

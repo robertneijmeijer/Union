@@ -4,7 +4,7 @@
   },
   "union_create": {
     "welcome": "Welkom op",
-    "create_community": "Maak een community",
+    "create_community": "Maak een union",
     "fields_required": "* Verplichte velden",
     "name": "Naam *",
     "description": "Beschrijving *",
@@ -14,7 +14,7 @@
     "max_invites": "Leden krijgen maximaal 2 uitnodigingen",
     "icon": "Icoon",
     "banner_image": "Banner afbeelding",
-    "create_button": "Maak community"
+    "create_button": "Maak union"
   },
   "register": {
     "sign_up": "Meld je aan bij Union",
@@ -52,13 +52,15 @@
   },
   "union_overview": {
     "search": "Zoeken",
-    "community-info": "Over de community",
+    "community-info": "Over de union",
     "members": "leden",
     "online-members": "online",
     "create-post": "Post maken",
     "invite-members": "Nodig uit",
     "created": "Aangemakt op",
-    "joined": "Toegetreden"
+    "joined": "Lid",
+    "no_posts_yet": "Er zijn nog geen posts in deze union.",
+    "create_post_hint": "Maak er een aan met de knop rechts!"
   },
   "invite": {
     "invited": "heeft je uitgenodigd op",

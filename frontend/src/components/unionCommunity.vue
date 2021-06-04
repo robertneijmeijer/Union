@@ -4,14 +4,10 @@
     <p class="community-about">{{ about }}</p>
     <div class="community-info">
       <p class="community-members">
-        152k <span>{{ $t("union_overview.members") }}</span>
-      </p>
-      <p class="community-online">
-        195
-        <span>{{ $t("union_overview.online-members") }}</span>
+        {{ union.members }} <span>{{ $t("union_overview.members") }}</span>
       </p>
     </div>
-    <p>{{ $t("union_overview.created") }} 18 dec. 2008</p>
+    <p>{{ $t("union_overview.created") }} {{ createdAt() }}</p>
     <button class="community-btn-create-post" v-on:click="toggleCreatePost">
       {{ $t("union_overview.create-post") }}
     </button>
@@ -25,6 +21,8 @@
 <script>
 
 import InviteModal from "@/components/inviteModal";
+import {UnionType} from "@/api/union";
+import moment from "moment";
 
 export default {
   name: "union-about-community",
@@ -33,6 +31,9 @@ export default {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
     },
+    createdAt() {
+      return moment(this.union.created_at).format('MMMM Do YYYY')
+    }
   },
   data() {
     return {
@@ -40,7 +41,7 @@ export default {
     }
   },
   props: {
-    about: { type: String, required: true },
+    union: { type: UnionType, required: true },
   },
 };
 </script>
@@ -73,7 +74,7 @@ $whiteWithOpacity: rgba(
 
 .community-title {
   color: $whiteWithOpacity !important;
-  margin-bottom: 2em;
+  margin-bottom: $paddingSmall;
 }
 
 .community-about {
