@@ -1,21 +1,20 @@
 <template>
-  <union-overview-navigator/>
+  <Navigator :loggedIn="true" :landingsPage="false" />
   <div class="post-container">
-    <post-component></post-component>
+    <postComponent />
   </div>
 </template>
 
 <script>
-
 import postComponent from "@/components/postComponent";
-import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
-import {ActionTypes} from "@/actions/post";
+import Navigator from "../components/navigator.vue";
+import { ActionTypes } from "@/actions/post";
 
 export default {
   name: "postView",
   components: {
-    UnionOverviewNavigator,
-    postComponent
+    Navigator,
+    postComponent,
   },
   data() {
     return {
@@ -26,7 +25,7 @@ export default {
     this.id = this.$route.params.id;
     this.$store.dispatch(ActionTypes.POST_ACTION_FETCH, this.id);
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -37,5 +36,4 @@ export default {
   display: flex;
   justify-content: center;
 }
-
 </style>

@@ -1,18 +1,19 @@
 <template>
   <div id="loginview">
-    <top-bar-logo></top-bar-logo>
+    <Navigator :loggedIn="false" :landingsPage="false" />
     <div id="loginCard">
-      <login-component></login-component>
+      <LoginComponent />
     </div>
   </div>
 </template>
 
 <script>
 import LoginComponent from "../components/loginComponent";
-import TopBarLogo from "@/components/topBarLogoComponent";
+import Navigator from "@/components/navigator";
+
 export default {
   name: "loginView",
-  components: { TopBarLogo, LoginComponent },
+  components: { LoginComponent, Navigator },
 };
 </script>
 

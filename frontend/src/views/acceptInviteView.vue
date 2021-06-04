@@ -1,16 +1,15 @@
 <template>
-  <top-bar-logo show-locale="true" />
+  <Navigator :loggedIn="true" :landingsPage="false" />
   <AcceptInvite />
 </template>
 
 <script>
 import AcceptInvite from "../components/inviteAccept";
-import TopBarLogo from "../components/topBarLogoComponent";
+import Navigator from "@/components/navigator";
 
 export default {
   name: "acceptInviteView",
-  components: { AcceptInvite, TopBarLogo },
+  components: { AcceptInvite, Navigator },
 };
 </script>
 
-<style lang="scss" scoped></style>

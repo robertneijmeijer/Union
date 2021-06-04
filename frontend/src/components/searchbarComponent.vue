@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "searchbarComponent",
+  name: "searchbar",
 };
 </script>
 
