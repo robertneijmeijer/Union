@@ -7,9 +7,17 @@ import { AxiosResponse } from "axios";
 import { UnionState } from "@/store/modules/union";
 
 export enum ActionTypes {
+  UNION_FETCHING = "UNION_FETCHING",
+
   UNION_ACTION_SUBMIT = "UNION_ACTION_SUBMIT",
   UNION_ACTION_SUCCESS = "UNION_ACTION_SUCCESS",
   UNION_ACTION_FAILED = "UNION_ACTION_FAILED",
+
+  UNION_INVITES_FETCH = "UNION_INVITES_FETCH",
+  UNION_INVITES_SUCCESS = "UNION_INVITES_SUCCESS",
+
+  UNION_GENERATE_INVITE_SUBMIT = "UNION_GENERATE_INVITE_SUBMIT",
+  UNION_GENERATE_INVITE_FAILED = "UNION_GENERATE_INVITE_FAILED",
   UNION_POSTS_ACTION_SUBMIT = "UNION_POSTS_ACTION_SUBMIT",
   UNION_POSTS_ACTION_SUCCESS = "UNION_POSTS_ACTION_SUCCESS",
   UNION_POSTS_ACTION_FAILED = "UNION_POSTS_ACTION_FAILED",
@@ -21,6 +29,11 @@ export enum ActionTypes {
 
 export interface ActionsInterface {
   [ActionTypes.UNION_ACTION_SUBMIT](commit: any, unionName: string): void;
+  [ActionTypes.UNION_INVITES_FETCH](commit: any, unionName: string): void;
+  [ActionTypes.UNION_GENERATE_INVITE_SUBMIT](
+    commit: any,
+    unionName: string
+  ): void;
   [ActionTypes.UNION_ACTION_FETCH_OVERVIEW](
     commit: any,
     name: string,
@@ -38,9 +51,8 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         } else throw Error("User is not authorized to visit this union");
       })
       .catch(err => {
-        console.error(err);
         commit(ActionTypes.UNION_ACTION_FAILED, err);
-        router.push({ name: "home" });
+        router.push("/home");
       });
   },
 
@@ -76,6 +88,35 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       })
       .catch(err => {
         commit(ActionTypes.UNION_ACTION_FAILED, err);
+      });
+  },
+  [ActionTypes.UNION_INVITES_FETCH](
+    { commit, state, dispatch },
+    unionName: string
+  ) {
+    commit(ActionTypes.UNION_FETCHING, true);
+
+    UnionApi.getInvites(unionName)
+      .then((res: AxiosResponse<any>) => {
+        res.data.invites.length == 0
+          ? dispatch(ActionTypes.UNION_GENERATE_INVITE_SUBMIT, unionName)
+          : commit(ActionTypes.UNION_INVITES_SUCCESS, res.data);
+      })
+      .catch(err => {
+        commit(
+          ActionTypes.UNION_ACTION_FAILED,
+          "Something went wrong while getting your invites"
+        );
+      });
+  },
+  [ActionTypes.UNION_GENERATE_INVITE_SUBMIT](
+    { commit, state, dispatch },
+    unionName: string
+  ) {
+    UnionApi.generateInvite(unionName)
+      .then(res => dispatch(ActionTypes.UNION_INVITES_FETCH, unionName))
+      .catch(err => {
+        commit(ActionTypes.UNION_GENERATE_INVITE_FAILED, err.response.data);
       });
   },
 };

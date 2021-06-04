@@ -15,19 +15,29 @@
     <button class="community-btn-create-post" v-on:click="toggleCreatePost">
       {{ $t("union_overview.create-post") }}
     </button>
-    <button class="community-btn-invite">
+    <button class="community-btn-invite" @click="showModal = true">
       {{ $t("union_overview.invite-members") }}
     </button>
+    <invite-modal v-if="showModal" @close="showModal = false" />
   </div>
 </template>
 
 <script>
+
+import InviteModal from "@/components/inviteModal";
+
 export default {
   name: "union-about-community",
+  components: { InviteModal },
   methods: {
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
     },
+  },
+  data() {
+    return {
+      showModal: false,
+    }
   },
   props: {
     about: { type: String, required: true },

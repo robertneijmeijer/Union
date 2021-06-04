@@ -64,7 +64,10 @@
     "invited": "has invited you to",
     "accept": "Accept",
     "decline": "Decline",
-    "invalid": "This invite cannot be found or has already been used"
+    "invalid": "This invite cannot be found or has already been used",
+    "invites_left": "You have %s invite%ss left",
+    "invite_new_member": "Invite new member",
+    "copy_link": "Copy"
   },
   "create_post": {
     "post": "Post",
@@ -89,7 +92,7 @@
     "post_not_found": "Post not found"
   },
   "union-overview": {
-    "joined_unions": "Create a union",
+    "joined_unions": "Your unions",
     "home": "Home"
   }
 }
