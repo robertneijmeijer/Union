@@ -1,16 +1,16 @@
 <template>
   <div class="container-nav" v-bind:class="{ notLoggedIn: !loggedIn }">
-    <div class="item logo">
+    <div class="logo">
       <a href="#" @click="onClickImage">
         <img id="union-logo" class="union-logo" src="../assets/svg/union.svg"
       /></a>
     </div>
 
-    <div id="search" class="item search" v-if="loggedIn">
+    <div id="search" class="search" v-if="loggedIn">
       <SearchbarComponent />
     </div>
 
-    <div id="user" class="item user" v-if="loggedIn">
+    <div id="user" class="user" v-if="loggedIn">
       <button v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
         <div class="user-dropdown">
           <div
@@ -146,11 +146,6 @@ export default {
     width: 2rem;
   }
 }
-
-// .item {
-//   padding: 10px 0 10px 5px;
-//   margin: 0 10px 0 10px;
-// }
 
 .union-logo {
   max-width: 120px;
