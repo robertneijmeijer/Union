@@ -39,5 +39,4 @@ export default class UnionApi extends ApiBase {
       },
     }).then(response => response);
   };
-
 }
