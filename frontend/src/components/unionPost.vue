@@ -86,8 +86,13 @@ export default {
       up.style.pointerEvents = "none";
       down.style.pointerEvents = "none";
 
-      // If not initial set database
-      if (!initial) this.setVoteDatabase(vote);
+      // Check if vote is neutral
+
+      // If not initial set database and check if vote is neutral
+      if (!initial) {
+        if (vote == this.post.user_vote) vote = VoteENUM.NEUTRAL;
+        this.setVoteDatabase(vote);
+      }
 
       // Set element color
       switch (vote) {
@@ -120,7 +125,6 @@ export default {
       });
 
       // Set vuex state
-      if (vote == this.post.user_vote) vote = VoteENUM.NEUTRAL;
       this.$store.dispatch(ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION, {
         vote: vote,
         post: this.post,
