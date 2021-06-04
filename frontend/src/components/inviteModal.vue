@@ -3,9 +3,7 @@
     <div class="modal border-for-div">
       <header class="modal-header">
         <h3 class="text-white">
-          <!--          TODO: Translation-->
-          Invite new member
-          <!--          <div class="text-white"> {{ errorState.errors }}</div>-->
+          {{ $t("invite.invite_new_member") }}
         </h3>
         <button type="button" class="btn-close" @click="close">X</button>
       </header>
@@ -14,9 +12,9 @@
         <div class="link-copy-container">
           <div v-if="invites && invites.invites.length > 0">
             <a>{{ setupLink(invites.invites[0].token) }}</a>
-            <button class="btn btn-primary union-button-medium">
+            <button class="btn btn-primary union-button-medium" @click="copyLink">
               <!--            TODO: Logic-->
-              Copy Link
+              {{ $t("invite.copy_link") }}
             </button>
           </div>
           <p v-else-if="stateErrors">{{ stateErrors }}</p>
@@ -24,7 +22,7 @@
         </div>
       </section>
 
-      <div v-if="invites && invites.invites_left" class="modal-footer">
+      <div v-if="invites && invites.invites_left != null" class="modal-footer">
         <p>{{ inviteText() }}</p>
       </div>
     </div>
@@ -34,6 +32,7 @@
 <script>
 import { ActionTypes } from "@/actions/union";
 import Spinner from "@/components/spinner";
+import { i18n } from "@/main";
 
 export default {
   name: "inviteModal",
@@ -54,10 +53,20 @@ export default {
       return window.location.origin + `/union/invite/accept/${token}`;
     },
     inviteText() {
-      return `You have ${this.invites.invites_left} invite${
-        this.invites.invites_left > 1 ? "s" : ""
-      } left`;
+      return i18n.global
+          .t("invite.invites_left")
+          .replace("%s", this.invites.invites_left)
+          .replace("%ss", this.invites.invites_left > 1 ? "s" : "");
     },
+    copyLink() {
+      // https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = this.setupLink(this.invites.invites[0].token)
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+    }
   },
   created() {
     this.$store.dispatch(

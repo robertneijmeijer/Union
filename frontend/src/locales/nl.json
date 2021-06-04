@@ -64,7 +64,10 @@
     "invited": "heeft je uitgenodigd op",
     "accept": "Accepteren",
     "decline": "Afwijzen",
-    "invalid": "Deze uitnodiging kan niet worden gevonden of is al gebruikt"
+    "invalid": "Deze uitnodiging kan niet worden gevonden of is al gebruikt",
+    "invites_left": "Je hebt nog %s uitnodigingen over",
+    "invite_new_member": "Nieuwe gebruiker uitnodigen",
+    "copy_link": "Kopieer"
   },
   "create_post": {
     "post": "Post",
