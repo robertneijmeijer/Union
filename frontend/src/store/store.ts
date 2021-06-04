@@ -28,7 +28,10 @@ export type MutationTypes = userMutations &
   unionMutations &
   postMutations &
   inviteMutations;
-export type ActionTypes = userActions & unionActions & postActions & inviteActions;
+export type ActionTypes = userActions &
+  unionActions &
+  postActions &
+  inviteActions;
 
 // Override commit and dispatch to only accept our own typings
 export interface StoreInterface
