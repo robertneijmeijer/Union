@@ -94,7 +94,7 @@
     "post_not_found": "Post niet gevonden"
   },
   "union-overview": {
-    "joined_unions": "Jouw unions",
-    "home": "Home"
+    "my_unions": "Union aanmaken",
+    "home": "Mijn unions"
   }
 }

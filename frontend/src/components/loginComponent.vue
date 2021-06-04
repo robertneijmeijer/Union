@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="d-flex justify-content-center h-100">
-      <div class="card">
+      <div class="card border-for-div">
         <div class="card-header overpass-semi-bold">
           <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
