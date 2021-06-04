@@ -1,6 +1,6 @@
 <template>
   <Navigator :loggedIn="true" :landingsPage="false" />
-  <UnionDashboard :unions="unionState" />
+  <UnionDashboard v-if="unionsState" :unions="unionState" />
 </template>
 
 <script>
@@ -22,4 +22,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
