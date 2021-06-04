@@ -89,6 +89,7 @@
     "post_not_found": "Post niet gevonden"
   },
   "union-overview": {
-    "joined_unions": "creëer een union"
+    "joined_unions": "creëer een union",
+    "home": "Home"
   }
 }

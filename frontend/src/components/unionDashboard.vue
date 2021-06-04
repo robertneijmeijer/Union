@@ -7,7 +7,7 @@
         v-for="union in unions"
         v-bind:key="union.id"
       >
-        <union-list-item :unionfields="union" />
+        <union-list-item :unions-array="union" />
       </div>
     </div>
   </div>

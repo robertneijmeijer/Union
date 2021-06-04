@@ -9,15 +9,6 @@ export type UnionType = {
   banner?: string;
 };
 
-export type UnionList = [
-  {
-    name: string;
-    description: string;
-    members_can_invite: boolean;
-    icon?: string;
-    banner?: string;
-  }
-];
 
 export default class UnionApi extends ApiBase {
   public static postUnion = (data: any): Promise<any> => {
@@ -30,7 +21,7 @@ export default class UnionApi extends ApiBase {
     return UnionApi.requestGet<UnionType>("unions", name);
   };
 
-  public static getUnions = (): Promise<AxiosResponse<UnionList>> => {
-    return UnionApi.requestGetAll<UnionList>("unions/overview");
+  public static getUnions = (): Promise<AxiosResponse<UnionType[]>> => {
+    return UnionApi.requestGetAll<UnionType[]>("unions/overview");
   };
 }

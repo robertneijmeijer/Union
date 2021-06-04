@@ -64,6 +64,10 @@ const router = createRouter({
 });
 
 export const toOverview = () => {
+  router.push("/home");
+};
+
+export const toCreateUnion = () => {
   router.push("/create-union");
 };
 
@@ -74,7 +78,9 @@ export const logout = () => {
   router.push("login");
 };
 
+
 router.beforeEach((to, from, next) => {
+
   if (
     to.name !== "/" &&
     to.name !== "login" &&
@@ -86,8 +92,9 @@ router.beforeEach((to, from, next) => {
     (to.name === "login" || to.name === "register" || to.name === "/") &&
     Cookie.get("Authorization")
   ) {
-    next({ path: "/overview" });
+    next({ path: "/home" });
   } else next();
 });
+
 
 export default router;
