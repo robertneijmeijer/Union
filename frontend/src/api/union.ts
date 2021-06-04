@@ -32,7 +32,7 @@ export default class UnionApi extends ApiBase {
 
   public static postUnionImages = (data: any): Promise<any> => {
     return UnionApi.requestPost("unions/images/", {
-      data: data.data,
+      data: data,
       headers: {
         "Content-Type":
           "multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
