@@ -28,7 +28,7 @@ export type ActionTypes = userActions & unionActions & postActions;
 
 // Override commit and dispatch to only accept our own typings
 export interface StoreInterface
-  extends Omit<Store<RootState>, "commit" | "getters" | "dispatch"> {
+  extends Omit<Store<RootState>, "commit" | "dispatch"> {
   commit<K extends keyof MutationTypes>(
     key: K,
     payload?: Parameters<MutationTypes[K]>[1],

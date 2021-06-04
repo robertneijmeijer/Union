@@ -5,7 +5,6 @@
         <h3 class="text-white">
           <!--          TODO: Translation-->
           Invite new member
-          <div class="text-white"> {{ this }}</div>
           <!--          <div class="text-white"> {{ errorState.errors }}</div>-->
 
         </h3>
@@ -18,8 +17,7 @@
         </button>
       </header>
 
-      <section class="modal-body">o
-
+      <section class="modal-body">
         <div class="link-copy-container">
           <div v-if="invites && invites.invites.length > 0">
             <a>{{ setupLink(invites.invites[0].token) }}</a>
@@ -31,6 +29,10 @@
           <spinner v-else size="medium"></spinner>
         </div>
       </section>
+
+      <div class="text-white">
+        {{stateErrors}}
+      </div>
 
 
       <div v-if="invites" class="modal-footer">

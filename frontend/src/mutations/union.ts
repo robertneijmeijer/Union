@@ -40,8 +40,11 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
     // Vue.set()
     // state.errors = payload;
     // state.errors = { ...state.errors, ...payload }
-
+    console.log("Setting to now()");
     state.errors = now().toString()
+
+    console.log("Setting to Object");
+    state.errors = Object()
 
     console.log(state.errors);
     state.isFetching = false;

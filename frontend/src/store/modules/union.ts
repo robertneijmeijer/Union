@@ -25,7 +25,7 @@ export const union: Module<UnionState, RootState> = {
   actions,
   getters: {
     unionErrorState: state => {
-      console.log("getters")
+      console.log("Error state getter")
       return state.errors
     }
   }
