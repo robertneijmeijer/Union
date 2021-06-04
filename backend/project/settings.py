@@ -110,9 +110,9 @@ DATABASES = {
 
 MINIO = {
     'default': {
-        'MINIO_ADDRESS': os.getenv("MINIO_ADDRESS"),
-        'MINIO_ACCESS_KEY': os.getenv("MINIO_ACCESS_KEY"),
-        'MINIO_SECRET_KEY': os.getenv("MINIO_SECRET_KEY"),
+        'MINIO_ADDRESS': os.getenv("MINIO_ADDRESS") or "minio:9000",
+        'MINIO_ACCESS_KEY': os.getenv("MINIO_ACCESS_KEY") or "minio",
+        'MINIO_SECRET_KEY': os.getenv("MINIO_SECRET_KEY") or "minio123",
     }
 }
 
