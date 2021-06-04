@@ -37,7 +37,6 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         } else throw Error("User is not authorized to visit this union");
       })
       .catch(err => {
-        console.error(err);
         commit(ActionTypes.UNION_ACTION_FAILED, err);
         router.push({ name: "union-overview" });
       });
@@ -55,7 +54,10 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
           : commit(ActionTypes.UNION_INVITES_SUCCESS, res.data);
       })
       .catch(err => {
-        commit(ActionTypes.UNION_ACTION_FAILED, err.response.data);
+        commit(
+          ActionTypes.UNION_ACTION_FAILED,
+          "Something went wrong while getting your invites"
+        );
       });
   },
   [ActionTypes.UNION_GENERATE_INVITE_SUBMIT](
