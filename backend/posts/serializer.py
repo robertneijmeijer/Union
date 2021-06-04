@@ -7,8 +7,6 @@ from unions.serializer import UnionSerializerSimple
 from users.serializers import UserSerializerSimple
 from votes.models import Vote
 
-# {'title': 'test1', 'message': 'vet cool', 'union': 'test', 'user': 1}
-
 
 class PostSerializer(serializers.ModelSerializer):
     votes = serializers.SerializerMethodField()
