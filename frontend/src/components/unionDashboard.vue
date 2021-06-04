@@ -57,7 +57,7 @@ h2 {
 .union-section-post-comment {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 1em;
   background-color: $primary-gray;
 }
