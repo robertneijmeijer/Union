@@ -13,6 +13,7 @@
          <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
        </div>
         <div class="union-card-body">
+          <div>
             <section>
               <h4 class="white-text">
                 {{ $t("union_create.name") }}
@@ -25,11 +26,10 @@
               />
             </section>
             <section>
-            <h4 class="white-text">
-              {{ $t("union_create.description") }}
-            </h4>
-
-            <textarea
+              <h4 class="white-text">
+                {{ $t("union_create.description") }}
+              </h4>
+              <textarea
                 size="lg"
                 type="text"
                 name="description"
@@ -126,6 +126,7 @@
           </div>
         </div>
       </div>
+  </div>
 </template>
 
 <script>

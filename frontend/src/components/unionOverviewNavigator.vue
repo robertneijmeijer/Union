@@ -1,7 +1,7 @@
 <template>
   <div class="container-nav">
     <div class="item logo">
-      <a href="#">
+      <a href="#" @click="onClickImage">
         <img id="union-logo" class="union-logo" src="../assets/svg/union.svg"
         /></a>
     </div>
@@ -46,6 +46,7 @@ import UnionToggleMenu from "@/components/unionNavigatorToggleMenu";
 import UnionUserToggleMenu from "@/components/unionUserToggleMenu";
 import {ActionTypes} from "@/actions/user";
 import Spinner from "@/components/spinner";
+import router from "@/router";
 
 export default {
   name: "union-overview-navigator",
@@ -63,7 +64,13 @@ export default {
   },
   created() {
     this.$store.dispatch(ActionTypes.USER_FETCH);
-  }
+  },
+  methods: {
+    onClickImage: function() {
+      console.log("onclick")
+      router.push("/");
+    },
+  },
 };
 </script>
 
