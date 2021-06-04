@@ -7,7 +7,7 @@
         <h1 class="welcome-text">!</h1>
       </div>
     </div>
-    <div class="union-card">
+    <div class="union-card border-for-div">
       <div>
         <p class="createTitle">{{ $t("union_create.create_community") }}</p>
         <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
@@ -199,7 +199,7 @@ export default {
   margin-bottom: 300px;
   background-color: $primary-black;
   border-radius: $borderRadius;
-  font-family: "Overpass-SemiBold", serif;
+  font-weight: 500;
 
   section {
     margin-bottom: $paddingMedium;
@@ -302,7 +302,6 @@ export default {
 
 .requiredFields {
   float: right;
-  font-family: "Overpass", serif;
   user-select: none;
   color: #c8c8c8;
   font-size: 18px;
@@ -339,15 +338,11 @@ export default {
   color: white;
   padding-bottom: $paddingLarge;
   font-size: 48px;
-  font-family: "Overpass-SemiBold", serif;
-}
-
-.overpass-regular {
-  font-family: "Overpass-Regular", serif;
+  font-weight: 500;
 }
 
 .overpass-bold {
-  font-family: "Overpass-Bold", serif;
+  font-weight: 800;
 }
 
 .center {

@@ -17,7 +17,7 @@ $primary-gray: #1a1a1b;
 $secondary-gray: #424242;
 $primary-light-gray: #c8c8c8;
 $secondary-light-gray: #818384;
-$unionGreen: #00FF80;
+$unionGreen: #00ff80;
 
 $errorColor: #ff00ff;
 
@@ -33,11 +33,11 @@ $inputTextFieldBorderColor: #2e2e2e;
 $inputTextfielColor: #6c6d6e;
 
 // Border stuff
-$borderRadius: 33px;
-$borderRadiusSmall: 20px;
-$borderRadiusInput: 8px;
-$buttonBorder: 3px solid;
 $borderColor: #343536;
+$borderRadius: 0.2rem;
+$border: 2px solid $borderColor;
+
+$buttonBorder: 3px solid;
 
 // Text size
 $textSmall: 1rem;
@@ -67,8 +67,8 @@ $textHuge: 2.5rem;
 }
 
 .border-for-div {
-  border: 2px solid $borderColor;
-  border-radius: 0.2rem;
+  border: $border;
+  border-radius: $borderRadius;
   overflow: hidden;
 }
 
@@ -79,7 +79,7 @@ $textHuge: 2.5rem;
 // Form classes
 .form-control {
   background-color: #232323;
-  border-radius: $borderRadiusInput;
+  border-radius: $borderRadius;
   border: 3px solid $inputTextFieldBorderColor;
   color: #c8c8c8;
 }
@@ -100,7 +100,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   color: #c8c8c8;
-  font-family: Overpass;
+  font-family: "Numans", sans-serif;
   border: 3px solid $inputTextFieldBorderColor;
   -webkit-text-fill-color: #c8c8c8;
   -webkit-box-shadow: 0 0 0px 1000px #232323 inset;
@@ -108,7 +108,7 @@ select:-webkit-autofill:focus {
 }
 
 textarea {
-  resize: none
+  resize: none;
 }
 
 // Button

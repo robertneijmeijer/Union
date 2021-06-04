@@ -128,7 +128,7 @@ export default {
   max-width: 1100px;
   min-width: 700px;
   background-color: $secondary-gray;
-  border-radius: $borderRadiusSmall;
+  border-radius: $borderRadius;
   padding: ($paddingMedium * 2) ($paddingMedium * 3);
   display: flex;
   justify-content: center;
@@ -140,12 +140,12 @@ export default {
   width: 100%;
   max-height: 200px;
   height: 100%;
-  border-radius: $borderRadiusSmall;
+  border-radius: $borderRadius;
 }
 
 .invite-text {
   font-size: 36px;
-  font-family: "Overpass-SemiBold", serif;
+  font-weight: 500;
   color: white;
   padding-top: $paddingMedium;
   margin-top: $paddingLarge;

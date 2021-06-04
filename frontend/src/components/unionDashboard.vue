@@ -1,5 +1,5 @@
 <template>
-  <div class="union-grid">
+  <div class="union-grid border-for-div">
     <h2>{{ $t("union-overview.joined_unions") }}</h2>
     <div id="union" class="union-section">
       <div
@@ -7,7 +7,7 @@
         v-for="union in unions"
         v-bind:key="union.id"
       >
-        <union-list-item :unions-array="union" />
+        <UnionListItem :unions-array="union" />
       </div>
     </div>
   </div>
@@ -42,7 +42,6 @@ h2 {
 
 .union-grid {
   background-color: $primary-gray;
-  border-radius: $borderRadius;
   margin: 40px 40px 0 40px;
 }
 

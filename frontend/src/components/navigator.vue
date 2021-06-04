@@ -195,7 +195,7 @@ export default {
   button {
     position: relative;
     padding: 5px 15px;
-    border-radius: 3px;
+    border-radius: $borderRadius;
     border: none;
     background-color: transparent;
     margin-right: 10px;

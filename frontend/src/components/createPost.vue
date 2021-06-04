@@ -113,7 +113,7 @@ export default {
   max-width: 700px;
   width: 45%;
   background-color: #232323;
-  border-radius: $borderRadiusInput;
+  border-radius: $borderRadius;
   border: 3px solid $inputTextFieldBorderColor;
   color: #c8c8c8;
 }

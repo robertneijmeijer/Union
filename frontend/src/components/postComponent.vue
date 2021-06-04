@@ -101,7 +101,7 @@ export default {
   width: 80%;
   max-width: 1000px;
   background-color: $primary-black;
-  font-family: "Overpass-SemiBold", serif;
+  font-weight: 500;
   display: grid;
   grid-template-columns: auto 22.5fr 1rem;
 

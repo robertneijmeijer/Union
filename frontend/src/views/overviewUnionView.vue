@@ -1,6 +1,6 @@
 <template>
   <Navigator :loggedIn="true" :landingsPage="false" />
-  <UnionDashboard v-if="unionsState" :unions="unionState" />
+  <UnionDashboard :unions="unionState" />
 </template>
 
 <script>

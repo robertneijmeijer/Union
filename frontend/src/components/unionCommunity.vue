@@ -68,7 +68,6 @@ $whiteWithOpacity: rgba(
 
   p {
     color: white;
-    font-family: "Overpass-Regular", sans-serif;
   }
 }
 
