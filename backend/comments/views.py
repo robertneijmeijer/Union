@@ -1,5 +1,3 @@
-
-import jwt
 from django.http import HttpResponseBadRequest
 from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
@@ -8,8 +6,6 @@ from rest_framework.response import Response
 from authentication.backends import JWTAuthentication
 from comments.serializer import CommentSerializer
 from comments.models import Comment
-from project import settings
-from users.models import User
 
 
 class CommentsPagination(PageNumberPagination):
@@ -28,7 +24,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         if post is None:
             return HttpResponseBadRequest("Query param 'post' required.")
-        
+
         comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
 
         query_set = self.filter_queryset(comments)

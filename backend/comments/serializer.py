@@ -36,12 +36,13 @@ class CommentSerializer(serializers.ModelSerializer):
         # This is a workaround to fix the bug where a comment would have itself as children.
         result = children(obj, nesting_depth)
         if type(result) is dict:
-            if(result["comment_id"] == obj.comment_id):
+            if (result["comment_id"] == obj.comment_id):
                 return []
             else:
                 return result
 
         return result
+
 
 def children(comment: Comment, nesting_depth):
     allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
