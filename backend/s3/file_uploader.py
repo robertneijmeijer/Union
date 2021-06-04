@@ -1,8 +1,8 @@
-from datetime import timedelta
-from django.forms.fields import ImageField
 from minio import Minio
 from minio.error import S3Error
+from PIL import Image
 import os
+import io
 import json
 import uuid
 
@@ -51,8 +51,6 @@ def file_uploader(name, file):
         secure=False,
     )
 
-    name = str(uuid.uuid4()) + name.replace(" ", "")
-
     bucketExists = client.bucket_exists(bucketName)
     if not bucketExists:
         client.make_bucket(bucketName)
@@ -62,8 +60,20 @@ def file_uploader(name, file):
     else:
         print("Bucket already exists")
 
-    client.put_object(bucket_name=bucketName, object_name=name,
-                      data=file, length=file.size)
+    name = str(uuid.uuid4()) + name.replace(" ", "")
+
+    try:
+        client.put_object(bucket_name=bucketName, object_name=name,
+                          data=file, length=file.size)
+    except Exception:
+        # Uploading stock image
+        file = Image.open(file)  # We need PIL image to load the file from assets
+        buffer = io.BytesIO()  # Minio wants a stream with a read and size
+        file.save(buffer, "png")  # Save the file to the stream as a png
+        buffer.seek(0)  # Set the buffer to the first position
+        client.put_object(bucket_name=bucketName, object_name=name,
+                          data=buffer, length=buffer.getbuffer().nbytes)  # Get the length of the buffer
+
     return "http://localhost:9000/" + bucketName + "/" + name
 
 

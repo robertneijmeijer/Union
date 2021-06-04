@@ -5,7 +5,7 @@ from unionImages.serializer import UnionImageSerializer
 from authentication.backends import JWTAuthentication
 from rest_framework.response import Response
 
-import logging
+import os
 
 from s3.file_uploader import file_uploader
 
@@ -26,13 +26,15 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
             unionImages['banner'] = file_uploader(
                 name=request.FILES['banner'].name, file=request.FILES['banner'])
         except Exception:
-            unionImages['banner'] = "http://127.0.0.1:8080/img/landingspage.600b8090.jpg"
+            unionImages['banner'] = file_uploader(
+                name="defaultBanner.png", file=os.path.join('./assets', 'defaultBanner.png'))
 
         try:
             unionImages['icon'] = file_uploader(
                 name=request.FILES['icon'].name, file=request.FILES['icon'])
         except Exception:
-            unionImages['icon'] = "http://127.0.0.1:8080/img/unionCircle.4caa1dcb.svg"
+            unionImages['icon'] = file_uploader(
+                name="unionCircle.png", file=os.path.join('./assets', 'unionCircle.png'))
 
         user, token = JWTAuthentication.authenticate_credentials_from_request_header(
             request)
