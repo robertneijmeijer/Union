@@ -30,10 +30,16 @@ def create_unions(a, b):
         random_user = choice(list(User.objects.all()))
         union = {
             "name": titles[i],
-            "description": 'Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.',
+            "description": 'Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, '
+                           'porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. '
+                           'Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis '
+                           'porttitor volutpat. Vivamus magna justo, lacinia eget consectetur sed, convallis at '
+                           'tellus.',
             "members_can_invite": True if random() > 0.5 else False,
-            "icon": "https://banner2.cleanpng.com/20180123/gjq/kisspng-bitcoin-cash-cryptocurrency-icon-5a68081d193577.7421991315167672611033.jpg",
-            "banner": "https://i1.wp.com/www.snowdropsolution.com/wp-content/uploads/2020/09/4-Simple-Use-Of-Natural-Language-Processing-In-Businesses.jpg?resize=640%2C360&ssl=1",
+            "icon": "https://banner2.cleanpng.com/20180123/gjq/kisspng-bitcoin-cash-cryptocurrency-icon"
+                    "-5a68081d193577.7421991315167672611033.jpg",
+            "banner": "https://i1.wp.com/www.snowdropsolution.com/wp-content/uploads/2020/09/4-Simple-Use-Of-Natural"
+                      "-Language-Processing-In-Businesses.jpg?resize=640%2C360&ssl=1",
             "creator_id": random_user.user_id,
             "created_at": now()
         }
