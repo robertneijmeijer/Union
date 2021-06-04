@@ -21,7 +21,6 @@ class CommentSerializer(serializers.ModelSerializer):
             'posts': {'write_only': True},
             'parent': {'write_only': True}
         }
-        depth = 1
 
     def get_children(self, obj: Comment):
         # If it has a parent it is a sub comment
