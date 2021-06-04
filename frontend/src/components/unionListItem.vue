@@ -3,7 +3,7 @@
     <div class="banner">
       <img
         class="image"
-        :src="require(`../assets/img/${unionsArray.union.banner}`)"
+        :src="unionsArray.union.banner"
         alt="responsive image"
       />
     </div>
@@ -13,7 +13,7 @@
     <div id="icon" class="icon-content">
       <img
         class="image-logo"
-        :src="require(`../assets/img/${unionsArray.union.icon}`)"
+        :src="unionsArray.union.icon"
       />
     </div>
   </a>
