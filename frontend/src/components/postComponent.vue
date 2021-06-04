@@ -8,51 +8,69 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes"/>
+    <voting-component :votes="postState.post.votes" />
     <div class="post-content text-white">
       <!--        TODO: Icon from s3-->
-      <div><img class="union-icon" src="../assets/img/bitcoin-icon.png" alt="Union icon"/>
-        {{ postState.post.union.name }} <span>• {{ $t("post.posted_by") }} {{
-            postState.post.user.username
-          }} {{ moment(postState.post.created_at) }}</span>
+      <div>
+        <img
+          class="union-icon"
+          src="../assets/img/bitcoin-icon.png"
+          alt="Union icon"
+        />
+        {{ postState.post.union.name }}
+        <span
+          >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
+          {{ moment(postState.post.created_at) }}</span
+        >
       </div>
       <h1>{{ postState.post.title }}</h1>
-      <p>{{ postState.post.message }}
-      </p>
+      <p>{{ postState.post.message }}</p>
       <p>
-        <img src="../assets/img/comment.png" alt="Comment Icon" class="comment-icon"/>
-        <span>{{ postState.post.number_of_comments }} {{ $t("post.comments") }}</span>
+        <img
+          src="../assets/img/comment.png"
+          alt="Comment Icon"
+          class="comment-icon"
+        />
+        <span
+          >{{ postState.post.number_of_comments }}
+          {{ $t("post.comments") }}</span
+        >
       </p>
 
       <div class="post-comment">
         <!--          TODO: Fetch current user and show user here-->
-        <p>{{ $t("post.comment_as") }} <span class="user">{{ userState.user.username }}</span></p>
+        <p>
+          {{ $t("post.comment_as") }}
+          <span class="user">{{ userState.user.username }}</span>
+        </p>
         <textarea
-            type="text"
-            class="form-control input"
-            :placeholder="$t('post.comment_hint')"
+          type="text"
+          class="form-control input"
+          :placeholder="$t('post.comment_hint')"
         />
         <button class="btn btn-primary union-button-medium">
-          {{ $t('post.submit') }}
+          {{ $t("post.submit") }}
         </button>
       </div>
     </div>
   </div>
   <!--    If error show error-->
   <div v-else class="post-card border-for-div text-white center-center">
-    <h1 v-if="JSON.stringify(postState.errors).includes('Not found')">{{ $t("post.post_not_found") }}</h1>
+    <h1 v-if="JSON.stringify(postState.errors).includes('Not found')">
+      {{ $t("post.post_not_found") }}
+    </h1>
     <h1 v-else>{{ $t("global.generalized_error_message") }}</h1>
   </div>
 </template>
-<script>
 
-import votingComponent from "@/components/votingComponent"
+<script>
+import votingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
 
 export default {
   name: "postComponent",
-  components: {votingComponent, Spinner},
+  components: { votingComponent, Spinner },
   computed: {
     postState() {
       return this.$store.state.posts;
@@ -64,9 +82,9 @@ export default {
   methods: {
     moment: function (value) {
       return moment(value).fromNow();
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -111,7 +129,7 @@ export default {
     button {
       margin-top: $paddingMedium;
       margin-right: $paddingSmall * 1.75;
-      float: right
+      float: right;
     }
   }
 
@@ -136,5 +154,4 @@ export default {
     margin-right: $paddingSmall;
   }
 }
-
 </style>

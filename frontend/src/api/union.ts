@@ -1,5 +1,6 @@
 import ApiBase from "@/api/api-base";
 import { AxiosResponse } from "axios";
+import { PostType } from "./posts";
 
 export type UnionType = {
   name: string;
@@ -7,6 +8,12 @@ export type UnionType = {
   members_can_invite: boolean;
   icon?: string;
   banner?: string;
+  posts?: PostPageType;
+};
+
+export type PostPageType = {
+  next?: number;
+  results?: PostType[];
 };
 
 export type UnionImagesType = {

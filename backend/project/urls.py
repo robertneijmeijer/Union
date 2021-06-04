@@ -9,11 +9,11 @@ from unions.views import UnionViewSet
 from votes.views import VoteViewSet
 
 router = routers.DefaultRouter()
+router.register(r'posts', PostViewSet)
+router.register(r'comments', CommentViewSet)
 router.register(r'unions/vote', VoteViewSet)
 router.register(r'unions/images', UnionImagesViewSet)
 router.register(r'unions', UnionViewSet)
-router.register(r'posts', PostViewSet)
-router.register(r'comments', CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
