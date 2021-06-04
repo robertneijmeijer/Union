@@ -62,7 +62,7 @@ def create_unions(a, b):
 class Migration(migrations.Migration):
     dependencies = [
         ('unions', '0002_auto_20210603_1103'),
-        ('users', 'users_seed'),
+        ('seed', 'users_seed'),
     ]
 
     operations = [

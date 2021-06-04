@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'invitations',
     'votes',
     'unionImages'
+    # ,'seed' # Enable this before you run `python manage.py migrate seed`
 ]
 
 REST_FRAMEWORK = {

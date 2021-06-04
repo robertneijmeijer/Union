@@ -43,9 +43,9 @@ def create_votes(a, b):
 class Migration(migrations.Migration):
     dependencies = [
         ('votes', '0002_alter_vote_vote'),
-        ('unions', 'unions_seed'),
-        ('posts', 'posts_seed'),
-        ('users', 'users_seed'),
+        ('seed', 'unions_seed'),
+        ('seed', 'posts_seed'),
+        ('seed', 'users_seed'),
     ]
 
     operations = [

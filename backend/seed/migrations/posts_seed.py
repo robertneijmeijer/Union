@@ -97,9 +97,9 @@ def create_posts(a, b):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('unions', 'unions_seed'),
+        ('seed', 'unions_seed'),
         ('posts', '0003_post_user'),
-        ('users', 'users_seed'),
+        ('seed', 'users_seed'),
     ]
 
     operations = [
