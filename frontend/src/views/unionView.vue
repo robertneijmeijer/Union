@@ -1,6 +1,6 @@
 <template>
   <div>
-    <union-overview-navigator />
+    <Navigator :loggedIn="true" :landingsPage="false" />
     <CreatePostComponent
       v-if="showCreatePost"
       @callbackToggleCreatePost="toggleCreatePost"
@@ -13,7 +13,7 @@
 <script>
 import UnionHeader from "../components/unionHeader.vue";
 import UnionContent from "../components/unionContent.vue";
-import UnionOverviewNavigator from "../components/unionOverviewNavigator.vue";
+import Navigator from "../components/navigator.vue";
 import { ActionTypes } from "../actions/union";
 import CreatePostComponent from "../components/createPost";
 
@@ -23,7 +23,7 @@ export default {
     unionName: String,
   },
   components: {
-    UnionOverviewNavigator,
+    Navigator,
     UnionHeader,
     UnionContent,
     CreatePostComponent,
