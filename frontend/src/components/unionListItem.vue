@@ -11,10 +11,7 @@
       <h2 class="name">{{ unionsArray.union.name }}</h2>
     </div>
     <div id="icon" class="icon-content">
-      <img
-        class="image-logo"
-        :src="unionsArray.union.icon"
-      />
+      <img class="image-logo" :src="unionsArray.union.icon" />
     </div>
   </a>
 </template>
@@ -61,29 +58,31 @@ export default {
 
 .table-union-content {
   height: 250px;
+  max-width: 400px;
+  width: 100%;
   position: relative;
-  padding: 6px;
-  border-radius: $borderRadius;
-  opacity: 80%;
+  opacity: 90%;
+  border: $border;
+  border-radius: $borderRadius * 5;
+  overflow: hidden;
 
   &:focus,
   &:active,
   &:hover {
     background-color: $primary-gray;
     opacity: 100%;
-    text-decoration: none;
+    cursor: pointer;
   }
 }
 
 .banner {
-  height: 60%;
+  height: 65%;
 }
 
 .union {
   padding-top: 25px;
-  height: 40%;
+  height: 35%;
   background-color: $primary-black;
-  border-radius: 0 0 33px 33px;
 }
 
 .image {
