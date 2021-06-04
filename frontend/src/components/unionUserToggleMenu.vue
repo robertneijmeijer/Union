@@ -1,7 +1,12 @@
 <template>
   <div class="menu">
     <div class="item line">
-      <a href="">Account</a>
+      <a href="" v-on:click="toUnions()">{{ $t("union-overview.home") }}</a>
+    </div>
+    <div class="item line">
+      <a href="" v-on:click="toCreate()">{{
+        $t("union-overview.joined_unions")
+      }}</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -9,21 +14,27 @@
       </div>
     </div>
     <div class="item line">
-      <a href="" v-on:click="logout()">Logout</a>
+      <a href="" v-on:click="logout()">{{ $t("login.logout") }}</a>
     </div>
   </div>
 </template>
 
 <script>
 import LocaleSwitcher from "./localeSwitcher";
-import { logout } from "@/router";
+import { logout, toCreateUnion, toOverview } from "@/router";
 
 export default {
   name: "unionUserToggleMenu",
   components: { LocaleSwitcher },
   methods: {
-    logout: function() {
+    logout: function () {
       logout();
+    },
+    toUnions: function () {
+      toOverview();
+    },
+    toCreate() {
+      toCreateUnion();
     },
   },
 };

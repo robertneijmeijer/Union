@@ -1,38 +1,28 @@
 <template>
   <div class="union-grid">
-    <h2>Joined Unions</h2>
+    <h2>{{ $t("union-overview.joined_unions") }}</h2>
     <div id="union" class="union-section">
       <div
         class="union-section-post-comment"
         v-for="union in unions"
         v-bind:key="union.id"
       >
-        <union-list-item :unionfields="union" />
+        <union-list-item :unions-array="union" />
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import UnionListItem from "../components/unionListItem.vue";
-// eslint-disable-next-line
-import { defineComponent, PropType } from "vue";
-// eslint-disable-next-line
 
-export interface UnionInterface {
-  name: String;
-  banner: String;
-  icon: String;
-  description: String;
-}
-
-export default defineComponent({
+export default {
   name: "unionDashboard",
   components: { UnionListItem },
   props: {
     unions: Array,
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -67,7 +57,7 @@ h2 {
 .union-section-post-comment {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 1em;
   background-color: $primary-gray;
 }

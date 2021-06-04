@@ -1,36 +1,44 @@
 <template>
-  <a href="" class="table-union-content">
+  <a v-on:click="onClickUnion()" class="table-union-content">
     <div class="banner">
       <img
         class="image"
-        :src="require(`../assets/img/${unionfields.union.banner}`)"
+        :src="require(`../assets/img/${unionsArray.union.banner}`)"
         alt="responsive image"
       />
     </div>
     <div class="union">
-      <h2 class="name">{{ unionfields.union.name }}</h2>
+      <h2 class="name">{{ unionsArray.union.name }}</h2>
     </div>
     <div id="icon" class="icon-content">
       <img
         class="image-logo"
-        :src="require(`../assets/img/${unionfields.union.icon}`)"
+        :src="require(`../assets/img/${unionsArray.union.icon}`)"
       />
     </div>
   </a>
 </template>
 
-<script lang="ts">
-// eslint-disable-next-line
-import { PropType, defineComponent } from "vue";
-// eslint-disable-next-line
-import { UnionInterface } from "./unionDashboard.vue";
+<script>
+import router, { toOverview } from "@/router";
 
-export default defineComponent({
+export default {
   name: "unionListItem",
   props: {
-    unionfields: Object as PropType<UnionInterface>,
+    unionsArray: Object,
   },
-});
+  methods: {
+    onClickUnion() {
+      let name;
+      if (this.unionsArray.union && this.unionsArray.union.name) {
+        name = this.unionsArray.union.name;
+        router.push("/union/" + name);
+      } else {
+        toOverview();
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

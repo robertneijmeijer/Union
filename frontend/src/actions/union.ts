@@ -34,15 +34,19 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       .catch(err => {
         console.error(err);
         commit(ActionTypes.UNION_ACTION_FAILED, err);
-        router.push({ name: "union-overview" });
+        router.push({ name: "home" });
       });
   },
   [ActionTypes.UNION_ACTION_FETCH_OVERVIEW]({ commit, state }) {
     UnionApi.getUnions()
-      .then((res: AxiosResponse<UnionType>) => {
+      .then((res: AxiosResponse<UnionType[]>) => {
         if (res && res.data) {
-          console.log(res.data);
           commit(ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES, res.data);
+          if (res.data.length <= 0) {
+            router.push("/home/landingspage");
+          } else {
+            router.push("home");
+          }
         } else throw Error("error");
       })
       .catch(err => {
