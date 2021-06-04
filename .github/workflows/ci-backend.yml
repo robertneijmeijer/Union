@@ -45,7 +45,7 @@ jobs:
           echo "If the above fails please run `autopep8 -i -r -v --max-line-length 160 .` (see root npm package.json)"
 
       - name: Run migrations
-        run: python manage.py migrate --fake
+        run: python manage.py migrate
 
       - name: Run tests
         run: python manage.py test
