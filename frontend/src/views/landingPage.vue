@@ -1,29 +1,40 @@
 <template>
-  <div id="landings-page">
-    <navigator></navigator>
-    <div class="center-text">
-      <pre class="text">
+  <div class="landings-page">
+    <Navigator :loggedIn="false" :landingsPage="true" />
+    <div class="landings-page-content">
+      <div class="center-text">
+        <pre class="text">
 Create. 
 Discover. 
 <span class="text-blue">Unite.</span>
       </pre>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Navigator from "@/components/navigatorComponent";
+import Navigator from "@/components/navigator";
+import router from "@/router";
 
 export default {
   name: "landingPage",
   components: { Navigator },
+  methods: {
+    toLogin: function () {
+      router.push("login");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-#landings-page {
+.landings-page {
+  height: 100%;
+}
+.landings-page-content {
   height: 100%;
   box-sizing: border-box;
 }

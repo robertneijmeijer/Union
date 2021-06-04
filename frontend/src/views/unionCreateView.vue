@@ -1,16 +1,15 @@
 <template>
   <div>
-    <TopBarLogo />
+    <Navigator :loggedIn="true" :landingsPage="false" />
     <UnionCreateComponent />
   </div>
 </template>
 
 <script>
 import UnionCreateComponent from "../components/unionCreateComponent";
-import TopBarLogo from "../components/topBarLogoComponent";
-
+import Navigator from "@/components/navigator";
 export default {
   name: "unionCreateView",
-  components: { TopBarLogo, UnionCreateComponent },
+  components: { UnionCreateComponent, Navigator },
 };
 </script>

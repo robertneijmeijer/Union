@@ -1,19 +1,19 @@
 <template>
   <div id="registerView">
-    <top-bar-logo></top-bar-logo>
+    <Navigator :loggedIn="false" :landingsPage="false" />
     <div id="registerCard">
-      <register-component></register-component>
+      <RegisterComponent />
     </div>
   </div>
 </template>
 
 <script>
 import RegisterComponent from "../components/registerComponent";
-import TopBarLogo from "@/components/topBarLogoComponent";
+import Navigator from "@/components/navigator";
 
 export default {
   name: "registerView",
-  components: { TopBarLogo, RegisterComponent },
+  components: { RegisterComponent, Navigator },
 };
 </script>
 
