@@ -7,11 +7,10 @@ from django.forms.models import model_to_dict
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('user_id', 'username')
+        fields = ('user_id', 'username', 'avatar')
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
     children = serializers.SerializerMethodField()
 
     class Meta:
