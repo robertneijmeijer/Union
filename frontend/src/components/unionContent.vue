@@ -1,34 +1,32 @@
 <template>
   <div class="union-section">
-    <div class="union-section-post">
+    <div
+      class="union-section-post"
+      v-if="union && union.posts && union.posts.results"
+    >
       <div
         class="union-section-post-comment border-for-div"
-        v-for="(post, index) in posts"
-        v-bind:key="post.id"
+        v-for="(post, index) in union.posts.results"
+        v-bind:key="post.post_id"
       >
         <UnionPost :post="post" :index="index" />
       </div>
     </div>
     <div class="union-section-community">
-      <UnionAbout :about="description" @callbackToggleCreatePost="toggleCreatePost" />
+      <UnionAbout
+        :about="union.description"
+        @callbackToggleCreatePost="toggleCreatePost"
+      />
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import UnionAbout from "./unionCommunity.vue";
 import UnionPost from "./unionPost.vue";
-// eslint-disable-next-line no-unused-vars
-import { defineComponent, PropType } from "vue";
-// eslint-disable-next-line no-unused-vars
-export interface PostInterface {
-  id: Number;
-  info: String;
-  title: String;
-  content: String;
-}
+import { ActionTypes } from "../actions/union";
 
-export default defineComponent({
+export default {
   name: "union-post-overview",
   components: { UnionPost, UnionAbout },
   methods: {
@@ -36,11 +34,22 @@ export default defineComponent({
       this.$emit("callbackToggleCreatePost");
     },
   },
-  props: {
-    posts: { type: Object as PropType<PostInterface[]>, required: true },
-    description: { type: String, required: true },
+  computed: {
+    union() {
+      const u = this.$store.state.union.data;
+
+      // Get initial data
+      if (u && u.name && !u.posts) {
+        this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
+          unionName: u.name,
+          page: 1,
+        });
+      }
+
+      return u;
+    },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -50,7 +59,7 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 25fr 50fr 25fr;
   padding: 2em;
-  column-gap: 2em;
+  column-gap: 1em;
   max-width: 120em;
   margin: 0 auto;
 }
@@ -63,6 +72,7 @@ export default defineComponent({
 .union-section-community {
   grid-column-start: 3;
   grid-column-end: 3;
+  max-width: 22rem;
 }
 
 .union-section-post-comment {
