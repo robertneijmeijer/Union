@@ -67,13 +67,13 @@ export default {
       console.log(this.content)
       console.log(this.name)
       console.log(this.user)
-      const data = {
+
+      PostApi.postPost({
         title: this.title,
         message: this.content,
         union: this.name,
         user: this.user.user_id
-      }
-      PostApi.postPost(data)
+      })
 
       this.toggleCreatePost();
     },

@@ -14,9 +14,9 @@ export type PostType = {
 };
 
 export default class PostApi extends ApiBase {
-  public static postPost = (data: any): Promise<AxiosResponse<PostType>> => {
+  public static postPost = (data: Partial<PostType>): Promise<AxiosResponse<PostType>> => {
     console.log(data)
-    return PostApi.requestPost<PostType>("posts/", data)
+    return PostApi.requestPost<PostType>("posts/", { data:data })
   }
 
   public static getAllPosts = (
