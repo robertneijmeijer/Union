@@ -31,7 +31,7 @@ export default {
       return this.banner ? this.banner : DefaultBanner;
     },
     getLogo() {
-      return this.logo ? this.logo : DefaultLogo;
+      return this.icon ? this.icon : DefaultLogo;
     },
   },
 };
