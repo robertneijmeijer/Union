@@ -33,7 +33,7 @@
     </div>
 
     <div id="user-menu" v-if="!menuIsHidden && loggedIn" class="user-menu">
-      <UnionUserToggleMenu />
+      <UserMenu />
     </div>
 
     <button
@@ -48,24 +48,25 @@
       <button v-on:click="toLogin" class="primary">Sign in</button>
     </div>
   </div>
+
   <div id="menu" v-if="!isHidden && loggedIn" class="toggle-menu">
-    <UnionToggleMenu />
+    <UserMenuHamburger />
   </div>
 </template>
 
 <script>
 import SearchbarComponent from "@/components/searchbarComponent";
-import UnionToggleMenu from "@/components/unionNavigatorToggleMenu";
-import UnionUserToggleMenu from "@/components/unionUserToggleMenu";
+import UserMenuHamburger from "@/components/userMenuHamburger";
+import UserMenu from "@/components/userMenu";
 import { ActionTypes } from "@/actions/user";
 import Spinner from "@/components/spinner";
 import router from "@/router";
 
 export default {
-  name: "union-overview-navigator",
+  name: "navigator",
   components: {
-    UnionUserToggleMenu,
-    UnionToggleMenu,
+    UserMenuHamburger,
+    UserMenu,
     SearchbarComponent,
     Spinner,
   },

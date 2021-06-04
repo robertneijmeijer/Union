@@ -1,8 +1,5 @@
 <template>
   <div class="menu">
-    <div class="item search">
-      <searchbar-component></searchbar-component>
-    </div>
     <div class="item line">
       <a href="" v-on:click="toUnions()">{{ $t("union-overview.home") }}</a>
     </div>
@@ -23,13 +20,12 @@
 </template>
 
 <script>
-import SearchbarComponent from "@/components/searchbarComponent";
-import LocaleSwitcher from "@/components/localeSwitcher";
-import { toOverview, logout, toCreateUnion } from "@/router";
+import LocaleSwitcher from "./localeSwitcher";
+import { logout, toCreateUnion, toOverview } from "@/router";
 
 export default {
-  name: "union-toggle-menu",
-  components: { SearchbarComponent, LocaleSwitcher },
+  name: "userMenu",
+  components: { LocaleSwitcher },
   methods: {
     logout: function () {
       logout();
@@ -53,10 +49,6 @@ export default {
 
 .item {
   padding: 10px 5px 10px 5px;
-}
-
-.search {
-  margin: 0 10px 0 10px;
 }
 
 a {
