@@ -13,7 +13,7 @@ export type UnionImagesType = {
   id: string;
   banner: string;
   icon: string;
-}
+};
 
 export default class UnionApi extends ApiBase {
   public static postUnion = (data: any): Promise<any> => {
@@ -30,17 +30,17 @@ export default class UnionApi extends ApiBase {
     return UnionApi.requestGetAll<UnionType>("unions/overview");
   };
 
-  public static postUnionImages = (data: any):Promise<any> => {
-    return UnionApi.requestPost("unions/images/",
-        { data: data.data,
-      headers: { 'Content-Type' : 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' } } )
+  public static postUnionImages = (data: any): Promise<any> => {
+    return UnionApi.requestPost("unions/images/", { data: data.data,
+      headers: { 'Content-Type' :
+            'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' }})
         .then(response => response);
-  }
+  };
 
   public static getUnionImages = (
-      name:string
+    name: string
   ): Promise<AxiosResponse<UnionImagesType>> => {
     return UnionApi.requestGetUnionImages<UnionImagesType>("unions/images/", name);
-  }
+  };
 
 }
