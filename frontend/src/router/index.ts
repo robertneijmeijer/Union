@@ -78,9 +78,7 @@ export const logout = () => {
   router.push("login");
 };
 
-
 router.beforeEach((to, from, next) => {
-
   if (
     to.name !== "/" &&
     to.name !== "login" &&
@@ -95,6 +93,5 @@ router.beforeEach((to, from, next) => {
     next({ path: "/home" });
   } else next();
 });
-
 
 export default router;
