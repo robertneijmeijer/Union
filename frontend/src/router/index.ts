@@ -32,12 +32,12 @@ const routes = [
     component: unionCreateView,
   },
   {
-    path: "/union",
+    path: "/home/landingspage",
     name: "union-no-overview",
     component: noUnionOverview,
   },
   {
-    path: "/overview",
+    path: "/home",
     name: "union-overview",
     component: unionOverview,
   },
@@ -64,7 +64,7 @@ const router = createRouter({
 });
 
 export const toOverview = () => {
-  router.push("/overview");
+  router.push("/create-union");
 };
 
 export const logout = () => {

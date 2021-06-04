@@ -34,7 +34,7 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       .catch(err => {
         console.error(err);
         commit(ActionTypes.UNION_ACTION_FAILED, err);
-        router.push({ name: "union-overview" });
+        router.push({ name: "home" });
       });
   },
   [ActionTypes.UNION_ACTION_FETCH_OVERVIEW]({ commit, state }) {
@@ -43,9 +43,9 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
         if (res && res.data) {
           commit(ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES, res.data);
           if (res.data.length <= 0) {
-            router.push("union");
+            router.push("/home/landingspage");
           } else {
-            router.push("overview");
+            router.push("home");
           }
         } else throw Error("error");
       })
