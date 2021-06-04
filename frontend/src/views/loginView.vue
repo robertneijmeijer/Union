@@ -23,6 +23,6 @@ export default {
 }
 
 #loginCard {
-  margin-top: 100px;
+  margin-top: 10%;
 }
 </style>
