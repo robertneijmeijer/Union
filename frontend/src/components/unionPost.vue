@@ -75,7 +75,7 @@ export default {
       this.vote(VoteENUM.DOWNVOTE, false);
     },
     async vote(vote, initial) {
-      if (this.index == null || this.index == undefined) return;
+      if (this.index == null) return;
 
       // Get elements
       const up = document.getElementsByName("upvote")[this.index];
@@ -88,14 +88,15 @@ export default {
 
       // Check if vote is neutral
 
+      let checkedVote = vote;
       // If not initial set database and check if vote is neutral
       if (!initial) {
-        if (vote == this.post.user_vote) vote = VoteENUM.NEUTRAL;
-        this.setVoteDatabase(vote);
+        if (vote === this.post.user_vote) checkedVote = VoteENUM.NEUTRAL;
+        this.setVoteDatabase(checkedVote);
       }
 
       // Set element color
-      switch (vote) {
+      switch (checkedVote) {
         case VoteENUM.DOWNVOTE:
           up.style.fill = "#424242";
           down.style.fill = "#ff00ff";
@@ -118,16 +119,17 @@ export default {
       down.style.pointerEvents = "auto";
     },
     async setVoteDatabase(vote) {
+      const u = this.$store.state.union.data;
       // Set vote in database
       await PostApi.postVote({
         post: this.post.post_id,
-        vote: this.post.user_vote == vote ? VoteENUM.NEUTRAL : vote,
+        vote,
       });
 
       // Set vuex state
-      this.$store.dispatch(ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION, {
-        vote: vote,
-        post: this.post,
+      this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
+        unionName: u.name,
+        page: 1,
       });
     },
   },

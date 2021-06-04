@@ -3,8 +3,9 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
+from posts.models import Post
 from votes.serializer import VoteSerializer
-from votes.models import Vote
+from votes.models import Vote, VoteENUM, updatePostOnVote
 
 
 class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
@@ -32,6 +33,9 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
                 post=request.data['post'], comment=None, user=user.user_id)
 
         if votes.count() != 0:
+            old = votes[0].vote
+            new = request.data['vote']
+
             serializer = self.serializer_class(
                 votes[0],
                 data={"vote": request.data['vote']},
@@ -39,11 +43,23 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
             )
             serializer.is_valid(raise_exception=True)
             serializer.save()
+
+            # Vote model is saved, lets update its post model.
+            post = Post.objects.get(post_id=request.data['post'])
+            post = updatePostOnVote(old, new, post)
+            post.save()
+
             return Response(serializer.data, status.HTTP_200_OK)
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+
+        # Vote model is saved, lets update its model.
+        post = Post.objects.get(post_id=request.data['post'])
+        new = request.data['vote']
+        post = updatePostOnVote(VoteENUM.NEUTRAL, new, post)
+        post.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)

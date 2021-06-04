@@ -1,5 +1,4 @@
 import { ActionTypes } from "@/actions/union";
-import { PostType } from "@/api/posts";
 import { PostPageType, UnionType } from "@/api/union";
 import { UnionState } from "@/store/modules/union";
 import { MutationTree } from "vuex";
@@ -49,30 +48,11 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
 
     if (payload && payload.next) state.data.posts.next = payload.next;
 
-    if (payload && payload.results) {
-      state.data.posts.results = state.data.posts.results
-        ? state.data.posts.results.concat(payload.results)
-        : payload.results;
-    }
+    state.data.posts.results = payload.results
   },
   [ActionTypes.UNION_POSTS_ACTION_FAILED](state: UnionState, payload: unknown) {
     state.errors = payload;
     state.isFetching = false;
-  },
-  [ActionTypes.UNION_POSTS_CHANGE_VOTE_ACTION](
-    state: UnionState,
-    post: PostType
-  ) {
-    if (!state.data || !state.data.posts || !state.data.posts.results) return;
-    state.data.posts.results.forEach(p => {
-      if (
-        p.created_at == post.created_at &&
-        p.title == post.title &&
-        p.user.username == post.user.username
-      ) {
-        p = post;
-      }
-    });
   },
 
   // Waarom zit dit hierin
