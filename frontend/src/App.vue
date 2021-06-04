@@ -16,15 +16,6 @@ export default class App extends Vue {}
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "./assets/theme";
 
-@font-face {
-  font-family: "Overpass-Regular";
-  src: local("Overpass-Regular"),
-    url("./assets/fonts/Overpass-Regular.ttf") format("truetype");
-  font-family: "Overpass-SemiBold";
-  src: local("Overpass-SemiBold"),
-    url("./assets/fonts/Overpass-SemiBold.ttf") format("truetype");
-}
-
 #app {
   height: 100%;
   width: 100%;
@@ -43,6 +34,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  font-family: "Overpass", sans-serif;
+}
+
+* {
+  font-family: "Numans", sans-serif;
 }
 </style>

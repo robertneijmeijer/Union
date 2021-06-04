@@ -46,6 +46,12 @@
               />
             </div>
 
+            <div class="row remember overpass gray">
+              <input type="checkbox" class="checkbox" />{{
+                $t("login.remember_me")
+              }}
+            </div>
+
             <div class="form-group">
               <div class="text-center loginbtn">
                 <button
@@ -57,16 +63,10 @@
                   {{ $t("login.sign_in") }}
                 </button>
               </div>
-              <div class="row align-items-center remember overpass gray">
-                <input type="checkbox" class="checkbox" />{{
-                  $t("login.remember_me")
-                }}
-              </div>
             </div>
           </div>
-
         </form>
-          <div class="card-footer">
+        <div class="card-footer">
           <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
 
@@ -97,12 +97,12 @@ export default {
     },
   },
   methods: {
-    toSignUp: function() {
+    toSignUp: function () {
       router.push("/register");
     },
-    signIn: function(e) {
+    signIn: function (e) {
       e.preventDefault();
-      if(!this.password || !this.username) return
+      if (!this.password || !this.username) return;
 
       const hashed = sha256(this.password);
       const user = {
@@ -140,7 +140,7 @@ export default {
   max-width: 450px;
   width: 100%;
   background-color: $primary-black;
-  border-radius: 20px;
+  border-radius: $borderRadius
 }
 
 .card-body {
@@ -158,7 +158,7 @@ export default {
   height: 1.5em;
   color: black;
   border: 1px solid gray;
-  border-radius: 4px;
+  border-radius: $borderRadius;
   appearance: none;
   outline: 0;
   cursor: pointer;
@@ -273,17 +273,13 @@ input:focus {
   background-color: $errorColor !important;
 }
 
-.overpass {
-  font-family: Overpass, serif;
-}
-
 .overpass-semi-bold {
-  font-family: Overpass-SemiBold, serif;
+  font-weight: 500;
 }
 
 .form-control {
   background-color: #232323;
-  border-radius: $borderRadiusInput;
+  border-radius: $borderRadius;
   border: 3px solid $inputTextFieldBorderColor;
   color: #c8c8c8;
 }

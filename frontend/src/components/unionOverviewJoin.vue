@@ -75,7 +75,7 @@
     h2 {
         color: white;
         font-size: 48px;
-        font-family: "Overpass-SemiBold", serif;
+        font-weight: 500;
         user-select: none;
     }
 

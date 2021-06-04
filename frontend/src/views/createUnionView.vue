@@ -1,15 +1,15 @@
 <template>
   <div>
     <Navigator :loggedIn="true" :landingsPage="false" />
-    <UnionCreateComponent />
+    <CreateUnionComponent />
   </div>
 </template>
 
 <script>
-import UnionCreateComponent from "../components/unionCreateComponent";
+import CreateUnionComponent from "../components/createUnionComponent";
 import Navigator from "@/components/navigator";
 export default {
   name: "unionCreateView",
-  components: { UnionCreateComponent, Navigator },
+  components: { CreateUnionComponent, Navigator },
 };
 </script>

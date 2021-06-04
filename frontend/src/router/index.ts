@@ -2,12 +2,12 @@ import { createWebHistory, createRouter } from "vue-router";
 import landingPage from "@/views/landingPage.vue";
 import loginView from "@/views/loginView.vue";
 import registerView from "@/views/registerView.vue";
-import unionCreateView from "@/views/unionCreateView.vue";
+import createUnionView from "@/views/createUnionView.vue";
 import acceptInviteView from "../views/acceptInviteView.vue";
 import Cookie from "js-cookie";
 import unionView from "@/views/unionView.vue";
 import noUnionOverview from "@/views/noUnionOverview.vue";
-import unionOverview from "@/views/unionOverview.vue";
+import overviewUnionView from "@/views/overviewUnionView.vue";
 import postView from "@/views/postView.vue";
 
 const routes = [
@@ -29,7 +29,7 @@ const routes = [
   {
     path: "/create-union",
     name: "create-union",
-    component: unionCreateView,
+    component: createUnionView,
   },
   {
     path: "/home/landingspage",
@@ -39,7 +39,7 @@ const routes = [
   {
     path: "/home",
     name: "union-overview",
-    component: unionOverview,
+    component: overviewUnionView,
   },
   {
     path: "/union/:unionName",
