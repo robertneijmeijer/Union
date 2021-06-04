@@ -46,11 +46,13 @@
 
 <script>
 import PostApi from "../api/posts"
+import { ActionTypes } from "../actions/union";
 
 export default {
   name: "createPostComponent",
   mounted() {
-    document.documentElement.style.overflow = null
+    this.$store.dispatch(ActionTypes.UNION_ACTION_FETCH_OVERVIEW);
+    document.documentElement.style.overflow = null;
   },
   props: {
     name: { type: String, required: true },
@@ -59,23 +61,33 @@ export default {
     return{
       title : "",
       content: "",
+      currentUnion: null,
     }
   },
   methods: {
     post: function () {
+      this.getCurrentUnion()
       console.log(this.title)
       console.log(this.content)
       console.log(this.name)
       console.log(this.user)
+      console.log(this.union)
 
       PostApi.postPost({
         title: this.title,
         message: this.content,
-        union: this.name,
-        user: this.user.user_id
+        union: this.currentUnion,
+        user: this.user
       })
 
       this.toggleCreatePost();
+    },
+    getCurrentUnion: function () {
+      for (let i = 0; i < this.union.length; i++){
+        if(this.union.name === this.name){
+          this.currentUnion =  this.union[i]
+        }
+      }
     },
     uploadImage: function () {
     },
@@ -91,6 +103,9 @@ export default {
       console.log(this.$store.state.user.user);
       return this.$store.state.user.user;
     },
+    union() {
+      return this.$store.state.union.union
+    }
   },
 }
 </script>
