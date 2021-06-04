@@ -141,9 +141,7 @@ export default {
       this.banner ? data.append("banner", this.banner) : data.append("banner", '');
       this.icon ? data.append("icon", this.icon) : data.append("icon", '');
 
-      UnionApi.postUnionImages({
-        data
-      }).then((response) => {
+      UnionApi.postUnionImages(data).then((response) => {
         UnionApi.postUnion({
           union: {
             name: this.name,
