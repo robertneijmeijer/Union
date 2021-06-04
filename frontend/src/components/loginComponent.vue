@@ -5,7 +5,8 @@
         <div class="card-header overpass-semi-bold">
           <h5 class="loginTitle">{{ $t("login.sign_in_union") }}</h5>
         </div>
-        <form v-on:submit="signIn">
+
+        <form v-on:submit="signIn" class="form">
           <div class="card-body">
             <div class="input-group form-group">
               <div class="input-group-prepend">
@@ -46,14 +47,8 @@
               />
             </div>
 
-            <div class="row remember overpass gray">
-              <input type="checkbox" class="checkbox" />{{
-                $t("login.remember_me")
-              }}
-            </div>
-
             <div class="form-group">
-              <div class="text-center loginbtn">
+              <div class="text-center">
                 <button
                   class="btn btn-primary login"
                   type="submit"
@@ -66,6 +61,7 @@
             </div>
           </div>
         </form>
+
         <div class="card-footer">
           <div class="d-flex justify-content-center links overpass">
             {{ $t("login.dont_have_account") }}
@@ -120,6 +116,15 @@ export default {
 <style lang="scss">
 @import "../assets/theme";
 
+.login {
+  margin-top: 2rem;
+}
+
+.form {
+  display: flex;
+  flex: 1;
+}
+
 .container {
   height: 100%;
   align-content: center;
@@ -140,7 +145,7 @@ export default {
   max-width: 450px;
   width: 100%;
   background-color: $primary-black;
-  border-radius: $borderRadius
+  border-radius: $borderRadius;
 }
 
 .card-body {
@@ -194,11 +199,6 @@ export default {
   border: none;
 }
 
-.loginbtn {
-  margin-top: 30px;
-  margin-bottom: 0;
-}
-
 .login {
   max-width: 150px;
   width: 100%;
@@ -206,7 +206,6 @@ export default {
   border: $buttonBorder $unionBlue;
   color: white;
   background: transparent;
-  margin-top: 10%;
 
   &:hover {
     background-color: $primary-black;
