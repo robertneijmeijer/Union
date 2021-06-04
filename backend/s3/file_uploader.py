@@ -1,5 +1,3 @@
-import logging
-from re import T
 from minio import Minio
 from minio.error import S3Error
 from PIL import Image
