@@ -33,8 +33,15 @@ class CommentSerializer(serializers.ModelSerializer):
             # -1 Otherwise it will always return a level further then given number, because of loop
             nesting_depth = int(self.context['nesting_depth']) - 1
 
-        return children(obj, nesting_depth)
+        # This is a workaround to fix the bug where a comment would have itself as children.
+        result = children(obj, nesting_depth)
+        if type(result) is dict:
+            if(result["comment_id"] == obj.comment_id):
+                return []
+            else:
+                return result
 
+        return result
 
 def children(comment: Comment, nesting_depth):
     allChildren: list = list(Comment.objects.filter(parent=comment.comment_id))
