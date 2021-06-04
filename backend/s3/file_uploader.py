@@ -67,7 +67,7 @@ def file_uploader(name, file):
                           data=file, length=file.size)
     except Exception:
         file = Image.open(file)  # We need PIL image to load the file from assets
-        buffer = io.BytesIO()  # Minio wants a steam with a read and size
+        buffer = io.BytesIO()  # Minio wants a stream with a read and size
         file.save(buffer, "png")  # Save the file to the stream as a png
         buffer.seek(0)  # Set the buffer to the first position
         client.put_object(bucket_name=bucketName, object_name=name,
