@@ -52,7 +52,7 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
       })
       .catch(err => {
         commit(ActionTypes.UNION_ACTION_FAILED, err);
-        router.push({ name: "home" });
+        router.push("/home");
       });
   },
 
