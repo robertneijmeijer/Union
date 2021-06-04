@@ -1,20 +1,13 @@
 <template>
   <div class="modal-backdrop">
-    <div class="modal border-for-div ">
+    <div class="modal border-for-div">
       <header class="modal-header">
         <h3 class="text-white">
           <!--          TODO: Translation-->
           Invite new member
           <!--          <div class="text-white"> {{ errorState.errors }}</div>-->
-
         </h3>
-        <button
-            type="button"
-            class="btn-close"
-            @click="close"
-        >
-          X
-        </button>
+        <button type="button" class="btn-close" @click="close">X</button>
       </header>
 
       <section class="modal-body">
@@ -26,58 +19,47 @@
               Copy Link
             </button>
           </div>
+          <p v-else-if="stateErrors">{{ stateErrors }}</p>
           <spinner v-else size="medium"></spinner>
         </div>
       </section>
 
-      <div class="text-white">
-        {{stateErrors}}
-      </div>
-
-
       <div v-if="invites" class="modal-footer">
-        <p>
-          You have {{ invites.invites_left }} invites left
-        </p>
+        <p>You have {{ invites.invites_left }} invites left</p>
       </div>
     </div>
 
-    <div class="text-white"> {{ invites }}</div>
+    <div class="text-white">{{ invites }}</div>
   </div>
 </template>
 
 <script>
-import {ActionTypes} from "@/actions/union";
+import { ActionTypes } from "@/actions/union";
 import Spinner from "@/components/spinner";
-import {mapState} from "vuex"
 
 export default {
   name: "inviteModal",
-  components: {Spinner},
+  components: { Spinner },
   computed: {
-    stateErrors () {
-      console.log("Computed")
-      console.log(this.$store.getters.unionErrorState)
-      return this.$store.getters.unionErrorState
+    stateErrors() {
+      return this.$store.state.union.errors;
     },
-    ...mapState({
-      invites: state => state.union.invites,
-      stateErrors2: state => state.union.errors
-    })
   },
   methods: {
     close() {
-      this.$emit('close');
+      this.$emit("close");
     },
     setupLink: function (token) {
       return window.location.origin + `/union/invite/accept/${token}`;
-    }
+    },
   },
   created() {
-    this.unionName = this.$route.params.unionName;
-    this.$store.dispatch(ActionTypes.UNION_GET_CURRENT_INVITES, this.unionName);
-  }
-}
+    this.$store.dispatch(
+      ActionTypes.UNION_INVITES_FETCH,
+      this.$route.params.unionName
+    );
+  },
+};
 </script>
 
 <style lang="scss">
@@ -107,14 +89,13 @@ export default {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
-
 }
 
 .modal {
   max-width: 50%;
   height: auto;
   background: $primary-black;
-  box-shadow: 2px 2px 20px 1px rgba(0,0,0,.1);
+  box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
   display: flex;
   flex-direction: column;
@@ -132,7 +113,7 @@ export default {
 
 .modal-header {
   position: relative;
-  color: #4AAE9B;
+  color: #4aae9b;
   justify-content: center;
   border: unset !important;
 }
@@ -162,7 +143,7 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: #4AAE9B;
+  color: #4aae9b;
   background: transparent;
 }
 </style>

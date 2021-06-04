@@ -9,7 +9,6 @@ import { MutationsInterface as unionMutations } from "@/mutations/union";
 import { MutationsInterface as postMutations } from "@/mutations/post";
 import { form, FormModuleStateInterface } from "@/store/modules/form";
 import { UnionModuleStateInterface, union } from "./modules/union";
-import { invite } from "@/store/modules/invite";
 import { posts, PostModuleStateInterface } from "@/store/modules/post";
 
 // More info: https://betterprogramming.pub/the-state-of-typed-vuex-the-cleanest-approach-2358ee05d230
@@ -47,7 +46,6 @@ export const store: StoreInterface = createStore<RootState>({
     user,
     form,
     union,
-    invite,
     posts,
   },
 });

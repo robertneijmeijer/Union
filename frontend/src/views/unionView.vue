@@ -46,7 +46,6 @@ export default {
   },
   computed: {
     union() {
-      console.log(this.$store.state.union.union);
       return this.$store.state.union.union;
     },
   },

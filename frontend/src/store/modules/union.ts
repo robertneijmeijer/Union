@@ -9,7 +9,7 @@ export interface UnionModuleStateInterface {
   isFetching: boolean;
   errors: string;
   union: UnionType | null;
-  invites: any | null;
+  invites: string | null;
 }
 
 export type UnionState = UnionModuleStateInterface;
@@ -25,8 +25,7 @@ export const union: Module<UnionState, RootState> = {
   actions,
   getters: {
     unionErrorState: state => {
-      console.log("Error state getter")
-      return state.errors
-    }
-  }
+      return state.errors;
+    },
+  },
 };
