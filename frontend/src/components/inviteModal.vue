@@ -13,7 +13,6 @@
           <div v-if="invites && invites.invites.length > 0">
             <a>{{ setupLink(invites.invites[0].token) }}</a>
             <button class="btn btn-primary union-button-medium" @click="copyLink">
-              <!--            TODO: Logic-->
               {{ $t("invite.copy_link") }}
             </button>
           </div>

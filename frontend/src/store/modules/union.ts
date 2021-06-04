@@ -25,9 +25,4 @@ export const union: Module<UnionState, RootState> = {
   }),
   mutations,
   actions,
-  getters: {
-    unionErrorState: state => {
-      return state.errors;
-    },
-  },
 };
