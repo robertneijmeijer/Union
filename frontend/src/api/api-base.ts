@@ -28,9 +28,9 @@ export default class ApiBase {
   }
 
   public static async requestGetUnionImages<T = any>(
-     resource: string,
-     id: string,
-     config?: AxiosRequestConfig
+    resource: string,
+    id: string,
+    config?: AxiosRequestConfig
   ) {
     return this.executeRequest<T>("get",`/${resource}/${id}`, {
       ...config,
