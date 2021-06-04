@@ -24,12 +24,10 @@
         </div>
       </section>
 
-      <div v-if="invites" class="modal-footer">
-        <p>You have {{ invites.invites_left }} invites left</p>
+      <div v-if="invites && invites.invites_left" class="modal-footer">
+        <p>{{ inviteText() }}</p>
       </div>
     </div>
-
-    <div class="text-white">{{ invites }}</div>
   </div>
 </template>
 
@@ -44,6 +42,9 @@ export default {
     stateErrors() {
       return this.$store.state.union.errors;
     },
+    invites() {
+      return this.$store.state.union.invites;
+    },
   },
   methods: {
     close() {
@@ -51,6 +52,11 @@ export default {
     },
     setupLink: function (token) {
       return window.location.origin + `/union/invite/accept/${token}`;
+    },
+    inviteText() {
+      return `You have ${this.invites.invites_left} invite${
+        this.invites.invites_left > 1 ? "s" : ""
+      } left`;
     },
   },
   created() {
@@ -64,21 +70,6 @@ export default {
 
 <style lang="scss">
 @import "../assets/theme";
-
-.link-copy-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  a {
-    max-width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0 $paddingMedium;
-    color: $unionGreen !important;
-  }
-}
 
 .modal-backdrop {
   position: fixed;
@@ -145,5 +136,18 @@ export default {
   font-weight: bold;
   color: #4aae9b;
   background: transparent;
+}
+
+.link-copy-container {
+  text-align: center;
+
+  a {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 $paddingMedium;
+    color: $unionGreen !important;
+  }
 }
 </style>

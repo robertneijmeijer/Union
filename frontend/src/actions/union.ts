@@ -64,7 +64,7 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
     { commit, state, dispatch },
     unionName: string
   ) {
-    UnionApi.generateInvite(unionName)
+     UnionApi.generateInvite(unionName)
       .then(res => dispatch(ActionTypes.UNION_INVITES_FETCH, unionName))
       .catch(err => {
         commit(ActionTypes.UNION_GENERATE_INVITE_FAILED, err.response.data);

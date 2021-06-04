@@ -2,7 +2,6 @@ import { ActionTypes } from "@/actions/union";
 import { UnionType } from "@/api/union";
 import { UnionState } from "@/store/modules/union";
 import { MutationTree } from "vuex";
-import { now } from "moment";
 
 export interface MutationsInterface {
   [ActionTypes.UNION_FETCHING](state: UnionState, payload: boolean): void;
@@ -37,6 +36,7 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
   },
   [ActionTypes.UNION_INVITES_SUCCESS](state: UnionState, payload: any) {
     state.invites = payload;
+    state.isFetching = false;
   },
   [ActionTypes.UNION_GENERATE_INVITE_FAILED](state: UnionState, err: string) {
     state.errors = err;

@@ -17,7 +17,7 @@ export type UnionState = UnionModuleStateInterface;
 export const union: Module<UnionState, RootState> = {
   state: () => ({
     isFetching: false,
-    errors: "INIT",
+    errors: "",
     union: null,
     invites: null,
   }),
