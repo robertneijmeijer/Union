@@ -46,6 +46,7 @@
 
 <script>
 import PostApi from "../api/posts"
+import { ActionTypes } from "../actions/union";
 
 export default {
   name: "createPostComponent",
@@ -69,6 +70,11 @@ export default {
         message: this.content,
         union: this.name,
         user: this.user
+      }).then(() => {
+        this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
+          unionName: this.name,
+          page: 1,
+        });
       })
       this.toggleCreatePost();
     },
