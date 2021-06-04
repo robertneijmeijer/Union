@@ -4,7 +4,7 @@
   },
   "union_create": {
     "welcome": "Welcome to",
-    "create_community": "Create a community",
+    "create_community": "Create a union",
     "fields_required": "* Fields are required",
     "name": "Name *",
     "description": "Description *",
@@ -14,7 +14,7 @@
     "max_invites": "Members get max 2 invites",
     "icon": "Icon",
     "banner_image": "Banner image",
-    "create_button": "Create community"
+    "create_button": "Create union"
   },
   "register": {
     "sign_up": "Sign up to Union",
@@ -52,13 +52,15 @@
   },
   "union_overview": {
     "search": "Search",
-    "community-info": "About community",
+    "community-info": "About union",
     "online-members": "online",
     "members": "members",
     "create-post": "Create Post",
     "invite-members": "Invite Members",
     "created": "Created",
-    "joined": "Joined"
+    "joined": "Joined",
+    "no_posts_yet": "There are no posts in this union yet.",
+    "create_post_hint": "Create one with the button on the right!"
   },
   "invite": {
     "invited": "has invited you to",
