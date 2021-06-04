@@ -32,12 +32,12 @@ const routes = [
     component: unionCreateView,
   },
   {
-    path: "/union",
+    path: "/home/landingspage",
     name: "union-no-overview",
     component: noUnionOverview,
   },
   {
-    path: "/overview",
+    path: "/home",
     name: "union-overview",
     component: unionOverview,
   },
@@ -63,6 +63,14 @@ const router = createRouter({
   routes,
 });
 
+export const toOverview = () => {
+  router.push("/home");
+};
+
+export const toCreateUnion = () => {
+  router.push("/create-union");
+};
+
 export const logout = () => {
   if (Cookie.get("Authorization")) {
     Cookie.remove("Authorization");
@@ -82,7 +90,7 @@ router.beforeEach((to, from, next) => {
     (to.name === "login" || to.name === "register" || to.name === "/") &&
     Cookie.get("Authorization")
   ) {
-    next({ path: "/overview" });
+    next({ path: "/home" });
   } else next();
 });
 

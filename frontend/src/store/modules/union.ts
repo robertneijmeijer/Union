@@ -8,8 +8,9 @@ import { InviteInfoResponse } from "@/api/invite";
 export interface UnionModuleStateInterface {
   isFetching: boolean;
   errors: string;
-  union: UnionType | null;
+  data: UnionType | null;
   invites: string | null;
+  unions: UnionType[] | null;
 }
 
 export type UnionState = UnionModuleStateInterface;
@@ -18,8 +19,9 @@ export const union: Module<UnionState, RootState> = {
   state: () => ({
     isFetching: false,
     errors: "",
-    union: null,
     invites: null,
+    data: null,
+    unions: null,
   }),
   mutations,
   actions,

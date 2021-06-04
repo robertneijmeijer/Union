@@ -1,37 +1,42 @@
 <template>
-  <a href="" class="table-union-content">
+  <a v-on:click="onClickUnion()" class="table-union-content">
     <div class="banner">
       <img
         class="image"
-        v-bind:src="getImage(union.imageUrl)"
-        alt="Responsive banner"
+        :src="require(`../assets/img/${unionsArray.union.banner}`)"
+        alt="responsive image"
       />
     </div>
     <div class="union">
-      <h2 class="name">{{ union.name }}</h2>
+      <h2 class="name">{{ unionsArray.union.name }}</h2>
     </div>
     <div id="icon" class="icon-content">
-      <img class="image-logo" src="../assets/img/bitcoin-icon.png" />
+      <img
+        class="image-logo"
+        :src="require(`../assets/img/${unionsArray.union.icon}`)"
+      />
     </div>
   </a>
 </template>
 
 <script>
-function getImage(path) {
-  return require(`../assets/img/${path}`);
-}
+import router, { toOverview } from "@/router";
 
 export default {
   name: "unionListItem",
   props: {
-    union: {
-      name: String,
-      imageUrl: String,
-    },
-    index: Number,
+    unionsArray: Object,
   },
   methods: {
-    getImage,
+    onClickUnion() {
+      let name;
+      if (this.unionsArray.union && this.unionsArray.union.name) {
+        name = this.unionsArray.union.name;
+        router.push("/union/" + name);
+      } else {
+        toOverview();
+      }
+    },
   },
 };
 </script>

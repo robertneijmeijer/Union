@@ -47,7 +47,8 @@
     "forgot_password": "Forgot your password?",
     "errors": {
       "incorrect_username_password": "Incorrect username or password"
-    }
+    },
+    "logout": "Logout"
   },
   "union_overview": {
     "search": "Search",
@@ -86,5 +87,9 @@
     "comment_hint": "Share your thoughts...",
     "submit": "Submit",
     "post_not_found": "Post not found"
+  },
+  "union-overview": {
+    "joined_unions": "Create a union",
+    "home": "Home"
   }
 }

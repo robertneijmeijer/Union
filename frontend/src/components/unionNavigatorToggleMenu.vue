@@ -4,7 +4,12 @@
       <searchbar-component></searchbar-component>
     </div>
     <div class="item line">
-      <a href="">Account</a>
+      <a href="" v-on:click="toUnions()">{{ $t("union-overview.home") }}</a>
+    </div>
+    <div class="item line">
+      <a href="" v-on:click="toCreate()">{{
+        $t("union-overview.joined_unions")
+      }}</a>
     </div>
     <div class="item line">
       <div class="switcher">
@@ -12,7 +17,7 @@
       </div>
     </div>
     <div class="item line">
-      <a href="" v-on:click="logout()">Logout</a>
+      <a href="" v-on:click="logout()">{{ $t("login.logout") }}</a>
     </div>
   </div>
 </template>
@@ -20,14 +25,20 @@
 <script>
 import SearchbarComponent from "@/components/searchbarComponent";
 import LocaleSwitcher from "@/components/localeSwitcher";
-import { logout } from "@/router";
+import { toOverview, logout, toCreateUnion } from "@/router";
 
 export default {
   name: "union-toggle-menu",
   components: { SearchbarComponent, LocaleSwitcher },
   methods: {
-    logout: function() {
+    logout: function () {
       logout();
+    },
+    toUnions: function () {
+      toOverview();
+    },
+    toCreate() {
+      toCreateUnion();
     },
   },
 };

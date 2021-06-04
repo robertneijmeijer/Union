@@ -5,12 +5,8 @@
       v-if="showCreatePost"
       @callbackToggleCreatePost="toggleCreatePost"
     />
-    <UnionHeader :name="union.name" :banner="union.banner" :icon="union.icon" />
-    <UnionContent
-      :description="union.description"
-      :posts="posts"
-      @callbackToggleCreatePost="toggleCreatePost"
-    />
+    <UnionHeader />
+    <UnionContent v-if="union" @callbackToggleCreatePost="toggleCreatePost" />
   </div>
 </template>
 
@@ -46,7 +42,7 @@ export default {
   },
   computed: {
     union() {
-      return this.$store.state.union.union;
+      return this.$store.state.union.data;
     },
   },
   created() {

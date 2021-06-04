@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'posts',
     'unions',
     'comments',
-    'invitations'
+    'invitations',
+    'votes',
+    'unionImages'
 ]
 
 REST_FRAMEWORK = {
@@ -100,8 +102,17 @@ DATABASES = {
         'NAME': os.getenv("POSTGRES_DB") or "postgres",
         'USER': os.getenv("POSTGRES_USER") or "postgres",
         'PASSWORD': os.getenv("POSTGRES_PASSWORD") or "root",
-        'HOST': os.getenv("POSTGRES_HOST") or "localhost",  # Should be container name or localhost for standalone run
+        # Should be container name or localhost for standalone run
+        'HOST': os.getenv("POSTGRES_HOST") or "localhost",
         'PORT': 5432
+    }
+}
+
+MINIO = {
+    'default': {
+        'MINIO_ADDRESS': os.getenv("MINIO_ADDRESS") or "minio:9000",
+        'MINIO_ACCESS_KEY': os.getenv("MINIO_ACCESS_KEY") or "minio",
+        'MINIO_SECRET_KEY': os.getenv("MINIO_SECRET_KEY") or "minio123",
     }
 }
 
@@ -131,3 +142,5 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+MINIO_STORAGE_USE_HTTPS = False

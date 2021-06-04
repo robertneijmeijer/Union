@@ -96,7 +96,7 @@ export const actions: ActionTree<UserState, RootState> & ActionsInterface = {
       .then(response => {
         if (response.status == 200) {
           store.commit(ActionTypes.LOGIN_ACTION_SUCCESS, response.data);
-          router.push("union");
+          router.push("home");
         } else {
           commit(ActionTypes.LOGIN_ACTION_FAILED, {
             general: i18n.global.t("global.generalized_error_message"),

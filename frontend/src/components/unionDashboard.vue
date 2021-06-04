@@ -1,40 +1,26 @@
 <template>
   <div class="union-grid">
-    <h2>Joined Unions</h2>
+    <h2>{{ $t("union-overview.joined_unions") }}</h2>
     <div id="union" class="union-section">
       <div
         class="union-section-post-comment"
-        v-for="(union, index) in unions"
+        v-for="union in unions"
         v-bind:key="union.id"
       >
-        <union-list-item :union="union" :index="index" />
+        <union-list-item :unions-array="union" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import UnionListItem from "@/components/unionListItem";
+import UnionListItem from "../components/unionListItem.vue";
 
 export default {
   name: "unionDashboard",
   components: { UnionListItem },
-  data() {
-    return {
-      unions: [
-        {
-          id: 1,
-          name: "The crypto union",
-          imageUrl:
-            "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg",
-        },
-        {
-          id: 4,
-          name: "The crypto union",
-          imageUrl: "crypto-valuta-horizontale-banner-bitcoin-digital-web-money-technology_48369-13318.jpeg",
-        },
-      ],
-    };
+  props: {
+    unions: Array,
   },
 };
 </script>
@@ -71,7 +57,7 @@ h2 {
 .union-section-post-comment {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 1em;
   background-color: $primary-gray;
 }
