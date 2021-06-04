@@ -22,7 +22,7 @@ class CreateUnion(APITestCase):
     #
     #     req = self.client.get(f'/comments?post=1', format='json')
     #
-    #     content_unicode = json.loads(req.content.decode('utf-8'))
+    #     content_unicode = req.content.decode('utf-8')
     #     content = json.loads(content_unicode)['results']
     #
     #     self.assertTrue(req.status_code == status.HTTP_200_OK)
