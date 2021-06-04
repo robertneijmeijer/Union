@@ -128,7 +128,7 @@ class OpenInvitationsAPIView(APIView):
         if token is None or user is None:
             return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
-        queryset = Invitation.objects.filter(invite_creator=user, union=union, accepted_at__isnull=False)
+        queryset = Invitation.objects.filter(invite_creator=user, union=union, accepted_at__isnull=True)
         invites_left = UnionUsers.objects.filter(union=union, user=user).get().invites_left
         ser = self.serializer_class(queryset, many=True)
 
