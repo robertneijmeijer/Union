@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <Navigator :loggedIn="true" :landingsPage="false" />
-    <CreateUnionComponent />
-  </div>
+  <Navigator :loggedIn="true" :landingsPage="false" />
+  <CreateUnionComponent />
 </template>
 
 <script>

@@ -94,7 +94,7 @@
     "post_not_found": "Post not found"
   },
   "union-overview": {
-    "joined_unions": "Your unions",
-    "home": "Home"
+    "my_unions": "Create unions",
+    "home": "My unions"
   }
 }

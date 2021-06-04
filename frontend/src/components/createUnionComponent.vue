@@ -1,17 +1,8 @@
 <template>
   <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="header-row">
-        <h1 class="welcome-text">{{ $t("union_create.welcome") }}</h1>
-        <img src="../assets/svg/union.svg" />
-        <h1 class="welcome-text">!</h1>
-      </div>
-    </div>
     <div class="union-card border-for-div">
-      <div>
-        <p class="createTitle">{{ $t("union_create.create_community") }}</p>
-        <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
-      </div>
+      <p class="requiredFields">{{ $t("union_create.fields_required") }}</p>
+      <p class="createTitle">{{ $t("union_create.create_community") }}</p>
       <div class="union-card-body">
         <div>
           <section>
@@ -193,10 +184,10 @@ export default {
 
 .union-card {
   display: flex;
+  margin-top: 5%;
   flex-direction: column;
   height: auto;
   padding: $paddingMedium;
-  margin-bottom: 300px;
   background-color: $primary-black;
   border-radius: $borderRadius;
   font-weight: 500;
@@ -301,12 +292,10 @@ export default {
 }
 
 .requiredFields {
-  float: right;
   user-select: none;
   color: #c8c8c8;
-  font-size: 18px;
+  font-size: 0.8rem;
   white-space: nowrap;
-  margin: 0 !important;
 }
 
 .union-create-btn {

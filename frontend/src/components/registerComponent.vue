@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="d-flex justify-content-center h-100">
-      <div class="card">
+      <div class="card border-for-div">
         <div class="card-header">
           <h5 class="registerTitle">{{ $t("register.sign_up") }}</h5>
         </div>
