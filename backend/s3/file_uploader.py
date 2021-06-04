@@ -1,3 +1,4 @@
+import logging
 from re import T
 from minio import Minio
 from minio.error import S3Error
@@ -57,23 +58,21 @@ def file_uploader(name, file):
         # Set policy for images so that the frontend can get them
         client.set_bucket_policy(
             bucket_name=bucketName, policy=json.dumps(policy))
-
-        names = ['defaultBanner.png','unionCircle.png']
-        for name in names:
-            file = Image.open('../assets/' + name) #We need PIL image to load the file from assets
-            buffer = io.BytesIO() # Minio wants a steam with a read and size
-            file.save(buffer,"png") # Save the file to the stream as a png
-            buffer.seek(0) #Set the buffer to the first position
-            client.put_object(bucket_name=bucketName, object_name=name,
-                        data=buffer, length=buffer.getbuffer().nbytes) #Get the length of the buffer
-
     else:
         print("Bucket already exists")
 
     name = str(uuid.uuid4()) + name.replace(" ", "")
 
-    client.put_object(bucket_name=bucketName, object_name=name,
-                    data=file, length=file.size)
+    try:
+        client.put_object(bucket_name=bucketName, object_name=name,
+                      data=file, length=file.size)
+    except Exception:
+        file = Image.open(file) #We need PIL image to load the file from assets
+        buffer = io.BytesIO() # Minio wants a steam with a read and size
+        file.save(buffer,"png") # Save the file to the stream as a png
+        buffer.seek(0) #Set the buffer to the first position
+        client.put_object(bucket_name=bucketName, object_name=name,
+                      data=buffer, length=buffer.getbuffer().nbytes) #Get the length of the buffer
 
     return "http://localhost:9000/" + bucketName + "/" + name
 
