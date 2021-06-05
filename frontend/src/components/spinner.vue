@@ -9,7 +9,7 @@ export default {
   name: "spinner",
   components: { ClipLoader },
   computed: {
-    sizeValue: function() {
+    sizeValue: function () {
       switch (this.size) {
         case "small":
           return "25px";

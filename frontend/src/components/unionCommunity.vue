@@ -19,9 +19,8 @@
 </template>
 
 <script>
-
 import InviteModal from "@/components/inviteModal";
-import {UnionType} from "@/api/union";
+import { UnionType } from "@/api/union";
 import moment from "moment";
 
 export default {
@@ -32,13 +31,13 @@ export default {
       this.$emit("callbackToggleCreatePost");
     },
     createdAt() {
-      return moment(this.union.created_at).format('MMMM Do YYYY')
-    }
+      return moment(this.union.created_at).format("MMMM Do YYYY");
+    },
   },
   data() {
     return {
       showModal: false,
-    }
+    };
   },
   props: {
     union: { type: UnionType, required: true },

@@ -1,6 +1,5 @@
 <template>
   <div class="menu">
-
     <div class="item line" v-on:click="toUnions()">
       <p>{{ $t("union-overview.home") }}</p>
     </div>
@@ -20,7 +19,6 @@
     <div class="item line" v-on:click="logout()">
       <p>{{ $t("login.logout") }}</p>
     </div>
-
   </div>
 </template>
 

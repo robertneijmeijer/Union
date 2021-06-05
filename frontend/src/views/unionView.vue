@@ -2,9 +2,9 @@
   <div>
     <Navigator :loggedIn="true" :landingsPage="false" />
     <CreatePostComponent
-        v-if="showCreatePost"
-        @callbackToggleCreatePost="toggleCreatePost"
-        :name="union.name"
+      v-if="showCreatePost"
+      @callbackToggleCreatePost="toggleCreatePost"
+      :name="union.name"
     />
     <UnionHeader />
     <UnionContent v-if="union" @callbackToggleCreatePost="toggleCreatePost" />
@@ -31,8 +31,8 @@ export default {
   },
   data() {
     return {
-        showCreatePost: false
-    }
+      showCreatePost: false,
+    };
   },
   methods: {
     toggleCreatePost() {
