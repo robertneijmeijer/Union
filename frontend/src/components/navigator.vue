@@ -175,6 +175,7 @@ export default {
   position: absolute;
   right: 0;
   top: 55px;
+  z-index: 1;
 }
 
 .buttons {
