@@ -18,7 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
     user_vote = serializers.SerializerMethodField()
     votes = serializers.SerializerMethodField()
-    user = UserSerializerSimple()
+    user = UserSerializerSimple(read_only=True)
 
     class Meta:
         model = Comment

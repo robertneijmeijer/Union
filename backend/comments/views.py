@@ -51,7 +51,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment['user'] = user.user_id
 
         # Validate and save according to serializer
-        serializer = self.serializer_class(data=comment)
+        serializer = self.serializer_class(data=comment, context={"user": user})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         serialized_data = serializer.data

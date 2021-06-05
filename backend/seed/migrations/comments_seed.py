@@ -34,18 +34,21 @@ def create_comments(a, b):
     ]
 
     for post in Post.objects.all():
-        random_user = choice(list(User.objects.all()))
 
-        comment = {
-            "user": random_user.user_id,
-            "text": choice(description),
-            "post": post.post_id,
-        }
+        for i in range(8):
+            random_user: User = choice(list(User.objects.all()))
 
-        ser = CommentSerializer(data=comment)
-        ser.is_valid(raise_exception=True)
-        ser.save()
-        logging.info(f"{comment} comment created.")
+            comment = {
+                "user_id": random_user.user_id,
+                "text": choice(description),
+                "post": post.post_id,
+            }
+
+            ser = CommentSerializer(data=comment)
+            ser.is_valid(raise_exception=True)
+            ser.save()
+            logging.info(f"{comment} comment created.")
+
 
     return True
 
