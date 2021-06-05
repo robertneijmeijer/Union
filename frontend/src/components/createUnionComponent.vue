@@ -7,6 +7,9 @@
       <div class="union-card-body">
         <section>
           <h4>{{ $t("union_create.name") }}</h4>
+          <p v-if="name_inValid" class="error-text-color">
+            {{ $t("union_create.invalid_title") }}
+          </p>
           <input
             type="text"
             name="usernameId"
@@ -20,6 +23,9 @@
           <h4>
             {{ $t("union_create.description") }}
           </h4>
+          <p v-if="description_inValid" class="error-text-color">
+            {{ $t("union_create.invalid_description") }}
+          </p>
           <textarea
             size="lg"
             type="text"
@@ -33,6 +39,9 @@
           <section class="union-card-invites">
             <h4>{{ $t("union_create.invite_privilege") }}</h4>
             <p>{{ $t("union_create.max_invites") }}</p>
+            <p v-if="invite_inValid" class="error-text-color">
+              {{ $t("union_create.invalid_ratio") }}
+            </p>
 
             <div class="union-card-invites-rows">
               <div class="union-card-invites-rows-radio">
@@ -379,5 +388,10 @@ img {
 
 .error-border {
   border-color: $errorColor !important;
+}
+
+.error-text-color {
+  color: $errorColor !important;
+  font-size: 1rem !important;
 }
 </style>

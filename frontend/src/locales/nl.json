@@ -4,6 +4,9 @@
   },
   "union_create": {
     "welcome": "Welkom op",
+    "invalid_title": "Titel mag niet leeg zijn en mag alleen nummers en letters bevatten",
+    "invalid_description": "Beschrijving mag niet leeg zijn",
+    "invalid_ratio": "Kies een van de onderstaande opties",
     "create_community": "Maak een union",
     "fields_required": "* Verplichte velden",
     "name": "Naam *",
