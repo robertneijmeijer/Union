@@ -72,7 +72,7 @@ export function isValidPassword(password: string): ValidatorResponse {
 export function isValidPostTitle(title: string): ValidatorResponse {
   const response: ValidatorResponse = { isValid: true, errorMessage: "" };
 
-  if( !title || title.length <= 0) {
+  if (!title || title.length <= 0) {
     response.isValid = false;
     response.errorMessage = i18n.global.t("create_post.errors.title");
   }
@@ -82,7 +82,7 @@ export function isValidPostTitle(title: string): ValidatorResponse {
 export function isValidPostDescription(description: string): ValidatorResponse {
   const response: ValidatorResponse = { isValid: true, errorMessage: "" };
 
-  if( !description || description.length <= 0) {
+  if (!description || description.length <= 0) {
     response.isValid = false;
     response.errorMessage = i18n.global.t("create_post.errors.description");
   }
