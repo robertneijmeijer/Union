@@ -1,6 +1,6 @@
 <template>
   <div class="union-grid border-for-div">
-    <h2>{{ $t("union-overview.joined_unions") }}</h2>
+    <h2>{{ $t("union-overview.home") }}</h2>
     <div id="union" class="union-section">
       <div
         class="union-section-post-comment"
@@ -47,6 +47,7 @@ h2 {
 
 .union-section {
   display: grid;
+  grid-template-columns: 33fr 33fr 33fr;
   gap: 1rem;
   padding: 2em;
   column-gap: 1em;
