@@ -2,7 +2,12 @@
   <div class="union-section">
     <div
       class="union-section-post"
-      v-if="union && union.posts && union.posts.results  && union.posts.results.length > 0"
+      v-if="
+        union &&
+        union.posts &&
+        union.posts.results &&
+        union.posts.results.length > 0
+      "
     >
       <div
         class="union-section-post-comment border-for-div"
@@ -13,8 +18,8 @@
       </div>
     </div>
     <div v-else class="text-white union-section-post">
-        <p> {{ $t("union_overview.no_posts_yet") }}</p>
-        <p> {{ $t("union_overview.create_post_hint") }}</p>
+      <p>{{ $t("union_overview.no_posts_yet") }}</p>
+      <p>{{ $t("union_overview.create_post_hint") }}</p>
     </div>
     <div class="union-section-community">
       <UnionCommunity

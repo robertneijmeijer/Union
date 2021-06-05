@@ -39,16 +39,18 @@
     </div>
 
     <div class="table-post-content">
-      <h4>{{ post.title }}</h4>
+      <h4>
+        <a href="" v-on:click="toPost()">{{ post.title }} </a>
+      </h4>
       <p class="table-post-text">{{ post.message }}</p>
       <div class="table-comments-amount">
         <a
           href=""
-          v-on:click="toComments"
+          v-on:click="toPost()"
           v-if="post.number_of_comments && post.number_of_comments > 0"
           >Show comments ({{ number_of_comments }})</a
         >
-        <a href="" v-on:click="toComments" v-else>Be the first to comment</a>
+        <a href="" v-on:click="toPost" v-else>Be the first to comment</a>
       </div>
     </div>
   </div>
@@ -57,6 +59,7 @@
 <script>
 import { ActionTypes } from "../actions/union";
 import PostApi, { VoteENUM } from "../api/posts";
+import router from "@/router";
 
 export default {
   name: "union-post-component",
@@ -68,6 +71,11 @@ export default {
     this.vote(this.post.user_vote, true);
   },
   methods: {
+    toPost() {
+      let post_id = this.post.post_id;
+      router.push("/post/" + post_id);
+    },
+
     upvote() {
       this.vote(VoteENUM.UPVOTE, false);
     },
@@ -222,6 +230,7 @@ td:last-child {
 .upvote:focus {
   fill: $unionBlue;
 }
+
 .downvote:hover,
 .downvote:active,
 .downvote:focus {

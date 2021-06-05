@@ -10,6 +10,7 @@ export enum VoteENUM {
 }
 
 export type PostType = {
+  post_id: number;
   title: string;
   message: string;
   created_at: boolean;

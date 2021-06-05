@@ -79,7 +79,11 @@
     "title": "Post maken",
     "post_title": "Titel",
     "post_content": "Inhoud",
-    "image": "Afbeelding"
+    "image": "Afbeelding",
+    "errors": {
+      "title" : "Vul a.u.b. een titel in",
+      "description": "Vul a.u.b. inhoud in"
+    }
   },
   "union_join": {
     "welcome": "Welkom op",

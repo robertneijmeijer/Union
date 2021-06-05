@@ -4,26 +4,42 @@
         <p class="create-title create-center">{{ $t("create_post.title") }}</p>
         <div>
           <p class="create-text">{{ $t("create_post.post_title") }}</p>
+          <div
+              v-if="!validTitle.isValid"
+              class="error-message overpass create-error-text"
+              role="alert"
+          >
+            {{ validTitle.errorMessage }}
+          </div>
           <div class="create-input-container">
             <input
                 type="text"
                 name="title"
                 class="create-input input"
-                v-model="title"/>
+                v-model="title"
+                v-on:focusout="onTitleFocusout"/>
           </div>
         </div>
           <div>
             <p class="create-text">{{ $t("create_post.post_content") }}</p>
+            <div
+                v-if="!validDescription.isValid"
+                class="error-message overpass create-error-text"
+                role="alert"
+            >
+              {{ validDescription.errorMessage }}
+            </div>
             <div class="create-input-container">
               <textarea
                   type="text"
                   name="content"
                   class="create-input create-content-input input"
-                  v-model="content"/>
+                  v-model="content"
+                  v-on:focusout="onContentFocusout"/>
             </div>
           </div>
         <div class="create-buttons">
-          <button class="btn btn-primary create-button" v-on:click="post()">
+          <button class="btn btn-primary create-button" :disabled="!validForm" v-on:click="post()">
             {{ $t("create_post.post") }}
           </button>
           <button
@@ -41,6 +57,7 @@
 <script>
 import PostApi from "../api/posts"
 import { ActionTypes } from "../actions/union";
+import { isValidPostTitle, isValidPostDescription } from "../validation/validation"
 
 export default {
   name: "createPostComponent",
@@ -55,9 +72,20 @@ export default {
       title : "",
       content: "",
       currentUnion: null,
+      validTitle: { isValid: true, errorMessage: "" },
+      validDescription: { isValid: true, errorMessage: "" },
+      validForm: false,
     }
   },
   methods: {
+    onTitleFocusout: function () {
+      this.validTitle = isValidPostTitle(this.title);
+      this.validForm = this.validTitle.isValid;
+    },
+    onContentFocusout: function () {
+      this.validDescription = isValidPostDescription(this.content);
+      this.validForm = this.validDescription.isValid
+    },
     post: function () {
       PostApi.postPost({
         title: this.title,
@@ -99,6 +127,10 @@ export default {
   position: fixed;
   top: 0;
   height: 100vh;
+}
+
+.create-error-text {
+  padding-left: $paddingHuge;
 }
 
 .create-card {
