@@ -81,7 +81,6 @@ export default {
       // If not initial set database and check if vote is neutral
       if (!initial) {
         if (vote === this.user_vote) checkedVote = VoteENUM.NEUTRAL;
-        // TODO: Check neutral
         this.handleVote(checkedVote);
       }
 

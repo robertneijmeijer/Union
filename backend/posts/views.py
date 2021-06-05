@@ -61,7 +61,6 @@ class PostViewSet(ModelViewSet):
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=post, context={'user': user})
-        serializer.context['user'] = user.user_id
         serializer.is_valid(raise_exception=True)
         serializer.save()
 

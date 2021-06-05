@@ -199,6 +199,12 @@ export default {
   width: 100%;
 }
 
+hr {
+  color: white;
+  border-top: 1px $secondary-gray solid;
+  margin: $paddingMedium 0;
+}
+
 .center-center {
   display: flex !important;
   justify-content: center !important;

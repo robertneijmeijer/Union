@@ -19,7 +19,6 @@
 
 <script>
 
-// eslint-disable-next-line
 import VotingComponent from "@/components/votingComponent"
 import moment from "moment";
 import DefaultUserIcon from "../assets/img/default-user-icon.png";
@@ -39,7 +38,6 @@ import PostApi from "@/api/posts";
 
 export default {
   name: "commentComponent",
-  // eslint-disable-next-line
   components: {VotingComponent},
   props: {
     comment: {type: Object, required: true} // type: CommentType

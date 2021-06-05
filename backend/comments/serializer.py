@@ -50,8 +50,9 @@ class CommentSerializer(serializers.ModelSerializer):
         return result
 
     def get_user_vote(self, comment: Comment):
+        current_user = self.context.get('user')
         votes: QuerySet[Vote] = Vote.objects.filter(
-            post=None, comment=comment.comment_id, user=comment.user_id)
+            post=None, comment=comment.comment_id, user=current_user.user_id)
         if votes.count() == 0:
             return "NEUTRAL"
         else:
