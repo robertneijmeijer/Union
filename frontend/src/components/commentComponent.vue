@@ -67,7 +67,7 @@ export default {
 
 .comment-container {
   width: 100%;
-  background-color: $secondary-gray;
+  background-color: $comment-light-gray;
   border-radius: $borderRadius * 2;
   padding: $paddingSmall * 1.5;
   margin: $paddingMedium 0;

@@ -8,7 +8,7 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes"/>
+    <voting-component :votes="postState.post.votes" />
     <div class="post-content text-white">
       <!--        TODO: Icon from s3-->
       <div>
@@ -27,12 +27,12 @@
       <p>{{ postState.post.message }}</p>
       <p>
         <img
-            src="../assets/img/comment.png"
-            alt="Comment Icon"
-            class="comment-icon"
+          src="../assets/img/comment.png"
+          alt="Comment Icon"
+          class="comment-icon"
         />
         <span
-        >{{ postState.post.number_of_comments }}
+          >{{ postState.post.number_of_comments }}
           {{ $t("post.comments") }}</span
         >
       </p>
@@ -44,9 +44,9 @@
           <span class="user">{{ userState.user.username }}</span>
         </p>
         <textarea
-            type="text"
-            class="form-control input"
-            :placeholder="$t('post.comment_hint')"
+          type="text"
+          class="form-control input"
+          :placeholder="$t('post.comment_hint')"
         />
         <button class="btn btn-primary union-button-medium">
           {{ $t("post.submit") }}
@@ -200,7 +200,7 @@ export default {
     },
     userState() {
       return this.$store.state.user;
-    }
+    },
   },
   methods: {
     moment: function (value) {
@@ -220,7 +220,6 @@ export default {
 
 .comment-container {
   width: 100%;
-
 }
 
 .center-center {
@@ -266,7 +265,6 @@ export default {
       margin-top: $paddingMedium;
       margin-right: $paddingSmall * 1.75;
       float: right;
-
     }
   }
 
