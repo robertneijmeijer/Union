@@ -157,7 +157,6 @@ import {
   isValidPassword,
   isValidUsername,
 } from "../validation/validation";
-import { ValidatorResponse } from "../validation/validation";
 
 const { mapFields } = require("vuex-map-fields");
 

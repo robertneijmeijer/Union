@@ -81,7 +81,7 @@
     "post_content": "Content",
     "image": "Image",
     "errors": {
-      "title" : "Please fill in a title",
+      "title": "Please fill in a title",
       "description": "Please fill in a description"
     }
   },
@@ -97,7 +97,9 @@
     "comment_as": "Comment as",
     "comment_hint": "Share your thoughts...",
     "submit": "Submit",
-    "post_not_found": "Post not found"
+    "post_not_found": "Post not found",
+    "first_comment": "Be the first to comment",
+    "show_comments": "Show comments"
   },
   "union-overview": {
     "my_unions": "Create unions",
