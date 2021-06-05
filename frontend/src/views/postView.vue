@@ -1,12 +1,12 @@
 <template>
   <Navigator :loggedIn="true" :landingsPage="false" />
   <div class="post-container">
-    <PostComponent />
+    <post-component/>
   </div>
 </template>
 
 <script>
-import postComponent from "@/components/postComponent";
+import PostComponent from "@/components/postComponent";
 import Navigator from "../components/navigator.vue";
 import { ActionTypes } from "@/actions/post";
 
@@ -14,7 +14,7 @@ export default {
   name: "postView",
   components: {
     Navigator,
-    postComponent,
+    PostComponent,
   },
   data() {
     return {
