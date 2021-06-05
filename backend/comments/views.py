@@ -25,7 +25,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         if post is None:
             return HttpResponseBadRequest("Query param 'post' required.")
 
-        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
+        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes', '-created_at')
 
         query_set = self.filter_queryset(comments)
         query_set = query_set.filter(post=post)

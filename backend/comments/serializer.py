@@ -3,6 +3,8 @@ from comments.models import Comment
 from users.models import User
 from django.forms.models import model_to_dict
 
+from users.serializers import UserSerializerSimple
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    user = UserSerializerSimple()
 
     class Meta:
         model = Comment

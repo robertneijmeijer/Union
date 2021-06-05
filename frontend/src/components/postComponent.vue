@@ -8,18 +8,18 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes" />
+    <voting-component :votes="postState.post.votes"/>
     <div class="post-content text-white">
       <!--        TODO: Icon from s3-->
       <div>
         <img
-          class="union-icon"
-          src="../assets/img/bitcoin-icon.png"
-          alt="Union icon"
+            class="union-icon"
+            :src="unionAvatar()"
+            alt="Union icon"
         />
         {{ postState.post.union.name }}
         <span
-          >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
+        >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
           {{ moment(postState.post.created_at) }}</span
         >
       </div>
@@ -27,12 +27,12 @@
       <p>{{ postState.post.message }}</p>
       <p>
         <img
-          src="../assets/img/comment.png"
-          alt="Comment Icon"
-          class="comment-icon"
+            src="../assets/img/comment.png"
+            alt="Comment Icon"
+            class="comment-icon"
         />
         <span
-          >{{ postState.post.number_of_comments }}
+        >{{ postState.post.number_of_comments }}
           {{ $t("post.comments") }}</span
         >
       </p>
@@ -44,9 +44,9 @@
           <span class="user">{{ userState.user.username }}</span>
         </p>
         <textarea
-          type="text"
-          class="form-control input"
-          :placeholder="$t('post.comment_hint')"
+            type="text"
+            class="form-control input"
+            :placeholder="$t('post.comment_hint')"
         />
         <button class="btn btn-primary union-button-medium">
           {{ $t("post.submit") }}
@@ -54,9 +54,13 @@
       </div>
 
       <hr>
-
-      <div class="text-white">
-       <comment-component />
+      <!--      TODO: Style HR-->
+      <div
+          v-for="comment in comments"
+          v-bind:key="comment.comment_id"
+      >
+        <comment-component :comment="comment"/>
+        <!--        Ordering is done in the backend. No ordering needed.-->
       </div>
     </div>
   </div>
@@ -74,22 +78,139 @@ import votingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
 import CommentComponent from "@/components/commentComponent";
+import DefaultUnionIcon from "../assets/img/bitcoin-icon.png"
 
 export default {
   name: "postComponent",
-  components: { votingComponent, Spinner, CommentComponent },
+  components: {votingComponent, Spinner, CommentComponent},
+  data() {
+    return {
+      comments: [
+        {
+          "comment_id": 2,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": "https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png"
+          },
+          "text": "Dikke Comment 2",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:42.258390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 3,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": "https://cdn.iconscout.com/icon/free/png-256/avatar-366-456318.png"
+          },
+          "text": "JOE!!!",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:45.888390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 4,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": "https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png"
+          },
+          "text": "Buy Bitcoin?",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:55.492782Z",
+          "post": 1
+        },
+
+        {
+          "comment_id": 5,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Hell no",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:41:00.770984Z",
+          "post": 1
+        },
+        {
+          "comment_id": 4,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Buy Bitcoin?",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:55.492782Z",
+          "post": 1
+        },
+        {
+          "comment_id": 3,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "JOE!!!",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:45.888390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 2,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Dikke Comment 2",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:42.258390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 1,
+          "children": [],
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Dikke Comment",
+          "upvotes": 0,
+          "downvotes": 0,
+          "created_at": "2021-06-05T14:40:38.621359Z",
+          "post": 1
+        }
+      ]
+    }
+  },
   computed: {
     postState() {
       return this.$store.state.posts;
     },
     userState() {
       return this.$store.state.user;
-    },
+    }
   },
   methods: {
     moment: function (value) {
       return moment(value).fromNow();
     },
+    unionAvatar() {
+      return this.postState.post.union.icon ?
+          this.postState.post.union.icon :
+          DefaultUnionIcon
+    }
   },
 };
 </script>

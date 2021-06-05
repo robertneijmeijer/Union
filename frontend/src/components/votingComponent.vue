@@ -1,5 +1,5 @@
 <template>
-  <div class="votes">
+  <div :class="orientation === 'horizontal' ? 'votes-horizontal' : 'votes'">
     <button @click="upvote">
       <svg
           class="vote-svg upvote"
@@ -46,10 +46,16 @@
 // TODO: Clean up and add logic for event handling
 // TODO: Do eventhandling
 
+
+
 export default {
   name: "votingComponent",
   props: {
     votes: String,
+    orientation: {
+      type: String, // 'horizontal' | 'vertical'
+      default: "vertical"
+    }
   },
 }
 </script>
@@ -57,17 +63,25 @@ export default {
 <style lang="scss">
 @import "../assets/theme";
 
-.votes {
-  vertical-align: top;
-  text-align: center;
-  padding: $paddingSmall;
-  max-width: 80px;
+.votes-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.votes, .votes-horizontal {
   button {
     background-color: transparent;
     border: none;
     outline: none;
   }
+}
+
+.votes {
+  vertical-align: top;
+  text-align: center;
+  padding: $paddingSmall;
+  max-width: 80px;
 }
 
 .votes-amount {
