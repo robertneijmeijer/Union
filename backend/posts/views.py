@@ -1,6 +1,7 @@
 from django.http import HttpResponseBadRequest
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
+import logging
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -15,6 +16,20 @@ from rest_framework.permissions import IsAuthenticated
 class PostsPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
+
+    def get_paginated_response(self, data):
+        nextPage: int = None
+
+        try:
+            nextPage = self.page.next_page_number()
+        except Exception:
+            logging.warning("Next page is not found")
+
+        return Response({
+            'next': nextPage,
+            'count': self.page.paginator.count,
+            'results': data
+        })
 
 
 class PostViewSet(ModelViewSet):

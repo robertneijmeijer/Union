@@ -1,63 +1,69 @@
 <template>
-    <div class="create-container create-center">
-      <div class="create-card border-for-div">
-        <p class="create-title create-center">{{ $t("create_post.title") }}</p>
-        <div>
-          <p class="create-text">{{ $t("create_post.post_title") }}</p>
-          <div
-              v-if="!validTitle.isValid"
-              class="error-message overpass create-error-text"
-              role="alert"
-          >
-            {{ validTitle.errorMessage }}
-          </div>
-          <div class="create-input-container">
-            <input
-                type="text"
-                name="title"
-                class="create-input input"
-                v-model="title"
-                v-on:focusout="onTitleFocusout"/>
-          </div>
+  <div class="create-container create-center">
+    <div class="create-card border-for-div">
+      <p class="create-title create-center">{{ $t("create_post.title") }}</p>
+      <div>
+        <p class="create-text">{{ $t("create_post.post_title") }}</p>
+        <div
+          v-if="!validTitle.isValid"
+          class="error-message overpass create-error-text"
+          role="alert"
+        >
+          {{ validTitle.errorMessage }}
         </div>
-          <div>
-            <p class="create-text">{{ $t("create_post.post_content") }}</p>
-            <div
-                v-if="!validDescription.isValid"
-                class="error-message overpass create-error-text"
-                role="alert"
-            >
-              {{ validDescription.errorMessage }}
-            </div>
-            <div class="create-input-container">
-              <textarea
-                  type="text"
-                  name="content"
-                  class="create-input create-content-input input"
-                  v-model="content"
-                  v-on:focusout="onContentFocusout"/>
-            </div>
-          </div>
-        <div class="create-buttons">
-          <button class="btn btn-primary create-button" :disabled="!validForm" v-on:click="post()">
-            {{ $t("create_post.post") }}
-          </button>
-          <button
-              class="btn btn-primary create-button create-button-cancel"
-              v-on:click="discard()"
-          >
-            {{ $t("create_post.discard") }}
-          </button>
+        <div class="create-input-container">
+          <input
+            type="text"
+            name="title"
+            class="create-input input"
+            v-model="title"
+            v-on:focusout="onTitleFocusout"
+          />
         </div>
       </div>
+      <div>
+        <p class="create-text">{{ $t("create_post.post_content") }}</p>
+        <div
+          v-if="!validDescription.isValid"
+          class="error-message overpass create-error-text"
+          role="alert"
+        >
+          {{ validDescription.errorMessage }}
+        </div>
+        <div class="create-input-container">
+          <textarea
+            type="text"
+            name="content"
+            class="create-input create-content-input input"
+            v-model="content"
+            v-on:focusout="onContentFocusout"
+          />
+        </div>
+      </div>
+      <div class="create-buttons">
+        <button
+          class="btn btn-primary create-button"
+          :disabled="!validForm"
+          v-on:click="post()"
+        >
+          {{ $t("create_post.post") }}
+        </button>
+        <button
+          class="btn btn-primary create-button create-button-cancel"
+          v-on:click="discard()"
+        >
+          {{ $t("create_post.discard") }}
+        </button>
+      </div>
     </div>
-  <div class="create-background"  />
+  </div>
+  <div class="create-background" />
 </template>
 
 <script>
-import PostApi from "../api/posts"
+import PostApi from "../api/posts";
 import { ActionTypes } from "../actions/union";
-import { isValidPostTitle, isValidPostDescription } from "../validation/validation"
+import { isValidPostTitle, isValidPostDescription } from "../util/validation";
 
 export default {
   name: "createPostComponent",
@@ -68,14 +74,14 @@ export default {
     name: { type: String, required: true },
   },
   data() {
-    return{
-      title : "",
+    return {
+      title: "",
       content: "",
       currentUnion: null,
       validTitle: { isValid: true, errorMessage: "" },
       validDescription: { isValid: true, errorMessage: "" },
       validForm: false,
-    }
+    };
   },
   methods: {
     onTitleFocusout: function () {
@@ -84,20 +90,20 @@ export default {
     },
     onContentFocusout: function () {
       this.validDescription = isValidPostDescription(this.content);
-      this.validForm = this.validDescription.isValid
+      this.validForm = this.validDescription.isValid;
     },
     post: function () {
       PostApi.postPost({
         title: this.title,
         message: this.content,
         union: this.name,
-        user: this.user
+        user: this.user,
       }).then(() => {
         this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
           unionName: this.name,
           page: 1,
         });
-      })
+      });
       this.toggleCreatePost();
     },
     discard: function () {
@@ -105,14 +111,14 @@ export default {
     },
     toggleCreatePost() {
       this.$emit("callbackToggleCreatePost");
-    }
+    },
   },
   computed: {
     user() {
       return this.$store.state.user.user;
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -240,5 +246,4 @@ export default {
   width: 100%;
   z-index: 1;
 }
-
 </style>

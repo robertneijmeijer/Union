@@ -119,11 +119,11 @@
                   name="login-button"
                   :disabled="
                     !validPassword.isValid ||
-                      !validEmail.isValid ||
-                      !validUsername.isValid ||
-                      formErrors.password ||
-                      formErrors.username ||
-                      formErrors.password
+                    !validEmail.isValid ||
+                    !validUsername.isValid ||
+                    formErrors.password ||
+                    formErrors.username ||
+                    formErrors.password
                   "
                   v-on:click="submit"
                 >
@@ -156,7 +156,8 @@ import {
   isValidEmail,
   isValidPassword,
   isValidUsername,
-} from "../validation/validation";
+  ValidatorResponse,
+} from "../util/validation";
 
 const { mapFields } = require("vuex-map-fields");
 
@@ -199,10 +200,10 @@ export default {
     this.$store.commit(FormMutations.FORM_DESTROY);
   },
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       router.push("/login");
     },
-    onUsernameFocusout: function() {
+    onUsernameFocusout: function () {
       if (
         !this.username ||
         this.username === "" ||
@@ -218,7 +219,7 @@ export default {
       });
       this.prevUsername = this.username;
     },
-    onEmailFocusout: function() {
+    onEmailFocusout: function () {
       if (this.email === "") {
         this.$store.commit(FormMutations.FORM_UNSET_ERROR, "email");
         this.validEmail = { isValid: true, errorMessage: "" };
@@ -233,7 +234,7 @@ export default {
       });
       this.prevEmail = this.email;
     },
-    onPasswordFocusout: function() {
+    onPasswordFocusout: function () {
       if (!this.password || !this.pwd_repeat) return;
 
       if (this.password !== this.pwd_repeat) {
@@ -246,7 +247,7 @@ export default {
         this.validPassword = isValidPassword(this.password);
       }
     },
-    submit: function(event) {
+    submit: function (event) {
       event.preventDefault();
       this.$store.commit(FormMutations.FORM_UNSET_ERROR, "password");
 
@@ -259,21 +260,21 @@ export default {
 
       this.$store.dispatch(ActionTypes.REGISTER_ACTION_SUBMIT, formValues);
     },
-    getUsernameErrorMessage: function() {
+    getUsernameErrorMessage: function () {
       if (!this.validUsername.isValid) {
         return this.validUsername.errorMessage;
       } else {
         return this.formErrors.username;
       }
     },
-    getEmailErrorMessage: function() {
+    getEmailErrorMessage: function () {
       if (!this.validEmail.isValid) {
         return this.validEmail.errorMessage;
       } else {
         return this.formErrors.email;
       }
     },
-    getPasswordErrorMessage: function() {
+    getPasswordErrorMessage: function () {
       if (!this.validPassword.isValid) {
         return this.validPassword.errorMessage;
       } else {

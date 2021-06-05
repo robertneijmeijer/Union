@@ -129,7 +129,7 @@
 <script>
 import router from "@/router";
 import UnionApi from "../api/union";
-import { validateUnionTitle } from "../validation/validation";
+import { validateUnionTitle } from "../util/validation";
 
 export default {
   name: "unionCreate",
@@ -145,10 +145,6 @@ export default {
       this.name_inValid = this.name ? validateUnionTitle(this.name) : true;
       this.description_inValid = !this.description;
       this.invite_inValid = this.members_can_invite == undefined;
-
-      console.log(
-        this.name_inValid || this.description_inValid || this.invite_inValid
-      );
 
       if (
         this.name_inValid ||
