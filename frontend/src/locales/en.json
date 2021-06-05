@@ -76,7 +76,11 @@
     "title": "Create post",
     "post_title": "Title",
     "post_content": "Content",
-    "image": "Image"
+    "image": "Image",
+    "errors": {
+      "title" : "Please fill in a title",
+      "description": "Please fill in a description"
+    }
   },
   "union_join": {
     "welcome": "Welcome to",
