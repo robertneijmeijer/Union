@@ -65,8 +65,13 @@ export default {
       this.$emit("callbackToggleCreatePost");
     },
     handleScroll() {
-      debounce(this.getNextPage(), 500);
+      if (this.union.posts && this.union.posts.next) {
+        debounce(this.getNextPage(), 500);
+      } else {
+        window.removeEventListener("scroll", this.handleScroll);
+      }
     },
+
     getNextPage() {
       if (
         document.documentElement.scrollHeight - window.innerHeight >
