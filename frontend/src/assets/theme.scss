@@ -1,0 +1,139 @@
+// Union stuff
+$landingsPageImage: url("/landingspage.jpg");
+$unionBlue: #00ffff;
+$unionlogo: 4.75em;
+$unionheaderheight: 16.7em;
+
+// Padding
+$paddingSmall: 0.625rem;
+$paddingMedium: 1.25rem;
+$paddingLarge: 1.875rem;
+$paddingHuge: 2.5rem;
+$buttonwidth: 7.5rem;
+
+//Colors
+$primary-black: #2c2c2c;
+$primary-gray: #1a1a1b;
+$secondary-gray: #424242;
+$primary-light-gray: #c8c8c8;
+$secondary-light-gray: #818384;
+$unionGreen: #00ff80;
+
+$errorColor: #ff00ff;
+
+// Button stuff
+$primary-btn: $primary-light-gray;
+$primary-btn-hover: #eeeeee;
+$primary-btn-active: $unionBlue;
+$secondary-btn-active: $errorColor;
+
+// Input stuff
+$inputTextFieldSelectedBorderColor: #4c4c4d;
+$inputTextFieldBorderColor: #2e2e2e;
+$inputTextfielColor: #6c6d6e;
+
+// Border stuff
+$borderColor: #343536;
+$borderRadius: 0.2rem;
+$border: 2px solid $borderColor;
+
+$buttonBorder: 3px solid;
+
+// Text size
+$textSmall: 1rem;
+$textMedium: 1.75rem;
+$textLarge: 2.25rem;
+$textHuge: 2.5rem;
+
+// Scrollbar
+// Scrollbar - width
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+// Scrollbar - Track
+::-webkit-scrollbar-track {
+  background: $primary-light-gray;
+}
+
+// Scrollbar - Handle
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+// Scrollbar - Handle hover
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.border-for-div {
+  border: $border;
+  border-radius: $borderRadius;
+  overflow: hidden;
+}
+
+.text-white {
+  color: white;
+}
+
+// Form classes
+.form-control {
+  background-color: #232323;
+  border-radius: $borderRadius;
+  border: 3px solid $inputTextFieldBorderColor;
+  color: #c8c8c8;
+}
+
+.form-control:focus {
+  background-color: #232323;
+  border: 3px solid $inputTextFieldSelectedBorderColor;
+  color: #c8c8c8;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  color: #c8c8c8;
+  font-family: "Numans", sans-serif;
+  border: 3px solid $inputTextFieldBorderColor;
+  -webkit-text-fill-color: #c8c8c8;
+  -webkit-box-shadow: 0 0 0px 1000px #232323 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea {
+  resize: none;
+}
+
+// Button
+.union-button {
+  border-radius: $borderRadius;
+  border: $buttonBorder $unionBlue;
+  color: white;
+  background: transparent;
+
+  &:hover {
+    background-color: $primary-black;
+    border: $buttonBorder $primary-black;
+  }
+}
+
+.union-button-small {
+  @extend .union-button;
+
+  font-size: $textSmall * 0.9;
+  padding: ($paddingSmall * 0.75) ($paddingSmall * 1.1);
+}
+
+.union-button-medium {
+  @extend .union-button;
+
+  font-size: $textSmall;
+  padding: ($paddingSmall * 0.8) ($paddingSmall * 1.2);
+}

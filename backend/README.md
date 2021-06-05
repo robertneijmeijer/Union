@@ -52,3 +52,16 @@ On the project root folder, run the command:
 ```
 python manage.py runserver
 ```
+
+# Running tests
+
+On the project root folder, run the command:
+
+```
+python manage.py test
+```
+
+Running specific tests
+```
+python manage.py test ./testfile
+```

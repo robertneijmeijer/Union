@@ -1,0 +1,79 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c8c8c8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.border-for-div {
+  border: 2px solid #343536;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.text-white {
+  color: white;
+}
+
+.form-control {
+  background-color: #232323;
+  border-radius: 8px;
+  border: 3px solid #2e2e2e;
+  color: #c8c8c8;
+}
+
+.form-control:focus {
+  background-color: #232323;
+  border: 3px solid #4c4c4d;
+  color: #c8c8c8;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  color: #c8c8c8;
+  border: 3px solid #2e2e2e;
+  -webkit-text-fill-color: #c8c8c8;
+  -webkit-box-shadow: 0 0 0px 1000px #232323 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea {
+  resize: none;
+}
+
+.union-button, .union-button-medium, .union-button-small {
+  border-radius: 33px;
+  border: 3px solid #00ffff;
+  color: white;
+  background: transparent;
+}
+.union-button:hover, .union-button-medium:hover, .union-button-small:hover {
+  background-color: #2c2c2c;
+  border: 3px solid #2c2c2c;
+}
+
+.union-button-small {
+  font-size: 0.9rem;
+  padding: 0.46875rem 0.6875rem;
+}
+
+.union-button-medium {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}

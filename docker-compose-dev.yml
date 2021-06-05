@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  minio:
+    image: minio/minio
+    volumes:
+      - data1-1:/data1
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command: server /data
+  database:
+    container_name: db
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
+  django:
+    container_name: backend
+    build: backend
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      # above variables should be the same as the db env variables
+      - POSTGRES_HOST=db
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+  vue:
+    container_name: frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    command: npm run serve
+volumes:
+  data1-1:
