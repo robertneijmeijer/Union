@@ -12,6 +12,7 @@
             name="usernameId"
             class="form-control"
             v-model="name"
+            v-bind:class="{ 'error-border': name_inValid }"
           />
         </section>
 
@@ -25,6 +26,7 @@
             name="description"
             class="form-control union-card-body-description"
             v-model="description"
+            v-bind:class="{ 'error-border': description_inValid }"
           />
         </section>
         <div class="union-card-choices">
@@ -41,7 +43,10 @@
                   v-model="members_can_invite"
                   v-bind:value="false"
                 />
-                <label for="onlyMe"></label>
+                <label
+                  for="onlyMe"
+                  v-bind:class="{ 'error-border': invite_inValid }"
+                ></label>
               </div>
               <div class="invites-row-single-envelope">
                 <img src="../assets/svg/singleEnvelope.svg" />
@@ -58,7 +63,10 @@
                   v-model="members_can_invite"
                   v-bind:value="true"
                 />
-                <label for="everyone"></label>
+                <label
+                  for="everyone"
+                  v-bind:class="{ 'error-border': invite_inValid }"
+                ></label>
               </div>
               <img src="../assets/svg/multipleEnvelope.svg" />
               <p>{{ $t("union_create.everyone") }}</p>
@@ -112,6 +120,7 @@
 <script>
 import router from "@/router";
 import UnionApi from "../api/union";
+import { validateUnionTitle } from "../validation/validation";
 
 export default {
   name: "unionCreate",
@@ -123,6 +132,22 @@ export default {
         ? data.append("banner", this.banner)
         : data.append("banner", "");
       this.icon ? data.append("icon", this.icon) : data.append("icon", "");
+
+      this.name_inValid = this.name ? validateUnionTitle(this.name) : true;
+      this.description_inValid = !this.description;
+      this.invite_inValid = this.members_can_invite == undefined;
+
+      console.log(
+        this.name_inValid || this.description_inValid || this.invite_inValid
+      );
+
+      if (
+        this.name_inValid ||
+        this.description_inValid ||
+        this.invite_inValid
+      ) {
+        return;
+      }
 
       UnionApi.postUnionImages(data).then(response => {
         UnionApi.postUnion({
@@ -144,6 +169,13 @@ export default {
     upload_avatar: function (event) {
       this.icon = event.target.files[0];
     },
+  },
+  data() {
+    return {
+      name_inValid: false,
+      description_inValid: false,
+      invite_inValid: false,
+    };
   },
 };
 </script>
@@ -343,5 +375,9 @@ img {
   .union-card {
     padding: $paddingSmall;
   }
+}
+
+.error-border {
+  border-color: $errorColor !important;
 }
 </style>

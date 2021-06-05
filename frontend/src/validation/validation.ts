@@ -68,3 +68,9 @@ export function isValidPassword(password: string): ValidatorResponse {
   }
   return response;
 }
+
+export function validateUnionTitle(string: string) {
+  const regex: RegExp = RegExp("^[A-Za-z0-9]+$");
+  return !regex.test(string);
+}
+
