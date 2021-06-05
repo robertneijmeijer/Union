@@ -1,7 +1,7 @@
 <template>
   <Navigator :loggedIn="true" :landingsPage="false" />
   <div class="post-container">
-    <postComponent />
+    <PostComponent />
   </div>
 </template>
 

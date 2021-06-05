@@ -5,8 +5,8 @@
         <div
           v-if="
             invite.status_code === 404 ||
-              invite.status === 'accepted' ||
-              !invite.union
+            invite.status === 'accepted' ||
+            !invite.union
           "
         >
           <div class="invite-center">
@@ -97,12 +97,12 @@ export default {
     });
   },
   methods: {
-    accept: function() {
+    accept: function () {
       this.$store.dispatch(ActionTypes.INVITE_ACCEPT, {
         invite_token: this.id,
       });
     },
-    decline: function() {
+    decline: function () {
       router.push(`/`);
     },
   },

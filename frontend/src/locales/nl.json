@@ -4,6 +4,9 @@
   },
   "union_create": {
     "welcome": "Welkom op",
+    "invalid_title": "Titel mag niet leeg zijn en mag alleen nummers en letters bevatten",
+    "invalid_description": "Beschrijving mag niet leeg zijn",
+    "invalid_ratio": "Kies een van de onderstaande opties",
     "create_community": "Maak een union",
     "fields_required": "* Verplichte velden",
     "name": "Naam *",
@@ -76,7 +79,11 @@
     "title": "Post maken",
     "post_title": "Titel",
     "post_content": "Inhoud",
-    "image": "Afbeelding"
+    "image": "Afbeelding",
+    "errors": {
+      "title": "Vul a.u.b. een titel in",
+      "description": "Vul a.u.b. inhoud in"
+    }
   },
   "union_join": {
     "welcome": "Welkom op",
@@ -90,7 +97,9 @@
     "comment_as": "Reageer als",
     "comment_hint": "Deel je mening...",
     "submit": "Plaats",
-    "post_not_found": "Post niet gevonden"
+    "post_not_found": "Post niet gevonden",
+    "first_comment": "Plaats als eerste een comment",
+    "show_comments": "Laat comments zien"
   },
   "union-overview": {
     "my_unions": "Union aanmaken",

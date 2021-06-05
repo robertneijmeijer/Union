@@ -1,5 +1,5 @@
 <template>
-  <div class="container-nav" v-bind:class="{ notLoggedIn: !loggedIn }">
+  <div class="nav" v-bind:class="{ notLoggedIn: !loggedIn }">
     <div class="logo">
       <a href="#" @click="onClickImage">
         <img id="union-logo" class="union-logo" src="../assets/svg/union.svg"
@@ -89,7 +89,6 @@ export default {
   },
   methods: {
     onClickImage: function () {
-      console.log("onclick");
       router.push("/");
     },
 
@@ -103,13 +102,15 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/theme";
 
-.container-nav {
+.nav {
   max-width: 100%;
   display: flex;
   flex-direction: row;
   background-color: $primary-gray;
-  padding: 0.625rem 2rem;
+  padding: 0 2rem;
   align-items: center;
+  box-sizing: border-box;
+  min-height: 4rem;
 }
 
 .notLoggedIn {
@@ -121,7 +122,6 @@ export default {
 
 .user {
   flex: 1;
-  margin-top: auto;
 }
 .user-dropdown {
   display: flex;
@@ -216,6 +216,7 @@ export default {
       background: transparent;
       transition: all 0.3s ease 0s;
       outline: none;
+      margin: 0;
 
       &:hover {
         background-color: darken(#000000, 5%);
@@ -243,6 +244,13 @@ export default {
 @media only screen and (min-width: 1026px) {
   #menu {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 25rem) {
+  .container-nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 </style>

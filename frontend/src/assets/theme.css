@@ -57,13 +57,17 @@ textarea {
   resize: none;
 }
 
-.union-button, .union-button-medium, .union-button-small {
+.union-button,
+.union-button-medium,
+.union-button-small {
   border-radius: 33px;
   border: 3px solid #00ffff;
   color: white;
   background: transparent;
 }
-.union-button:hover, .union-button-medium:hover, .union-button-small:hover {
+.union-button:hover,
+.union-button-medium:hover,
+.union-button-small:hover {
   background-color: #2c2c2c;
   border: 3px solid #2c2c2c;
 }

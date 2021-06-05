@@ -12,7 +12,10 @@
         <div class="link-copy-container">
           <div v-if="invites && invites.invites.length > 0">
             <a>{{ setupLink(invites.invites[0].token) }}</a>
-            <button class="btn btn-primary union-button-medium" @click="copyLink">
+            <button
+              class="btn btn-primary union-button-medium"
+              @click="copyLink"
+            >
               {{ $t("invite.copy_link") }}
             </button>
           </div>
@@ -53,19 +56,19 @@ export default {
     },
     inviteText() {
       return i18n.global
-          .t("invite.invites_left")
-          .replace("%s", this.invites.invites_left)
-          .replace("%ss", this.invites.invites_left > 1 ? "s" : "");
+        .t("invite.invites_left")
+        .replace("%s", this.invites.invites_left)
+        .replace("%ss", this.invites.invites_left > 1 ? "s" : "");
     },
     copyLink() {
       // https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
       const dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
-      dummy.value = this.setupLink(this.invites.invites[0].token)
+      dummy.value = this.setupLink(this.invites.invites[0].token);
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
-    }
+    },
   },
   created() {
     this.$store.dispatch(
