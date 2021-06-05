@@ -48,12 +48,20 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
     state: UnionState,
     payload: PostPageType
   ) {
-    if (!state.data) return;
+    if (!state.data || !payload || !payload.results) return;
+
     if (!state.data.posts)
       state.data.posts = { next: undefined, results: undefined };
-    if (payload && payload.next) state.data.posts.next = payload.next;
 
-    state.data.posts.results = payload.results;
+    if (!state.data.posts.results || state.data.posts.results.length == 0) {
+      state.data.posts.results = payload.results;
+    } else {
+      state.data.posts.results = state.data.posts.results.concat(
+        payload.results
+      );
+    }
+
+    state.data.posts.next = payload.next ? payload.next : undefined;
     state.isFetching = false;
   },
   [ActionTypes.UNION_POSTS_ACTION_FAILED](state: UnionState, payload: string) {

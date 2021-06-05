@@ -156,8 +156,8 @@ import {
   isValidEmail,
   isValidPassword,
   isValidUsername,
-} from "../validation/validation";
-import { ValidatorResponse } from "../validation/validation";
+  ValidatorResponse
+} from "../util/validation";
 
 const { mapFields } = require("vuex-map-fields");
 

@@ -57,7 +57,7 @@
 <script>
 import PostApi from "../api/posts"
 import { ActionTypes } from "../actions/union";
-import { isValidPostTitle, isValidPostDescription } from "../validation/validation"
+import { isValidPostTitle, isValidPostDescription } from "../util/validation"
 
 export default {
   name: "createPostComponent",
