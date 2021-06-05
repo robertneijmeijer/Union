@@ -13,13 +13,13 @@
       <!--        TODO: Icon from s3-->
       <div>
         <img
-            class="union-icon"
-            :src="unionAvatar()"
-            alt="Union icon"
+          class="union-icon"
+          :src="unionAvatar()"
+          alt="Union icon"
         />
         {{ postState.post.union.name }}
         <span
-        >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
+          >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
           {{ moment(postState.post.created_at) }}</span
         >
       </div>
