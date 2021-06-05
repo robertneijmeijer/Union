@@ -3,9 +3,10 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
+from comments.models import Comment
 from posts.models import Post
 from votes.serializer import VoteSerializer
-from votes.models import Vote, VoteENUM, updatePostOnVote
+from votes.models import Vote, VoteENUM, updatePostOrCommentOnVote
 
 
 class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
@@ -44,10 +45,16 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save()
 
-            # Vote model is saved, lets update its post model.
-            post = Post.objects.get(post_id=request.data['post'])
-            post = updatePostOnVote(old, new, post)
-            post.save()
+            if 'comment' in request.data:
+                # Vote model is saved, lets update its post model.
+                comment = Comment.objects.get(comment_id=request.data['comment'])
+                comment = updatePostOrCommentOnVote(old, new, comment)
+                comment.save()
+            else:
+                # Vote model is saved, lets update its post model.
+                post = Post.objects.get(post_id=request.data['post'])
+                post = updatePostOrCommentOnVote(old, new, post)
+                post.save()
 
             return Response(serializer.data, status.HTTP_200_OK)
 
@@ -57,9 +64,17 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         serializer.save()
 
         # Vote model is saved, lets update its model.
-        post = Post.objects.get(post_id=request.data['post'])
         new = request.data['vote']
-        post = updatePostOnVote(VoteENUM.NEUTRAL, new, post)
-        post.save()
+
+        if 'comment' in request.data:
+            # Vote model is saved, lets update its post model.
+            comment = Comment.objects.get(comment_id=request.data['comment'])
+            comment = updatePostOrCommentOnVote(VoteENUM.NEUTRAL, new, comment)
+            comment.save()
+        else:
+            # Vote model is saved, lets update its post model.
+            post = Post.objects.get(post_id=request.data['post'])
+            post = updatePostOrCommentOnVote(VoteENUM.NEUTRAL, new, post)
+            post.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
