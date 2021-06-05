@@ -183,7 +183,7 @@ export default {
         post: this.postState.post.post_id,
         vote,
       }).then(() => {
-        //Refetch post
+        // Refetch post
         const id = this.$route.params.id;
         this.$store.dispatch(ActionTypes.POST_ACTION_FETCH, id);
       });

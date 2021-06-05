@@ -12,7 +12,7 @@
               :index="comment.comment_id"
               :neutral-color="'#c8c8c8'"
               orientation="horizontal"
-              :handle-vote="handleVote" />
+              :handle-vote="setVoteDatabase" />
         </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
 import VotingComponent from "@/components/votingComponent"
 import moment from "moment";
 import DefaultUserIcon from "../assets/img/default-user-icon.png";
+import PostApi from "@/api/posts";
 
 // export type CommentType = {
 //   comment_id: string;
@@ -50,24 +51,15 @@ export default {
     userAvatar() {
       return this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
     },
-    handleVote(value) {
-      console.log("handle from comment component")
-      console.log(value)
-
-      // async setVoteDatabase(vote) {
-      //   const u = this.$store.state.union.data;
-      //   // Set vote in database
-      //   await PostApi.postVote({
-      //     post: this.post.post_id,
-      //     vote,
-      //   });
-      //
-      //   // // Set vuex state
-      //   // this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
-      //   //   unionName: u.name,
-      //   //   page: 1,
-      //   // });
-      // },
+    async setVoteDatabase(vote) {
+      // Set vote in database
+      await PostApi.postVote({
+        post: this.comment.post,
+        comment: this.comment.comment_id,
+        vote,
+      }).then(() => {
+        // TODO: Yan refetch comments here
+      });
     },
 
   }
