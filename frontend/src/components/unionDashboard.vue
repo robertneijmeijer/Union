@@ -50,8 +50,8 @@ h2 {
   grid-template-columns: 33fr 33fr 33fr;
   gap: 1rem;
   padding: 2em;
-  column-gap: 1em;
-  max-width: 100em;
+  column-gap: 2em;
+  max-width: 90em;
 }
 
 .union-section-post-comment {
@@ -60,5 +60,10 @@ h2 {
   flex-direction: column;
   margin-bottom: 1em;
   background-color: $primary-gray;
+  transition: transform .2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 </style>

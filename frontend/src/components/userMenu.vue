@@ -48,6 +48,9 @@ export default {
 
 .menu {
   background-color: $primary-gray;
+  width: 300px;
+  text-align: left;
+  cursor: pointer;
 }
 
 .item {
@@ -68,6 +71,7 @@ p {
     cursor: pointer;
     background-color: black;
     color: white;
+    opacity: 100%;
   }
 }
 
