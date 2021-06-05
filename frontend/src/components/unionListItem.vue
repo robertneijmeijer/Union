@@ -88,7 +88,6 @@ export default {
 .image {
   width: 100%;
   height: 100%;
-  border-radius: 33px 33px 0 0;
 }
 
 .name {
