@@ -68,3 +68,23 @@ export function isValidPassword(password: string): ValidatorResponse {
   }
   return response;
 }
+
+export function isValidPostTitle(title: string): ValidatorResponse {
+  const response: ValidatorResponse = { isValid: true, errorMessage: "" };
+
+  if (!title || title.length <= 0) {
+    response.isValid = false;
+    response.errorMessage = i18n.global.t("create_post.errors.title");
+  }
+  return response;
+}
+
+export function isValidPostDescription(description: string): ValidatorResponse {
+  const response: ValidatorResponse = { isValid: true, errorMessage: "" };
+
+  if (!description || description.length <= 0) {
+    response.isValid = false;
+    response.errorMessage = i18n.global.t("create_post.errors.description");
+  }
+  return response;
+}
