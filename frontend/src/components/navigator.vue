@@ -11,7 +11,7 @@
     </div>
 
     <div id="user" class="user" v-if="loggedIn">
-      <button v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
+      <button @mouseover="over()" v-on:click="menuIsHidden = !menuIsHidden" class="user_btn">
         <div class="user-dropdown">
           <div
             v-if="userState.isFetching"
@@ -32,8 +32,8 @@
       </button>
     </div>
 
-    <div id="user-menu" v-if="!menuIsHidden && loggedIn" class="user-menu">
-      <UserMenu />
+    <div @mouseleave="leave()" id="user-menu" v-if="!menuIsHidden && loggedIn" class="user-menu">
+      <UserMenu/>
     </div>
 
     <button
@@ -92,10 +92,15 @@ export default {
       console.log("onclick");
       router.push("/");
     },
-
     toLogin: function () {
       router.push("login");
     },
+    over() {
+      this.menuIsHidden = false;
+    },
+    leave() {
+      this.menuIsHidden = true;
+    }
   },
 };
 </script>
