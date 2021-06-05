@@ -6,7 +6,13 @@
     </div>
     <p class="m-0">{{ comment.text }}</p>
         <div class="comment-voting">
-          <voting-component :votes="10" orientation="horizontal" @upvote="upvote" @downvote="downvote"></voting-component>
+          <voting-component
+              :votes="comment.votes"
+              :user_vote="comment.user_vote"
+              :index="comment.comment_id"
+              :neutral-color="'#c8c8c8'"
+              orientation="horizontal"
+              :handle-vote="handleVote" />
         </div>
   </div>
 </template>
@@ -21,13 +27,13 @@ import DefaultUserIcon from "../assets/img/default-user-icon.png";
 // export type CommentType = {
 //   comment_id: string;
 //   text: string;
-//   upvotes: number;
-//   downvotes: number;
+//   votes: number;
 //   post: PostType;
 //   user: UserType;
 //   parent?: CommentType;
 //   created_at: string
 //   children: CommentType[];
+//   user_vote: VoteENUM
 // }
 
 export default {
@@ -44,12 +50,26 @@ export default {
     userAvatar() {
       return this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
     },
-    upvote() {
-      console.log("upvote from comment component")
+    handleVote(value) {
+      console.log("handle from comment component")
+      console.log(value)
+
+      // async setVoteDatabase(vote) {
+      //   const u = this.$store.state.union.data;
+      //   // Set vote in database
+      //   await PostApi.postVote({
+      //     post: this.post.post_id,
+      //     vote,
+      //   });
+      //
+      //   // // Set vuex state
+      //   // this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
+      //   //   unionName: u.name,
+      //   //   page: 1,
+      //   // });
+      // },
     },
-    downvote() {
-      console.log("downvote from comment component")
-    }
+
   }
 }
 </script>

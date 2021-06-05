@@ -8,7 +8,12 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes" />
+    <voting-component :votes="postState.post.votes"
+                      :user_vote="postState.post.votes"
+                      :index="postState.post.post_id"
+                      :neutral-color="'#424242'"
+                      :handle-vote="setVoteDatabase" />
+
     <div class="post-content text-white">
       <div>
         <img
@@ -73,120 +78,82 @@
 </template>
 
 <script>
-import votingComponent from "@/components/votingComponent";
+import VotingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
 import CommentComponent from "@/components/commentComponent";
 import DefaultUnionIcon from "../assets/img/bitcoin-icon.png"
+import PostApi from "@/api/posts";
+import {ActionTypes} from "@/actions/post";
 
 export default {
   name: "postComponent",
-  components: {votingComponent, Spinner, CommentComponent},
+  components: {VotingComponent, Spinner, CommentComponent},
   data() {
     return {
-      comments: [
-        {
-          "comment_id": 2,
-          "children": [],
-          "user": {
-            "username": "user1",
-            "avatar": "https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png"
-          },
-          "text": "Dikke Comment 2",
-          "upvotes": 0,
-          "downvotes": 0,
-          "created_at": "2021-06-05T14:40:42.258390Z",
-          "post": 1
-        },
-        {
-          "comment_id": 3,
-          "children": [],
-          "user": {
-            "username": "user1",
-            "avatar": "https://cdn.iconscout.com/icon/free/png-256/avatar-366-456318.png"
-          },
-          "text": "JOE!!!",
-          "upvotes": 0,
-          "downvotes": 0,
-          "created_at": "2021-06-05T14:40:45.888390Z",
-          "post": 1
-        },
-        {
-          "comment_id": 4,
-          "children": [],
-          "user": {
-            "username": "user1",
-            "avatar": "https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png"
-          },
-          "text": "Buy Bitcoin?",
-          "upvotes": 0,
-          "downvotes": 0,
-          "created_at": "2021-06-05T14:40:55.492782Z",
-          "post": 1
-        },
-
+      comments:  [
         {
           "comment_id": 5,
           "children": [],
+          "user_vote": "UPVOTE",
+          "votes": 1,
           "user": {
             "username": "user1",
             "avatar": ""
           },
           "text": "Hell no",
-          "upvotes": 0,
-          "downvotes": 0,
           "created_at": "2021-06-05T14:41:00.770984Z",
           "post": 1
         },
         {
           "comment_id": 4,
           "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 10,
           "user": {
             "username": "user1",
             "avatar": ""
           },
           "text": "Buy Bitcoin?",
-          "upvotes": 0,
-          "downvotes": 0,
           "created_at": "2021-06-05T14:40:55.492782Z",
           "post": 1
         },
         {
           "comment_id": 3,
           "children": [],
+          "user_vote": "DOWNVOTE",
+          "votes": 0,
           "user": {
             "username": "user1",
             "avatar": ""
           },
           "text": "JOE!!!",
-          "upvotes": 0,
-          "downvotes": 0,
           "created_at": "2021-06-05T14:40:45.888390Z",
           "post": 1
         },
         {
           "comment_id": 2,
           "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 8,
           "user": {
             "username": "user1",
             "avatar": ""
           },
           "text": "Dikke Comment 2",
-          "upvotes": 0,
-          "downvotes": 0,
           "created_at": "2021-06-05T14:40:42.258390Z",
           "post": 1
         },
         {
           "comment_id": 1,
           "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 0,
           "user": {
             "username": "user1",
             "avatar": ""
           },
           "text": "Dikke Comment",
-          "upvotes": 0,
-          "downvotes": 0,
           "created_at": "2021-06-05T14:40:38.621359Z",
           "post": 1
         }
@@ -209,7 +176,18 @@ export default {
       return this.postState.post.union.icon ?
           this.postState.post.union.icon :
           DefaultUnionIcon
-    }
+    },
+    async setVoteDatabase(vote) {
+      // Set vote in database
+      await PostApi.postVote({
+        post: this.postState.post.post_id,
+        vote,
+      }).then(() => {
+        //Refetch post
+        const id = this.$route.params.id;
+        this.$store.dispatch(ActionTypes.POST_ACTION_FETCH, id);
+      });
+    },
   },
 };
 </script>

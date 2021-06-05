@@ -1,9 +1,10 @@
 <template>
   <div :class="orientation === 'horizontal' ? 'votes-horizontal' : 'votes'">
-    <button @click="this.$emit('upvote')">
+    <button @click="upvoteFunction">
       <svg
           class="vote-svg upvote"
           xmlns="http://www.w3.org/2000/svg"
+          :name="'upvote'+index"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 492.002 492.002"
           xml:space="preserve"
@@ -17,10 +18,11 @@
         />
       </svg>
     </button>
-    <p class="votes-amount">{{ votes }}</p>
-    <button @click="this.$emit('downvote')">
+    <p class="votes-amount" :name="'counter'+index">{{ votes }}</p>
+    <button @click="downvoteFunction">
       <svg
           xmlns="http://www.w3.org/2000/svg"
+          :name="'downvote'+index"
           class="vote-svg downvote"
           viewBox="0 0 491.996 491.996"
           xml:space="preserve"
@@ -39,16 +41,76 @@
 
 <script>
 
+import {VoteENUM} from "@/api/posts";
+
 export default {
   name: "votingComponent",
   props: {
     votes: String,
+    user_vote: String, // VoteEnum
+    index: String,
+    neutralColor: String,
     orientation: {
       type: String, // 'horizontal' | 'vertical'
       default: "vertical"
     },
-    upvote: Function,
-    downvote: Function
+    handleVote: Function,
+  },
+  mounted() {
+    console.log("Mounted")
+    console.log(this.user_vote)
+    this.vote(this.user_vote, true);
+  },
+  methods: {
+    upvoteFunction() {
+      this.vote(VoteENUM.UPVOTE, false);
+    },
+    downvoteFunction() {
+      this.vote(VoteENUM.DOWNVOTE, false);
+    },
+    async vote(vote, initial) {
+
+      // Get elements
+      const up = document.getElementsByName(`upvote${this.index}`)[0]
+      const down = document.getElementsByName(`downvote${this.index}`)[0]
+      const counter = document.getElementsByName(`counter${this.index}`)[0]
+
+      // Disable clicking
+      up.style.pointerEvents = "none";
+      down.style.pointerEvents = "none";
+
+      // Check if vote is neutral
+      let checkedVote = vote;
+      // If not initial set database and check if vote is neutral
+      if (!initial) {
+        if (vote === this.user_vote) checkedVote = VoteENUM.NEUTRAL;
+        // TODO: Check neutral
+        this.handleVote(checkedVote);
+      }
+
+      // Set element color
+      switch (checkedVote) {
+        case VoteENUM.DOWNVOTE:
+          up.style.fill = this.neutralColor;
+          down.style.fill = "#ff00ff";
+          counter.style.color = "#ff00ff";
+          break;
+        case VoteENUM.UPVOTE:
+          up.style.fill = "#00ffff";
+          down.style.fill = this.neutralColor;
+          counter.style.color = "#00ffff";
+          break;
+        default:
+          up.style.fill = this.neutralColor;
+          down.style.fill = this.neutralColor;
+          counter.style.color = this.neutralColor;
+          break;
+      }
+
+      // Enable clicking
+      up.style.pointerEvents = "auto";
+      down.style.pointerEvents = "auto";
+    },
   }
 }
 </script>
