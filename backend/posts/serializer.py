@@ -25,8 +25,9 @@ class PostSerializer(serializers.ModelSerializer):
         return post.upvotes - post.downvotes
 
     def get_user_vote(self, post: Post):
+        current_user = self.context.get('user')
         votes: QuerySet[Vote] = Vote.objects.filter(
-            post=post.post_id, comment=None, user=post.user_id)
+            post=post.post_id, comment=None, user=current_user.user_id)
         if votes.count() == 0:
             return "NEUTRAL"
         else:
@@ -52,8 +53,9 @@ class PostRetrieveSerializer(serializers.ModelSerializer):
         return post.upvotes - post.downvotes
 
     def get_user_vote(self, post: Post):
+        current_user = self.context.get('user')
         votes: QuerySet[Vote] = Vote.objects.filter(
-            post=post.post_id, comment=None, user=post.user_id)
+            post=post.post_id, comment=None, user=current_user.user_id)
         if votes.count() == 0:
             return "NEUTRAL"
         else:
@@ -78,8 +80,9 @@ class MultiplePostRetrieveSerializer(serializers.ModelSerializer):
         return post.upvotes - post.downvotes
 
     def get_user_vote(self, post: Post):
+        current_user = self.context.get('user')
         votes: QuerySet[Vote] = Vote.objects.filter(
-            post=post.post_id, comment=None, user=post.user_id)
+            post=post.post_id, comment=None, user=current_user.user_id)
         if votes.count() == 0:
             return "NEUTRAL"
         else:

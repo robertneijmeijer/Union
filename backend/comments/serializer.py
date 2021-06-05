@@ -1,7 +1,11 @@
+from django.db.models import QuerySet
 from rest_framework import serializers
 from comments.models import Comment
 from users.models import User
 from django.forms.models import model_to_dict
+
+from users.serializers import UserSerializerSimple
+from votes.models import Vote
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,10 +16,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    user_vote = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
+    user = UserSerializerSimple(read_only=True)
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        exclude = ('upvotes', 'downvotes')
         extra_kwargs = {
             'posts': {'write_only': True},
             'parent': {'write_only': True}
@@ -41,6 +48,18 @@ class CommentSerializer(serializers.ModelSerializer):
                 return result
 
         return result
+
+    def get_user_vote(self, comment: Comment):
+        current_user = self.context.get('user')
+        votes: QuerySet[Vote] = Vote.objects.filter(
+            post=None, comment=comment.comment_id, user=current_user.user_id)
+        if votes.count() == 0:
+            return "NEUTRAL"
+        else:
+            return votes[0].vote
+
+    def get_votes(self, comment: Comment):
+        return comment.upvotes - comment.downvotes
 
 
 def children(comment: Comment, nesting_depth):

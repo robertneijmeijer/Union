@@ -25,7 +25,7 @@
             </h5>
             <img
               class="user-image"
-              src="../assets/img/user-icon-png-person-user-profile-icon-20.png"
+              src="../assets/img/default-user-icon.png"
             />
           </div>
         </div>

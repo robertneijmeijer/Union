@@ -22,28 +22,28 @@ class Vote(models.Model):
     vote = models.TextField(choices=VoteENUM.choices, blank=False, null=False)
 
 
-def updatePostOnVote(old: VoteENUM, new: VoteENUM, post: Post):
-    newPost = post
+def updatePostOrCommentOnVote(old: VoteENUM, new: VoteENUM, entity: Post or Comment):
+    entity = entity
 
     if old == VoteENUM.NEUTRAL and new == VoteENUM.DOWNVOTE:
         # Downvote++
-        newPost.downvotes += 1
+        entity.downvotes += 1
     elif old == VoteENUM.NEUTRAL and new == VoteENUM.UPVOTE:
         # upvote++
-        newPost.upvotes += 1
+        entity.upvotes += 1
     elif old == VoteENUM.DOWNVOTE and new == VoteENUM.NEUTRAL:
         # Downvote--
-        newPost.downvotes -= 1
+        entity.downvotes -= 1
     elif old == VoteENUM.DOWNVOTE and new == VoteENUM.UPVOTE:
         # downvote -- && upvote ++
-        newPost.downvotes -= 1
-        newPost.upvotes += 1
+        entity.downvotes -= 1
+        entity.upvotes += 1
     elif old == VoteENUM.UPVOTE and new == VoteENUM.NEUTRAL:
         # upvote--
-        newPost.upvotes -= 1
+        entity.upvotes -= 1
     elif old == VoteENUM.UPVOTE and new == VoteENUM.DOWNVOTE:
         # upvote -- && downvote ++
-        newPost.upvotes -= 1
-        newPost.downvotes += 1
+        entity.upvotes -= 1
+        entity.downvotes += 1
 
-    return newPost
+    return entity

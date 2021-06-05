@@ -20,22 +20,23 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = CommentsPagination
 
     def list(self, request, *args, **kwargs):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
         post = self.request.GET.get('post')
 
         if post is None:
             return HttpResponseBadRequest("Query param 'post' required.")
 
-        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes')
+        comments = Comment.objects.filter(parent_id=None).order_by('-upvotes', '-created_at')
 
         query_set = self.filter_queryset(comments)
         query_set = query_set.filter(post=post)
         pagination = self.paginate_queryset(query_set)
 
         if pagination is not None:
-            serializer = self.get_serializer(pagination, many=True)
+            serializer = self.get_serializer(pagination, many=True, context={'user': user})
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(query_set, many=True)
+        serializer = self.get_serializer(query_set, many=True, context={'user': user})
         result_set = serializer.data
 
         return Response(result_set)
@@ -50,7 +51,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment['user'] = user.user_id
 
         # Validate and save according to serializer
-        serializer = self.serializer_class(data=comment)
+        serializer = self.serializer_class(data=comment, context={"user": user})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         serialized_data = serializer.data
@@ -58,6 +59,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
     def retrieve(self, request, *args, **kwargs):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(request)
         depth = 5
 
         # Check if nesting is given
@@ -65,6 +67,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             depth = request.GET["depth"]
 
         parentComment = self.get_object()
-        serializer = self.get_serializer(parentComment, context={'nesting_depth': depth})
+        serializer = self.get_serializer(parentComment, context={'nesting_depth': depth, 'user': user})
 
         return Response(serializer.data, status.HTTP_200_OK)

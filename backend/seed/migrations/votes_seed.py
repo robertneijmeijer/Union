@@ -7,7 +7,7 @@ from django.db import migrations
 from posts.models import Post
 from unions.models import Union
 from users.models import User
-from votes.models import VoteENUM, updatePostOnVote
+from votes.models import VoteENUM, updatePostOrCommentOnVote
 from votes.serializer import VoteSerializer
 
 
@@ -34,7 +34,7 @@ def create_votes(a, b):
         serializer.save()
 
         # Vote model is saved, lets update its model.
-        post = updatePostOnVote(VoteENUM.NEUTRAL, random_vote, random_post)
+        post = updatePostOrCommentOnVote(VoteENUM.NEUTRAL, random_vote, random_post)
         post.save()
 
     return True

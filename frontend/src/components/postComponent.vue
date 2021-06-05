@@ -8,13 +8,17 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes" />
+    <voting-component :votes="postState.post.votes"
+                      :user_vote="postState.post.user_vote"
+                      :index="postState.post.post_id"
+                      :neutral-color="'#424242'"
+                      :handle-vote="setVoteDatabase" />
+
     <div class="post-content text-white">
-      <!--        TODO: Icon from s3-->
       <div>
         <img
           class="union-icon"
-          src="../assets/img/bitcoin-icon.png"
+          :src="unionAvatar()"
           alt="Union icon"
         />
         {{ postState.post.union.name }}
@@ -38,7 +42,6 @@
       </p>
 
       <div class="post-comment">
-        <!--          TODO: Fetch current user and show user here-->
         <p>
           {{ $t("post.comment_as") }}
           <span class="user">{{ userState.user.username }}</span>
@@ -52,6 +55,14 @@
           {{ $t("post.submit") }}
         </button>
       </div>
+      <hr>
+      <div
+          v-for="comment in comments"
+          v-bind:key="comment.comment_id"
+      >
+        <comment-component :comment="comment"/>
+        <!--        Ordering is done in the backend. No ordering needed.-->
+      </div>
     </div>
   </div>
   <!--    If error show error-->
@@ -64,13 +75,88 @@
 </template>
 
 <script>
-import votingComponent from "@/components/votingComponent";
+import VotingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
+import CommentComponent from "@/components/commentComponent";
+import DefaultUnionIcon from "../assets/img/bitcoin-icon.png"
+import PostApi from "@/api/posts";
+import {ActionTypes} from "@/actions/post";
 
 export default {
   name: "postComponent",
-  components: { votingComponent, Spinner },
+  components: {VotingComponent, Spinner, CommentComponent},
+  data() {
+    return {
+      comments:  [
+        {
+          "comment_id": 5,
+          "children": [],
+          "user_vote": "UPVOTE",
+          "votes": 1,
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Hell no",
+          "created_at": "2021-06-05T14:41:00.770984Z",
+          "post": 1
+        },
+        {
+          "comment_id": 4,
+          "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 10,
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Buy Bitcoin?",
+          "created_at": "2021-06-05T14:40:55.492782Z",
+          "post": 1
+        },
+        {
+          "comment_id": 3,
+          "children": [],
+          "user_vote": "DOWNVOTE",
+          "votes": 0,
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "JOE!!!",
+          "created_at": "2021-06-05T14:40:45.888390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 2,
+          "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 8,
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Dikke Comment 2",
+          "created_at": "2021-06-05T14:40:42.258390Z",
+          "post": 1
+        },
+        {
+          "comment_id": 1,
+          "children": [],
+          "user_vote": "NEUTRAL",
+          "votes": 0,
+          "user": {
+            "username": "user1",
+            "avatar": ""
+          },
+          "text": "Dikke Comment",
+          "created_at": "2021-06-05T14:40:38.621359Z",
+          "post": 1
+        }
+      ]
+    }
+  },
   computed: {
     postState() {
       return this.$store.state.posts;
@@ -83,12 +169,38 @@ export default {
     moment: function (value) {
       return moment(value).fromNow();
     },
+    unionAvatar() {
+      return this.postState.post.union.icon ?
+          this.postState.post.union.icon :
+          DefaultUnionIcon
+    },
+    async setVoteDatabase(vote) {
+      // Set vote in database
+      await PostApi.postVote({
+        post: this.postState.post.post_id,
+        vote,
+      }).then(() => {
+        // Refetch post
+        const id = this.$route.params.id;
+        this.$store.dispatch(ActionTypes.POST_ACTION_FETCH, id);
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "../assets/theme";
+
+.comment-container {
+  width: 100%;
+}
+
+hr {
+  color: white;
+  border-top: 1px $secondary-gray solid;
+  margin: $paddingMedium 0;
+}
 
 .center-center {
   display: flex !important;
@@ -116,6 +228,9 @@ export default {
   }
 
   .post-comment {
+    display: flex;
+    flex-direction: column;
+
     textarea {
       min-height: 150px;
       resize: none;
