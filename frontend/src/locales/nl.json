@@ -81,7 +81,7 @@
     "post_content": "Inhoud",
     "image": "Afbeelding",
     "errors": {
-      "title" : "Vul a.u.b. een titel in",
+      "title": "Vul a.u.b. een titel in",
       "description": "Vul a.u.b. inhoud in"
     }
   },
@@ -97,7 +97,9 @@
     "comment_as": "Reageer als",
     "comment_hint": "Deel je mening...",
     "submit": "Plaats",
-    "post_not_found": "Post niet gevonden"
+    "post_not_found": "Post niet gevonden",
+    "first_comment": "Plaats als eerste een comment",
+    "show_comments": "Laat comments zien"
   },
   "union-overview": {
     "my_unions": "Union aanmaken",

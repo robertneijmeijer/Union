@@ -48,9 +48,9 @@
           href=""
           v-on:click="toPost()"
           v-if="post.number_of_comments && post.number_of_comments > 0"
-          >Show comments ({{ number_of_comments }})</a
+          >{{ $t("post.show_comments") }} ({{ number_of_comments }})</a
         >
-        <a href="" v-on:click="toPost" v-else>Be the first to comment</a>
+        <a href="" v-on:click="toPost" v-else>{{ $t("post.first_comment") }}</a>
       </div>
     </div>
   </div>
