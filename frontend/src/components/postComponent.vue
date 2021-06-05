@@ -42,7 +42,6 @@
       </p>
 
       <div class="post-comment">
-        <!--          TODO: Fetch current user and show user here-->
         <p>
           {{ $t("post.comment_as") }}
           <span class="user">{{ userState.user.username }}</span>
@@ -56,9 +55,7 @@
           {{ $t("post.submit") }}
         </button>
       </div>
-
       <hr>
-      <!--      TODO: Style HR-->
       <div
           v-for="comment in comments"
           v-bind:key="comment.comment_id"

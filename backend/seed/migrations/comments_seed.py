@@ -34,7 +34,6 @@ def create_comments(a, b):
     ]
 
     for post in Post.objects.all():
-
         for i in range(8):
             random_user: User = choice(list(User.objects.all()))
 
@@ -48,7 +47,6 @@ def create_comments(a, b):
             ser.is_valid(raise_exception=True)
             ser.save()
             logging.info(f"{comment} comment created.")
-
 
     return True
 

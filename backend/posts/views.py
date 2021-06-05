@@ -35,11 +35,11 @@ class PostViewSet(ModelViewSet):
         queryset = queryset.filter(union_id=union_id)
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = MultiplePostRetrieveSerializer(page, many=True, context = {'user': user})
+            serializer = MultiplePostRetrieveSerializer(page, many=True, context={'user': user})
             data = self.get_paginated_response(serializer.data)
             return data
 
-        serializer = MultiplePostRetrieveSerializer(queryset, context = {'user': user})
+        serializer = MultiplePostRetrieveSerializer(queryset, context={'user': user})
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
