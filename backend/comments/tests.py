@@ -50,6 +50,7 @@ class CreateUnion(APITestCase):
         level2 = Comment.objects.create(text="test", post=self.post, user=self.teun, parent=level1)
         level3 = Comment.objects.create(text="test", post=self.post, user=self.teun, parent=level2)
 
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.teun.token)
         req = self.client.get(f'/comments/{parent.comment_id}/', {'depth': 2}, format='json')
 
         content_unicode = req.content.decode('utf-8')
