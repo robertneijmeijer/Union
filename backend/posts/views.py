@@ -25,6 +25,8 @@ class PostViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         union_id = self.request.GET.get('union_id')
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
 
         if union_id is None:
             return HttpResponseBadRequest("Query param union_id required.")
@@ -33,16 +35,18 @@ class PostViewSet(ModelViewSet):
         queryset = queryset.filter(union_id=union_id)
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = MultiplePostRetrieveSerializer(page, many=True)
+            serializer = MultiplePostRetrieveSerializer(page, many=True, context = {'user': user})
             data = self.get_paginated_response(serializer.data)
             return data
 
-        serializer = MultiplePostRetrieveSerializer(queryset)
+        serializer = MultiplePostRetrieveSerializer(queryset, context = {'user': user})
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
         instance = self.get_object()
-        serializer = PostRetrieveSerializer(instance)
+        serializer = PostRetrieveSerializer(instance, context={'user': user})
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
@@ -56,7 +60,8 @@ class PostViewSet(ModelViewSet):
         post['user'] = user.user_id
 
         # Validate and save according to serializer
-        serializer = self.serializer_class(data=post)
+        serializer = self.serializer_class(data=post, context={'user': user})
+        serializer.context['user'] = user.user_id
         serializer.is_valid(raise_exception=True)
         serializer.save()
 

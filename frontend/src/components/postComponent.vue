@@ -9,7 +9,7 @@
     <!--    If success show post-->
 
     <voting-component :votes="postState.post.votes"
-                      :user_vote="postState.post.votes"
+                      :user_vote="postState.post.user_vote"
                       :index="postState.post.post_id"
                       :neutral-color="'#424242'"
                       :handle-vote="setVoteDatabase" />

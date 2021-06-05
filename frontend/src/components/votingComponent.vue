@@ -57,8 +57,6 @@ export default {
     handleVote: Function,
   },
   mounted() {
-    console.log("Mounted")
-    console.log(this.user_vote)
     this.vote(this.user_vote, true);
   },
   methods: {
@@ -69,7 +67,6 @@ export default {
       this.vote(VoteENUM.DOWNVOTE, false);
     },
     async vote(vote, initial) {
-
       // Get elements
       const up = document.getElementsByName(`upvote${this.index}`)[0]
       const down = document.getElementsByName(`downvote${this.index}`)[0]
