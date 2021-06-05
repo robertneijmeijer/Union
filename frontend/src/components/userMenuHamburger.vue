@@ -8,7 +8,7 @@
     </div>
     <div class="item line">
       <a href="" v-on:click="toCreate()">{{
-        $t("union-overview.joined_unions")
+        $t("union-overview..my_unions")
       }}</a>
     </div>
     <div class="item line">
