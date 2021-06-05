@@ -130,7 +130,7 @@ export default {
 }
 
 .create-error-text {
-  text-align: center;
+  padding-left: $paddingHuge;
 }
 
 .create-card {
