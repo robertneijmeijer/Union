@@ -5,9 +5,9 @@
       <p><span>{{ comment.user.username }}</span>{{ createdAt() }}</p>
     </div>
     <p class="m-0">{{ comment.text }}</p>
-    <!--    <div class="comment-voting">-->
-    <!--      <voting-component :votes="10" orientation="horizontal"></voting-component>-->
-    <!--    </div>-->
+        <div class="comment-voting">
+          <voting-component :votes="10" orientation="horizontal" @upvote="upvote" @downvote="downvote"></voting-component>
+        </div>
   </div>
 </template>
 
@@ -43,6 +43,12 @@ export default {
     },
     userAvatar() {
       return this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
+    },
+    upvote() {
+      console.log("upvote from comment component")
+    },
+    downvote() {
+      console.log("downvote from comment component")
     }
   }
 }
@@ -55,7 +61,7 @@ export default {
   margin-top: $paddingSmall;
 
   .vote-svg {
-    fill: $primary-light-gray; // TODO: Fix hover
+    fill: $primary-light-gray;
   }
 }
 

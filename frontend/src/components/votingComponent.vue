@@ -1,9 +1,8 @@
 <template>
   <div :class="orientation === 'horizontal' ? 'votes-horizontal' : 'votes'">
-    <button @click="upvote">
+    <button @click="this.$emit('upvote')">
       <svg
           class="vote-svg upvote"
-          name="upvote"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 492.002 492.002"
@@ -18,12 +17,10 @@
         />
       </svg>
     </button>
-    <p class="votes-amount" name="counter">{{ votes }}</p>
-    <button @click="downvote">
+    <p class="votes-amount">{{ votes }}</p>
+    <button @click="this.$emit('downvote')">
       <svg
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          name="downvote"
           class="vote-svg downvote"
           viewBox="0 0 491.996 491.996"
           xml:space="preserve"
@@ -38,15 +35,9 @@
       </svg>
     </button>
   </div>
-
 </template>
 
 <script>
-
-// TODO: Clean up and add logic for event handling
-// TODO: Do eventhandling
-
-
 
 export default {
   name: "votingComponent",
@@ -55,8 +46,10 @@ export default {
     orientation: {
       type: String, // 'horizontal' | 'vertical'
       default: "vertical"
-    }
-  },
+    },
+    upvote: Function,
+    downvote: Function
+  }
 }
 </script>
 
@@ -103,12 +96,12 @@ export default {
 .upvote:hover,
 .upvote:active,
 .upvote:focus {
-  fill: $unionBlue;
+  fill: $unionBlue !important;
 }
 .downvote:hover,
 .downvote:active,
 .downvote:focus {
-  fill: $errorColor;
+  fill: $errorColor !important;
 }
 
 </style>

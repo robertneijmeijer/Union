@@ -10,7 +10,6 @@
 
     <voting-component :votes="postState.post.votes" />
     <div class="post-content text-white">
-      <!--        TODO: Icon from s3-->
       <div>
         <img
           class="union-icon"
