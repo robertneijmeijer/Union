@@ -52,6 +52,12 @@
           {{ $t("post.submit") }}
         </button>
       </div>
+
+      <hr>
+
+      <div class="text-white">
+       <comment-component />
+      </div>
     </div>
   </div>
   <!--    If error show error-->
@@ -67,10 +73,11 @@
 import votingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
+import CommentComponent from "@/components/commentComponent";
 
 export default {
   name: "postComponent",
-  components: { votingComponent, Spinner },
+  components: { votingComponent, Spinner, CommentComponent },
   computed: {
     postState() {
       return this.$store.state.posts;
@@ -89,6 +96,11 @@ export default {
 
 <style lang="scss">
 @import "../assets/theme";
+
+.comment-container {
+  width: 100%;
+
+}
 
 .center-center {
   display: flex !important;
@@ -116,6 +128,9 @@ export default {
   }
 
   .post-comment {
+    display: flex;
+    flex-direction: column;
+
     textarea {
       min-height: 150px;
       resize: none;
@@ -130,6 +145,7 @@ export default {
       margin-top: $paddingMedium;
       margin-right: $paddingSmall * 1.75;
       float: right;
+
     }
   }
 
