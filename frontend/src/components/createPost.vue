@@ -1,33 +1,27 @@
 <template>
     <div class="create-container create-center">
-      <div class="create-card">
+      <div class="create-card border-for-div">
         <p class="create-title create-center">{{ $t("create_post.title") }}</p>
         <div>
           <p class="create-text">{{ $t("create_post.post_title") }}</p>
-          <input
-              type="text"
-              name="title"
-              class="create-input input create-title-input"
-              v-model="title"/>
+          <div class="create-input-container">
+            <input
+                type="text"
+                name="title"
+                class="create-input input"
+                v-model="title"/>
+          </div>
         </div>
-        <div class="create-row">
           <div>
             <p class="create-text">{{ $t("create_post.post_content") }}</p>
-            <textarea
-                type="text"
-                name="content"
-                class="create-input create-content-input input"
-                v-model="content"/>
-          </div>
-          <div class="create-column">
-            <p class="create-text">{{ $t("create_post.image") }}</p>
-            <div class="create-circle">
-              <img src="../assets/svg/imageIcon.svg"
-                   v-on:click="uploadImage()"
-                   alt="image Icon">
+            <div class="create-input-container">
+              <textarea
+                  type="text"
+                  name="content"
+                  class="create-input create-content-input input"
+                  v-model="content"/>
             </div>
           </div>
-        </div>
         <div class="create-buttons">
           <button class="btn btn-primary create-button" v-on:click="post()">
             {{ $t("create_post.post") }}
@@ -78,8 +72,6 @@ export default {
       })
       this.toggleCreatePost();
     },
-    uploadImage: function () {
-    },
     discard: function () {
       this.toggleCreatePost();
     },
@@ -124,11 +116,6 @@ export default {
   padding-top: $paddingMedium;
 }
 
-.create-title-input {
-  max-width: 350px;
-  width: 100%;
-}
-
 .create-text {
   font-size: 24px;
   color: white;
@@ -137,10 +124,16 @@ export default {
   padding-right: $buttonwidth * 2.5;
 }
 
+.create-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: $paddingHuge;
+  padding-left: $paddingHuge;
+}
+
 .create-input {
-  margin-left: $paddingHuge;
-  max-width: 700px;
-  width: 45%;
+  width: 100%;
   background-color: #232323;
   border-radius: $borderRadius;
   border: 3px solid $inputTextFieldBorderColor;
@@ -150,8 +143,6 @@ export default {
 .create-content-input {
   max-height: 300px;
   min-height: 100px;
-  max-width: 350px;
-  width: 100%;
 }
 
 .create-center {
