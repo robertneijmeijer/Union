@@ -82,80 +82,19 @@ import CommentComponent from "@/components/commentComponent";
 import DefaultUnionIcon from "../assets/img/bitcoin-icon.png"
 import PostApi from "@/api/posts";
 import {ActionTypes} from "@/actions/post";
+// eslint-disable-next-line no-unused-vars
+import CommentApi, { CommentType } from "@/api/comment";
+// eslint-disable-next-line no-unused-vars
+import { AxiosResponse } from "axios";
+
 
 export default {
   name: "postComponent",
   components: {VotingComponent, Spinner, CommentComponent},
   data() {
     return {
-      comments:  [
-        {
-          "comment_id": 5,
-          "children": [],
-          "user_vote": "UPVOTE",
-          "votes": 1,
-          "user": {
-            "username": "user1",
-            "avatar": ""
-          },
-          "text": "Hell no",
-          "created_at": "2021-06-05T14:41:00.770984Z",
-          "post": 1
-        },
-        {
-          "comment_id": 4,
-          "children": [],
-          "user_vote": "NEUTRAL",
-          "votes": 10,
-          "user": {
-            "username": "user1",
-            "avatar": ""
-          },
-          "text": "Buy Bitcoin?",
-          "created_at": "2021-06-05T14:40:55.492782Z",
-          "post": 1
-        },
-        {
-          "comment_id": 3,
-          "children": [],
-          "user_vote": "DOWNVOTE",
-          "votes": 0,
-          "user": {
-            "username": "user1",
-            "avatar": ""
-          },
-          "text": "JOE!!!",
-          "created_at": "2021-06-05T14:40:45.888390Z",
-          "post": 1
-        },
-        {
-          "comment_id": 2,
-          "children": [],
-          "user_vote": "NEUTRAL",
-          "votes": 8,
-          "user": {
-            "username": "user1",
-            "avatar": ""
-          },
-          "text": "Dikke Comment 2",
-          "created_at": "2021-06-05T14:40:42.258390Z",
-          "post": 1
-        },
-        {
-          "comment_id": 1,
-          "children": [],
-          "user_vote": "NEUTRAL",
-          "votes": 0,
-          "user": {
-            "username": "user1",
-            "avatar": ""
-          },
-          "text": "Dikke Comment",
-          "created_at": "2021-06-05T14:40:38.621359Z",
-          "post": 1
-        }
-      ]
-    }
+      comments: [],
+    };
   },
   computed: {
     postState() {
@@ -186,7 +125,18 @@ export default {
       });
     },
   },
-};
+  created() {
+    const id = this.$route.params.id;
+    CommentApi.getAllCommentsForPost(id)
+        .then((res) => {
+          if (res && res.data) {
+            console.log(res.data);
+            console.log(res.data.results);
+            this.comments = res.data.results;
+          }
+        })
+  }
+}
 </script>
 
 <style lang="scss">
