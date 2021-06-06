@@ -132,23 +132,22 @@ export default {
             text: this.commentText,
             post: this.$route.params.id
           }
-      ).then((res
-                                  // : CommentType
-      ) => {
-        this.comments.push(res);
+      ).then(() => {
+        this.getAllComments()
       })
+    },
+    getAllComments() {
+      const id = this.$route.params.id;
+      CommentApi.getAllCommentsForPost(id)
+          .then((res) => {
+            if (res && res.data) {
+              this.comments = res.data.results;
+            }
+          })
     }
   },
   created() {
-    const id = this.$route.params.id;
-    CommentApi.getAllCommentsForPost(id)
-        .then((res) => {
-          if (res && res.data) {
-            console.log(res.data);
-            console.log(res.data.results);
-            this.comments = res.data.results;
-          }
-        })
+    this.getAllComments()
   }
 }
 </script>

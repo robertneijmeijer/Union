@@ -55,7 +55,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         serialized_data = serializer.data
-
+        serialized_data['user'] = {
+            'username': user.username,
+            'avatar': user.avatar
+        }
         return Response(serialized_data, status=status.HTTP_201_CREATED)
 
     def retrieve(self, request, *args, **kwargs):
