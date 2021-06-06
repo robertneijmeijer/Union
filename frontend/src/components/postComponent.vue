@@ -50,8 +50,11 @@
           type="text"
           class="form-control input"
           :placeholder="$t('post.comment_hint')"
+          v-model="commentText"
         />
-        <button class="btn btn-primary union-button-medium">
+        <button class="btn btn-primary union-button-medium"
+                v-on:click="postComment()"
+        >
           {{ $t("post.submit") }}
         </button>
       </div>
@@ -124,6 +127,17 @@ export default {
         this.$store.dispatch(ActionTypes.POST_ACTION_FETCH, id);
       });
     },
+    postComment() {
+      CommentApi.postCommentOnPost({
+            text: this.commentText,
+            post: this.$route.params.id
+          }
+      ).then((res
+                                  // : CommentType
+      ) => {
+        this.comments.push(res);
+      })
+    }
   },
   created() {
     const id = this.$route.params.id;
