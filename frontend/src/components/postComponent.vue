@@ -8,19 +8,17 @@
   <div v-else-if="postState.post" class="post-card border-for-div">
     <!--    If success show post-->
 
-    <voting-component :votes="postState.post.votes"
-                      :user_vote="postState.post.user_vote"
-                      :index="postState.post.post_id"
-                      :neutral-color="'#424242'"
-                      :handle-vote="setVoteDatabase" />
+    <voting-component
+      :votes="postState.post.votes"
+      :user_vote="postState.post.user_vote"
+      :index="postState.post.post_id"
+      :neutral-color="'#424242'"
+      :handle-vote="setVoteDatabase"
+    />
 
     <div class="post-content text-white">
       <div>
-        <img
-          class="union-icon"
-          :src="unionAvatar()"
-          alt="Union icon"
-        />
+        <img class="union-icon" :src="unionAvatar()" alt="Union icon" />
         {{ postState.post.union.name }}
         <span
           >• {{ $t("post.posted_by") }} {{ postState.post.user.username }}
@@ -52,18 +50,16 @@
           :placeholder="$t('post.comment_hint')"
           v-model="commentText"
         />
-        <button class="btn btn-primary union-button-medium"
-                v-on:click="postComment()"
+        <button
+          class="btn btn-primary union-button-medium"
+          v-on:click="postComment()"
         >
           {{ $t("post.submit") }}
         </button>
       </div>
-      <hr>
-      <div
-          v-for="comment in comments"
-          v-bind:key="comment.comment_id"
-      >
-        <comment-component :comment="comment"/>
+      <hr />
+      <div v-for="comment in comments" v-bind:key="comment.comment_id">
+        <comment-component :comment="comment" />
         <!--        Ordering is done in the backend. No ordering needed.-->
       </div>
     </div>
@@ -82,18 +78,17 @@ import VotingComponent from "@/components/votingComponent";
 import Spinner from "@/components/spinner";
 import moment from "moment/moment";
 import CommentComponent from "@/components/commentComponent";
-import DefaultUnionIcon from "../assets/img/bitcoin-icon.png"
+import DefaultUnionIcon from "../assets/img/bitcoin-icon.png";
 import PostApi from "@/api/posts";
-import {ActionTypes} from "@/actions/post";
+import { ActionTypes } from "@/actions/post";
 // eslint-disable-next-line no-unused-vars
 import CommentApi, { CommentType } from "@/api/comment";
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from "axios";
 
-
 export default {
   name: "postComponent",
-  components: {VotingComponent, Spinner, CommentComponent},
+  components: { VotingComponent, Spinner, CommentComponent },
   data() {
     return {
       comments: [],
@@ -108,13 +103,13 @@ export default {
     },
   },
   methods: {
-    moment: function (value) {
+    moment: function(value) {
       return moment(value).fromNow();
     },
     unionAvatar() {
-      return this.postState.post.union.icon ?
-          this.postState.post.union.icon :
-          DefaultUnionIcon
+      return this.postState.post.union.icon
+        ? this.postState.post.union.icon
+        : DefaultUnionIcon;
     },
     async setVoteDatabase(vote) {
       // Set vote in database
@@ -129,27 +124,25 @@ export default {
     },
     postComment() {
       CommentApi.postCommentOnPost({
-            text: this.commentText,
-            post: this.$route.params.id
-          }
-      ).then(() => {
-        this.getAllComments()
-      })
+        text: this.commentText,
+        post: this.$route.params.id,
+      }).then(() => {
+        this.getAllComments();
+      });
     },
     getAllComments() {
       const id = this.$route.params.id;
-      CommentApi.getAllCommentsForPost(id)
-          .then((res) => {
-            if (res && res.data) {
-              this.comments = res.data.results;
-            }
-          })
-    }
+      CommentApi.getAllCommentsForPost(id).then(res => {
+        if (res && res.data) {
+          this.comments = res.data.results;
+        }
+      });
+    },
   },
   created() {
-    this.getAllComments()
-  }
-}
+    this.getAllComments();
+  },
+};
 </script>
 
 <style lang="scss">
