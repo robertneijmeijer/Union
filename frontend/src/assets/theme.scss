@@ -46,6 +46,11 @@ $textMedium: 1.75rem;
 $textLarge: 2.25rem;
 $textHuge: 2.5rem;
 
+// animation
+$transition: transform .2s;
+$transform: scale(1.05);
+$transformSmall: scale(1.02);
+
 // Scrollbar
 // Scrollbar - width
 ::-webkit-scrollbar {

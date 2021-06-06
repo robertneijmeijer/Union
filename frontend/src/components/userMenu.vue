@@ -11,7 +11,7 @@
     </div>
 
     <div class="item line">
-      <div class="switcher">
+      <div class="switcher animation">
         <LocaleSwitcher class="switcher" />
       </div>
     </div>
@@ -53,6 +53,13 @@ export default {
   cursor: pointer;
 }
 
+.animation {
+  transition: $transition;
+  &:hover {
+    transform: $transform
+  }
+}
+
 .item {
   padding: 10px 5px 10px 5px;
 }
@@ -61,6 +68,10 @@ p {
   color: white;
   text-decoration: none;
   margin: 0 10px 0 10px;
+  transition: $transition;
+  &:hover {
+    transform: $transform
+  }
 }
 
 .line {

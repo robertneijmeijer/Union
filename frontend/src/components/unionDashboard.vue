@@ -60,10 +60,10 @@ h2 {
   flex-direction: column;
   margin-bottom: 1em;
   background-color: $primary-gray;
-  transition: transform .2s;
+  transition: $transition;
 
   &:hover {
-    transform: scale(1.1);
+    transform: $transform
   }
 }
 </style>
