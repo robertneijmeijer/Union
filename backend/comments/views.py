@@ -4,7 +4,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from authentication.backends import JWTAuthentication
-from comments.serializer import CommentSerializer
+from comments.serializer import CommentSerializer, CommentCreateSerializer
 from comments.models import Comment
 
 
@@ -51,7 +51,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment['user'] = user.user_id
 
         # Validate and save according to serializer
-        serializer = self.serializer_class(data=comment, context={"user": user})
+        serializer = CommentCreateSerializer(data=comment, context={"user": user})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         serialized_data = serializer.data
