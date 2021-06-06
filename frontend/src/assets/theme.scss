@@ -143,3 +143,10 @@ textarea {
   font-size: $textSmall;
   padding: ($paddingSmall * 0.8) ($paddingSmall * 1.2);
 }
+
+.animation {
+   transition: $transition;
+   &:hover {
+     transform: $transformSmall;
+   }
+}

@@ -53,13 +53,6 @@ export default {
   cursor: pointer;
 }
 
-.animation {
-  transition: $transition;
-  &:hover {
-    transform: $transform
-  }
-}
-
 .item {
   padding: 10px 5px 10px 5px;
 }

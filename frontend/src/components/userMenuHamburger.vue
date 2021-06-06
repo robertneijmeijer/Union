@@ -70,13 +70,6 @@ p {
   margin: 0 10px 0 10px;
 }
 
-.animation {
-  transition: $transition;
-  &:hover {
-    transform: $transformSmall;
-  }
-}
-
 a {
   color: white;
   text-decoration: none;
