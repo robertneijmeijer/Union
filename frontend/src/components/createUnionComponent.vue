@@ -43,8 +43,8 @@
               {{ $t("union_create.invalid_ratio") }}
             </p>
 
-            <div class="union-card-invites-rows">
-              <div class="union-card-invites-rows-radio">
+            <div class="union-card-invites-rows animation">
+              <div  class="union-card-invites-rows-radio">
                 <input
                   type="radio"
                   id="onlyMe"
@@ -58,12 +58,12 @@
                 ></label>
               </div>
               <div class="invites-row-single-envelope">
-                <img src="../assets/svg/singleEnvelope.svg" />
+                <img  src="../assets/svg/singleEnvelope.svg" />
               </div>
               <p class="horizontal-padding">{{ $t("union_create.only_i") }}</p>
             </div>
 
-            <div class="union-card-invites-rows">
+            <div class="union-card-invites-rows animation">
               <div class="union-card-invites-rows-radio">
                 <input
                   type="radio"
@@ -90,7 +90,7 @@
               accept="image/*"
               @change="upload_avatar($event)"
             />
-            <img
+            <img class="animation"
               src="../assets/svg/imageIcon.svg"
               v-on:click="$refs.iconFile.click()"
             />
@@ -105,7 +105,7 @@
                 accept="image/*"
                 @change="upload_banner($event)"
               />
-              <img
+              <img class="animation"
                 src="../assets/svg/imageIcon.svg"
                 v-on:click="$refs.bannerFile.click()"
               />
@@ -205,6 +205,13 @@ img {
   p,
   h4 {
     color: white;
+  }
+}
+
+.animation {
+  transition: $transition;
+  &:hover {
+    transform: $transform
   }
 }
 

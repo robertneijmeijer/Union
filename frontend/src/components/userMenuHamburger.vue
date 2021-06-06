@@ -4,20 +4,20 @@
       <SearchbarComponent />
     </div>
     <div class="item line">
-      <a href="" v-on:click="toUnions()">{{ $t("union-overview.home") }}</a>
+      <p class="animation" v-on:click="toUnions()">{{ $t("union-overview.home") }}</p>
     </div>
     <div class="item line">
-      <a href="" v-on:click="toCreate()">{{
+      <p v-on:click="toCreate()">{{
         $t("union-overview.my_unions")
-      }}</a>
+      }}</p>
     </div>
     <div class="item line">
-      <div class="switcher">
+      <div class="switcher animation">
         <LocaleSwitcher class="switcher" />
       </div>
     </div>
     <div class="item line">
-      <a href="" v-on:click="logout()">{{ $t("login.logout") }}</a>
+      <p v-on:click="logout()">{{ $t("login.logout") }}</p>
     </div>
   </div>
 </template>
@@ -49,6 +49,17 @@ export default {
 
 .menu {
   background-color: $primary-gray;
+  cursor: pointer;
+}
+
+p {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px 0 10px;
+  transition: $transition;
+  &:hover {
+    transform: $transformSmall
+  }
 }
 
 .item {
@@ -72,6 +83,7 @@ a {
   &:hover {
     background-color: black;
     color: white;
+    opacity: 100%;
   }
 }
 
