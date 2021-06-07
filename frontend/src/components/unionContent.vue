@@ -14,7 +14,11 @@
         v-for="(post, index) in union.posts.results"
         v-bind:key="post.post_id"
       >
-        <UnionPost :post="post" :index="index" />
+        <UnionPost
+          :post="post"
+          :index="index"
+          @callBackAddScrollListener="addScrollListener"
+        />
       </div>
     </div>
     <div v-else class="text-white union-section-post">
@@ -71,7 +75,11 @@ export default {
         window.removeEventListener("scroll", this.handleScroll);
       }
     },
-
+    addScrollListener() {
+      // Add event listener again
+      window.removeEventListener("scroll", this.handleScroll);
+      window.addEventListener("scroll", this.handleScroll);
+    },
     getNextPage() {
       if (
         document.documentElement.scrollHeight - window.innerHeight >

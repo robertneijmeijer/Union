@@ -78,9 +78,11 @@ export default {
 
     upvote() {
       this.vote(VoteENUM.UPVOTE, false);
+      this.$emit("callBackAddScrollListener");
     },
     downvote() {
       this.vote(VoteENUM.DOWNVOTE, false);
+      this.$emit("callBackAddScrollListener");
     },
     async vote(vote, initial) {
       if (this.index == null) return;
@@ -138,6 +140,7 @@ export default {
       this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
         unionName: u.name,
         page: 1,
+        freshStart: true,
       });
     },
   },
