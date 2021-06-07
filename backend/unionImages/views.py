@@ -18,6 +18,12 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
+        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
+            request)
+
+        if token is None or user is None:
+            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
+
         unionImages = request.data.get('data', {})
 
         unionImages['union_id'] = request.POST.get('union_id')
@@ -35,12 +41,6 @@ class UnionImagesViewSet(viewsets.ModelViewSet):
         except Exception:
             unionImages['icon'] = file_uploader(
                 name="unionCircle.png", file=os.path.join('./assets', 'unionCircle.png'))
-
-        user, token = JWTAuthentication.authenticate_credentials_from_request_header(
-            request)
-
-        if token is None or user is None:
-            return Response("Unauthorized user", status.HTTP_401_UNAUTHORIZED)
 
         # Validate and save according to serializer
         serializer = self.serializer_class(data=unionImages)
