@@ -20,5 +20,3 @@ class UnionImagesTest(APITestCase):
         self.assertRaises(Exception,client.post(
             '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''}),
             '123')
-
-    
