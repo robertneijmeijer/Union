@@ -48,6 +48,7 @@ h2 {
 .union-section {
   display: grid;
   grid-template-columns: 33fr 33fr 33fr;
+  gap: 1em;
   padding: 2em;
 }
 
