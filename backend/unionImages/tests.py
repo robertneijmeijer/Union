@@ -26,5 +26,5 @@ class UnionImagesTest(APITestCase):
                              {'union_id': ['adsfadsgasg'],
                                  'banner': [''], 'icon': ['']},
                              content_type='multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW')
-        self.assertTrue(result.icon != None)
-        self.assertTrue(result.banner != None)
+        self.assertTrue(result.context['icon'])
+        self.assertTrue(result.context['banner'])
