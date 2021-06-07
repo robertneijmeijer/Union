@@ -70,11 +70,6 @@
               {{ $t("login.sign_up") }}</a
             >
           </div>
-          <div class="d-flex justify-content-center">
-            <a class="link-text overpass" href="#">{{
-              $t("login.forgot_password")
-            }}</a>
-          </div>
         </div>
       </div>
     </div>

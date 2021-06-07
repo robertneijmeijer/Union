@@ -2,7 +2,7 @@
   <div class="comment-container">
     <div class="comment-header">
       <img :src="userAvatar()" alt="Icon"/>
-      <p><span>{{ comment.user.username }}</span>{{ createdAt() }}</p>
+      <p><span>{{ comment.user && comment.user.username || "unknown" }}</span>{{ createdAt() }}</p>
     </div>
     <p class="m-0">{{ comment.text }}</p>
         <div class="comment-voting">
