@@ -34,6 +34,8 @@ class InvitationTests(APITestCase):
             name="Crypto SECRET", description="Bitcoin",
             members_can_invite=False, creator=self.koen)
         UnionUsers.objects.create(union=self.union_members_cant_invite, user=self.teun)
+        UnionUsers.objects.create(union=self.union_members_cant_invite,
+                                  user=self.koen)  # Koen is admin so should be here
 
     def test_create_invitation_endpoint(self):
         res, res_body = self.perform_request(self.koen, self.union.name)
@@ -81,6 +83,31 @@ class InvitationTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue(
             "Only the admin can invite for this union" in str(res_body))
+
+    def test_create_from_admin_regardless_of_invite_setting(self):
+        # Koen is Admin -> members can't invite
+        union_users: QuerySet[User] = self.union_members_cant_invite.users.all()
+        self.assertTrue(len(union_users.filter(user_id=self.koen.user_id)) == 1)
+        self.assertEqual(self.union_members_cant_invite.creator.user_id, self.koen.user_id)  # Koen is Admin
+        self.assertFalse(self.union_members_cant_invite.members_can_invite)  # Union has setting set to False
+
+        # Admin Koen teun tries generating invite for members_cant_invite union
+        res, res_body = self.perform_request(
+            self.koen, self.union_members_cant_invite.name)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+
+        # Koen is Admin -> members CAN invite
+        union_users: QuerySet[User] = self.union.users.all()
+        self.assertTrue(len(union_users.filter(user_id=self.koen.user_id)) == 1)
+        self.assertEqual(self.union.creator.user_id, self.koen.user_id)  # Koen is Admin
+        self.assertTrue(self.union.members_can_invite)  # Union has setting set to True
+
+        # Admin Koen teun tries generating invite for members_cant_invite union
+        res, res_body = self.perform_request(
+            self.koen, self.union.name)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 
     def test_create_when_no_invites_left_for_union(self):
         self.perform_request(self.koen, self.union.name)
