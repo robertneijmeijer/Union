@@ -22,7 +22,8 @@ class UnionImagesTest(APITestCase):
             '123')
 
     def test_no_images(self):
-        result = client.post('/unions/images/', 
-        {'union_id': ['adsfadsgasg'], 'banner': [''], 'icon': ['']}, 
-        content_type='multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW')
+        result = client.post('/unions/images/',
+                             {'union_id': ['adsfadsgasg'],
+                                 'banner': [''], 'icon': ['']},
+                             content_type='multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW')
         self.assertTrue(result)
