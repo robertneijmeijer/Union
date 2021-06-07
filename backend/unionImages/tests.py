@@ -12,6 +12,5 @@ class UnionImagesTest(APITestCase):
         return super().setUp()
 
     def test_create(self):
-        response = client.post(
-            '/unions/images/', {'union_id': 'test'})
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertRaises(client.post(
+            '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''}))
