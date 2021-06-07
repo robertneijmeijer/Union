@@ -1,7 +1,7 @@
 <template>
   <div class="community border-for-div">
     <p class="community-title">{{ $t("union_overview.community-info") }}</p>
-    <p class="community-about">{{ about }}</p>
+    <p class="community-about">{{ union.description }}</p>
     <div class="community-info">
       <p class="community-members">
         {{ union.members }} <span>{{ $t("union_overview.members") }}</span>
