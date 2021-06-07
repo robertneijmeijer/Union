@@ -47,7 +47,9 @@ export default {
       return moment(this.comment.created_at).fromNow()
     },
     userAvatar() {
-      return this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
+      return this.comment &&
+              this.comment.user &&
+              this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
     },
     async setVoteDatabase(vote) {
       // Set vote in database
