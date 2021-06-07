@@ -62,8 +62,8 @@
 
 <script>
 import PostApi from "../api/posts";
-import { ActionTypes } from "../actions/union";
-import { isValidPostTitle, isValidPostDescription } from "../util/validation";
+import { ActionTypes } from "@/actions/union";
+import { isValidPostTitle, isValidPostDescription } from "@/util/validation";
 
 export default {
   name: "createPostComponent",
@@ -84,15 +84,15 @@ export default {
     };
   },
   methods: {
-    onTitleFocusout: function () {
+    onTitleFocusout: function() {
       this.validTitle = isValidPostTitle(this.title);
       this.validForm = this.validTitle.isValid;
     },
-    onContentFocusout: function () {
+    onContentFocusout: function() {
       this.validDescription = isValidPostDescription(this.content);
       this.validForm = this.validDescription.isValid;
     },
-    post: function () {
+    post: function() {
       PostApi.postPost({
         title: this.title,
         message: this.content,
@@ -106,7 +106,7 @@ export default {
       });
       this.toggleCreatePost();
     },
-    discard: function () {
+    discard: function() {
       this.toggleCreatePost();
     },
     toggleCreatePost() {

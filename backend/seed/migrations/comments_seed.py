@@ -4,10 +4,8 @@ from random import choice
 
 from django.db import migrations
 
-from comments.serializer import CommentSerializer
+from comments.serializer import CommentSerializer, CommentCreateSerializer
 from posts.models import Post
-from posts.serializer import PostSerializer
-from unions.models import Union
 from users.models import User
 
 
@@ -38,12 +36,12 @@ def create_comments(a, b):
             random_user: User = choice(list(User.objects.all()))
 
             comment = {
-                "user_id": random_user.user_id,
+                "user": random_user.user_id,
                 "text": choice(description),
                 "post": post.post_id,
             }
 
-            ser = CommentSerializer(data=comment)
+            ser = CommentCreateSerializer(data=comment)
             ser.is_valid(raise_exception=True)
             ser.save()
             logging.info(f"{comment} comment created.")

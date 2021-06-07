@@ -2,7 +2,7 @@
   <div class="comment-container">
     <div class="comment-header">
       <img :src="userAvatar()" alt="Icon"/>
-      <p><span>{{ comment.user.username }}</span>{{ createdAt() }}</p>
+      <p><span>{{ comment.user && comment.user.username || "unknown" }}</span>{{ createdAt() }}</p>
     </div>
     <p class="m-0">{{ comment.text }}</p>
         <div class="comment-voting">
@@ -47,7 +47,9 @@ export default {
       return moment(this.comment.created_at).fromNow()
     },
     userAvatar() {
-      return this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
+      return this.comment &&
+              this.comment.user &&
+              this.comment.user.avatar ? this.comment.user.avatar : DefaultUserIcon
     },
     async setVoteDatabase(vote) {
       // Set vote in database
