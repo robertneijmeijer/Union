@@ -12,5 +12,5 @@ class UnionImagesTest(APITestCase):
         return super().setUp()
 
     def test_create(self):
-        self.assertRaises(client.post(
+        self.failUnlessRaises(client.post(
             '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''}))
