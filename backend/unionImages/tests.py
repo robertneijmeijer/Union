@@ -12,5 +12,6 @@ class UnionImagesTest(APITestCase):
         return super().setUp()
 
     def test_create(self):
-        self.failUnlessRaises(client.post(
-            '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''}))
+        result = client.post(
+            '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''})
+        self.assertEqual(result.status_code, status.HTTP_401_UNAUTHORIZED)
