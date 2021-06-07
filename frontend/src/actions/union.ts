@@ -49,12 +49,15 @@ export const actions: ActionTree<UnionState, RootState> & ActionsInterface = {
 
   [ActionTypes.UNION_POSTS_ACTION_SUBMIT](
     { commit, state },
-    params: { unionName: string; page: number }
+    params: { unionName: string; page: number; freshStart?: boolean }
   ) {
     PostsApi.getAllPosts(params.unionName, params.page)
       .then((res: AxiosResponse<PostPageType>) => {
         if (res.status === 200) {
-          commit(ActionTypes.UNION_POSTS_ACTION_SUCCESS, res.data);
+          commit(ActionTypes.UNION_POSTS_ACTION_SUCCESS, {
+            payload: res.data,
+            freshStart: !!params.freshStart,
+          });
         } else
           throw Error(`Can't retrieve posts of union: ${params.unionName}`);
       })

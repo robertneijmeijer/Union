@@ -16,6 +16,10 @@ export interface MutationsInterface {
     state: UnionState,
     payload: any
   ): void;
+  [ActionTypes.UNION_POSTS_ACTION_SUCCESS](
+    state: UnionState,
+    data: { payload: PostPageType; freshStart?: boolean }
+  ): void;
 }
 
 export const mutations: MutationTree<UnionState> & MutationsInterface = {
@@ -41,14 +45,19 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
   },
   [ActionTypes.UNION_POSTS_ACTION_SUCCESS](
     state: UnionState,
-    payload: PostPageType
+    data: { payload: PostPageType; freshStart?: boolean }
   ) {
+    const { payload, freshStart } = data;
     if (!state.data || !payload || !payload.results) return;
 
     if (!state.data.posts)
       state.data.posts = { next: undefined, results: undefined };
 
-    if (!state.data.posts.results || state.data.posts.results.length == 0) {
+    if (
+      !state.data.posts.results ||
+      state.data.posts.results.length == 0 ||
+      freshStart
+    ) {
       state.data.posts.results = payload.results;
     } else {
       state.data.posts.results = state.data.posts.results.concat(

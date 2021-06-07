@@ -138,6 +138,7 @@ export default {
       this.$store.dispatch(ActionTypes.UNION_POSTS_ACTION_SUBMIT, {
         unionName: u.name,
         page: 1,
+        freshStart: true,
       });
     },
   },
