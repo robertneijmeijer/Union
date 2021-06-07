@@ -13,5 +13,5 @@ class UnionImagesTest(APITestCase):
 
     def test_create(self):
         response = client.post(
-            '/unions/images/', {'name': 'test', 'attachment': ''})
+            '/unions/images/', {'union_id': 'test', 'banner': '', 'icon': ''})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
