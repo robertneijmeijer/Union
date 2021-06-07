@@ -1,3 +1,15 @@
-from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APIClient, APITestCase
+import json
 
-# Create your tests here.
+from unionImages.models import UnionImages
+
+client = APIClient()
+
+class UnionImagesTest(APITestCase):
+    def setUp(self):
+        return super().setUp()
+
+    def test_create(self):
+        with open('../assets/defaultBanner.png') as banner:
+            client.post('/unions/images/',{'name': 'test', 'attachment': banner})
