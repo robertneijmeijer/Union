@@ -12,5 +12,6 @@ class UnionImagesTest(APITestCase):
         return super().setUp()
 
     def test_create(self):
-        with open('./assets/defaultBanner.png', 'rb') as banner:
-            self.assertTrue(client.post('/unions/images/', {'name': 'test', 'attachment': banner.read()}))
+        response = client.post('/unions/images/', {'name': 'test', 'attachment': ''})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
