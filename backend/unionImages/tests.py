@@ -13,4 +13,4 @@ class UnionImagesTest(APITestCase):
 
     def test_create(self):
         with open('./assets/defaultBanner.png') as banner:
-            self.assertTrue(client.post('/unions/images/', {'name': 'test', 'attachment': banner}))
+            self.assertTrue(client.post('/unions/images/', {'name': 'test', 'attachment': banner.read()}))
