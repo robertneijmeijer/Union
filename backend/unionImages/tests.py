@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 import json
 
-from unionImages.models import UnionImages
+import logging
 
 client = APIClient()
 
@@ -26,4 +26,5 @@ class UnionImagesTest(APITestCase):
                              {'union_id': ['adsfadsgasg'],
                                  'banner': [''], 'icon': ['']},
                              content_type='multipart/form-data;·boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW')
+        logging.warning(result)
         self.assertTrue(result)
