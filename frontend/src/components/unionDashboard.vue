@@ -36,7 +36,7 @@ export default {
 
 h2 {
   color: white;
-  padding-top: 8px;
+  padding-top: $paddingMedium;
   text-align: center;
 }
 
@@ -48,16 +48,14 @@ h2 {
 .union-section {
   display: grid;
   grid-template-columns: 33fr 33fr 33fr;
-  gap: 1rem;
   padding: 2em;
-  column-gap: 2em;
-  max-width: 90em;
 }
 
 .union-section-post-comment {
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 1em;
   background-color: $primary-gray;
   transition: $transition;
