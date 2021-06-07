@@ -26,6 +26,7 @@ class InvitationTests(APITestCase):
         self.client = APIClient()
         self.koen: User = User.objects.create_user("koen@hva.nl", "koen")
         self.teun: User = User.objects.create_user("teun@hva.nl", "teun")
+        self.user_alone: User = User.objects.create_user("alone@hva.nl", "alone")
         self.union: Union = Union.objects.create(name="Crypto", description="Bitcoin", members_can_invite=True,
                                                  creator=self.koen)
 
@@ -61,10 +62,10 @@ class InvitationTests(APITestCase):
     def test_create_with_user_not_in_union(self):
         # Before we start lets make sure that test user Teun has access to the union
         union_users: QuerySet[User] = self.union_members_cant_invite.users.all()
-        self.assertTrue(len(union_users.filter(user_id=self.teun.user_id)) == 1)
+        self.assertTrue(len(union_users.filter(user_id=self.user_alone.user_id)) == 0)
 
         res, res_body = self.perform_request(
-            self.koen, self.union_members_cant_invite.name)
+            self.user_alone, self.union_members_cant_invite.name)
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue(
