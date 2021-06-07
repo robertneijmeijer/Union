@@ -46,7 +46,7 @@ class InvitationCreateSerializer(serializers.ModelSerializer):
                 'This user cannot create an invite for this union'
             )
 
-        if invite_creator is not union.creator and union.members_can_invite is False:
+        if union.members_can_invite is False and invite_creator.user_id is not union.creator.user_id:
             # User is not the creator and members_can_invite=False
             # so no invite can be created by this invite_creator
             raise PermissionError(

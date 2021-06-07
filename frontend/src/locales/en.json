@@ -12,7 +12,7 @@
     "name": "Name *",
     "description": "Description *",
     "invite_privilege": "Invite privilege *",
-    "only_i": "Only i can invite",
+    "only_i": "Only I can invite",
     "everyone": "Everyone can invite *",
     "max_invites": "Members get max 2 invites",
     "icon": "Icon",
