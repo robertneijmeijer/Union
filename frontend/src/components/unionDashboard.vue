@@ -1,13 +1,18 @@
 <template>
   <div class="union-grid border-for-div">
     <h2>{{ $t("union-overview.home") }}</h2>
-    <div id="union" class="union-section">
-      <div
-        class="union-section-post-comment"
-        v-for="union in unions"
-        v-bind:key="union.id"
-      >
-        <UnionListItem :unions-array="union" />
+    <div v-if="isFetching">
+      <spinner size="large"></spinner>
+    </div>
+    <div v-else-if="!isFetching">
+      <div id="union" class="union-section">
+        <div
+          class="union-section-post-comment"
+          v-for="union in unions"
+          v-bind:key="union.id"
+        >
+          <UnionListItem :unions-array="union" />
+        </div>
       </div>
     </div>
   </div>
@@ -15,12 +20,14 @@
 
 <script>
 import UnionListItem from "../components/unionListItem.vue";
+import spinner from "@/components/spinner";
 
 export default {
   name: "unionDashboard",
-  components: { UnionListItem },
+  components: { UnionListItem, spinner },
   props: {
     unions: Array,
+    isFetching: Boolean,
   },
 };
 </script>
@@ -62,7 +69,7 @@ h2 {
   transition: $transition;
 
   &:hover {
-    transform: $transform
+    transform: $transform;
   }
 }
 </style>

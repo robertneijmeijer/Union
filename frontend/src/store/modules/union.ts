@@ -10,7 +10,7 @@ export interface UnionModuleStateInterface {
   errors: string;
   data: UnionType | null;
   invites: string | null;
-  unions: UnionType[] | null;
+  union: UnionType | null;
 }
 
 export type UnionState = UnionModuleStateInterface;
@@ -21,7 +21,7 @@ export const union: Module<UnionState, RootState> = {
     errors: "",
     invites: null,
     data: null,
-    unions: null,
+    union: null,
   }),
   mutations,
   actions,

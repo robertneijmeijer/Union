@@ -1,11 +1,14 @@
 <template>
   <Navigator :loggedIn="true" :landingsPage="false" />
-  <UnionDashboard :unions="unionState" />
+  <UnionDashboard
+    :unions="unionState.unions"
+    :is-fetching="unionState.isFetching"
+  />
 </template>
 
 <script>
 import Navigator from "../components/navigator.vue";
-import { ActionTypes } from "@/actions/union";
+import { ActionTypes } from "@/actions/unions";
 import UnionDashboard from "../components/unionDashboard.vue";
 
 export default {
@@ -16,7 +19,7 @@ export default {
   },
   computed: {
     unionState() {
-      return this.$store.state.union.unions;
+      return this.$store.state.unions;
     },
   },
 };

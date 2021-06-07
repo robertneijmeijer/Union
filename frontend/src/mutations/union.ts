@@ -11,11 +11,6 @@ export interface MutationsInterface {
     payload: UnionType
   ): void;
   [ActionTypes.UNION_ACTION_FAILED](state: UnionState, payload: string): void;
-
-  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](
-    state: UnionState,
-    payload: UnionType[]
-  ): void;
   [ActionTypes.UNION_INVITES_SUCCESS](state: UnionState, payload: any): void;
   [ActionTypes.UNION_GENERATE_INVITE_FAILED](
     state: UnionState,
@@ -75,14 +70,5 @@ export const mutations: MutationTree<UnionState> & MutationsInterface = {
   [ActionTypes.UNION_GENERATE_INVITE_FAILED](state: UnionState, err: string) {
     state.errors = err;
     state.isFetching = false;
-  },
-
-  // Waarom zit dit hierin
-  [ActionTypes.UNION_ACTION_FETCH_OVERVIEW_SUCCES](
-    state: UnionState,
-    payload: UnionType[]
-  ) {
-    state.isFetching = false;
-    state.unions = payload;
   },
 };
